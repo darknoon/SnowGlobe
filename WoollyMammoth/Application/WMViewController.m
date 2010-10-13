@@ -25,6 +25,7 @@
 {
 	engine = [[WMEngine alloc] init];
 	engine.renderEngine = [[WMRenderEngine alloc] init];
+	//TODO: start lazily
 	[engine start];
 
 	[(EAGLView *)self.view setContext:engine.renderEngine.context];

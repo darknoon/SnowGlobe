@@ -179,6 +179,7 @@
 		4940D90B12658A46007FA76C /* WMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D90A12658A46007FA76C /* WMViewController.m */; };
 		4940D92012658B37007FA76C /* WMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4940D91F12658B37007FA76C /* WMViewController.xib */; };
 		4940D97612658E4B007FA76C /* WMRenderEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D97512658E4B007FA76C /* WMRenderEngine.m */; };
+		4940D9ED126594B7007FA76C /* WMShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D9EC126594B7007FA76C /* WMShader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -574,6 +575,8 @@
 		4940D91F12658B37007FA76C /* WMViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMViewController.xib; sourceTree = "<group>"; };
 		4940D97412658E4B007FA76C /* WMRenderEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRenderEngine.h; sourceTree = "<group>"; };
 		4940D97512658E4B007FA76C /* WMRenderEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMRenderEngine.m; sourceTree = "<group>"; };
+		4940D9EB126594B7007FA76C /* WMShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMShader.h; sourceTree = "<group>"; };
+		4940D9EC126594B7007FA76C /* WMShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMShader.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* WoollyMammoth-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WoollyMammoth-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -618,6 +621,7 @@
 				4940D8D712658992007FA76C /* Application */,
 				4940D06B1264F641007FA76C /* Externals */,
 				2514C27610084DB600A42282 /* Shaders */,
+				4940D9E5126593B3007FA76C /* Util */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -1190,8 +1194,17 @@
 			children = (
 				4940D97412658E4B007FA76C /* WMRenderEngine.h */,
 				4940D97512658E4B007FA76C /* WMRenderEngine.m */,
+				4940D9EB126594B7007FA76C /* WMShader.h */,
+				4940D9EC126594B7007FA76C /* WMShader.m */,
 			);
 			path = Render;
+			sourceTree = "<group>";
+		};
+		4940D9E5126593B3007FA76C /* Util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		4964C5071253F77600DC0365 /* Engine */ = {
@@ -1436,6 +1449,7 @@
 				4940D8E412658992007FA76C /* WoollyMammothAppDelegate.m in Sources */,
 				4940D90B12658A46007FA76C /* WMViewController.m in Sources */,
 				4940D97612658E4B007FA76C /* WMRenderEngine.m in Sources */,
+				4940D9ED126594B7007FA76C /* WMShader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

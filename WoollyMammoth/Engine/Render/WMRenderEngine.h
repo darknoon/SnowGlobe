@@ -14,12 +14,12 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
+@class WMShader;
 
 @interface WMRenderEngine : NSObject {
 	EAGLContext *context;
 
-	//If rendering with GLES2
-	GLuint program;
+	WMShader *tempShader;
 }
 
 @property (nonatomic, retain) EAGLContext *context;

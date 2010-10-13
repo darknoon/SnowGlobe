@@ -12,8 +12,15 @@
 #import "WMGameObject.h"
 #import "WMScriptingContext.h"
 
+@interface WMEngine ()
+@property (nonatomic, retain, readwrite) WMGameObject *rootObject;
+
+@end
+
+
 @implementation WMEngine
 
+@synthesize renderEngine;
 @synthesize rootObject;
 @synthesize scriptingContext;
 @synthesize debugChannel;
@@ -32,6 +39,9 @@
 {
 	[rootObject release];
 	[objectsById release];
+
+	[renderEngine release];
+	renderEngine = nil;
 
 	[super dealloc];
 }

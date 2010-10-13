@@ -178,6 +178,7 @@
 		4940D8E412658992007FA76C /* WoollyMammothAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D8E012658992007FA76C /* WoollyMammothAppDelegate.m */; };
 		4940D90B12658A46007FA76C /* WMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D90A12658A46007FA76C /* WMViewController.m */; };
 		4940D92012658B37007FA76C /* WMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4940D91F12658B37007FA76C /* WMViewController.xib */; };
+		4940D97612658E4B007FA76C /* WMRenderEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D97512658E4B007FA76C /* WMRenderEngine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -571,6 +572,8 @@
 		4940D90912658A46007FA76C /* WMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMViewController.h; sourceTree = "<group>"; };
 		4940D90A12658A46007FA76C /* WMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMViewController.m; sourceTree = "<group>"; };
 		4940D91F12658B37007FA76C /* WMViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMViewController.xib; sourceTree = "<group>"; };
+		4940D97412658E4B007FA76C /* WMRenderEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRenderEngine.h; sourceTree = "<group>"; };
+		4940D97512658E4B007FA76C /* WMRenderEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMRenderEngine.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* WoollyMammoth-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WoollyMammoth-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1175,6 +1178,22 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		4940D97212658DE9007FA76C /* Physics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Physics;
+			sourceTree = "<group>";
+		};
+		4940D97312658E1B007FA76C /* Render */ = {
+			isa = PBXGroup;
+			children = (
+				4940D97412658E4B007FA76C /* WMRenderEngine.h */,
+				4940D97512658E4B007FA76C /* WMRenderEngine.m */,
+			);
+			path = Render;
+			sourceTree = "<group>";
+		};
 		4964C5071253F77600DC0365 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
@@ -1186,6 +1205,8 @@
 				4940D0691264F629007FA76C /* WMDebugChannel.m */,
 				4940D3BF12650CF2007FA76C /* WMScriptingContext.h */,
 				4940D3C012650CF2007FA76C /* WMScriptingContext.m */,
+				4940D97212658DE9007FA76C /* Physics */,
+				4940D97312658E1B007FA76C /* Render */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -1414,6 +1435,7 @@
 				4940D8E112658992007FA76C /* EAGLView.m in Sources */,
 				4940D8E412658992007FA76C /* WoollyMammothAppDelegate.m in Sources */,
 				4940D90B12658A46007FA76C /* WMViewController.m in Sources */,
+				4940D97612658E4B007FA76C /* WMRenderEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

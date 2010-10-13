@@ -11,6 +11,7 @@
 @class WMDebugChannel;
 @class WMGameObject;
 @class WMScriptingContext;
+@class WMRenderEngine;
 
 @interface WMEngine : NSObject {
 	UInt64 maxObjectId;
@@ -18,11 +19,15 @@
 	WMDebugChannel *debugChannel;
 	NSMutableDictionary *objectsById;
 	WMGameObject *rootObject;
+	WMRenderEngine *renderEngine;
 }
 
-@property (nonatomic, retain) WMGameObject *rootObject;
-@property (nonatomic, readonly) WMScriptingContext *scriptingContext;
-@property (nonatomic, readonly) WMDebugChannel *debugChannel;
+//This is set up by the view and set on us. If nil, renderer not ready
+@property (nonatomic, retain) WMRenderEngine *renderEngine;
+
+@property (nonatomic, retain, readonly) WMGameObject *rootObject;
+@property (nonatomic, retain, readonly) WMScriptingContext *scriptingContext;
+@property (nonatomic, retain, readonly) WMDebugChannel *debugChannel;
 
 - (WMGameObject *)createObject;
 - (void)deleteObject:(WMGameObject *)inObject;

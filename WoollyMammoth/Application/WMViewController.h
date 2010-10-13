@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 #import <OpenGLES/EAGL.h>
-
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
 #import <OpenGLES/ES2/gl.h>
@@ -20,10 +19,7 @@
 @interface WMViewController : UIViewController
 {
 	WMEngine *engine;
-	
-    EAGLContext *context;
-    GLuint program;
-    
+	    
     BOOL animating;
     BOOL displayLinkSupported;
     NSInteger animationFrameInterval;

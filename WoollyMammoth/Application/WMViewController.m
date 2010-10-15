@@ -43,6 +43,22 @@
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
         displayLinkSupported = TRUE;
+	
+}
+
+- (void)viewDidLoad;
+{
+	[super viewDidLoad];
+	fpsLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, 10, 200, 22)];
+	fpsLabel.backgroundColor = [UIColor clearColor];
+	fpsLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.f];
+	fpsLabel.textColor = [UIColor whiteColor];
+	fpsLabel.shadowColor = [UIColor blackColor];
+	fpsLabel.shadowOffset = CGSizeMake(0, 1);
+	fpsLabel.alpha = 0.8f;
+	fpsLabel.text = @"fps";
+	[self.view addSubview:fpsLabel];
+				
 }
 
 - (void)dealloc
@@ -69,6 +85,8 @@
 - (void)viewDidUnload
 {
 	[super viewDidUnload];
+	[fpsLabel release];
+	fpsLabel = nil;
 }
 
 - (NSInteger)animationFrameInterval
@@ -113,6 +131,7 @@
             animationTimer = [NSTimer scheduledTimerWithTimeInterval:(NSTimeInterval)((1.0 / 60.0) * animationFrameInterval) target:self selector:@selector(drawFrame) userInfo:nil repeats:TRUE];
         
         animating = TRUE;
+		lastFrameEndTime = CFAbsoluteTimeGetCurrent();
     }
 }
 
@@ -138,11 +157,24 @@
 - (void)drawFrame
 {
     [(EAGLView *)self.view setFramebuffer];
-    
+ 
+	
+	NSTimeInterval frameStartTime = CFAbsoluteTimeGetCurrent();
+	
 	[engine.renderEngine drawFrame];
 	
 	[engine update];
-    
+
+	NSTimeInterval frameEndTime = CFAbsoluteTimeGetCurrent();
+	
+	NSTimeInterval timeToDrawFrame = frameEndTime - frameStartTime;
+	
+	double fps = 1.0 / (frameStartTime - lastFrameEndTime);
+	
+	fpsLabel.text = [NSString stringWithFormat:@"%.0lf fps (%.0lf ms)", fps, timeToDrawFrame];
+	
+	lastFrameEndTime = frameEndTime;
+
     [(EAGLView *)self.view presentFramebuffer];
 }
 

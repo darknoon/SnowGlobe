@@ -30,6 +30,11 @@
 	 */
     id displayLink;
     NSTimer *animationTimer;
+	
+	UILabel *fpsLabel;
+	
+	//Used to calculate actual FPS
+	NSTimeInterval lastFrameEndTime;
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;

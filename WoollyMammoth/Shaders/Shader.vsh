@@ -9,14 +9,14 @@
 attribute vec4 position;
 attribute vec4 color;
 
-varying vec4 colorVarying;
+uniform mat4 modelViewProjectionMatrix;
 
-uniform float translate;
+
+varying vec4 colorVarying;
 
 void main()
 {
-    gl_Position = position;
-    gl_Position.y += sin(translate) / 2.0;
+    gl_Position = position * modelViewProjectionMatrix;
 
     colorVarying = color;
 }

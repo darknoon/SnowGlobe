@@ -8,9 +8,13 @@
 
 #import "WMGameObject.h"
 
+//Temporary, move this out to a smarter place
+#import "WMRenderable.h"
 
 @implementation WMGameObject
 
+@synthesize transform;
+@synthesize renderable;
 @synthesize notes;
 @synthesize objectId;
 @synthesize parent;
@@ -26,6 +30,8 @@
 	mutableChildren = [[NSMutableArray alloc] init];
 	notes = @"";
 	
+	MatrixIdentity(transform);
+		
 	return self;
 }
 
@@ -34,8 +40,13 @@
 	[notes release];
 	[mutableChildren release];	
 	
+	[renderable release];
+
 	[super dealloc];
 }
+
+#pragma mark -
+#pragma mark Hierarchy Managment
 
 - (void)removeFromParent;
 {
@@ -59,6 +70,22 @@
 {
 	return [[mutableChildren copy] autorelease];
 }
+
+#pragma mark -
+#pragma mark Update
+
+- (void)update;
+{
+	if (renderable) {
+		//Rotate by 1.0 rads each second
+		MATRIX rotation;
+		MatrixRotationZ(rotation, 1.0f / 60.0f);
+		MatrixMultiply(transform, transform, rotation);
+	}
+	
+}
+
+#pragma mark -
 
 - (NSString *)description;
 {

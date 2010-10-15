@@ -15,9 +15,9 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
-		4940D0641264F5F7007FA76C /* WMGameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0631264F5F7007FA76C /* WMGameObject.m */; };
-		4940D0671264F608007FA76C /* WMEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0661264F608007FA76C /* WMEngine.m */; };
-		4940D06A1264F629007FA76C /* WMDebugChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0691264F629007FA76C /* WMDebugChannel.m */; };
+		4940D0641264F5F7007FA76C /* WMGameObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0631264F5F7007FA76C /* WMGameObject.mm */; };
+		4940D0671264F608007FA76C /* WMEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0661264F608007FA76C /* WMEngine.mm */; };
+		4940D06A1264F629007FA76C /* WMDebugChannel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0691264F629007FA76C /* WMDebugChannel.mm */; };
 		4940D0911264F641007FA76C /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D06F1264F641007FA76C /* AsyncSocket.m */; };
 		4940D0921264F641007FA76C /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0711264F641007FA76C /* AsyncUdpSocket.m */; };
 		4940D0D01264F8DF007FA76C /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4940D0CF1264F8DF007FA76C /* CoreFoundation.framework */; };
@@ -178,8 +178,17 @@
 		4940D8E412658992007FA76C /* WoollyMammothAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D8E012658992007FA76C /* WoollyMammothAppDelegate.m */; };
 		4940D90B12658A46007FA76C /* WMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D90A12658A46007FA76C /* WMViewController.m */; };
 		4940D92012658B37007FA76C /* WMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4940D91F12658B37007FA76C /* WMViewController.xib */; };
-		4940D97612658E4B007FA76C /* WMRenderEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D97512658E4B007FA76C /* WMRenderEngine.m */; };
+		4940D97612658E4B007FA76C /* WMRenderEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D97512658E4B007FA76C /* WMRenderEngine.mm */; };
 		4940D9ED126594B7007FA76C /* WMShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D9EC126594B7007FA76C /* WMShader.m */; };
+		4940DB1412664329007FA76C /* WMPhysicsBody.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940DB1312664329007FA76C /* WMPhysicsBody.mm */; };
+		4940DB1912664431007FA76C /* WMPhysicsWorld.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940DB1812664431007FA76C /* WMPhysicsWorld.mm */; };
+		4940DCEB12669B1A007FA76C /* WMRenderable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940DCEA12669B1A007FA76C /* WMRenderable.mm */; };
+		4940DD3F1266A38A007FA76C /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4940DD2C1266A38A007FA76C /* Matrix.cpp */; };
+		4940DD401266A38A007FA76C /* neon_matrix_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4940DD2F1266A38A007FA76C /* neon_matrix_impl.cpp */; };
+		4940DD411266A38A007FA76C /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4940DD321266A38A007FA76C /* Random.cpp */; };
+		4940DD421266A38A007FA76C /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4940DD341266A38A007FA76C /* Transform.cpp */; };
+		4940DD431266A38A007FA76C /* matrix_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4940DD391266A38A007FA76C /* matrix_impl.cpp */; };
+		4940DD441266A38A007FA76C /* utility_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4940DD3B1266A38A007FA76C /* utility_impl.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -194,11 +203,11 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* WoollyMammoth_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WoollyMammoth_Prefix.pch; sourceTree = "<group>"; };
 		4940D0621264F5F7007FA76C /* WMGameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMGameObject.h; sourceTree = "<group>"; };
-		4940D0631264F5F7007FA76C /* WMGameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMGameObject.m; sourceTree = "<group>"; };
+		4940D0631264F5F7007FA76C /* WMGameObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMGameObject.mm; sourceTree = "<group>"; };
 		4940D0651264F608007FA76C /* WMEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEngine.h; sourceTree = "<group>"; };
-		4940D0661264F608007FA76C /* WMEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEngine.m; sourceTree = "<group>"; };
+		4940D0661264F608007FA76C /* WMEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMEngine.mm; sourceTree = "<group>"; };
 		4940D0681264F629007FA76C /* WMDebugChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDebugChannel.h; sourceTree = "<group>"; };
-		4940D0691264F629007FA76C /* WMDebugChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDebugChannel.m; sourceTree = "<group>"; };
+		4940D0691264F629007FA76C /* WMDebugChannel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMDebugChannel.mm; sourceTree = "<group>"; };
 		4940D06E1264F641007FA76C /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
 		4940D06F1264F641007FA76C /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
 		4940D0701264F641007FA76C /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncUdpSocket.h; sourceTree = "<group>"; };
@@ -259,7 +268,6 @@
 		4940D40812651BE9007FA76C /* lvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lvm.h; sourceTree = "<group>"; };
 		4940D40912651BE9007FA76C /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lzio.c; sourceTree = "<group>"; };
 		4940D40A12651BE9007FA76C /* lzio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lzio.h; sourceTree = "<group>"; };
-		4940D6DF12658516007FA76C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		4940D6E112658516007FA76C /* btBulletCollisionCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btBulletCollisionCommon.h; sourceTree = "<group>"; };
 		4940D6E212658516007FA76C /* btBulletDynamicsCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btBulletDynamicsCommon.h; sourceTree = "<group>"; };
 		4940D6E312658516007FA76C /* Bullet-C-Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bullet-C-Api.h"; sourceTree = "<group>"; };
@@ -565,7 +573,6 @@
 		4940D81C12658517007FA76C /* btTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btTransform.h; sourceTree = "<group>"; };
 		4940D81D12658517007FA76C /* btTransformUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btTransformUtil.h; sourceTree = "<group>"; };
 		4940D81E12658517007FA76C /* btVector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btVector3.h; sourceTree = "<group>"; };
-		4940D81F12658517007FA76C /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		4940D8D812658992007FA76C /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
 		4940D8D912658992007FA76C /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLView.m; sourceTree = "<group>"; };
 		4940D8DF12658992007FA76C /* WoollyMammothAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WoollyMammothAppDelegate.h; sourceTree = "<group>"; };
@@ -574,9 +581,33 @@
 		4940D90A12658A46007FA76C /* WMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMViewController.m; sourceTree = "<group>"; };
 		4940D91F12658B37007FA76C /* WMViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMViewController.xib; sourceTree = "<group>"; };
 		4940D97412658E4B007FA76C /* WMRenderEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRenderEngine.h; sourceTree = "<group>"; };
-		4940D97512658E4B007FA76C /* WMRenderEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMRenderEngine.m; sourceTree = "<group>"; };
+		4940D97512658E4B007FA76C /* WMRenderEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMRenderEngine.mm; sourceTree = "<group>"; };
 		4940D9EB126594B7007FA76C /* WMShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMShader.h; sourceTree = "<group>"; };
 		4940D9EC126594B7007FA76C /* WMShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMShader.m; sourceTree = "<group>"; };
+		4940DB1212664329007FA76C /* WMPhysicsBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhysicsBody.h; sourceTree = "<group>"; };
+		4940DB1312664329007FA76C /* WMPhysicsBody.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMPhysicsBody.mm; sourceTree = "<group>"; };
+		4940DB1712664431007FA76C /* WMPhysicsWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhysicsWorld.h; sourceTree = "<group>"; };
+		4940DB1812664431007FA76C /* WMPhysicsWorld.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMPhysicsWorld.mm; sourceTree = "<group>"; };
+		4940DCE912669B1A007FA76C /* WMRenderable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRenderable.h; sourceTree = "<group>"; };
+		4940DCEA12669B1A007FA76C /* WMRenderable.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMRenderable.mm; sourceTree = "<group>"; };
+		4940DCF212669BFA007FA76C /* WMRenderCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRenderCommon.h; sourceTree = "<group>"; };
+		4940DD2C1266A38A007FA76C /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix.cpp; sourceTree = "<group>"; };
+		4940DD2D1266A38A007FA76C /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
+		4940DD2F1266A38A007FA76C /* neon_matrix_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = neon_matrix_impl.cpp; sourceTree = "<group>"; };
+		4940DD301266A38A007FA76C /* neon_matrix_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neon_matrix_impl.h; sourceTree = "<group>"; };
+		4940DD311266A38A007FA76C /* Quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
+		4940DD321266A38A007FA76C /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
+		4940DD331266A38A007FA76C /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
+		4940DD341266A38A007FA76C /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
+		4940DD351266A38A007FA76C /* Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
+		4940DD361266A38A007FA76C /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
+		4940DD381266A38A007FA76C /* common_macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common_macros.h; sourceTree = "<group>"; };
+		4940DD391266A38A007FA76C /* matrix_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix_impl.cpp; sourceTree = "<group>"; };
+		4940DD3A1266A38A007FA76C /* matrix_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix_impl.h; sourceTree = "<group>"; };
+		4940DD3B1266A38A007FA76C /* utility_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility_impl.cpp; sourceTree = "<group>"; };
+		4940DD3C1266A38A007FA76C /* utility_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility_impl.h; sourceTree = "<group>"; };
+		4940DD3E1266A38A007FA76C /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		4940DD471266A3A2007FA76C /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* WoollyMammoth-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WoollyMammoth-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -608,8 +639,8 @@
 		2514C27610084DB600A42282 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				2514C27910084DCA00A42282 /* Shader.fsh */,
 				2514C27A10084DCA00A42282 /* Shader.vsh */,
+				2514C27910084DCA00A42282 /* Shader.fsh */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -664,7 +695,8 @@
 		4940D06B1264F641007FA76C /* Externals */ = {
 			isa = PBXGroup;
 			children = (
-				4940D6DE12658516007FA76C /* Bullet */,
+				4940DD2A1266A38A007FA76C /* oolong */,
+				4940D6E012658516007FA76C /* Bullet */,
 				4940D3D412651BE9007FA76C /* Lua */,
 				4940D06C1264F641007FA76C /* cocoaasyncsocket */,
 			);
@@ -742,17 +774,7 @@
 			path = "lua-5.1.4/src";
 			sourceTree = "<group>";
 		};
-		4940D6DE12658516007FA76C /* Bullet */ = {
-			isa = PBXGroup;
-			children = (
-				4940D6DF12658516007FA76C /* LICENSE */,
-				4940D6E012658516007FA76C /* src */,
-				4940D81F12658517007FA76C /* VERSION */,
-			);
-			path = Bullet;
-			sourceTree = "<group>";
-		};
-		4940D6E012658516007FA76C /* src */ = {
+		4940D6E012658516007FA76C /* Bullet */ = {
 			isa = PBXGroup;
 			children = (
 				4940D6E112658516007FA76C /* btBulletCollisionCommon.h */,
@@ -763,7 +785,8 @@
 				4940D7F012658517007FA76C /* BulletSoftBody */,
 				4940D80112658517007FA76C /* LinearMath */,
 			);
-			path = src;
+			name = Bullet;
+			path = Bullet/src;
 			sourceTree = "<group>";
 		};
 		4940D6E412658516007FA76C /* BulletCollision */ = {
@@ -1185,6 +1208,10 @@
 		4940D97212658DE9007FA76C /* Physics */ = {
 			isa = PBXGroup;
 			children = (
+				4940DB1712664431007FA76C /* WMPhysicsWorld.h */,
+				4940DB1812664431007FA76C /* WMPhysicsWorld.mm */,
+				4940DB1212664329007FA76C /* WMPhysicsBody.h */,
+				4940DB1312664329007FA76C /* WMPhysicsBody.mm */,
 			);
 			path = Physics;
 			sourceTree = "<group>";
@@ -1192,10 +1219,13 @@
 		4940D97312658E1B007FA76C /* Render */ = {
 			isa = PBXGroup;
 			children = (
+				4940DCF212669BFA007FA76C /* WMRenderCommon.h */,
 				4940D97412658E4B007FA76C /* WMRenderEngine.h */,
-				4940D97512658E4B007FA76C /* WMRenderEngine.m */,
+				4940D97512658E4B007FA76C /* WMRenderEngine.mm */,
 				4940D9EB126594B7007FA76C /* WMShader.h */,
 				4940D9EC126594B7007FA76C /* WMShader.m */,
+				4940DCE912669B1A007FA76C /* WMRenderable.h */,
+				4940DCEA12669B1A007FA76C /* WMRenderable.mm */,
 			);
 			path = Render;
 			sourceTree = "<group>";
@@ -1207,15 +1237,71 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		4940DD2A1266A38A007FA76C /* oolong */ = {
+			isa = PBXGroup;
+			children = (
+				4940DD2B1266A38A007FA76C /* Math */,
+				4940DD3D1266A38A007FA76C /* Utility */,
+			);
+			path = oolong;
+			sourceTree = "<group>";
+		};
+		4940DD2B1266A38A007FA76C /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				4940DD2D1266A38A007FA76C /* Matrix.h */,
+				4940DD2C1266A38A007FA76C /* Matrix.cpp */,
+				4940DD2E1266A38A007FA76C /* neonmath */,
+				4940DD311266A38A007FA76C /* Quaternion.h */,
+				4940DD331266A38A007FA76C /* Random.h */,
+				4940DD321266A38A007FA76C /* Random.cpp */,
+				4940DD351266A38A007FA76C /* Transform.h */,
+				4940DD341266A38A007FA76C /* Transform.cpp */,
+				4940DD361266A38A007FA76C /* Vector.h */,
+				4940DD371266A38A007FA76C /* vfpmath */,
+			);
+			path = Math;
+			sourceTree = "<group>";
+		};
+		4940DD2E1266A38A007FA76C /* neonmath */ = {
+			isa = PBXGroup;
+			children = (
+				4940DD2F1266A38A007FA76C /* neon_matrix_impl.cpp */,
+				4940DD301266A38A007FA76C /* neon_matrix_impl.h */,
+			);
+			path = neonmath;
+			sourceTree = "<group>";
+		};
+		4940DD371266A38A007FA76C /* vfpmath */ = {
+			isa = PBXGroup;
+			children = (
+				4940DD381266A38A007FA76C /* common_macros.h */,
+				4940DD391266A38A007FA76C /* matrix_impl.cpp */,
+				4940DD3A1266A38A007FA76C /* matrix_impl.h */,
+				4940DD3B1266A38A007FA76C /* utility_impl.cpp */,
+				4940DD3C1266A38A007FA76C /* utility_impl.h */,
+			);
+			path = vfpmath;
+			sourceTree = "<group>";
+		};
+		4940DD3D1266A38A007FA76C /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				4940DD3E1266A38A007FA76C /* Macros.h */,
+				4940DD471266A3A2007FA76C /* Types.h */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		4964C5071253F77600DC0365 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
 				4940D0651264F608007FA76C /* WMEngine.h */,
-				4940D0661264F608007FA76C /* WMEngine.m */,
+				4940D0661264F608007FA76C /* WMEngine.mm */,
 				4940D0621264F5F7007FA76C /* WMGameObject.h */,
-				4940D0631264F5F7007FA76C /* WMGameObject.m */,
+				4940D0631264F5F7007FA76C /* WMGameObject.mm */,
 				4940D0681264F629007FA76C /* WMDebugChannel.h */,
-				4940D0691264F629007FA76C /* WMDebugChannel.m */,
+				4940D0691264F629007FA76C /* WMDebugChannel.mm */,
 				4940D3BF12650CF2007FA76C /* WMScriptingContext.h */,
 				4940D3C012650CF2007FA76C /* WMScriptingContext.m */,
 				4940D97212658DE9007FA76C /* Physics */,
@@ -1288,9 +1374,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				4940D0641264F5F7007FA76C /* WMGameObject.m in Sources */,
-				4940D0671264F608007FA76C /* WMEngine.m in Sources */,
-				4940D06A1264F629007FA76C /* WMDebugChannel.m in Sources */,
+				4940D0641264F5F7007FA76C /* WMGameObject.mm in Sources */,
+				4940D0671264F608007FA76C /* WMEngine.mm in Sources */,
+				4940D06A1264F629007FA76C /* WMDebugChannel.mm in Sources */,
 				4940D0911264F641007FA76C /* AsyncSocket.m in Sources */,
 				4940D0921264F641007FA76C /* AsyncUdpSocket.m in Sources */,
 				4940D3C112650CF2007FA76C /* WMScriptingContext.m in Sources */,
@@ -1448,8 +1534,17 @@
 				4940D8E112658992007FA76C /* EAGLView.m in Sources */,
 				4940D8E412658992007FA76C /* WoollyMammothAppDelegate.m in Sources */,
 				4940D90B12658A46007FA76C /* WMViewController.m in Sources */,
-				4940D97612658E4B007FA76C /* WMRenderEngine.m in Sources */,
+				4940D97612658E4B007FA76C /* WMRenderEngine.mm in Sources */,
 				4940D9ED126594B7007FA76C /* WMShader.m in Sources */,
+				4940DB1412664329007FA76C /* WMPhysicsBody.mm in Sources */,
+				4940DB1912664431007FA76C /* WMPhysicsWorld.mm in Sources */,
+				4940DCEB12669B1A007FA76C /* WMRenderable.mm in Sources */,
+				4940DD3F1266A38A007FA76C /* Matrix.cpp in Sources */,
+				4940DD401266A38A007FA76C /* neon_matrix_impl.cpp in Sources */,
+				4940DD411266A38A007FA76C /* Random.cpp in Sources */,
+				4940DD421266A38A007FA76C /* Transform.cpp in Sources */,
+				4940DD431266A38A007FA76C /* matrix_impl.cpp in Sources */,
+				4940DD441266A38A007FA76C /* utility_impl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

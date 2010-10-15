@@ -8,23 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-#import <OpenGLES/EAGL.h>
-#import <OpenGLES/ES1/gl.h>
-#import <OpenGLES/ES1/glext.h>
-#import <OpenGLES/ES2/gl.h>
-#import <OpenGLES/ES2/glext.h>
+#import "WMRenderCommon.h"
 
 @class WMShader;
+@class WMEngine;
 
 @interface WMRenderEngine : NSObject {
 	EAGLContext *context;
 
-	WMShader *tempShader;
+	//Weak
+	WMEngine *engine;
 }
 
 @property (nonatomic, retain) EAGLContext *context;
 
-- (id)init;
+- (id)initWithEngine:(WMEngine *)inEngine;
 
 - (void)drawFrame;
 

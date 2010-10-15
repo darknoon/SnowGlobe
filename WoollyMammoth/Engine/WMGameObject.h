@@ -11,7 +11,10 @@
 //TODO: copying
 //TODO: equality, hash
 
+#import "Matrix.h"
+
 @class WMEngine;
+@class WMRenderable;
 
 @interface WMGameObject : NSObject {
 @protected
@@ -20,13 +23,24 @@
 	//Weak
 	WMGameObject *parent;
 	WMEngine *engine;
+		
+	//Non-object
+	MATRIX transform;
 	
 	//Strong
+	WMRenderable *renderable; //optional
+	
+	//Modules
+	//WMPhysicsBody *body;
+	//TODO: sound?
+	
 	NSMutableArray *mutableChildren;
 	//For debugging purposes
-	NSString *notes;
+	NSString *notes; //optional
 }
 
+@property (nonatomic, assign) MATRIX transform;
+@property (nonatomic, retain) WMRenderable *renderable;
 @property (nonatomic, copy) NSString *notes;
 @property (nonatomic, assign) WMGameObject *parent;
 @property (nonatomic, readonly) UInt64 objectId;
@@ -35,6 +49,8 @@
 - (id)initWithObjectId:(UInt64)inObjectId inEngine:(WMEngine *)inEngine;
 
 - (NSString *)descriptionRecursive;
+
+- (void)update;
 
 - (void)removeFromParent;
 - (void)addChild:(WMGameObject *)inChild;

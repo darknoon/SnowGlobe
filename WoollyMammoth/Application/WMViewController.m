@@ -24,7 +24,7 @@
 - (void)awakeFromNib
 {
 	engine = [[WMEngine alloc] init];
-	engine.renderEngine = [[WMRenderEngine alloc] init];
+	engine.renderEngine = [[WMRenderEngine alloc] initWithEngine:engine];
 	//TODO: start lazily
 	[engine start];
 
@@ -140,6 +140,8 @@
     [(EAGLView *)self.view setFramebuffer];
     
 	[engine.renderEngine drawFrame];
+	
+	[engine update];
     
     [(EAGLView *)self.view presentFramebuffer];
 }

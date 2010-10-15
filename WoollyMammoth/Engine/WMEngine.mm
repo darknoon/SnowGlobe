@@ -11,6 +11,7 @@
 #import "WMDebugChannel.h"
 #import "WMGameObject.h"
 #import "WMScriptingContext.h"
+#import "WMRenderable.h"
 
 @interface WMEngine ()
 @property (nonatomic, retain, readwrite) WMGameObject *rootObject;
@@ -49,6 +50,10 @@
 - (void)debugMakeObjectGraph;
 {
 	WMGameObject *child = [self createObject];
+	child.renderable = [[[WMRenderable alloc] init] autorelease];
+	MATRIX childMatrix;
+	MatrixRotationZ(childMatrix, M_PI_4);
+	child.transform = childMatrix;
 	[self.rootObject addChild:child];
 }
 
@@ -70,6 +75,18 @@
 	[self debugMakeObjectGraph];
 }
 
+- (void)updateRecursive:(WMGameObject *)inGameObject;
+{
+	[inGameObject update];
+	for (WMGameObject *object in inGameObject.children) {
+		[self updateRecursive:object];
+	}
+}
+
+- (void)update;
+{
+	[self updateRecursive:rootObject];
+}
 
 - (WMGameObject *)createObject;
 {

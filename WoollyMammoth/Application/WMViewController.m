@@ -169,9 +169,9 @@
 	
 	NSTimeInterval timeToDrawFrame = frameEndTime - frameStartTime;
 	
-	double fps = 1.0 / (frameStartTime - lastFrameEndTime);
+	double fps = 1.0 / (frameEndTime - lastFrameEndTime);
 	
-	fpsLabel.text = [NSString stringWithFormat:@"%.0lf fps (%.0lf ms)", fps, timeToDrawFrame];
+	fpsLabel.text = [NSString stringWithFormat:@"%.0lf fps (%.0lf ms)", fps, timeToDrawFrame * 1000.0];
 	
 	lastFrameEndTime = frameEndTime;
 

@@ -1560,7 +1560,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WoollyMammoth_Prefix.pch;
-				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "WoollyMammoth-Info.plist";
 				PRODUCT_NAME = WoollyMammoth;
 			};

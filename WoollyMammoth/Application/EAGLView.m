@@ -32,7 +32,11 @@
 	if (self)
     {
         CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
-        
+
+		//Support Retina display
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+			eaglLayer.contentsScale = [UIScreen mainScreen].scale;
+		}
         eaglLayer.opaque = TRUE;
         eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
                                         [NSNumber numberWithBool:FALSE], kEAGLDrawablePropertyRetainedBacking,

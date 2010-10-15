@@ -25,9 +25,8 @@
 	NSMutableDictionary *uniformLocations;
 }
 
-@property (nonatomic, copy) NSArray *uniformNames;
-
 //Set these
+@property (nonatomic, copy) NSArray *uniformNames;
 @property (nonatomic, copy) NSArray *attributeNames;
 @property (nonatomic, copy) NSString *vertexShader;
 @property (nonatomic, copy) NSString *pixelShader;

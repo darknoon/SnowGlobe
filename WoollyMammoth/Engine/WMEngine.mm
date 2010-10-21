@@ -49,12 +49,17 @@
 
 - (void)debugMakeObjectGraph;
 {
-	WMGameObject *child = [self createObject];
-	child.renderable = [[[WMRenderable alloc] init] autorelease];
-	MATRIX childMatrix;
-	MatrixRotationZ(childMatrix, M_PI_4);
-	child.transform = childMatrix;
-	[self.rootObject addChild:child];
+	for (int i=0; i<1; i++) {
+		WMGameObject *child = [self createObject];
+		child.renderable = [[[WMRenderable alloc] init] autorelease];
+				
+		MATRIX scaleMatrix;
+		MatrixScaling(scaleMatrix, 0.1, 0.1, 0.1);
+		
+		child.transform = scaleMatrix;
+		
+		[self.rootObject addChild:child];
+	}	
 }
 
 

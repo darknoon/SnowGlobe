@@ -14,8 +14,11 @@
 
 @class WMShader;
 
+@class WMModelPOD;
+
 @interface WMRenderable : NSObject {
 	WMShader *shader;
+	WMModelPOD *model;
 }
 
 - (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API;

@@ -10,12 +10,16 @@
 
 #import "WMRenderCommon.h"
 
+#import "Matrix.h"
+
 @class WMShader;
 @class WMEngine;
 
 @interface WMRenderEngine : NSObject {
 	EAGLContext *context;
-
+	
+	MATRIX cameraMatrix;
+	
 	//Weak
 	WMEngine *engine;
 }

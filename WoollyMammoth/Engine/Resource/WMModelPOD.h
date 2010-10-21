@@ -9,14 +9,27 @@
 #import <Foundation/Foundation.h>
 
 #import "ModelPOD.h"
+#import "WMAsset.h"
 
-@interface WMModelPOD : NSObject {
+@interface WMModelPOD : WMAsset {
 	CPVRTModelPOD *podmodel;
 	SPODMesh mesh;
+	float scale;
 }
 
-- (void *)interleavedDataPointer;
+/**
+ Properties supported:
+ scale: scale the model by this factor when loading
+ */
 
+- (id)initWithResourceName:(NSString *)inResourceName properties:(NSDictionary *)inProperties;
+
+@property (nonatomic, assign) float scale;
+
+//Apply scale, etc
+- (BOOL)loadWithError:(NSError **)outError;
+
+- (void *)interleavedDataPointer;
 
 - (void *)vertexDataPointer;
 - (void *)textureCoordDataPointer;

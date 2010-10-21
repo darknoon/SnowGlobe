@@ -12,6 +12,7 @@
 @class WMGameObject;
 @class WMScriptingContext;
 @class WMRenderEngine;
+@class WMAssetManager;
 
 @interface WMEngine : NSObject {
 	UInt64 maxObjectId;
@@ -20,7 +21,10 @@
 	NSMutableDictionary *objectsById;
 	WMGameObject *rootObject;
 	WMRenderEngine *renderEngine;
+	WMAssetManager *assetManager;
 }
+
+@property (nonatomic, retain) WMAssetManager *assetManager;
 
 //This is set up by the view and set on us. If nil, renderer not ready
 @property (nonatomic, retain) WMRenderEngine *renderEngine;

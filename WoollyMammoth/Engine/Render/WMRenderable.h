@@ -21,6 +21,9 @@
 	WMModelPOD *model;
 }
 
+@property (nonatomic, retain) WMShader *shader;
+@property (nonatomic, retain) WMModelPOD *model;
+
 - (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API;
 
 @end

@@ -80,7 +80,6 @@ struct Matrix4x4
 #define TWOPIf		(3.1415926535f * 2.0f)
 #define ONEf		(1.0f)
 
-
 //
 // 4x4 floating point matrix
 //
@@ -94,6 +93,7 @@ public:
 	float f[16];	/*!< Array of float */
 };
 
+extern const MATRIX c_mIdentity;
 
 //
 // Reset matrix to identity

@@ -12,6 +12,7 @@
 #import "WMGameObject.h"
 #import "WMScriptingContext.h"
 #import "WMRenderable.h"
+#import "WMAssetManager.h"
 
 @interface WMEngine ()
 @property (nonatomic, retain, readwrite) WMGameObject *rootObject;
@@ -21,6 +22,7 @@
 
 @implementation WMEngine
 
+@synthesize assetManager;
 @synthesize renderEngine;
 @synthesize rootObject;
 @synthesize scriptingContext;
@@ -44,19 +46,22 @@
 	[renderEngine release];
 	renderEngine = nil;
 
+	[assetManager release];
+	assetManager = nil;
+
 	[super dealloc];
 }
 
 - (void)debugMakeObjectGraph;
 {
+	WMModelPOD *model = [assetManager modelWithName:@"GeodesicSphere02"];
+	
 	for (int i=0; i<1; i++) {
 		WMGameObject *child = [self createObject];
 		child.renderable = [[[WMRenderable alloc] init] autorelease];
-				
-		MATRIX scaleMatrix;
-		MatrixScaling(scaleMatrix, 0.1, 0.1, 0.1);
+		child.renderable.model = model;
 		
-		child.transform = scaleMatrix;
+		child.transform = c_mIdentity;
 		
 		[self.rootObject addChild:child];
 	}	
@@ -71,6 +76,10 @@
 	}
 	if (!scriptingContext) {
 		scriptingContext = [[WMScriptingContext alloc] initWithEngine:self];
+	}
+	if (!assetManager) {
+		assetManager = [[WMAssetManager alloc] initWithBundlePath:[[NSBundle mainBundle] pathForResource:@"Test" ofType:@"wm"]];
+		[assetManager loadAllAssetsSynchronous];
 	}
 	
 	//Create root object

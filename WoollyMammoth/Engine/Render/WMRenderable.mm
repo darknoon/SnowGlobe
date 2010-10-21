@@ -14,6 +14,19 @@
 
 @implementation WMRenderable
 
+@synthesize shader;
+@synthesize model;
+
+- (void)dealloc
+{
+	[shader release];
+	shader = nil;
+	[model release];
+	model = nil;
+
+	[super dealloc];
+}
+
 //TODO: refactor out!
 - (NSString *)stringFromResource:(NSString *)inResourceName ofType:(NSString *)inExt;
 {
@@ -39,10 +52,7 @@
 		shader.pixelShader  = [self stringFromResource:@"Shader" ofType:@"fsh"];
 		[shader loadShaders];
 	}
-	
-	//Try to load model
-	model = [[WMModelPOD alloc] init];
-	
+		
 	return self;
 }
 

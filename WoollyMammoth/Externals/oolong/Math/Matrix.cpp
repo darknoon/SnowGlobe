@@ -40,7 +40,7 @@ subject to the following restrictions:
 #endif
 #endif
 
-static const MATRIX	c_mIdentity = {
+const MATRIX c_mIdentity = {
 	{
 	1, 0, 0, 0,
 	0, 1, 0, 0,

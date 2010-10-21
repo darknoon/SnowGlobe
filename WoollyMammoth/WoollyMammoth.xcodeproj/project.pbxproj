@@ -179,18 +179,13 @@
 		4940D90B12658A46007FA76C /* WMViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D90A12658A46007FA76C /* WMViewController.mm */; };
 		4940D92012658B37007FA76C /* WMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4940D91F12658B37007FA76C /* WMViewController.xib */; };
 		4940D97612658E4B007FA76C /* WMRenderEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D97512658E4B007FA76C /* WMRenderEngine.mm */; };
-		4940D9ED126594B7007FA76C /* WMShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D9EC126594B7007FA76C /* WMShader.m */; };
 		4940DB1412664329007FA76C /* WMPhysicsBody.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940DB1312664329007FA76C /* WMPhysicsBody.mm */; };
 		4940DB1912664431007FA76C /* WMPhysicsWorld.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940DB1812664431007FA76C /* WMPhysicsWorld.mm */; };
 		4940DCEB12669B1A007FA76C /* WMRenderable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940DCEA12669B1A007FA76C /* WMRenderable.mm */; };
-		49C54E59126957780093FAFD /* WMAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C54E58126957780093FAFD /* WMAsset.m */; };
-		49C54E5C1269585A0093FAFD /* WMAssetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C54E5B1269585A0093FAFD /* WMAssetManager.m */; };
-		49C54E64126959390093FAFD /* WMTextureAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C54E63126959390093FAFD /* WMTextureAsset.m */; };
 		49C54F2A126962A50093FAFD /* JGResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C54F29126962A50093FAFD /* JGResource.m */; };
 		49C54F35126962EA0093FAFD /* JGModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C54F34126962EA0093FAFD /* JGModel.m */; };
 		49C54F3A126963080093FAFD /* JGModelParent.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C54F39126963080093FAFD /* JGModelParent.m */; };
 		49C54F5D1269663E0093FAFD /* Glider.obj in Resources */ = {isa = PBXBuildFile; fileRef = 49C54F5B1269663E0093FAFD /* Glider.obj */; };
-		49C54F5E1269663E0093FAFD /* nobevel.obj in Resources */ = {isa = PBXBuildFile; fileRef = 49C54F5C1269663E0093FAFD /* nobevel.obj */; };
 		49C5521512697CE60093FAFD /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C551C712697CE60093FAFD /* Matrix.cpp */; };
 		49C5521612697CE60093FAFD /* neon_matrix_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C551CA12697CE60093FAFD /* neon_matrix_impl.cpp */; };
 		49C5521712697CE60093FAFD /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C551CD12697CE60093FAFD /* Random.cpp */; };
@@ -212,9 +207,16 @@
 		49C5525012697D250093FAFD /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49C5523C12697D250093FAFD /* ResourcePath.mm */; };
 		49C5525712697D250093FAFD /* Timer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49C5524B12697D250093FAFD /* Timer.mm */; };
 		49C55283126980610093FAFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C55282126980610093FAFD /* CoreGraphics.framework */; };
-		49C5528E126981A60093FAFD /* WMModelPOD.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49C5528D126981A60093FAFD /* WMModelPOD.mm */; };
 		49C552941269828D0093FAFD /* simpletest.pod in Resources */ = {isa = PBXBuildFile; fileRef = 49C552931269828D0093FAFD /* simpletest.pod */; };
 		49C55360126A3FFB0093FAFD /* GeodesicSphere02.pod in Resources */ = {isa = PBXBuildFile; fileRef = 49C5535F126A3FFB0093FAFD /* GeodesicSphere02.pod */; };
+		49D101141270ADE7007E143E /* Glider.pod in Resources */ = {isa = PBXBuildFile; fileRef = 49D101131270ADE7007E143E /* Glider.pod */; };
+		49D101FA1270BB85007E143E /* Texture2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D101EF1270BB85007E143E /* Texture2D.m */; };
+		49D101FB1270BB85007E143E /* WMAsset.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F11270BB85007E143E /* WMAsset.mm */; };
+		49D101FC1270BB85007E143E /* WMAssetManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F31270BB85007E143E /* WMAssetManager.mm */; };
+		49D101FD1270BB85007E143E /* WMModelPOD.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F51270BB85007E143E /* WMModelPOD.mm */; };
+		49D101FE1270BB85007E143E /* WMShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F71270BB85007E143E /* WMShader.m */; };
+		49D101FF1270BB85007E143E /* WMTextureAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F91270BB85007E143E /* WMTextureAsset.m */; };
+		49D102171270BCC8007E143E /* Test.wm in Resources */ = {isa = PBXBuildFile; fileRef = 49D102141270BCC8007E143E /* Test.wm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -608,8 +610,6 @@
 		4940D91F12658B37007FA76C /* WMViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMViewController.xib; sourceTree = "<group>"; };
 		4940D97412658E4B007FA76C /* WMRenderEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRenderEngine.h; sourceTree = "<group>"; };
 		4940D97512658E4B007FA76C /* WMRenderEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMRenderEngine.mm; sourceTree = "<group>"; };
-		4940D9EB126594B7007FA76C /* WMShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMShader.h; sourceTree = "<group>"; };
-		4940D9EC126594B7007FA76C /* WMShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMShader.m; sourceTree = "<group>"; };
 		4940DB1212664329007FA76C /* WMPhysicsBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhysicsBody.h; sourceTree = "<group>"; };
 		4940DB1312664329007FA76C /* WMPhysicsBody.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMPhysicsBody.mm; sourceTree = "<group>"; };
 		4940DB1712664431007FA76C /* WMPhysicsWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhysicsWorld.h; sourceTree = "<group>"; };
@@ -617,12 +617,6 @@
 		4940DCE912669B1A007FA76C /* WMRenderable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRenderable.h; sourceTree = "<group>"; };
 		4940DCEA12669B1A007FA76C /* WMRenderable.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMRenderable.mm; sourceTree = "<group>"; };
 		4940DCF212669BFA007FA76C /* WMRenderCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRenderCommon.h; sourceTree = "<group>"; };
-		49C54E57126957780093FAFD /* WMAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAsset.h; sourceTree = "<group>"; };
-		49C54E58126957780093FAFD /* WMAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAsset.m; sourceTree = "<group>"; };
-		49C54E5A1269585A0093FAFD /* WMAssetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAssetManager.h; sourceTree = "<group>"; };
-		49C54E5B1269585A0093FAFD /* WMAssetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAssetManager.m; sourceTree = "<group>"; };
-		49C54E62126959390093FAFD /* WMTextureAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTextureAsset.h; sourceTree = "<group>"; };
-		49C54E63126959390093FAFD /* WMTextureAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTextureAsset.m; sourceTree = "<group>"; };
 		49C54F28126962A50093FAFD /* JGResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGResource.h; sourceTree = "<group>"; };
 		49C54F29126962A50093FAFD /* JGResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGResource.m; sourceTree = "<group>"; };
 		49C54F33126962EA0093FAFD /* JGModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGModel.h; sourceTree = "<group>"; };
@@ -631,7 +625,6 @@
 		49C54F39126963080093FAFD /* JGModelParent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGModelParent.m; sourceTree = "<group>"; };
 		49C54F3F1269633D0093FAFD /* JGStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGStructures.h; sourceTree = "<group>"; };
 		49C54F5B1269663E0093FAFD /* Glider.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Glider.obj; sourceTree = "<group>"; };
-		49C54F5C1269663E0093FAFD /* nobevel.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nobevel.obj; sourceTree = "<group>"; };
 		49C551B112697CE60093FAFD /* Accelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Accelerometer.h; sourceTree = "<group>"; };
 		49C551B212697CE60093FAFD /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
 		49C551B312697CE60093FAFD /* Audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Audio.h; sourceTree = "<group>"; };
@@ -709,10 +702,22 @@
 		49C5524B12697D250093FAFD /* Timer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Timer.mm; sourceTree = "<group>"; };
 		49C5524C12697D250093FAFD /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		49C55282126980610093FAFD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		49C5528C126981A60093FAFD /* WMModelPOD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMModelPOD.h; sourceTree = "<group>"; };
-		49C5528D126981A60093FAFD /* WMModelPOD.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMModelPOD.mm; sourceTree = "<group>"; };
 		49C552931269828D0093FAFD /* simpletest.pod */ = {isa = PBXFileReference; lastKnownFileType = file; path = simpletest.pod; sourceTree = "<group>"; };
 		49C5535F126A3FFB0093FAFD /* GeodesicSphere02.pod */ = {isa = PBXFileReference; lastKnownFileType = file; path = GeodesicSphere02.pod; sourceTree = "<group>"; };
+		49D101131270ADE7007E143E /* Glider.pod */ = {isa = PBXFileReference; lastKnownFileType = file; path = Glider.pod; sourceTree = "<group>"; };
+		49D101EE1270BB85007E143E /* Texture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture2D.h; sourceTree = "<group>"; };
+		49D101EF1270BB85007E143E /* Texture2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture2D.m; sourceTree = "<group>"; };
+		49D101F01270BB85007E143E /* WMAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAsset.h; sourceTree = "<group>"; };
+		49D101F11270BB85007E143E /* WMAsset.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMAsset.mm; sourceTree = "<group>"; };
+		49D101F21270BB85007E143E /* WMAssetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAssetManager.h; sourceTree = "<group>"; };
+		49D101F31270BB85007E143E /* WMAssetManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMAssetManager.mm; sourceTree = "<group>"; };
+		49D101F41270BB85007E143E /* WMModelPOD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMModelPOD.h; sourceTree = "<group>"; };
+		49D101F51270BB85007E143E /* WMModelPOD.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMModelPOD.mm; sourceTree = "<group>"; };
+		49D101F61270BB85007E143E /* WMShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMShader.h; sourceTree = "<group>"; };
+		49D101F71270BB85007E143E /* WMShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMShader.m; sourceTree = "<group>"; };
+		49D101F81270BB85007E143E /* WMTextureAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTextureAsset.h; sourceTree = "<group>"; };
+		49D101F91270BB85007E143E /* WMTextureAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTextureAsset.m; sourceTree = "<group>"; };
+		49D102141270BCC8007E143E /* Test.wm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Test.wm; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* WoollyMammoth-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WoollyMammoth-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -761,6 +766,7 @@
 				4940D9E5126593B3007FA76C /* Util */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				49D102101270BCBD007E143E /* Bundles */,
 				49C54F5A1269663E0093FAFD /* Models */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -1331,8 +1337,6 @@
 				4940DCF212669BFA007FA76C /* WMRenderCommon.h */,
 				4940D97412658E4B007FA76C /* WMRenderEngine.h */,
 				4940D97512658E4B007FA76C /* WMRenderEngine.mm */,
-				4940D9EB126594B7007FA76C /* WMShader.h */,
-				4940D9EC126594B7007FA76C /* WMShader.m */,
 				4940DCE912669B1A007FA76C /* WMRenderable.h */,
 				4940DCEA12669B1A007FA76C /* WMRenderable.mm */,
 			);
@@ -1358,26 +1362,10 @@
 				4940D3BF12650CF2007FA76C /* WMScriptingContext.h */,
 				4940D3C012650CF2007FA76C /* WMScriptingContext.m */,
 				4940D97212658DE9007FA76C /* Physics */,
-				49C54E56126957160093FAFD /* Resource */,
 				4940D97312658E1B007FA76C /* Render */,
+				49D101ED1270BB85007E143E /* Resource */,
 			);
 			path = Engine;
-			sourceTree = "<group>";
-		};
-		49C54E56126957160093FAFD /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				49C54E5A1269585A0093FAFD /* WMAssetManager.h */,
-				49C54E5B1269585A0093FAFD /* WMAssetManager.m */,
-				49C54E57126957780093FAFD /* WMAsset.h */,
-				49C54E58126957780093FAFD /* WMAsset.m */,
-				49C54E62126959390093FAFD /* WMTextureAsset.h */,
-				49C54E63126959390093FAFD /* WMTextureAsset.m */,
-				49C5528C126981A60093FAFD /* WMModelPOD.h */,
-				49C5528D126981A60093FAFD /* WMModelPOD.mm */,
-			);
-			name = Resource;
-			path = Render/Resource;
 			sourceTree = "<group>";
 		};
 		49C54F27126962A50093FAFD /* Galaxy */ = {
@@ -1397,9 +1385,9 @@
 		49C54F5A1269663E0093FAFD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				49D101131270ADE7007E143E /* Glider.pod */,
 				49C5535F126A3FFB0093FAFD /* GeodesicSphere02.pod */,
 				49C54F5B1269663E0093FAFD /* Glider.obj */,
-				49C54F5C1269663E0093FAFD /* nobevel.obj */,
 				49C552931269828D0093FAFD /* simpletest.pod */,
 			);
 			path = Models;
@@ -1600,6 +1588,33 @@
 			path = Timing;
 			sourceTree = "<group>";
 		};
+		49D101ED1270BB85007E143E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				49D101EE1270BB85007E143E /* Texture2D.h */,
+				49D101EF1270BB85007E143E /* Texture2D.m */,
+				49D101F01270BB85007E143E /* WMAsset.h */,
+				49D101F11270BB85007E143E /* WMAsset.mm */,
+				49D101F21270BB85007E143E /* WMAssetManager.h */,
+				49D101F31270BB85007E143E /* WMAssetManager.mm */,
+				49D101F41270BB85007E143E /* WMModelPOD.h */,
+				49D101F51270BB85007E143E /* WMModelPOD.mm */,
+				49D101F61270BB85007E143E /* WMShader.h */,
+				49D101F71270BB85007E143E /* WMShader.m */,
+				49D101F81270BB85007E143E /* WMTextureAsset.h */,
+				49D101F91270BB85007E143E /* WMTextureAsset.m */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		49D102101270BCBD007E143E /* Bundles */ = {
+			isa = PBXGroup;
+			children = (
+				49D102141270BCC8007E143E /* Test.wm */,
+			);
+			path = Bundles;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1654,10 +1669,11 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				4940D92012658B37007FA76C /* WMViewController.xib in Resources */,
 				49C54F5D1269663E0093FAFD /* Glider.obj in Resources */,
-				49C54F5E1269663E0093FAFD /* nobevel.obj in Resources */,
 				49C5524F12697D250093FAFD /* readme.txt in Resources */,
 				49C552941269828D0093FAFD /* simpletest.pod in Resources */,
 				49C55360126A3FFB0093FAFD /* GeodesicSphere02.pod in Resources */,
+				49D101141270ADE7007E143E /* Glider.pod in Resources */,
+				49D102171270BCC8007E143E /* Test.wm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1830,13 +1846,9 @@
 				4940D8E412658992007FA76C /* WoollyMammothAppDelegate.m in Sources */,
 				4940D90B12658A46007FA76C /* WMViewController.mm in Sources */,
 				4940D97612658E4B007FA76C /* WMRenderEngine.mm in Sources */,
-				4940D9ED126594B7007FA76C /* WMShader.m in Sources */,
 				4940DB1412664329007FA76C /* WMPhysicsBody.mm in Sources */,
 				4940DB1912664431007FA76C /* WMPhysicsWorld.mm in Sources */,
 				4940DCEB12669B1A007FA76C /* WMRenderable.mm in Sources */,
-				49C54E59126957780093FAFD /* WMAsset.m in Sources */,
-				49C54E5C1269585A0093FAFD /* WMAssetManager.m in Sources */,
-				49C54E64126959390093FAFD /* WMTextureAsset.m in Sources */,
 				49C54F2A126962A50093FAFD /* JGResource.m in Sources */,
 				49C54F35126962EA0093FAFD /* JGModel.m in Sources */,
 				49C54F3A126963080093FAFD /* JGModelParent.m in Sources */,
@@ -1859,7 +1871,12 @@
 				49C5524E12697D250093FAFD /* mmgr.cpp in Sources */,
 				49C5525012697D250093FAFD /* ResourcePath.mm in Sources */,
 				49C5525712697D250093FAFD /* Timer.mm in Sources */,
-				49C5528E126981A60093FAFD /* WMModelPOD.mm in Sources */,
+				49D101FA1270BB85007E143E /* Texture2D.m in Sources */,
+				49D101FB1270BB85007E143E /* WMAsset.mm in Sources */,
+				49D101FC1270BB85007E143E /* WMAssetManager.mm in Sources */,
+				49D101FD1270BB85007E143E /* WMModelPOD.mm in Sources */,
+				49D101FE1270BB85007E143E /* WMShader.m in Sources */,
+				49D101FF1270BB85007E143E /* WMTextureAsset.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

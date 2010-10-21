@@ -10,9 +10,10 @@
 
 #import "WMRenderCommon.h"
 
+#import "WMAsset.h"
 //ASSUME: This must be used in only one GL context.
 
-@interface WMShader : NSObject {
+@interface WMShader : WMAsset {
 	//TODO: Add ES1 Pipeline features?
 	
 	//If rendering with ES2

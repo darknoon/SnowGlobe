@@ -13,23 +13,16 @@
 
 @implementation WMModelPOD
 
-- (id) init {
-	[super init];
+@synthesize scale;
+
+- (id)initWithResourceName:(NSString *)inResourceName properties:(NSDictionary *)inProperties;
+{
+	[super initWithResourceName:inResourceName properties:inProperties];
 	if (self == nil) return self; 
 	
-	podmodel = new CPVRTModelPOD();
-	
-	NSString *podPath = [[NSBundle mainBundle] pathForResource:@"GeodesicSphere02" ofType:@"pod"];
-	
-	podmodel->ReadFromFile([podPath UTF8String], NULL, 1);
-	
-	mesh = podmodel->pMesh[0];
-	
-	//Make sure mesh is interleaved
-	if (!mesh.pInterleaved) {
-		NSLog(@"Mesh not interleaved!");
-		[self release];
-		return nil;
+	scale = 1.0f;
+	if ([properties objectForKey:@"scale"]) {
+		scale = [[properties objectForKey:@"scale"] floatValue];
 	}
 	
 	return self;
@@ -40,9 +33,50 @@
 	delete podmodel;
 	//TODO: delete mesh…
 	
+
 	[super dealloc];
 }
 
+
+- (BOOL)loadWithError:(NSError **)outError;
+{
+	if (!isLoaded) {
+		
+		podmodel = new CPVRTModelPOD();
+		
+		NSString *podPath = [[NSBundle mainBundle] pathForResource:resourceName ofType:@"pod"];
+		
+		podmodel->ReadFromFile([podPath UTF8String], NULL, 1);
+		
+		mesh = podmodel->pMesh[0];
+		
+		//Make sure mesh is interleaved
+		if (!mesh.pInterleaved) {
+			//TODO: make error type
+			NSLog(@"Mesh not interleaved! Please re-export this POD file: %@", podPath);
+			delete podmodel;
+			return NO;
+		}
+		
+		//Log vertices
+		void *data = [self vertexDataPointer];
+		for (int i=0; i<[self numberOfVertices]; i++) {
+			float *v = (float *)( (int)data + i * [self interleavedDataStride] );
+			NSLog(@"before: <%f, %f, %f>", v[0], v[1], v[2]);
+			v[0] *= scale;
+			v[1] *= scale;
+			v[2] *= scale;
+			NSLog(@"after: <%f, %f, %f>", v[0], v[1], v[2]);
+			
+		}
+		
+		isLoaded = YES;
+	} else {
+		NSLog(@"Tried to load model when already loaded");
+	}
+
+	return YES;
+}
 
 - (size_t)interleavedDataStride;
 {

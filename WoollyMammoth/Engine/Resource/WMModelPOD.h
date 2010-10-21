@@ -26,8 +26,6 @@
 
 @property (nonatomic, assign) float scale;
 
-//Apply scale, etc
-- (BOOL)loadWithError:(NSError **)outError;
 
 - (void *)interleavedDataPointer;
 

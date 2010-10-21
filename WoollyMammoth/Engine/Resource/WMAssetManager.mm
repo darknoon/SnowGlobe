@@ -71,19 +71,26 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 	NSDictionary *shaderDefinitions = [inManifest objectForKey:WMAssetManagerManifestShadersKey];
 	for (NSString *shaderKey in shaderDefinitions) {
 		WMAsset *asset = [[WMShader alloc] initWithResourceName:shaderKey properties:[shaderDefinitions objectForKey:shaderKey]];
-		[models setObject:asset forKey:shaderKey];
+		[shaders setObject:asset forKey:shaderKey];
 	}
 	
 }
 
 - (void)loadAllAssetsSynchronous;
 {
+	//Load models
 	for (WMModelPOD *model in [models allValues]) {
 		NSError *loadError = nil;
-		if (![model loadWithError:&loadError]) {
+		if (![model loadWithBundle:assetBundle error:&loadError]) {
 			NSLog(@"Error loading model : %@", model);
-		}
-		
+		}		
+	}
+	//Load shaders
+	for (WMShader *shader in [shaders allValues]) {
+		NSError *loadError = nil;
+		if (![shader loadWithBundle:assetBundle error:&loadError]) {
+			NSLog(@"Error loading shader : %@", shader);
+		}		
 	}
 }
 

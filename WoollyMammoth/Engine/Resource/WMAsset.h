@@ -19,6 +19,6 @@
 - (id)initWithResourceName:(NSString *)inResourceName properties:(NSDictionary *)inProperties;
 
 - (BOOL)isLoaded;
-- (BOOL)loadWithError:(NSError **)outError;
+- (BOOL)loadWithBundle:(NSBundle *)inBundle error:(NSError **)outError;
 
 @end

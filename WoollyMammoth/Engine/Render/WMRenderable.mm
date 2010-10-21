@@ -27,53 +27,16 @@
 	[super dealloc];
 }
 
-//TODO: refactor out!
-- (NSString *)stringFromResource:(NSString *)inResourceName ofType:(NSString *)inExt;
-{
-	NSString *filePath = [[NSBundle mainBundle] pathForResource:inResourceName ofType:inExt];
-	if (filePath) {
-		return [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-	} else {
-		NSLog(@"Couldn't find resource %@ of type %@ .", inResourceName, inExt);
-		return nil;
-	}
-}
-
 - (id) init {
 	[super init];
 	if (self == nil) return self; 
-	
-	shader = [[WMShader alloc] init];
-	
-	if ([EAGLContext currentContext].API == kEAGLRenderingAPIOpenGLES2) {
-		shader.attributeNames = [NSArray arrayWithObjects:@"position", nil];
-		shader.uniformNames = [NSArray arrayWithObjects:@"modelViewProjectionMatrix", nil];
-		shader.vertexShader = [self stringFromResource:@"Shader" ofType:@"vsh"];
-		shader.pixelShader  = [self stringFromResource:@"Shader" ofType:@"fsh"];
-		[shader loadShaders];
-	}
-		
+			
 	return self;
 }
 
 
 - (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API;
 {
-	// Replace the implementation of this method to do your own custom drawing.
-	static const GLfloat squareVertices[] = {
-		-0.5f, -0.33f,
-		0.5f, -0.33f,
-		-0.5f,  0.33f,
-		0.5f,  0.33f,
-	};
-	
-	static const GLubyte squareColors[] = {
-		255, 255,   0, 255,
-		0,   255, 255, 255,
-		0,     0,   0,   0,
-		255,   0, 255, 255,
-	};
-	
 	if (API == kEAGLRenderingAPIOpenGLES2)
     {
         // Use shader program.
@@ -104,24 +67,14 @@
 #endif
     }
     else
-    {
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-        //glTranslatef(0.0f, (GLfloat)(sinf(transY)/2.0f), 0.0f);
-        //transY += 0.075f;
-        
-        glVertexPointer(2, GL_FLOAT, 0, squareVertices);
-        glEnableClientState(GL_VERTEX_ARRAY);
-        glColorPointer(4, GL_UNSIGNED_BYTE, 0, squareColors);
-        glEnableClientState(GL_COLOR_ARRAY);
-    }
-    
-	//Just a test...
-	//glPointSize(4.f);
-	//glDrawArrays(GL_POINTS, 0, [model numberOfVertices]);
-	
+    {        
+		//TODO: es1 support
+
+    	//Just a test...
+		glPointSize(4.f);
+		glDrawArrays(GL_POINTS, 0, [model numberOfVertices]);
+	}
+    	
 	glDrawElements(GL_TRIANGLES, [model numberOfTriangles] * 3, [model triangleIndexType], [model triangleIndexPointer]);
 	
 

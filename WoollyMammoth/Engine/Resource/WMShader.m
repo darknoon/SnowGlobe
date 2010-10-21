@@ -17,11 +17,15 @@
 @synthesize pixelShader;
 @synthesize program;
 
-- (id) init {
-	self = [super init];
+- (id)initWithResourceName:(NSString *)inResourceName properties:(NSDictionary *)inProperties;
+{
+	self = [super initWithResourceName:inResourceName properties:inProperties];
 	if (self == nil) return self; 
 	
 	uniformLocations = [[NSMutableDictionary alloc] init];
+
+	self.attributeNames = [inProperties objectForKey:@"attributeNames"];
+	self.uniformNames = [inProperties objectForKey:@"uniformNames"];
 	
 	return self;
 }
@@ -42,6 +46,26 @@
     }
 
 	[super dealloc];
+}
+
+- (BOOL)loadWithBundle:(NSBundle *)inBundle error:(NSError **)outError;
+{
+	if ([EAGLContext currentContext].API == kEAGLRenderingAPIOpenGLES2) {		
+		NSString *vertexShaderPath = [[[inBundle bundlePath] stringByAppendingPathComponent:resourceName] stringByAppendingPathExtension:@"vsh"];
+		NSString *fragmentShaderPath = [[[inBundle bundlePath] stringByAppendingPathComponent:resourceName] stringByAppendingPathExtension:@"fsh"];
+		
+		self.vertexShader = [NSString stringWithContentsOfFile:vertexShaderPath encoding:NSUTF8StringEncoding error:outError];
+		if (!vertexShader) return NO;
+		self.pixelShader = [NSString stringWithContentsOfFile:fragmentShaderPath encoding:NSUTF8StringEncoding error:outError];
+		if (!pixelShader) return NO;
+		
+		isLoaded = [self loadShaders];
+		return isLoaded;
+	} else {
+		//TODO: OpenGL ES 1.0 support?
+		return YES;
+	}
+
 }
 
 - (void)setVertexShader:(NSString *)inVertexShader;

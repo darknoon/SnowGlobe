@@ -10,8 +10,6 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		2514C27B10084DCA00A42282 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 2514C27910084DCA00A42282 /* Shader.fsh */; };
-		2514C27C10084DCA00A42282 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 2514C27A10084DCA00A42282 /* Shader.vsh */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
@@ -185,7 +183,6 @@
 		49C54F2A126962A50093FAFD /* JGResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C54F29126962A50093FAFD /* JGResource.m */; };
 		49C54F35126962EA0093FAFD /* JGModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C54F34126962EA0093FAFD /* JGModel.m */; };
 		49C54F3A126963080093FAFD /* JGModelParent.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C54F39126963080093FAFD /* JGModelParent.m */; };
-		49C54F5D1269663E0093FAFD /* Glider.obj in Resources */ = {isa = PBXBuildFile; fileRef = 49C54F5B1269663E0093FAFD /* Glider.obj */; };
 		49C5521512697CE60093FAFD /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C551C712697CE60093FAFD /* Matrix.cpp */; };
 		49C5521612697CE60093FAFD /* neon_matrix_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C551CA12697CE60093FAFD /* neon_matrix_impl.cpp */; };
 		49C5521712697CE60093FAFD /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C551CD12697CE60093FAFD /* Random.cpp */; };
@@ -207,9 +204,6 @@
 		49C5525012697D250093FAFD /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49C5523C12697D250093FAFD /* ResourcePath.mm */; };
 		49C5525712697D250093FAFD /* Timer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49C5524B12697D250093FAFD /* Timer.mm */; };
 		49C55283126980610093FAFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C55282126980610093FAFD /* CoreGraphics.framework */; };
-		49C552941269828D0093FAFD /* simpletest.pod in Resources */ = {isa = PBXBuildFile; fileRef = 49C552931269828D0093FAFD /* simpletest.pod */; };
-		49C55360126A3FFB0093FAFD /* GeodesicSphere02.pod in Resources */ = {isa = PBXBuildFile; fileRef = 49C5535F126A3FFB0093FAFD /* GeodesicSphere02.pod */; };
-		49D101141270ADE7007E143E /* Glider.pod in Resources */ = {isa = PBXBuildFile; fileRef = 49D101131270ADE7007E143E /* Glider.pod */; };
 		49D101FA1270BB85007E143E /* Texture2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D101EF1270BB85007E143E /* Texture2D.m */; };
 		49D101FB1270BB85007E143E /* WMAsset.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F11270BB85007E143E /* WMAsset.mm */; };
 		49D101FC1270BB85007E143E /* WMAssetManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F31270BB85007E143E /* WMAssetManager.mm */; };
@@ -223,8 +217,6 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* WoollyMammoth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WoollyMammoth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		2514C27910084DCA00A42282 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
-		2514C27A10084DCA00A42282 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		28FD14FF0DC6FC520079059D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -624,7 +616,6 @@
 		49C54F38126963080093FAFD /* JGModelParent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGModelParent.h; sourceTree = "<group>"; };
 		49C54F39126963080093FAFD /* JGModelParent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGModelParent.m; sourceTree = "<group>"; };
 		49C54F3F1269633D0093FAFD /* JGStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGStructures.h; sourceTree = "<group>"; };
-		49C54F5B1269663E0093FAFD /* Glider.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Glider.obj; sourceTree = "<group>"; };
 		49C551B112697CE60093FAFD /* Accelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Accelerometer.h; sourceTree = "<group>"; };
 		49C551B212697CE60093FAFD /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
 		49C551B312697CE60093FAFD /* Audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Audio.h; sourceTree = "<group>"; };
@@ -702,9 +693,6 @@
 		49C5524B12697D250093FAFD /* Timer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Timer.mm; sourceTree = "<group>"; };
 		49C5524C12697D250093FAFD /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		49C55282126980610093FAFD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		49C552931269828D0093FAFD /* simpletest.pod */ = {isa = PBXFileReference; lastKnownFileType = file; path = simpletest.pod; sourceTree = "<group>"; };
-		49C5535F126A3FFB0093FAFD /* GeodesicSphere02.pod */ = {isa = PBXFileReference; lastKnownFileType = file; path = GeodesicSphere02.pod; sourceTree = "<group>"; };
-		49D101131270ADE7007E143E /* Glider.pod */ = {isa = PBXFileReference; lastKnownFileType = file; path = Glider.pod; sourceTree = "<group>"; };
 		49D101EE1270BB85007E143E /* Texture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture2D.h; sourceTree = "<group>"; };
 		49D101EF1270BB85007E143E /* Texture2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture2D.m; sourceTree = "<group>"; };
 		49D101F01270BB85007E143E /* WMAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAsset.h; sourceTree = "<group>"; };
@@ -747,27 +735,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2514C27610084DB600A42282 /* Shaders */ = {
-			isa = PBXGroup;
-			children = (
-				2514C27A10084DCA00A42282 /* Shader.vsh */,
-				2514C27910084DCA00A42282 /* Shader.fsh */,
-			);
-			name = Shaders;
-			sourceTree = "<group>";
-		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
 				4964C5071253F77600DC0365 /* Engine */,
 				4940D8D712658992007FA76C /* Application */,
 				4940D06B1264F641007FA76C /* Externals */,
-				2514C27610084DB600A42282 /* Shaders */,
-				4940D9E5126593B3007FA76C /* Util */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				49D102101270BCBD007E143E /* Bundles */,
-				49C54F5A1269663E0093FAFD /* Models */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				4940D0E41264F943007FA76C /* CFNetwork.framework */,
@@ -1343,13 +1319,6 @@
 			path = Render;
 			sourceTree = "<group>";
 		};
-		4940D9E5126593B3007FA76C /* Util */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Util;
-			sourceTree = "<group>";
-		};
 		4964C5071253F77600DC0365 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
@@ -1380,17 +1349,6 @@
 				49C54F29126962A50093FAFD /* JGResource.m */,
 			);
 			path = Galaxy;
-			sourceTree = "<group>";
-		};
-		49C54F5A1269663E0093FAFD /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				49D101131270ADE7007E143E /* Glider.pod */,
-				49C5535F126A3FFB0093FAFD /* GeodesicSphere02.pod */,
-				49C54F5B1269663E0093FAFD /* Glider.obj */,
-				49C552931269828D0093FAFD /* simpletest.pod */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		49C551AF12697CE60093FAFD /* oolong */ = {
@@ -1664,15 +1622,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2514C27B10084DCA00A42282 /* Shader.fsh in Resources */,
-				2514C27C10084DCA00A42282 /* Shader.vsh in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				4940D92012658B37007FA76C /* WMViewController.xib in Resources */,
-				49C54F5D1269663E0093FAFD /* Glider.obj in Resources */,
 				49C5524F12697D250093FAFD /* readme.txt in Resources */,
-				49C552941269828D0093FAFD /* simpletest.pod in Resources */,
-				49C55360126A3FFB0093FAFD /* GeodesicSphere02.pod in Resources */,
-				49D101141270ADE7007E143E /* Glider.pod in Resources */,
 				49D102171270BCC8007E143E /* Test.wm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

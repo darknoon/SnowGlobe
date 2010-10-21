@@ -55,11 +55,12 @@
 - (void)debugMakeObjectGraph;
 {
 	WMModelPOD *model = [assetManager modelWithName:@"GeodesicSphere02"];
-	
+	WMShader *shader = [assetManager shaderWithName:@"DebugPositionOnly"];
 	for (int i=0; i<1; i++) {
 		WMGameObject *child = [self createObject];
 		child.renderable = [[[WMRenderable alloc] init] autorelease];
 		child.renderable.model = model;
+		child.renderable.shader = shader;
 		
 		child.transform = c_mIdentity;
 		

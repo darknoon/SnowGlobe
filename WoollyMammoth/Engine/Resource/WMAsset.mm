@@ -27,7 +27,7 @@
 
 //TODO: thread safety
 
-- (BOOL)loadWithError:(NSError **)outError;
+- (BOOL)loadWithBundle:(NSBundle *)inBundle error:(NSError **)outError;
 {
 	NSAssert(0, @"Must overload this");
 	return NO;

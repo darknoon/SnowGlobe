@@ -26,6 +26,15 @@
 	NSMutableDictionary *uniformLocations;
 }
 
+/**
+ Supported properties:
+ attributeNames[]	Array of names for shader attributes
+ uniformNames[]		Array of uniform names
+ 
+ */
+
+- (id)initWithResourceName:(NSString *)inResourceName properties:(NSDictionary *)inProperties;
+
 //Set these
 @property (nonatomic, copy) NSArray *uniformNames;
 @property (nonatomic, copy) NSArray *attributeNames;

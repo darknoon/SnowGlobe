@@ -38,13 +38,13 @@
 }
 
 
-- (BOOL)loadWithError:(NSError **)outError;
+- (BOOL)loadWithBundle:(NSBundle *)inBundle error:(NSError **)outError;
 {
 	if (!isLoaded) {
 		
 		podmodel = new CPVRTModelPOD();
 		
-		NSString *podPath = [[NSBundle mainBundle] pathForResource:resourceName ofType:@"pod"];
+		NSString *podPath = [inBundle pathForResource:resourceName ofType:@"pod"];
 		
 		podmodel->ReadFromFile([podPath UTF8String], NULL, 1);
 		

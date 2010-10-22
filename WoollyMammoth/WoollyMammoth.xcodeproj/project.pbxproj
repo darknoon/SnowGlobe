@@ -10,9 +10,8 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
-		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
+		492483AF1270D4BD00B59759 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492483AE1270D4BD00B59759 /* OpenGLES.framework */; };
 		4940D0641264F5F7007FA76C /* WMGameObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0631264F5F7007FA76C /* WMGameObject.mm */; };
 		4940D0671264F608007FA76C /* WMEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0661264F608007FA76C /* WMEngine.mm */; };
 		4940D06A1264F629007FA76C /* WMDebugChannel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0691264F629007FA76C /* WMDebugChannel.mm */; };
@@ -200,7 +199,6 @@
 		49C5522B12697CE60093FAFD /* Streaming.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C5520E12697CE60093FAFD /* Streaming.cpp */; };
 		49C5524D12697D250093FAFD /* DeviceType.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49C5523212697D250093FAFD /* DeviceType.mm */; };
 		49C5524E12697D250093FAFD /* mmgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C5523612697D250093FAFD /* mmgr.cpp */; };
-		49C5524F12697D250093FAFD /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 49C5523912697D250093FAFD /* readme.txt */; };
 		49C5525012697D250093FAFD /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49C5523C12697D250093FAFD /* ResourcePath.mm */; };
 		49C5525712697D250093FAFD /* Timer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49C5524B12697D250093FAFD /* Timer.mm */; };
 		49C55283126980610093FAFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C55282126980610093FAFD /* CoreGraphics.framework */; };
@@ -211,17 +209,21 @@
 		49D101FE1270BB85007E143E /* WMShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F71270BB85007E143E /* WMShader.m */; };
 		49D101FF1270BB85007E143E /* WMTextureAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F91270BB85007E143E /* WMTextureAsset.m */; };
 		49D102171270BCC8007E143E /* Test.wm in Resources */ = {isa = PBXBuildFile; fileRef = 49D102141270BCC8007E143E /* Test.wm */; };
+		49D102C61270C55E007E143E /* WMDebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D102C41270C55E007E143E /* WMDebugViewController.m */; };
+		49D102C71270C55E007E143E /* WMDebugViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49D102C51270C55E007E143E /* WMDebugViewController.xib */; };
+		49E81DDB12712FE400127D48 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DDA12712FE400127D48 /* MainWindow.xib */; };
+		49E81DFD127130FD00127D48 /* xButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DFB127130FD00127D48 /* xButton.png */; };
+		49E81DFE127130FD00127D48 /* xButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DFC127130FD00127D48 /* xButtonPressed.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* WoollyMammoth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WoollyMammoth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		28FD14FF0DC6FC520079059D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* WoollyMammoth_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WoollyMammoth_Prefix.pch; sourceTree = "<group>"; };
+		492483AE1270D4BD00B59759 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		4940D0621264F5F7007FA76C /* WMGameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMGameObject.h; sourceTree = "<group>"; };
 		4940D0631264F5F7007FA76C /* WMGameObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMGameObject.mm; sourceTree = "<group>"; };
 		4940D0651264F608007FA76C /* WMEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEngine.h; sourceTree = "<group>"; };
@@ -706,7 +708,13 @@
 		49D101F81270BB85007E143E /* WMTextureAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTextureAsset.h; sourceTree = "<group>"; };
 		49D101F91270BB85007E143E /* WMTextureAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTextureAsset.m; sourceTree = "<group>"; };
 		49D102141270BCC8007E143E /* Test.wm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Test.wm; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* WoollyMammoth-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WoollyMammoth-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		49D102C31270C55E007E143E /* WMDebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDebugViewController.h; sourceTree = "<group>"; };
+		49D102C41270C55E007E143E /* WMDebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDebugViewController.m; sourceTree = "<group>"; };
+		49D102C51270C55E007E143E /* WMDebugViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMDebugViewController.xib; sourceTree = "<group>"; };
+		49E81DDA12712FE400127D48 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		49E81DDC12712FF800127D48 /* WoollyMammoth-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WoollyMammoth-Info.plist"; sourceTree = "<group>"; };
+		49E81DFB127130FD00127D48 /* xButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xButton.png; sourceTree = "<group>"; };
+		49E81DFC127130FD00127D48 /* xButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xButtonPressed.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -716,11 +724,11 @@
 			files = (
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */,
 				28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */,
 				4940D0D01264F8DF007FA76C /* CoreFoundation.framework in Frameworks */,
 				4940D0E51264F943007FA76C /* CFNetwork.framework in Frameworks */,
 				49C55283126980610093FAFD /* CoreGraphics.framework in Frameworks */,
+				492483AF1270D4BD00B59759 /* OpenGLES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -742,11 +750,10 @@
 				4940D8D712658992007FA76C /* Application */,
 				4940D06B1264F641007FA76C /* Externals */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
+				49E81DD912712FE400127D48 /* Resources */,
 				49D102101270BCBD007E143E /* Bundles */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				4940D0E41264F943007FA76C /* CFNetwork.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -760,24 +767,16 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		29B97317FDCFA39411CA2CEA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				8D1107310486CEB800E47090 /* WoollyMammoth-Info.plist */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4940D0E41264F943007FA76C /* CFNetwork.framework */,
 				28FD15070DC6FC5B0079059D /* QuartzCore.framework */,
-				28FD14FF0DC6FC520079059D /* OpenGLES.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				4940D0CF1264F8DF007FA76C /* CoreFoundation.framework */,
 				49C55282126980610093FAFD /* CoreGraphics.framework */,
+				492483AE1270D4BD00B59759 /* OpenGLES.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1290,6 +1289,9 @@
 				4940D90912658A46007FA76C /* WMViewController.h */,
 				4940D90A12658A46007FA76C /* WMViewController.mm */,
 				4940D91F12658B37007FA76C /* WMViewController.xib */,
+				49D102C31270C55E007E143E /* WMDebugViewController.h */,
+				49D102C41270C55E007E143E /* WMDebugViewController.m */,
+				49D102C51270C55E007E143E /* WMDebugViewController.xib */,
 				4940D8DF12658992007FA76C /* WoollyMammothAppDelegate.h */,
 				4940D8E012658992007FA76C /* WoollyMammothAppDelegate.m */,
 			);
@@ -1573,6 +1575,17 @@
 			path = Bundles;
 			sourceTree = "<group>";
 		};
+		49E81DD912712FE400127D48 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				49E81DFB127130FD00127D48 /* xButton.png */,
+				49E81DFC127130FD00127D48 /* xButtonPressed.png */,
+				49E81DDC12712FF800127D48 /* WoollyMammoth-Info.plist */,
+				49E81DDA12712FE400127D48 /* MainWindow.xib */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1622,10 +1635,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				4940D92012658B37007FA76C /* WMViewController.xib in Resources */,
-				49C5524F12697D250093FAFD /* readme.txt in Resources */,
 				49D102171270BCC8007E143E /* Test.wm in Resources */,
+				49D102C71270C55E007E143E /* WMDebugViewController.xib in Resources */,
+				49E81DDB12712FE400127D48 /* MainWindow.xib in Resources */,
+				49E81DFD127130FD00127D48 /* xButton.png in Resources */,
+				49E81DFE127130FD00127D48 /* xButtonPressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1829,6 +1844,7 @@
 				49D101FD1270BB85007E143E /* WMModelPOD.mm in Sources */,
 				49D101FE1270BB85007E143E /* WMShader.m in Sources */,
 				49D101FF1270BB85007E143E /* WMTextureAsset.m in Sources */,
+				49D102C61270C55E007E143E /* WMDebugViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1838,7 +1854,6 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1846,13 +1861,15 @@
 				GCC_PREFIX_HEADER = WoollyMammoth_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = $SRCROOT/Externals/oolong/Include;
-				INFOPLIST_FILE = "WoollyMammoth-Info.plist";
+				INFOPLIST_FILE = "Resources/WoollyMammoth-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-Wno-format-security",
 					"-Wno-write-strings",
 					"$(OTHER_CFLAGS)",
 				);
 				PRODUCT_NAME = WoollyMammoth;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$SRCROOT/Externals/Bullet/src $SRCROOT/Externals/oolong/Include";
 			};
 			name = Debug;
@@ -1860,19 +1877,20 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WoollyMammoth_Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				HEADER_SEARCH_PATHS = $SRCROOT/Externals/oolong/Include;
 				INFOPLIST_FILE = "WoollyMammoth-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-Wno-format-security",
 					"-Wno-write-strings",
 					"$(OTHER_CFLAGS)",
 				);
 				PRODUCT_NAME = WoollyMammoth;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$SRCROOT/Externals/Bullet/src $SRCROOT/Externals/oolong/Include";
 				VALIDATE_PRODUCT = YES;
 			};

@@ -28,6 +28,6 @@
 
 - (id)initWithEngine:(WMEngine *)inEngine;
 
-- (void)drawFrame;
+- (void)drawFrameInRect:(CGRect)inBounds;
 
 @end

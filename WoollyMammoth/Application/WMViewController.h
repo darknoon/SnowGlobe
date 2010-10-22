@@ -15,6 +15,7 @@
 #import <OpenGLES/ES2/glext.h>
 
 @class WMEngine;
+@class WMDebugViewController;
 
 @interface WMViewController : UIViewController
 {
@@ -32,13 +33,19 @@
     NSTimer *animationTimer;
 	
 	UILabel *fpsLabel;
+	IBOutlet WMDebugViewController *debugViewController;	
 	
 	//Used to calculate actual FPS
 	NSTimeInterval lastFrameEndTime;
 }
 
+@property (readonly, retain) WMEngine *engine;
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
 @property (nonatomic) NSInteger animationFrameInterval;
+@property (nonatomic, retain) IBOutlet WMDebugViewController *debugViewController;
+
+- (IBAction)showDebug:(id)sender;
+- (IBAction)reloadGame;
 
 - (void)startAnimation;
 - (void)stopAnimation;

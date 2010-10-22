@@ -24,7 +24,6 @@
 	WMAssetManager *assetManager;
 }
 
-@property (nonatomic, retain) WMAssetManager *assetManager;
 
 //This is set up by the view and set on us. If nil, renderer not ready
 @property (nonatomic, retain) WMRenderEngine *renderEngine;
@@ -32,6 +31,9 @@
 @property (nonatomic, retain, readonly) WMGameObject *rootObject;
 @property (nonatomic, retain, readonly) WMScriptingContext *scriptingContext;
 @property (nonatomic, retain, readonly) WMDebugChannel *debugChannel;
+@property (nonatomic, retain, readonly) WMAssetManager *assetManager;
+
+- (NSString *)title;
 
 - (WMGameObject *)createObject;
 - (void)deleteObject:(WMGameObject *)inObject;

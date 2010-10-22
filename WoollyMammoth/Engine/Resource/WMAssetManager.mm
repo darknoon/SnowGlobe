@@ -27,6 +27,8 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 
 @implementation WMAssetManager
 
+@synthesize assetBundle;
+
 - (id)initWithBundlePath:(NSString *)inBundlePath;
 {
 	self = [super init];
@@ -35,15 +37,17 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 	assetBundle = [[NSBundle alloc] initWithPath:inBundlePath];
 
 	NSString *manifestPath = [assetBundle pathForResource:@"manifest" ofType:@"plist"];
-	NSDictionary *manifest = [NSDictionary dictionaryWithContentsOfFile:manifestPath];
+	manifest = [[NSDictionary dictionaryWithContentsOfFile:manifestPath] retain];
 	if (!manifest) {
 		NSLog(@"No manifest.plist found for bundle %@, or manifest could not be read", inBundlePath);
+		[self release];
+		return nil;
 	}
 	
-	models = [NSMutableDictionary dictionary];
-	shaders = [NSMutableDictionary dictionary];
-	textures = [NSMutableDictionary dictionary];
-	scripts = [NSMutableDictionary dictionary];
+	models = [[NSMutableDictionary alloc] init];
+	shaders = [[NSMutableDictionary alloc] init];
+	textures = [[NSMutableDictionary alloc] init];
+	scripts = [[NSMutableDictionary alloc] init];
 	[self createAssetsFromManifest:manifest];
 	
 	return self;
@@ -56,6 +60,9 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 	[textures release];
 	[scripts release];
 	
+	[assetBundle release];
+	assetBundle = nil;
+
 	[super dealloc];
 }
 
@@ -92,6 +99,11 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 			NSLog(@"Error loading shader : %@", shader);
 		}		
 	}
+}
+
+- (id)objectForManifestKey:(NSString *)inManifestKey;
+{
+	return [manifest objectForKey:inManifestKey];
 }
 
 - (id)modelWithName:(NSString *)inName;

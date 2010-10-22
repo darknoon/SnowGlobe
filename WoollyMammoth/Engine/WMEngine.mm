@@ -40,14 +40,12 @@
 
 - (void)dealloc
 {
+	[assetManager release];
 	[rootObject release];
 	[objectsById release];
-
+	[scriptingContext release];
+	[debugChannel release];
 	[renderEngine release];
-	renderEngine = nil;
-
-	[assetManager release];
-	assetManager = nil;
 
 	[super dealloc];
 }
@@ -121,6 +119,11 @@
 - (WMGameObject *)objectWithId:(UInt64)gameObjectId;
 {
 	return [objectsById objectForKey:[NSNumber numberWithUnsignedLongLong:gameObjectId]];
+}
+
+- (NSString *)title;
+{
+	return [assetManager objectForManifestKey:@"title"];
 }
 
 @end

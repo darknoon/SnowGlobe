@@ -11,13 +11,18 @@
 
 @interface WMAssetManager : NSObject {
 	NSBundle *assetBundle;
+	NSDictionary *manifest;
 	NSMutableDictionary *models;
 	NSMutableDictionary *shaders;
 	NSMutableDictionary *textures;
 	NSMutableDictionary *scripts;
 }
 
+@property (nonatomic, readonly, retain) NSBundle *assetBundle;
+
 - (id)initWithBundlePath:(NSString *)inBundlePath;
+
+- (id)objectForManifestKey:(NSString *)inManifestKey;
 
 - (id)modelWithName:(NSString *)inName;
 - (id)shaderWithName:(NSString *)inName;

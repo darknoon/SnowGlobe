@@ -6,36 +6,46 @@
 //  Copyright 2010 Darknoon. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
 
 #import "WMViewController.h"
 #import "EAGLView.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "WMEngine.h"
 #import "WMRenderEngine.h"
+#import "WMDebugViewController.h"
 
 @interface WMViewController ()
 @end
 
 @implementation WMViewController
 
+@synthesize engine;
 @synthesize animating;
+@synthesize debugViewController;
 
-- (void)awakeFromNib
+- (void)reloadGame;
 {
+	if (engine) {
+		[engine release];
+		engine = nil;
+	}
+	
 	engine = [[WMEngine alloc] init];
 	engine.renderEngine = [[WMRenderEngine alloc] initWithEngine:engine];
 	//TODO: start lazily
 	[engine start];
-
+	
 	[(EAGLView *)self.view setContext:engine.renderEngine.context];
     [(EAGLView *)self.view setFramebuffer];
+	
+}
 
-    animating = FALSE;
-    displayLinkSupported = FALSE;
+- (void)awakeFromNib
+{
+	[self reloadGame];
     animationFrameInterval = 1;
-    displayLink = nil;
-    animationTimer = nil;
     
     // Use of CADisplayLink requires iOS version 3.1 or greater.
 	// The NSTimer object is used as fallback when it isn't available.
@@ -43,7 +53,15 @@
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
         displayLinkSupported = TRUE;
-	
+
+	NSLog(@"foo: %d", __IPHONE_OS_VERSION_MAX_ALLOWED);
+
+	// TODO: grr, Xcode bug won't let this compile. WTF??
+	// UISwipeGestureRecognizer *recog = [[UISwipeGestureRecognizer alloc] init];
+	// recog.target = self;
+	// recog.selector = @selector(debugSwipeAction:);
+	// recog.direction = (UISwipeGestureRecognizerDirection) (UISwipeGestureRecognizerDirectionUp | UISwipeGestureRecognizerDirectionDown);
+	// [self.view addGestureRecognizer:recog];
 }
 
 - (void)viewDidLoad;
@@ -64,7 +82,8 @@
 - (void)dealloc
 {    
     [engine release];
-	
+	[debugViewController release];
+
     [super dealloc];
 }
 
@@ -87,6 +106,11 @@
 	[super viewDidUnload];
 	[fpsLabel release];
 	fpsLabel = nil;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation; // Override to allow rotation. Default returns YES only for UIDeviceOrientationPortrait
+{
+	return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
 }
 
 - (NSInteger)animationFrameInterval
@@ -161,7 +185,7 @@
 	
 	NSTimeInterval frameStartTime = CFAbsoluteTimeGetCurrent();
 	
-	[engine.renderEngine drawFrame];
+	[engine.renderEngine drawFrameInRect:self.view.bounds];
 	
 	[engine update];
 
@@ -176,6 +200,15 @@
 	lastFrameEndTime = frameEndTime;
 
     [(EAGLView *)self.view presentFramebuffer];
+}
+
+#pragma mark -
+#pragma mark Actions
+
+- (IBAction)showDebug:(id)sender;
+{
+	[self.view addSubview:debugViewController.view];
+	debugViewController.view.frame = self.view.bounds;
 }
 
 - (void)didReceiveMemoryWarning

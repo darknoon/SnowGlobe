@@ -214,6 +214,7 @@
 		49E81DDB12712FE400127D48 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DDA12712FE400127D48 /* MainWindow.xib */; };
 		49E81DFD127130FD00127D48 /* xButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DFB127130FD00127D48 /* xButton.png */; };
 		49E81DFE127130FD00127D48 /* xButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DFC127130FD00127D48 /* xButtonPressed.png */; };
+		49E81F1E12714CB900127D48 /* WMQuad.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49E81F1D12714CB900127D48 /* WMQuad.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -715,6 +716,9 @@
 		49E81DDC12712FF800127D48 /* WoollyMammoth-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WoollyMammoth-Info.plist"; sourceTree = "<group>"; };
 		49E81DFB127130FD00127D48 /* xButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xButton.png; sourceTree = "<group>"; };
 		49E81DFC127130FD00127D48 /* xButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xButtonPressed.png; sourceTree = "<group>"; };
+		49E81F1C12714CB900127D48 /* WMQuad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMQuad.h; sourceTree = "<group>"; };
+		49E81F1D12714CB900127D48 /* WMQuad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMQuad.mm; sourceTree = "<group>"; };
+		49E81F6A127151DF00127D48 /* WMRenderableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRenderableDataSource.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1317,6 +1321,9 @@
 				4940D97512658E4B007FA76C /* WMRenderEngine.mm */,
 				4940DCE912669B1A007FA76C /* WMRenderable.h */,
 				4940DCEA12669B1A007FA76C /* WMRenderable.mm */,
+				49E81F1C12714CB900127D48 /* WMQuad.h */,
+				49E81F1D12714CB900127D48 /* WMQuad.mm */,
+				49E81F6A127151DF00127D48 /* WMRenderableDataSource.h */,
 			);
 			path = Render;
 			sourceTree = "<group>";
@@ -1551,18 +1558,18 @@
 		49D101ED1270BB85007E143E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				49D101EE1270BB85007E143E /* Texture2D.h */,
-				49D101EF1270BB85007E143E /* Texture2D.m */,
-				49D101F01270BB85007E143E /* WMAsset.h */,
-				49D101F11270BB85007E143E /* WMAsset.mm */,
 				49D101F21270BB85007E143E /* WMAssetManager.h */,
 				49D101F31270BB85007E143E /* WMAssetManager.mm */,
+				49D101F81270BB85007E143E /* WMTextureAsset.h */,
+				49D101F91270BB85007E143E /* WMTextureAsset.m */,
+				49D101F01270BB85007E143E /* WMAsset.h */,
+				49D101F11270BB85007E143E /* WMAsset.mm */,
 				49D101F41270BB85007E143E /* WMModelPOD.h */,
 				49D101F51270BB85007E143E /* WMModelPOD.mm */,
 				49D101F61270BB85007E143E /* WMShader.h */,
 				49D101F71270BB85007E143E /* WMShader.m */,
-				49D101F81270BB85007E143E /* WMTextureAsset.h */,
-				49D101F91270BB85007E143E /* WMTextureAsset.m */,
+				49D101EE1270BB85007E143E /* Texture2D.h */,
+				49D101EF1270BB85007E143E /* Texture2D.m */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1845,6 +1852,7 @@
 				49D101FE1270BB85007E143E /* WMShader.m in Sources */,
 				49D101FF1270BB85007E143E /* WMTextureAsset.m in Sources */,
 				49D102C61270C55E007E143E /* WMDebugViewController.m in Sources */,
+				49E81F1E12714CB900127D48 /* WMQuad.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1905,6 +1913,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;
 				USER_HEADER_SEARCH_PATHS = $SRCROOT/Externals/Bullet/src;

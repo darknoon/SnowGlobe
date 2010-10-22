@@ -8,8 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+#import "WMAsset.h"
 
-@interface WMTextureAsset : NSObject {
+#import "WMRenderCommon.h"
+
+@class Texture2D;
+
+@interface WMTextureAsset : WMAsset {
+	Texture2D *texture;
 }
+
+- (GLuint)glTexture;
 
 @end

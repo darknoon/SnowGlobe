@@ -8,6 +8,16 @@
 
 #import "WMShader.h"
 
+@interface WMShader()
+//Then load the shaders, compile and link into a program in the current context
+- (BOOL)loadShaders;
+@property (nonatomic, copy) NSArray *uniformNames;
+@property (nonatomic, copy) NSArray *attributeNames;
+@property (nonatomic, copy) NSString *vertexShader;
+@property (nonatomic, copy) NSString *pixelShader;
+
+@end
+
 
 @implementation WMShader
 
@@ -16,6 +26,7 @@
 @synthesize vertexShader;
 @synthesize pixelShader;
 @synthesize program;
+
 
 - (id)initWithResourceName:(NSString *)inResourceName properties:(NSDictionary *)inProperties;
 {

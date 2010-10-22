@@ -90,15 +90,6 @@ Be aware that the content of the generated textures will be upside-down!
 @end
 
 /*
-Drawing extensions to make it easy to draw basic quads using a Texture2D object.
-These functions require GL_TEXTURE_2D and both GL_VERTEX_ARRAY and GL_TEXTURE_COORD_ARRAY client states to be enabled.
-*/
-@interface Texture2D (Drawing)
-- (void) drawAtPoint:(CGPoint)point;
-- (void) drawInRect:(CGRect)rect;
-@end
-
-/*
 Extensions to make it easy to create a Texture2D object from an image file.
 Note that RGBA type textures will have their alpha premultiplied - use the blending mode (GL_ONE, GL_ONE_MINUS_SRC_ALPHA).
 */

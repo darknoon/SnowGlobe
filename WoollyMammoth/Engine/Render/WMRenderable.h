@@ -9,20 +9,25 @@
 #import <Foundation/Foundation.h>
 
 #import "WMRenderCommon.h"
+#import "WMRenderableDataSource.h"
 
 #import "Matrix.h"
 
 @class WMShader;
-
+@class WMTextureAsset;
 @class WMModelPOD;
 
 @interface WMRenderable : NSObject {
 	WMShader *shader;
-	WMModelPOD *model;
+	//TODO: how should we handle multi-texturing?
+	//Move into shader?
+	WMTextureAsset *texture;
+	NSObject<WMRenderableDataSource> *model;
 }
 
+@property (nonatomic, retain) WMTextureAsset *texture;
 @property (nonatomic, retain) WMShader *shader;
-@property (nonatomic, retain) WMModelPOD *model;
+@property (nonatomic, retain) NSObject<WMRenderableDataSource> *model;
 
 - (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API;
 

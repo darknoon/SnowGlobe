@@ -38,7 +38,7 @@ void LogMatrix(MATRIX mat) {
 	if (!self) return nil;
 	
 	engine = inEngine;
-	
+		
 	context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     if (!context) {
         context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
@@ -49,7 +49,9 @@ void LogMatrix(MATRIX mat) {
 	}	else if (![EAGLContext setCurrentContext:context]) {
         NSLog(@"Failed to set ES context current");
 	}
-			
+	
+	glEnable(GL_TEXTURE_2D);
+	
 	return self;
 }
 

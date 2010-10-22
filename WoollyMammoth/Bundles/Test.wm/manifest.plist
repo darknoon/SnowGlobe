@@ -13,6 +13,11 @@
 			<key>scale</key>
 			<string>0.1</string>
 		</dict>
+		<key>simpletest</key>
+		<dict>
+			<key>scale</key>
+			<string>0.1</string>
+		</dict>
 	</dict>
 	<key>shaders</key>
 	<dict>
@@ -27,6 +32,24 @@
 				<string>modelViewProjectionMatrix</string>
 			</array>
 		</dict>
+		<key>DebugPositionTexture</key>
+		<dict>
+			<key>attributeNames</key>
+			<array>
+				<string>position</string>
+				<string>textureCoordinate</string>
+			</array>
+			<key>uniformNames</key>
+			<array>
+				<string>modelViewProjectionMatrix</string>
+				<string>texture</string>
+			</array>
+		</dict>
+	</dict>
+	<key>textures</key>
+	<dict>
+		<key>TestTexture.png</key>
+		<dict/>
 	</dict>
 </dict>
 </plist>

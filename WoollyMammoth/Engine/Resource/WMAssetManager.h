@@ -26,11 +26,11 @@
 
 - (id)modelWithName:(NSString *)inName;
 - (id)shaderWithName:(NSString *)inName;
+- (id)textureWithName:(NSString *)inName;
+//- (id)scriptWithName:(NSString *)inName;
 
 //Must be called with a context set
 - (void)loadAllAssetsSynchronous;
 
-//- (id)textureWithName:(NSString *)inName;
-//- (id)scriptWithName:(NSString *)inName;
 
 @end

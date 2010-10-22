@@ -62,10 +62,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 - (id) initWithData:(const void*)data pixelFormat:(Texture2DPixelFormat)pixelFormat pixelsWide:(NSUInteger)width pixelsHigh:(NSUInteger)height contentSize:(CGSize)size
 {
-	GLint					saveName;
 	if((self = [super init])) {
 		glGenTextures(1, &_name);
-		glGetIntegerv(GL_TEXTURE_BINDING_2D, &saveName);
 		glBindTexture(GL_TEXTURE_2D, _name);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		switch(pixelFormat) {
@@ -83,7 +81,6 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 				[NSException raise:NSInternalInconsistencyException format:@""];
 			
 		}
-		glBindTexture(GL_TEXTURE_2D, saveName);
 	
 		_size = size;
 		_width = width;
@@ -138,7 +135,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	
 	if(image == NULL) {
 		[self release];
-		NSLog(@"Image is Null");
+		NSLog(@"Could not create texture: UIImage is null.");
 		return nil;
 	}
 	
@@ -282,45 +279,3 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 @end
 
-@implementation Texture2D (Drawing)
-
-
-
-- (void) drawAtPoint:(CGPoint)point 
-{
-	GLfloat		coordinates[] = { 0,	_maxT,
-								_maxS,	_maxT,
-								0,		0,
-								_maxS,	0 };
-	GLfloat		width = (GLfloat)_width * _maxS,
-				height = (GLfloat)_height * _maxT;
-	GLfloat		vertices[] = {	-width / 2 + point.x,	-height / 2 + point.y,	0.0,
-								width / 2 + point.x,	-height / 2 + point.y,	0.0,
-								-width / 2 + point.x,	height / 2 + point.y,	0.0,
-								width / 2 + point.x,	height / 2 + point.y,	0.0 };
-	
-	glBindTexture(GL_TEXTURE_2D, _name);
-	glVertexPointer(3, GL_FLOAT, 0, vertices);
-	glTexCoordPointer(2, GL_FLOAT, 0, coordinates);
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-}
-
-
-- (void) drawInRect:(CGRect)rect
-{
-	GLfloat	 coordinates[] = {  0,		_maxT,
-								_maxS,	_maxT,
-								0,		0,
-								_maxS,	0  };
-	GLfloat	vertices[] = {	rect.origin.x,							rect.origin.y,							0.0,
-							rect.origin.x + rect.size.width,		rect.origin.y,							0.0,
-							rect.origin.x,							rect.origin.y + rect.size.height,		0.0,
-							rect.origin.x + rect.size.width,		rect.origin.y + rect.size.height,		0.0 };
-	
-	glBindTexture(GL_TEXTURE_2D, _name);
-	glVertexPointer(3, GL_FLOAT, 0, vertices);
-	glTexCoordPointer(2, GL_FLOAT, 0, coordinates);
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-}
-
-@end

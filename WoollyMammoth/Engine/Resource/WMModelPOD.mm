@@ -62,12 +62,9 @@
 		void *data = [self vertexDataPointer];
 		for (int i=0; i<[self numberOfVertices]; i++) {
 			float *v = (float *)( (int)data + i * [self interleavedDataStride] );
-			NSLog(@"before: <%f, %f, %f>", v[0], v[1], v[2]);
 			v[0] *= scale;
 			v[1] *= scale;
-			v[2] *= scale;
-			NSLog(@"after: <%f, %f, %f>", v[0], v[1], v[2]);
-			
+			v[2] *= scale;			
 		}
 		
 		isLoaded = YES;

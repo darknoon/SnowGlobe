@@ -17,6 +17,14 @@
 @synthesize window;
 @synthesize viewController;
 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
+{
+	[window addSubview:viewController.view];
+	[window makeKeyWindow];
+	
+	return YES;
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     [viewController stopAnimation];

@@ -54,8 +54,6 @@
     if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
         displayLinkSupported = TRUE;
 
-	NSLog(@"foo: %d", __IPHONE_OS_VERSION_MAX_ALLOWED);
-
 	// TODO: grr, Xcode bug won't let this compile. WTF??
 	// UISwipeGestureRecognizer *recog = [[UISwipeGestureRecognizer alloc] init];
 	// recog.target = self;

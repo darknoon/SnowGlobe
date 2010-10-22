@@ -35,18 +35,13 @@
 
 - (id)initWithResourceName:(NSString *)inResourceName properties:(NSDictionary *)inProperties;
 
-//Set these
-@property (nonatomic, copy) NSArray *uniformNames;
-@property (nonatomic, copy) NSArray *attributeNames;
-@property (nonatomic, copy) NSString *vertexShader;
-@property (nonatomic, copy) NSString *pixelShader;
-
-//Then load the shaders, compile and link into a program in the current context
-- (BOOL)loadShaders;
+@property (nonatomic, copy, readonly) NSArray *uniformNames;
+@property (nonatomic, copy, readonly) NSArray *attributeNames;
+@property (nonatomic, copy, readonly) NSString *vertexShader;
+@property (nonatomic, copy, readonly) NSString *pixelShader;
 
 //Is this program configured correctly for drawing?
 - (BOOL)validateProgram;
-
 
 //Use this to draw
 @property (nonatomic, readonly) GLuint program;

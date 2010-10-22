@@ -11,6 +11,7 @@
 //Asset classes
 #import "WMModelPOD.h"
 #import "WMShader.h"
+#import "WMTextureAsset.h"
 
 NSString *const WMAssetManagerManifestModelsKey = @"models";
 NSString *const WMAssetManagerManifestTexturesKey = @"textures";
@@ -81,6 +82,13 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 		[shaders setObject:asset forKey:shaderKey];
 	}
 	
+	NSDictionary *textureDefinitions = [inManifest objectForKey:WMAssetManagerManifestTexturesKey];
+	for (NSString *textureKey in textureDefinitions) {
+		WMAsset *asset = [[WMTextureAsset alloc] initWithResourceName:textureKey properties:[textureDefinitions objectForKey:textureKey]];
+		[textures setObject:asset forKey:textureKey];
+	}
+	
+	
 }
 
 - (void)loadAllAssetsSynchronous;
@@ -99,6 +107,13 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 			NSLog(@"Error loading shader : %@", shader);
 		}		
 	}
+	//Load textures
+	for (WMShader *texture in [textures allValues]) {
+		NSError *loadError = nil;
+		if (![texture loadWithBundle:assetBundle error:&loadError]) {
+			NSLog(@"Error loading texture : %@", texture);
+		}
+	}
 }
 
 - (id)objectForManifestKey:(NSString *)inManifestKey;
@@ -116,5 +131,9 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 	return [shaders objectForKey:inName];
 }
 
+- (id)textureWithName:(NSString *)inName;
+{
+	return [textures objectForKey:inName];
+}
 
 @end

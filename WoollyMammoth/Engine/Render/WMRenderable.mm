@@ -11,9 +11,11 @@
 #import "WMShader.h"
 
 #import "WMModelPOD.h"
+#import "WMTextureAsset.h"
 
 @implementation WMRenderable
 
+@synthesize texture;
 @synthesize shader;
 @synthesize model;
 
@@ -23,6 +25,9 @@
 	shader = nil;
 	[model release];
 	model = nil;
+
+	[texture release];
+	texture = nil;
 
 	[super dealloc];
 }
@@ -37,6 +42,8 @@
 
 - (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API;
 {
+	if (!model) return;
+	
 	if (API == kEAGLRenderingAPIOpenGLES2)
     {
         // Use shader program.
@@ -46,8 +53,21 @@
 		
         // Update attribute values.
 		GLuint vertexAttribute = [shader attribIndexForName:@"position"];
-        glVertexAttribPointer(vertexAttribute, 3, GL_FLOAT, 0, stride, [model vertexDataPointer]);
+        glVertexAttribPointer(vertexAttribute, 3, GL_FLOAT, GL_FALSE, stride, [model vertexDataPointer]);
         glEnableVertexAttribArray(vertexAttribute);
+		
+		if (texture) {
+			glBindTexture(GL_TEXTURE0, [texture glTexture]);
+			
+			int textureUniformLocation = [shader uniformLocationForName:@"texture"];
+			if (textureUniformLocation != -1) {
+				glUniform1i(textureUniformLocation, 0); //texture = texture 0
+			}
+			GLuint textureCoordinateAttribute = [shader attribIndexForName:@"textureCoordinate"];
+			glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, GL_FALSE, stride, [model textureCoordDataPointer]);
+			glEnableVertexAttribArray(textureCoordinateAttribute);
+		}
+
 		
 		// GLuint colorAttribute = [shader attribIndexForName:@"color"];
         // glVertexAttribPointer(colorAttribute, 4, GL_UNSIGNED_BYTE, 1, 0, squareColors);

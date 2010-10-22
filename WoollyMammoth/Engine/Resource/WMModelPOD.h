@@ -10,8 +10,9 @@
 
 #import "ModelPOD.h"
 #import "WMAsset.h"
+#import "WMRenderableDataSource.h"
 
-@interface WMModelPOD : WMAsset {
+@interface WMModelPOD : WMAsset <WMRenderableDataSource> {
 	CPVRTModelPOD *podmodel;
 	SPODMesh mesh;
 	float scale;
@@ -22,22 +23,9 @@
  scale: scale the model by this factor when loading
  */
 
-- (id)initWithResourceName:(NSString *)inResourceName properties:(NSDictionary *)inProperties;
-
 @property (nonatomic, assign) float scale;
-
 
 - (void *)interleavedDataPointer;
 
-- (void *)vertexDataPointer;
-- (void *)textureCoordDataPointer;
-- (void *)normalCoordDataPointer;
-
-- (size_t)interleavedDataStride;
-- (size_t)numberOfTriangles;
-- (size_t)numberOfVertices;
-
-- (GLenum)triangleIndexType;
-- (unsigned short *)triangleIndexPointer;
 
 @end

@@ -14,6 +14,11 @@
 #import "WMRenderable.h"
 #import "WMAssetManager.h"
 
+//For Debug method only
+#import "WMModelPOD.h"
+#import "WMQuad.h"
+#import "WMTextureAsset.h"
+
 @interface WMEngine ()
 @property (nonatomic, retain, readwrite) WMGameObject *rootObject;
 
@@ -52,18 +57,37 @@
 
 - (void)debugMakeObjectGraph;
 {
-	WMModelPOD *model = [assetManager modelWithName:@"GeodesicSphere02"];
-	WMShader *shader = [assetManager shaderWithName:@"DebugPositionOnly"];
+	WMModelPOD *sphereModel = [assetManager modelWithName:@"GeodesicSphere02"];
+	WMShader *positionShader = [assetManager shaderWithName:@"DebugPositionOnly"];
+
+	MATRIX transform;
 	for (int i=0; i<1; i++) {
 		WMGameObject *child = [self createObject];
 		child.renderable = [[[WMRenderable alloc] init] autorelease];
-		child.renderable.model = model;
-		child.renderable.shader = shader;
+		child.renderable.model = sphereModel;
+		child.renderable.shader = positionShader;
 		
-		child.transform = c_mIdentity;
+		MatrixTranslation(transform, 0, 10.9 * i, 0);
+		child.transform = transform;
 		
 		[self.rootObject addChild:child];
-	}	
+	}
+	
+	WMQuad *quadModel = [[[WMQuad alloc] init] autorelease];
+	WMShader *textureShader = [assetManager shaderWithName:@"DebugPositionTexture"];
+	WMTextureAsset *texture = [assetManager textureWithName:@"TestTexture.png"];
+	WMGameObject *debugQuad = [self createObject];
+	debugQuad.renderable = [[[WMRenderable alloc] init] autorelease];
+	debugQuad.renderable.model = quadModel;
+	debugQuad.renderable.shader = textureShader;
+	debugQuad.renderable.texture = texture;
+	
+	const float scaleFactor = 30.0f;
+	MATRIX scale;
+	MatrixScaling(scale, scaleFactor, scaleFactor, scaleFactor);
+	debugQuad.transform = scale;
+
+	[self.rootObject addChild:debugQuad];
 }
 
 

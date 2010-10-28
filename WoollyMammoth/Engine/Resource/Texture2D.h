@@ -45,8 +45,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 */
 
-#import <UIKit/UIKit.h>
-#import <OpenGLES/ES1/gl.h>
+#import <Foundation/Foundation.h>
+#import "WMRenderCommon.h"
 
 //CONSTANTS:
 
@@ -89,6 +89,12 @@ Be aware that the content of the generated textures will be upside-down!
 @property(readonly) GLfloat maxT;
 @end
 
+@interface Texture2D (File)
+- (id)initWithContentsOfFile:(NSString *)inFilePath;
+@end
+
+
+#if TARGET_OS_IPHONE
 /*
 Extensions to make it easy to create a Texture2D object from an image file.
 Note that RGBA type textures will have their alpha premultiplied - use the blending mode (GL_ONE, GL_ONE_MINUS_SRC_ALPHA).
@@ -104,3 +110,5 @@ Note that the generated textures are of type A8 - use the blending mode (GL_SRC_
 @interface Texture2D (Text)
 - (id) initWithString:(NSString*)string dimensions:(CGSize)dimensions alignment:(UITextAlignment)alignment fontName:(NSString*)name fontSize:(CGFloat)size;
 @end
+
+#endif

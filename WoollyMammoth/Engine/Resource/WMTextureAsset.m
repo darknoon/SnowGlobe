@@ -20,13 +20,8 @@
 	//File comes with extension
 	NSString *imagePath = [[inBundle bundlePath] stringByAppendingPathComponent:resourceName];
 	
-	NSString *extension = [imagePath pathExtension];
-	if ([extension isEqualToString:@"png"]) {
-		UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
-		texture = [[Texture2D alloc] initWithImage:image];
-		return YES;
-	}
-
+	texture = [[Texture2D alloc] initWithContentsOfFile:imagePath];
+	
 	return NO;
 }
 

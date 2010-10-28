@@ -6,7 +6,7 @@
 //  Copyright 2010 Darknoon. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 #import "WMRenderCommon.h"
 

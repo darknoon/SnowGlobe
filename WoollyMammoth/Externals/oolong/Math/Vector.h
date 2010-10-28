@@ -15,7 +15,16 @@ subject to the following restrictions:
 #ifndef VECTOR_H_
 #define VECTOR_H_
 
+#if TARGET_OS_IPHONE
+
 #include <OpenGLES/ES1/gl.h>
+
+#else
+
+#include <OpenGL/gl.h>
+
+#endif
+
 #include <math.h>
 
 //#include "Matrix.h"

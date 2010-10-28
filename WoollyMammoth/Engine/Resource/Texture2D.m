@@ -45,7 +45,11 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 */
 
+#if TARGET_OS_IPHONE
 #import <OpenGLES/ES1/glext.h>
+#else
+#import <OpenGL/glext.h>
+#endif
 
 #import "Texture2D.h"
 
@@ -107,13 +111,34 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 @end
 
+@implementation Texture2D (File)
+
+- (id)initWithContentsOfFile:(NSString *)inFilePath;
+{
+#if TARGET_OS_IPHONE
+	NSString *extension = [inFilePath pathExtension];
+	if ([extension isEqualToString:@"png"]) {
+		UIImage *image = [UIImage imageWithContentsOfFile:inFilePath];
+		return [self initWithImage:image];
+	}
+#else
+#endif
+	return nil;
+}
+
+@end
+
+
+#if TARGET_OS_IPHONE
+
+
 @implementation Texture2D (Image)
-	
+
 - (id) initWithImage:(UIImage *)uiImage
 {
 	NSUInteger				width,
-							height,
-							i;
+	height,
+	i;
 	CGContextRef			context = nil;
 	void*					data = nil;;
 	CGColorSpaceRef			colorSpace;
@@ -139,7 +164,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 		return nil;
 	}
 	
-
+	
 	info = CGImageGetAlphaInfo(image);
 	hasAlpha = ((info == kCGImageAlphaPremultipliedLast) || (info == kCGImageAlphaPremultipliedFirst) || (info == kCGImageAlphaLast) || (info == kCGImageAlphaFirst) ? YES : NO);
 	if(CGImageGetColorSpace(image)) {
@@ -153,7 +178,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	
 	imageSize = CGSizeMake(CGImageGetWidth(image), CGImageGetHeight(image));
 	transform = CGAffineTransformIdentity;
-
+	
 	width = imageSize.width;
 	
 	if((width != 1) && (width & (width - 1))) {
@@ -198,8 +223,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 		default:
 			[NSException raise:NSInternalInconsistencyException format:@"Invalid pixel format"];
 	}
- 
-
+	
+	
 	CGContextClearRect(context, CGRectMake(0, 0, width, height));
 	CGContextTranslateCTM(context, 0, height - imageSize.height);
 	
@@ -226,6 +251,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 }
 
 @end
+
 
 @implementation Texture2D (Text)
 
@@ -279,3 +305,4 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 @end
 
+#endif

@@ -16,6 +16,7 @@
 	NSMutableDictionary *shaders;
 	NSMutableDictionary *textures;
 	NSMutableDictionary *scripts;
+	NSMutableDictionary *scenes;
 }
 
 @property (nonatomic, readonly, retain) NSBundle *assetBundle;
@@ -27,6 +28,7 @@
 - (id)modelWithName:(NSString *)inName;
 - (id)shaderWithName:(NSString *)inName;
 - (id)textureWithName:(NSString *)inName;
+- (id)sceneWithName:(NSString *)inName;
 //- (id)scriptWithName:(NSString *)inName;
 
 //Must be called with a context set

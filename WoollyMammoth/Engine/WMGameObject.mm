@@ -58,6 +58,7 @@
 	[inChild retain];
 	[inChild removeFromParent];
 	[mutableChildren addObject:inChild];
+	inChild.parent = self;
 	[inChild release];
 }
 

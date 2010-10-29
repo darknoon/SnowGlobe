@@ -179,6 +179,7 @@
 		4940DB1412664329007FA76C /* WMPhysicsBody.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940DB1312664329007FA76C /* WMPhysicsBody.mm */; };
 		4940DB1912664431007FA76C /* WMPhysicsWorld.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940DB1812664431007FA76C /* WMPhysicsWorld.mm */; };
 		4940DCEB12669B1A007FA76C /* WMRenderable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940DCEA12669B1A007FA76C /* WMRenderable.mm */; };
+		49570A16127A52250007280E /* WMSceneDescription.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49570A15127A52250007280E /* WMSceneDescription.mm */; };
 		49C54F2A126962A50093FAFD /* JGResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C54F29126962A50093FAFD /* JGResource.m */; };
 		49C54F35126962EA0093FAFD /* JGModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C54F34126962EA0093FAFD /* JGModel.m */; };
 		49C54F3A126963080093FAFD /* JGModelParent.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C54F39126963080093FAFD /* JGModelParent.m */; };
@@ -612,6 +613,8 @@
 		4940DCE912669B1A007FA76C /* WMRenderable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRenderable.h; sourceTree = "<group>"; };
 		4940DCEA12669B1A007FA76C /* WMRenderable.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMRenderable.mm; sourceTree = "<group>"; };
 		4940DCF212669BFA007FA76C /* WMRenderCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRenderCommon.h; sourceTree = "<group>"; };
+		49570A14127A52250007280E /* WMSceneDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSceneDescription.h; sourceTree = "<group>"; };
+		49570A15127A52250007280E /* WMSceneDescription.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMSceneDescription.mm; sourceTree = "<group>"; };
 		49C54F28126962A50093FAFD /* JGResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGResource.h; sourceTree = "<group>"; };
 		49C54F29126962A50093FAFD /* JGResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGResource.m; sourceTree = "<group>"; };
 		49C54F33126962EA0093FAFD /* JGModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGModel.h; sourceTree = "<group>"; };
@@ -1570,6 +1573,8 @@
 				49D101F71270BB85007E143E /* WMShader.m */,
 				49D101EE1270BB85007E143E /* Texture2D.h */,
 				49D101EF1270BB85007E143E /* Texture2D.m */,
+				49570A14127A52250007280E /* WMSceneDescription.h */,
+				49570A15127A52250007280E /* WMSceneDescription.mm */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1853,6 +1858,7 @@
 				49D101FF1270BB85007E143E /* WMTextureAsset.m in Sources */,
 				49D102C61270C55E007E143E /* WMDebugViewController.m in Sources */,
 				49E81F1E12714CB900127D48 /* WMQuad.mm in Sources */,
+				49570A16127A52250007280E /* WMSceneDescription.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

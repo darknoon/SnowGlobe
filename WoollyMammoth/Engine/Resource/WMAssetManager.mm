@@ -12,10 +12,15 @@
 #import "WMModelPOD.h"
 #import "WMShader.h"
 #import "WMTextureAsset.h"
+#import "WMSceneDescription.h"
+
+//Fixed assets
+#import "WMQuad.h"
 
 NSString *const WMAssetManagerManifestModelsKey = @"models";
 NSString *const WMAssetManagerManifestTexturesKey = @"textures";
 NSString *const WMAssetManagerManifestShadersKey = @"shaders";
+NSString *const WMAssetManagerManifestScenesKey = @"scenes";
 NSString *const WMAssetManagerManifestScriptsKey = @"scripts";
 
 const NSUInteger WMAssetManagerManifestVersion = 1;
@@ -23,6 +28,7 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 
 @interface WMAssetManager ()
 - (void)createAssetsFromManifest:(NSDictionary *)inManifest;
+- (void)addFixedAssets;
 @end
 
 
@@ -49,24 +55,31 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 	shaders = [[NSMutableDictionary alloc] init];
 	textures = [[NSMutableDictionary alloc] init];
 	scripts = [[NSMutableDictionary alloc] init];
-	[self createAssetsFromManifest:manifest];
+	scenes = [[NSMutableDictionary alloc] init];
 	
+	[self addFixedAssets];
+	[self createAssetsFromManifest:manifest];
+
 	return self;
 }
 
 - (void) dealloc
 {
+	[assetBundle release];
+
 	[models release];
 	[shaders release];
 	[textures release];
 	[scripts release];
+	[scenes release];
 	
-	[assetBundle release];
-	assetBundle = nil;
-
 	[super dealloc];
 }
 
+- (void)addFixedAssets;
+{
+	[models setObject:[[[WMQuad alloc] init] autorelease] forKey:@"WMQuad"];
+}
 
 - (void)createAssetsFromManifest:(NSDictionary *)inManifest;
 {
@@ -88,6 +101,11 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 		[textures setObject:asset forKey:textureKey];
 	}
 	
+	NSDictionary *sceneDefinitions = [inManifest objectForKey:WMAssetManagerManifestScenesKey];
+	for (NSString *sceneKey in sceneDefinitions) {
+		WMAsset *asset = [[WMSceneDescription alloc] initWithResourceName:sceneKey properties:[sceneDefinitions objectForKey:sceneKey]];
+		[scenes setObject:asset forKey:sceneKey];
+	}
 	
 }
 
@@ -95,10 +113,12 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 {
 	//Load models
 	for (WMModelPOD *model in [models allValues]) {
-		NSError *loadError = nil;
-		if (![model loadWithBundle:assetBundle error:&loadError]) {
-			NSLog(@"Error loading model : %@", model);
-		}		
+		if ([model isKindOfClass:[WMAsset class]]) {
+			NSError *loadError = nil;
+			if (![model loadWithBundle:assetBundle error:&loadError]) {
+				NSLog(@"Error loading model : %@", model);
+			}
+		}
 	}
 	//Load shaders
 	for (WMShader *shader in [shaders allValues]) {
@@ -112,6 +132,13 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 		NSError *loadError = nil;
 		if (![texture loadWithBundle:assetBundle error:&loadError]) {
 			NSLog(@"Error loading texture : %@", texture);
+		}
+	}
+	//Load scenes
+	for (WMSceneDescription *scene in [scenes allValues]) {
+		NSError *loadError = nil;
+		if (![scene loadWithBundle:assetBundle error:&loadError]) {
+			NSLog(@"Error loading scene : %@", scene);
 		}
 	}
 }
@@ -134,6 +161,11 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 - (id)textureWithName:(NSString *)inName;
 {
 	return [textures objectForKey:inName];
+}
+
+- (id)sceneWithName:(NSString *)inName;
+{
+	return [scenes objectForKey:inName];
 }
 
 @end

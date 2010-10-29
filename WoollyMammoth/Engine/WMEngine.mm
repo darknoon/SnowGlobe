@@ -13,6 +13,7 @@
 #import "WMScriptingContext.h"
 #import "WMRenderable.h"
 #import "WMAssetManager.h"
+#import "WMSceneDescription.h"
 
 //For Debug method only
 #import "WMModelPOD.h"
@@ -74,6 +75,7 @@
 	}
 	
 	WMQuad *quadModel = [[[WMQuad alloc] init] autorelease];
+	
 	WMShader *textureShader = [assetManager shaderWithName:@"DebugPositionTexture"];
 	WMTextureAsset *texture = [assetManager textureWithName:@"TestTexture.png"];
 	WMGameObject *debugQuad = [self createObject];
@@ -105,11 +107,11 @@
 		[assetManager loadAllAssetsSynchronous];
 	}
 	
-	//Create root object
-	self.rootObject = [self createObject];
-	rootObject.notes = @"Root";
+	//Deserialize object graph
+	WMSceneDescription *scene = [assetManager sceneWithName:@"scene"];
 	
-	[self debugMakeObjectGraph];
+	NSError *sceneReadError = nil;
+	self.rootObject = [scene deserializeObjectGraphWithEngine:self error:&sceneReadError];	
 }
 
 - (void)updateRecursive:(WMGameObject *)inGameObject;

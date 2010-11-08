@@ -11,15 +11,15 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
+		49191F4D1287CF8E008F6C88 /* WMDebugChannel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49191F4A1287CF8E008F6C88 /* WMDebugChannel.mm */; };
+		49191F4E1287CF8E008F6C88 /* WMScriptingContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49191F4C1287CF8E008F6C88 /* WMScriptingContext.mm */; };
 		492483AF1270D4BD00B59759 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492483AE1270D4BD00B59759 /* OpenGLES.framework */; };
 		4940D0641264F5F7007FA76C /* WMGameObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0631264F5F7007FA76C /* WMGameObject.mm */; };
 		4940D0671264F608007FA76C /* WMEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0661264F608007FA76C /* WMEngine.mm */; };
-		4940D06A1264F629007FA76C /* WMDebugChannel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0691264F629007FA76C /* WMDebugChannel.mm */; };
 		4940D0911264F641007FA76C /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D06F1264F641007FA76C /* AsyncSocket.m */; };
 		4940D0921264F641007FA76C /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0711264F641007FA76C /* AsyncUdpSocket.m */; };
 		4940D0D01264F8DF007FA76C /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4940D0CF1264F8DF007FA76C /* CoreFoundation.framework */; };
 		4940D0E51264F943007FA76C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4940D0E41264F943007FA76C /* CFNetwork.framework */; };
-		4940D3C112650CF2007FA76C /* WMScriptingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D3C012650CF2007FA76C /* WMScriptingContext.m */; };
 		4940D40D12651BE9007FA76C /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 4940D3D512651BE9007FA76C /* lapi.c */; };
 		4940D40E12651BE9007FA76C /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 4940D3D712651BE9007FA76C /* lauxlib.c */; };
 		4940D40F12651BE9007FA76C /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = 4940D3D912651BE9007FA76C /* lbaselib.c */; };
@@ -216,6 +216,10 @@
 		49E81DFD127130FD00127D48 /* xButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DFB127130FD00127D48 /* xButton.png */; };
 		49E81DFE127130FD00127D48 /* xButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DFC127130FD00127D48 /* xButtonPressed.png */; };
 		49E81F1E12714CB900127D48 /* WMQuad.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49E81F1D12714CB900127D48 /* WMQuad.mm */; };
+		49E9D192127CB95600010020 /* WMLuaScript.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49E9D191127CB95600010020 /* WMLuaScript.mm */; };
+		49E9D2B6127CDF7100010020 /* WMGameObject.lua in Resources */ = {isa = PBXBuildFile; fileRef = 49E9D2B5127CDF7100010020 /* WMGameObject.lua */; };
+		49E9D2BB127D04EB00010020 /* complex.lua in Resources */ = {isa = PBXBuildFile; fileRef = 49E9D2B9127D04EB00010020 /* complex.lua */; };
+		49E9D2BC127D04EB00010020 /* matrix.lua in Resources */ = {isa = PBXBuildFile; fileRef = 49E9D2BA127D04EB00010020 /* matrix.lua */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -225,21 +229,21 @@
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* WoollyMammoth_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WoollyMammoth_Prefix.pch; sourceTree = "<group>"; };
+		49191F491287CF8E008F6C88 /* WMDebugChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDebugChannel.h; sourceTree = "<group>"; };
+		49191F4A1287CF8E008F6C88 /* WMDebugChannel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMDebugChannel.mm; sourceTree = "<group>"; };
+		49191F4B1287CF8E008F6C88 /* WMScriptingContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScriptingContext.h; sourceTree = "<group>"; };
+		49191F4C1287CF8E008F6C88 /* WMScriptingContext.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMScriptingContext.mm; sourceTree = "<group>"; };
 		492483AE1270D4BD00B59759 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		4940D0621264F5F7007FA76C /* WMGameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMGameObject.h; sourceTree = "<group>"; };
 		4940D0631264F5F7007FA76C /* WMGameObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMGameObject.mm; sourceTree = "<group>"; };
 		4940D0651264F608007FA76C /* WMEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEngine.h; sourceTree = "<group>"; };
 		4940D0661264F608007FA76C /* WMEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMEngine.mm; sourceTree = "<group>"; };
-		4940D0681264F629007FA76C /* WMDebugChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDebugChannel.h; sourceTree = "<group>"; };
-		4940D0691264F629007FA76C /* WMDebugChannel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMDebugChannel.mm; sourceTree = "<group>"; };
 		4940D06E1264F641007FA76C /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
 		4940D06F1264F641007FA76C /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
 		4940D0701264F641007FA76C /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncUdpSocket.h; sourceTree = "<group>"; };
 		4940D0711264F641007FA76C /* AsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncUdpSocket.m; sourceTree = "<group>"; };
 		4940D0CF1264F8DF007FA76C /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		4940D0E41264F943007FA76C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		4940D3BF12650CF2007FA76C /* WMScriptingContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScriptingContext.h; sourceTree = "<group>"; };
-		4940D3C012650CF2007FA76C /* WMScriptingContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScriptingContext.m; sourceTree = "<group>"; };
 		4940D3D512651BE9007FA76C /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lapi.c; sourceTree = "<group>"; };
 		4940D3D612651BE9007FA76C /* lapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lapi.h; sourceTree = "<group>"; };
 		4940D3D712651BE9007FA76C /* lauxlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lauxlib.c; sourceTree = "<group>"; };
@@ -722,6 +726,12 @@
 		49E81F1C12714CB900127D48 /* WMQuad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMQuad.h; sourceTree = "<group>"; };
 		49E81F1D12714CB900127D48 /* WMQuad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMQuad.mm; sourceTree = "<group>"; };
 		49E81F6A127151DF00127D48 /* WMRenderableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRenderableDataSource.h; sourceTree = "<group>"; };
+		49E9D190127CB95600010020 /* WMLuaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLuaScript.h; sourceTree = "<group>"; };
+		49E9D191127CB95600010020 /* WMLuaScript.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMLuaScript.mm; sourceTree = "<group>"; };
+		49E9D2B5127CDF7100010020 /* WMGameObject.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WMGameObject.lua; sourceTree = "<group>"; };
+		49E9D2B7127CDFA800010020 /* Vector.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Vector.lua; sourceTree = "<group>"; };
+		49E9D2B9127D04EB00010020 /* complex.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex.lua; sourceTree = "<group>"; };
+		49E9D2BA127D04EB00010020 /* matrix.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = matrix.lua; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -757,6 +767,7 @@
 				4940D8D712658992007FA76C /* Application */,
 				4940D06B1264F641007FA76C /* Externals */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				49E9D2B4127CDF7100010020 /* Scripts */,
 				49E81DD912712FE400127D48 /* Resources */,
 				49D102101270BCBD007E143E /* Bundles */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -788,12 +799,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		49191F481287CF8E008F6C88 /* Scripting */ = {
+			isa = PBXGroup;
+			children = (
+				49191F491287CF8E008F6C88 /* WMDebugChannel.h */,
+				49191F4A1287CF8E008F6C88 /* WMDebugChannel.mm */,
+				49191F4B1287CF8E008F6C88 /* WMScriptingContext.h */,
+				49191F4C1287CF8E008F6C88 /* WMScriptingContext.mm */,
+			);
+			path = Scripting;
+			sourceTree = "<group>";
+		};
 		4940D06B1264F641007FA76C /* Externals */ = {
 			isa = PBXGroup;
 			children = (
 				49C54F27126962A50093FAFD /* Galaxy */,
 				4940D6E012658516007FA76C /* Bullet */,
 				4940D3D412651BE9007FA76C /* Lua */,
+				49E9D2B8127D04EB00010020 /* lua-matrix */,
 				49C551AF12697CE60093FAFD /* oolong */,
 				4940D06C1264F641007FA76C /* cocoaasyncsocket */,
 			);
@@ -1338,13 +1361,10 @@
 				4940D0661264F608007FA76C /* WMEngine.mm */,
 				4940D0621264F5F7007FA76C /* WMGameObject.h */,
 				4940D0631264F5F7007FA76C /* WMGameObject.mm */,
-				4940D0681264F629007FA76C /* WMDebugChannel.h */,
-				4940D0691264F629007FA76C /* WMDebugChannel.mm */,
-				4940D3BF12650CF2007FA76C /* WMScriptingContext.h */,
-				4940D3C012650CF2007FA76C /* WMScriptingContext.m */,
 				4940D97212658DE9007FA76C /* Physics */,
 				4940D97312658E1B007FA76C /* Render */,
 				49D101ED1270BB85007E143E /* Resource */,
+				49191F481287CF8E008F6C88 /* Scripting */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -1575,6 +1595,8 @@
 				49D101EF1270BB85007E143E /* Texture2D.m */,
 				49570A14127A52250007280E /* WMSceneDescription.h */,
 				49570A15127A52250007280E /* WMSceneDescription.mm */,
+				49E9D190127CB95600010020 /* WMLuaScript.h */,
+				49E9D191127CB95600010020 /* WMLuaScript.mm */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1596,6 +1618,25 @@
 				49E81DDA12712FE400127D48 /* MainWindow.xib */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		49E9D2B4127CDF7100010020 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				49E9D2B5127CDF7100010020 /* WMGameObject.lua */,
+				49E9D2B7127CDFA800010020 /* Vector.lua */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		49E9D2B8127D04EB00010020 /* lua-matrix */ = {
+			isa = PBXGroup;
+			children = (
+				49E9D2B9127D04EB00010020 /* complex.lua */,
+				49E9D2BA127D04EB00010020 /* matrix.lua */,
+			);
+			name = "lua-matrix";
+			path = "lua-matrix/lua";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1653,6 +1694,9 @@
 				49E81DDB12712FE400127D48 /* MainWindow.xib in Resources */,
 				49E81DFD127130FD00127D48 /* xButton.png in Resources */,
 				49E81DFE127130FD00127D48 /* xButtonPressed.png in Resources */,
+				49E9D2B6127CDF7100010020 /* WMGameObject.lua in Resources */,
+				49E9D2BB127D04EB00010020 /* complex.lua in Resources */,
+				49E9D2BC127D04EB00010020 /* matrix.lua in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1666,10 +1710,8 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				4940D0641264F5F7007FA76C /* WMGameObject.mm in Sources */,
 				4940D0671264F608007FA76C /* WMEngine.mm in Sources */,
-				4940D06A1264F629007FA76C /* WMDebugChannel.mm in Sources */,
 				4940D0911264F641007FA76C /* AsyncSocket.m in Sources */,
 				4940D0921264F641007FA76C /* AsyncUdpSocket.m in Sources */,
-				4940D3C112650CF2007FA76C /* WMScriptingContext.m in Sources */,
 				4940D40D12651BE9007FA76C /* lapi.c in Sources */,
 				4940D40E12651BE9007FA76C /* lauxlib.c in Sources */,
 				4940D40F12651BE9007FA76C /* lbaselib.c in Sources */,
@@ -1859,6 +1901,9 @@
 				49D102C61270C55E007E143E /* WMDebugViewController.m in Sources */,
 				49E81F1E12714CB900127D48 /* WMQuad.mm in Sources */,
 				49570A16127A52250007280E /* WMSceneDescription.mm in Sources */,
+				49E9D192127CB95600010020 /* WMLuaScript.mm in Sources */,
+				49191F4D1287CF8E008F6C88 /* WMDebugChannel.mm in Sources */,
+				49191F4E1287CF8E008F6C88 /* WMScriptingContext.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

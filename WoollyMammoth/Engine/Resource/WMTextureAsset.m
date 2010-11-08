@@ -22,7 +22,7 @@
 	
 	texture = [[Texture2D alloc] initWithContentsOfFile:imagePath];
 	
-	return NO;
+	return texture != nil;
 }
 
 - (GLuint)glTexture;

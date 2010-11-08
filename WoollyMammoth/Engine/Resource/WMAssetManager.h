@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class WMEngine;
 
 @interface WMAssetManager : NSObject {
+	WMEngine *engine; //weak
 	NSBundle *assetBundle;
+	
 	NSDictionary *manifest;
 	NSMutableDictionary *models;
 	NSMutableDictionary *shaders;
@@ -21,7 +24,7 @@
 
 @property (nonatomic, readonly, retain) NSBundle *assetBundle;
 
-- (id)initWithBundlePath:(NSString *)inBundlePath;
+- (id)initWithBundlePath:(NSString *)inBundlePath engine:(WMEngine *)inEngine;
 
 - (id)objectForManifestKey:(NSString *)inManifestKey;
 
@@ -29,7 +32,7 @@
 - (id)shaderWithName:(NSString *)inName;
 - (id)textureWithName:(NSString *)inName;
 - (id)sceneWithName:(NSString *)inName;
-//- (id)scriptWithName:(NSString *)inName;
+- (id)scriptWithName:(NSString *)inName;
 
 //Must be called with a context set
 - (void)loadAllAssetsSynchronous;

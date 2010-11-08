@@ -83,7 +83,7 @@
 		return nil;
 	} 
 	
-	WMGameObject *gameObject = [[[WMGameObject alloc] initWithObjectId:[objectId unsignedLongLongValue] inEngine:nil] autorelease];
+	WMGameObject *gameObject = [[[WMGameObject alloc] initWithObjectId:[objectId unsignedLongLongValue] inEngine:inEngine] autorelease];
 	gameObject.notes = [objectRepresentation objectForKey:@"notes"];
 
 	NSDictionary *renderableDefinition = [objectRepresentation objectForKey:@"renderable"];
@@ -94,6 +94,8 @@
 			return nil;
 		}
 	}
+	
+	gameObject.script = [inEngine.assetManager scriptWithName:[objectRepresentation objectForKey:@"script"]];
 	
 	//scale
 	MATRIX transform;

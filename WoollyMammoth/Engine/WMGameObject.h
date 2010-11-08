@@ -15,6 +15,7 @@
 
 @class WMEngine;
 @class WMRenderable;
+@class WMLuaScript;
 
 @interface WMGameObject : NSObject {
 @protected
@@ -29,7 +30,8 @@
 	
 	//Strong
 	WMRenderable *renderable; //optional
-	
+	WMLuaScript *script;
+		
 	//Modules
 	//WMPhysicsBody *body;
 	//TODO: sound?
@@ -39,6 +41,7 @@
 	NSString *notes; //optional
 }
 
+@property (nonatomic, retain) WMLuaScript *script;
 @property (nonatomic, assign) MATRIX transform;
 @property (nonatomic, retain) WMRenderable *renderable;
 @property (nonatomic, copy) NSString *notes;

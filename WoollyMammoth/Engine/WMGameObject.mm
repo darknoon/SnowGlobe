@@ -11,8 +11,12 @@
 //Temporary, move this out to a smarter place
 #import "WMRenderable.h"
 
+#import "WMEngine.h"
+#import "WMLuaScript.h"
+
 @implementation WMGameObject
 
+@synthesize script;
 @synthesize transform;
 @synthesize renderable;
 @synthesize notes;
@@ -41,6 +45,9 @@
 	[mutableChildren release];	
 	
 	[renderable release];
+
+	[script release];
+	script = nil;
 
 	[super dealloc];
 }
@@ -77,6 +84,12 @@
 
 - (void)update;
 {
+	//Run relevant script
+	//TODO: make this efficent
+	if (script) {
+		[script executeInScriptingContext:engine.scriptingContext thisObject:self];
+	}
+	
 	if (renderable) {
 		//Rotate by 1.0 rads each second
 		MATRIX rotation;

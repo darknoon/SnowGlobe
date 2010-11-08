@@ -12,6 +12,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string>Root object!</string>
+		<key>script</key>
+		<string>DebugRotate</string>
 		<key>renderable</key>
 		<dict>
 			<key>shader</key>

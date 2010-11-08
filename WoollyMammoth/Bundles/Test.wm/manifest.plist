@@ -51,5 +51,10 @@
 		<key>scene</key>
 		<dict/>
 	</dict>
+	<key>scripts</key>
+	<dict>
+		<key>DebugRotate</key>
+		<dict/>
+	</dict>
 </dict>
 </plist>

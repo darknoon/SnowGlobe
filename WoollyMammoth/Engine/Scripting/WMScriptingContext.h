@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-#import "lua.h"
+extern "C" {
+#include "lua.h"
+#include "lualib.h"
+#include "lauxlib.h"
+}
 
 @class WMEngine;
+@class WMGameObject;
 
 @interface WMScriptingContext : NSObject {
 	WMEngine *engine;
@@ -19,6 +24,8 @@
 }
 
 - (id)initWithEngine:(WMEngine *)inEngine;
+
+- (void)setObjectToGameObject:(WMGameObject *)inObject;
 
 - (void)doScript:(NSString *)inScript;
 

@@ -103,7 +103,7 @@
 		scriptingContext = [[WMScriptingContext alloc] initWithEngine:self];
 	}
 	if (!assetManager) {
-		assetManager = [[WMAssetManager alloc] initWithBundlePath:[[NSBundle mainBundle] pathForResource:@"Test" ofType:@"wm"]];
+		assetManager = [[WMAssetManager alloc] initWithBundlePath:[[NSBundle mainBundle] pathForResource:@"Test" ofType:@"wm"] engine:self];
 		[assetManager loadAllAssetsSynchronous];
 	}
 	

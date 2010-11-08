@@ -8,11 +8,14 @@
 
 #import "WMAssetManager.h"
 
+#import "WMEngine.h"
+
 //Asset classes
 #import "WMModelPOD.h"
 #import "WMShader.h"
 #import "WMTextureAsset.h"
 #import "WMSceneDescription.h"
+#import "WMLuaScript.h"
 
 //Fixed assets
 #import "WMQuad.h"
@@ -36,10 +39,12 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 
 @synthesize assetBundle;
 
-- (id)initWithBundlePath:(NSString *)inBundlePath;
+- (id)initWithBundlePath:(NSString *)inBundlePath engine:(WMEngine *)inEngine;
 {
 	self = [super init];
 	if (!self) return nil;
+	
+	engine = inEngine;
 	
 	assetBundle = [[NSBundle alloc] initWithPath:inBundlePath];
 
@@ -107,6 +112,13 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 		[scenes setObject:asset forKey:sceneKey];
 	}
 	
+	NSDictionary *scriptDefinitions = [inManifest objectForKey:WMAssetManagerManifestScriptsKey];
+	for (NSString *scriptKey in scriptDefinitions) {
+		WMAsset *asset = [[WMLuaScript alloc] initWithResourceName:scriptKey properties:[scriptDefinitions objectForKey:scriptKey]];
+		[scripts setObject:asset forKey:scriptKey];
+	}
+	
+	
 }
 
 - (void)loadAllAssetsSynchronous;
@@ -141,6 +153,15 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 			NSLog(@"Error loading scene : %@", scene);
 		}
 	}
+	
+	//Load scripts
+	for (WMLuaScript *script in [scripts allValues]) {
+		NSError *loadError = nil;
+		if (![script loadWithBundle:assetBundle inScriptingContext:engine.scriptingContext error:&loadError]) {
+			NSLog(@"Error loading script : %@", script);
+		}
+	}
+	
 }
 
 - (id)objectForManifestKey:(NSString *)inManifestKey;
@@ -166,6 +187,11 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 - (id)sceneWithName:(NSString *)inName;
 {
 	return [scenes objectForKey:inName];
+}
+
+- (id)scriptWithName:(NSString *)inName;
+{
+	return [scripts objectForKey:inName];
 }
 
 @end

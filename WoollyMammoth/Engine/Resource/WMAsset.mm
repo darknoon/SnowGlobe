@@ -25,14 +25,6 @@
 }
 
 
-//TODO: thread safety
-
-- (BOOL)loadWithBundle:(NSBundle *)inBundle error:(NSError **)outError;
-{
-	NSAssert(0, @"Must overload this");
-	return NO;
-}
-
 - (void) dealloc
 {
 	[resourceName release];
@@ -41,5 +33,17 @@
 	[super dealloc];
 }
 
+//TODO: thread safety
+
+- (BOOL)loadWithBundle:(NSBundle *)inBundle error:(NSError **)outError;
+{
+	NSAssert(0, @"Must overload this");
+	return NO;
+}
+
+- (NSString *)description;
+{
+	return [NSString stringWithFormat:@"%@{%@}", [super description], resourceName];
+}
 
 @end

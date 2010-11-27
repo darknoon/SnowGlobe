@@ -103,10 +103,10 @@
 		scriptingContext = [[WMScriptingContext alloc] initWithEngine:self];
 	}
 	if (!assetManager) {
-		assetManager = [[WMAssetManager alloc] initWithBundlePath:[[NSBundle mainBundle] pathForResource:@"Test" ofType:@"wm"] engine:self];
-		[assetManager loadAllAssetsSynchronous];
+		assetManager = [[WMAssetManager alloc] initWithBundlePath:[[NSBundle mainBundle] pathForResource:@"WeatherGlobe" ofType:@"wm"] engine:self];
 	}
-	
+	[assetManager loadAllAssetsSynchronous];
+
 	//Deserialize object graph
 	WMSceneDescription *scene = [assetManager sceneWithName:@"scene"];
 	

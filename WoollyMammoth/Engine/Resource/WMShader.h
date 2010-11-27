@@ -32,8 +32,7 @@
  uniformNames[]		Array of uniform names
  
  */
-
-- (id)initWithResourceName:(NSString *)inResourceName properties:(NSDictionary *)inProperties;
+//- (id)initWithResourceName:(NSString *)inResourceName properties:(NSDictionary *)inProperties assetManager:(WMAssetManager *)inAssetManager;
 
 @property (nonatomic, copy, readonly) NSArray *uniformNames;
 @property (nonatomic, copy, readonly) NSArray *attributeNames;

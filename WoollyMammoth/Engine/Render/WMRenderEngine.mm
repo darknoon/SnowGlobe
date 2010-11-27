@@ -49,8 +49,8 @@ void LogMatrix(MATRIX mat) {
 	}	else if (![EAGLContext setCurrentContext:context]) {
         NSLog(@"Failed to set ES context current");
 	}
-	
-	glEnable(GL_TEXTURE_2D);
+		
+	[EAGLContext setCurrentContext:context];
 	
 	return self;
 }
@@ -137,6 +137,8 @@ void LogMatrix(MATRIX mat) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
 	[self drawFrameRecursive:engine.rootObject transform:cameraMatrix];
+	
+	GL_CHECK_ERROR;
 		
 }
 @end

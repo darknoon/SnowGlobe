@@ -15,6 +15,7 @@
 #import "WMEngine.h"
 #import "WMRenderEngine.h"
 #import "WMDebugViewController.h"
+#import "WMAssetManager.h"
 
 @interface WMViewController ()
 @end
@@ -25,22 +26,35 @@
 @synthesize animating;
 @synthesize debugViewController;
 
-- (void)reloadGame;
+- (void)reloadGameFromURL:(NSURL *)inRemoteURL;
 {
 	if (engine) {
 		[engine release];
 		engine = nil;
 	}
 	
+	GL_CHECK_ERROR;
 	engine = [[WMEngine alloc] init];
-	engine.renderEngine = [[WMRenderEngine alloc] initWithEngine:engine];
+	if (inRemoteURL) {
+		engine.assetManager = [[[WMAssetManager alloc] initWithRemoteBundleURL:inRemoteURL engine:engine] autorelease];
+	}
+	
+	engine.renderEngine = [[[WMRenderEngine alloc] initWithEngine:engine] autorelease];
 	//TODO: start lazily
+	GL_CHECK_ERROR;
 	[engine start];
+	GL_CHECK_ERROR;
 	
 	[(EAGLView *)self.view setContext:engine.renderEngine.context];
     [(EAGLView *)self.view setFramebuffer];
 	
 }
+
+- (void)reloadGame;
+{
+	[self reloadGameFromURL:nil];
+}
+
 
 - (void)awakeFromNib
 {
@@ -180,7 +194,6 @@
 {
     [(EAGLView *)self.view setFramebuffer];
  
-	
 	NSTimeInterval frameStartTime = CFAbsoluteTimeGetCurrent();
 	
 	[engine.renderEngine drawFrameInRect:self.view.bounds];

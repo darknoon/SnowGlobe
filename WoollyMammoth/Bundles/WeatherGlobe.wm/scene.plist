@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>version</key>
+	<integer>1</integer>
+	<key>title</key>
+	<string>Weather Globe Default Scene</string>
+	<key>root</key>
+	<dict>
+		<key>objectId</key>
+		<integer>1</integer>
+		<key>notes</key>
+		<string>Root object!</string>
+		<key>script</key>
+		<string></string>
+		<key>scale</key>
+		<array>
+			<integer>45</integer>
+			<integer>45</integer>
+			<integer>45</integer>
+		</array>
+		<key>renderable</key>
+		<dict>
+			<key>shader</key>
+			<string>GlobeRefract</string>
+			<key>model</key>
+			<string>WMQuad</string>
+			<key>texture</key>
+			<string>CameraInput</string>
+		</dict>
+		<key>children</key>
+		<array/>
+	</dict>
+</dict>
+</plist>

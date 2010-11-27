@@ -35,15 +35,20 @@
 	[super dealloc];
 }
 
+- (void)insertChild:(WMEditorSidebarItem *)inChild;
+{
+	[self willChangeValueForKey:@"children"];
+	[children addObject:inChild];
+	
+	[self didChangeValueForKey:@"children"];
+	
+}
+
 - (void)insertChildWithName:(NSString *)inName;
 {
 	WMEditorSidebarItem *child = [[[WMEditorSidebarItem alloc] init] autorelease];
-	
-	[self willChangeValueForKey:@"children"];
 	child.name = inName;
-	[children addObject:child];
-	
-	[self didChangeValueForKey:@"children"];
+	[self insertChild:child];
 }
 
 @end

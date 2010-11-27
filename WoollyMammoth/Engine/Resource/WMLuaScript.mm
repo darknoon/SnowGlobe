@@ -14,9 +14,11 @@
 - (BOOL)loadWithBundle:(NSBundle *)inBundle inScriptingContext:(WMScriptingContext *)inScriptingContext error:(NSError **)outError;
 {
 	if (!isLoaded) {
-		NSString *filePath = [inBundle pathForResource:resourceName ofType:@"lua"];
 		
-		scriptText = [[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:outError] retain];
+		NSString *filePath = [resourceName stringByAppendingPathExtension:@"lua"];
+		[self requireAssetFileSynchronous:filePath];
+		
+		scriptText = [[NSString stringWithContentsOfFile:[[inBundle bundlePath] stringByAppendingPathComponent:filePath] encoding:NSUTF8StringEncoding error:outError] retain];
 		
 		[inScriptingContext doScript:scriptText];
 		

@@ -45,7 +45,9 @@
 @property (nonatomic, retain) IBOutlet WMDebugViewController *debugViewController;
 
 - (IBAction)showDebug:(id)sender;
-- (IBAction)reloadGame;
+
+- (void)reloadGame;
+- (void)reloadGameFromURL:(NSURL *)inRemoteURL;
 
 - (void)startAnimation;
 - (void)stopAnimation;

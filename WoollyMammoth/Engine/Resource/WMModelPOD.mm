@@ -15,9 +15,9 @@
 
 @synthesize scale;
 
-- (id)initWithResourceName:(NSString *)inResourceName properties:(NSDictionary *)inProperties;
+- (id)initWithResourceName:(NSString *)inResourceName properties:(NSDictionary *)inProperties assetManager:(WMAssetManager *)inAssetManager;
 {
-	[super initWithResourceName:inResourceName properties:inProperties];
+	[super initWithResourceName:inResourceName properties:inProperties  assetManager:inAssetManager];
 	if (self == nil) return self; 
 	
 	scale = 1.0f;
@@ -44,7 +44,11 @@
 		
 		podmodel = new CPVRTModelPOD();
 		
-		NSString *podPath = [inBundle pathForResource:resourceName ofType:@"pod"];
+		NSString *relativePath = [resourceName stringByAppendingPathExtension:@"pod"];
+		[self requireAssetFileSynchronous:relativePath];
+		
+		NSString *podPath = [[inBundle bundlePath] stringByAppendingPathComponent:relativePath];
+		
 		
 		podmodel->ReadFromFile([podPath UTF8String], NULL, 1);
 		

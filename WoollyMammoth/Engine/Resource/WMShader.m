@@ -28,9 +28,9 @@
 @synthesize program;
 
 
-- (id)initWithResourceName:(NSString *)inResourceName properties:(NSDictionary *)inProperties;
+- (id)initWithResourceName:(NSString *)inResourceName properties:(NSDictionary *)inProperties assetManager:(WMAssetManager *)inAssetManager;
 {
-	self = [super initWithResourceName:inResourceName properties:inProperties];
+	self = [super initWithResourceName:inResourceName properties:inProperties assetManager:inAssetManager];
 	if (self == nil) return self; 
 	
 	uniformLocations = [[NSMutableDictionary alloc] init];
@@ -62,15 +62,22 @@
 - (BOOL)loadWithBundle:(NSBundle *)inBundle error:(NSError **)outError;
 {
 	if ([EAGLContext currentContext].API == kEAGLRenderingAPIOpenGLES2) {		
-		NSString *vertexShaderPath = [[[inBundle bundlePath] stringByAppendingPathComponent:resourceName] stringByAppendingPathExtension:@"vsh"];
-		NSString *fragmentShaderPath = [[[inBundle bundlePath] stringByAppendingPathComponent:resourceName] stringByAppendingPathExtension:@"fsh"];
+
+		NSString *vertexShaderPath = [resourceName stringByAppendingPathExtension:@"vsh"];
+		NSString *fragmentShaderPath = [resourceName stringByAppendingPathExtension:@"fsh"];
 		
-		self.vertexShader = [NSString stringWithContentsOfFile:vertexShaderPath encoding:NSUTF8StringEncoding error:outError];
+		[self requireAssetFileSynchronous:vertexShaderPath];
+		[self requireAssetFileSynchronous:fragmentShaderPath];
+		
+		self.vertexShader = [NSString stringWithContentsOfFile:[[inBundle bundlePath] stringByAppendingPathComponent:vertexShaderPath] encoding:NSUTF8StringEncoding error:outError];
 		if (!vertexShader) return NO;
-		self.pixelShader = [NSString stringWithContentsOfFile:fragmentShaderPath encoding:NSUTF8StringEncoding error:outError];
+		self.pixelShader = [NSString stringWithContentsOfFile:[[inBundle bundlePath] stringByAppendingPathComponent:fragmentShaderPath] encoding:NSUTF8StringEncoding error:outError];
 		if (!pixelShader) return NO;
 		
 		isLoaded = [self loadShaders];
+		
+		GL_CHECK_ERROR;
+
 		return isLoaded;
 	} else {
 		//TODO: OpenGL ES 1.0 support?
@@ -100,7 +107,7 @@
 {
 	NSNumber *unifiormLocationValue = [uniformLocations objectForKey:inName];
 	if (!unifiormLocationValue) {
-		NSLog(@"Attempt to get uniform location for \"%@\", which was not specified in the shader.", inName);
+		//NSLog(@"Attempt to get uniform location for \"%@\", which was not specified in the shader.", inName);
 		//TODO: is this a good error value?
 		return -1;
 	}
@@ -112,7 +119,7 @@
 {
 	GLuint attribIndex = [attributeNames indexOfObject:inName];
 	if (attribIndex == NSNotFound) {
-		NSLog(@"Attempt to get attribute index for \"%@\", which was not specified in the shader.", inName);
+		//NSLog(@"Attempt to get attribute index for \"%@\", which was not specified in the shader.", inName);
 	}
 	return attribIndex;
 }
@@ -176,6 +183,10 @@
 
 - (BOOL)validateProgram;
 {
+	if (!vertexShader || !pixelShader) {
+		NSLog(@"Trying to render with missing shader!");
+	}
+	
     GLint logLength, status;
     
     glValidateProgram(program);

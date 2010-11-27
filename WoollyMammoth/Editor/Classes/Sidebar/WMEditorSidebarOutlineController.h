@@ -9,10 +9,13 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface WMEditorAssetOutlineController : NSViewController {
+@interface WMEditorSidebarOutlineController : NSViewController {
 	NSArray *items;
+	
+	NSArray *assets;
 }
 
-@property (nonatomic, copy) NSArray *items;
+@property (nonatomic, copy) NSArray *assets;
+@property (nonatomic, copy, readonly) NSArray *items;
 
 @end

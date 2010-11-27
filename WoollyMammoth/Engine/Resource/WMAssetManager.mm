@@ -19,14 +19,10 @@
 
 //Fixed assets
 #import "WMQuad.h"
+#import "WMCameraInputTexture.h"
 
-NSString *const WMAssetManagerManifestModelsKey = @"models";
-NSString *const WMAssetManagerManifestTexturesKey = @"textures";
-NSString *const WMAssetManagerManifestShadersKey = @"shaders";
-NSString *const WMAssetManagerManifestScenesKey = @"scenes";
-NSString *const WMAssetManagerManifestScriptsKey = @"scripts";
+#import "WMAssetManifest.h"
 
-const NSUInteger WMAssetManagerManifestVersion = 1;
 const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 
 @interface WMAssetManager ()
@@ -37,6 +33,7 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 
 @implementation WMAssetManager
 
+@synthesize remoteBundleURL;
 @synthesize assetBundle;
 
 - (id)initWithBundlePath:(NSString *)inBundlePath engine:(WMEngine *)inEngine;
@@ -68,6 +65,50 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 	return self;
 }
 
++ (NSString *)applicationSupportFolder
+{
+	NSArray *thePaths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+	NSString *theBasePath = ([thePaths count] > 0) ? [thePaths objectAtIndex:0] : NSTemporaryDirectory();
+	
+	NSString *theBundleName = [[[[NSBundle mainBundle] bundlePath] lastPathComponent] stringByDeletingPathExtension];
+	NSString *theApplicationSupportFolder = [theBasePath stringByAppendingPathComponent:theBundleName];
+	
+	if ([[NSFileManager defaultManager] fileExistsAtPath:theApplicationSupportFolder] == NO)
+	{
+		NSError *theError = NULL;
+		if ([[NSFileManager defaultManager] createDirectoryAtPath:theApplicationSupportFolder withIntermediateDirectories:YES attributes:NULL error:&theError] == NO)
+			return(NULL);
+	}
+	
+	return(theApplicationSupportFolder);
+}
+
+- (id)initWithRemoteBundleURL:(NSURL *)inBundleURL engine:(WMEngine *)inEngine;
+{
+	NSString *localBundlePath = [[WMAssetManager applicationSupportFolder] stringByAppendingPathComponent:@"Downloaded.wm"];
+	[[NSFileManager defaultManager] createDirectoryAtPath:localBundlePath withIntermediateDirectories:YES attributes:nil error:NULL];
+
+	remoteBundleURL = [inBundleURL retain];
+	
+	//Get manifiest
+	//TODO: don't do this synchronously!!!
+	NSURL *manifestURL = [inBundleURL URLByAppendingPathComponent:@"manifest.plist"];
+	NSDictionary *remoteManifest = [[NSDictionary dictionaryWithContentsOfURL:manifestURL] retain];
+	
+	if (!remoteManifest) {
+		NSLog(@"No manifest.plist found for bundle %@, or manifest could not be read", manifestURL);
+		[self release];
+		return nil;
+	}
+	
+	//Write the manifest locally
+	[remoteManifest writeToFile:[localBundlePath stringByAppendingPathComponent:@"manifest.plist"] atomically:YES];
+	
+	self = [self initWithBundlePath:localBundlePath engine:inEngine];
+	
+	return self;
+}
+
 - (void) dealloc
 {
 	[assetBundle release];
@@ -78,43 +119,46 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 	[scripts release];
 	[scenes release];
 	
+	[remoteBundleURL release];
+
 	[super dealloc];
 }
 
 - (void)addFixedAssets;
 {
 	[models setObject:[[[WMQuad alloc] init] autorelease] forKey:@"WMQuad"];
+	[textures setObject:[[[WMCameraInputTexture alloc] initWithResourceName:nil properties:nil assetManager:self] autorelease] forKey:@"CameraInput"];
 }
 
 - (void)createAssetsFromManifest:(NSDictionary *)inManifest;
 {
 	NSDictionary *modelDefinitions = [inManifest objectForKey:WMAssetManagerManifestModelsKey];
 	for (NSString *modelKey in modelDefinitions) {
-		WMAsset *asset = [[WMModelPOD alloc] initWithResourceName:modelKey properties:[modelDefinitions objectForKey:modelKey]];
+		WMAsset *asset = [[WMModelPOD alloc] initWithResourceName:modelKey properties:[modelDefinitions objectForKey:modelKey] assetManager:self];
 		[models setObject:asset forKey:modelKey];
 	}
 	
 	NSDictionary *shaderDefinitions = [inManifest objectForKey:WMAssetManagerManifestShadersKey];
 	for (NSString *shaderKey in shaderDefinitions) {
-		WMAsset *asset = [[WMShader alloc] initWithResourceName:shaderKey properties:[shaderDefinitions objectForKey:shaderKey]];
+		WMAsset *asset = [[WMShader alloc] initWithResourceName:shaderKey properties:[shaderDefinitions objectForKey:shaderKey] assetManager:self];
 		[shaders setObject:asset forKey:shaderKey];
 	}
 	
 	NSDictionary *textureDefinitions = [inManifest objectForKey:WMAssetManagerManifestTexturesKey];
 	for (NSString *textureKey in textureDefinitions) {
-		WMAsset *asset = [[WMTextureAsset alloc] initWithResourceName:textureKey properties:[textureDefinitions objectForKey:textureKey]];
+		WMAsset *asset = [[WMTextureAsset alloc] initWithResourceName:textureKey properties:[textureDefinitions objectForKey:textureKey] assetManager:self];
 		[textures setObject:asset forKey:textureKey];
 	}
 	
 	NSDictionary *sceneDefinitions = [inManifest objectForKey:WMAssetManagerManifestScenesKey];
 	for (NSString *sceneKey in sceneDefinitions) {
-		WMAsset *asset = [[WMSceneDescription alloc] initWithResourceName:sceneKey properties:[sceneDefinitions objectForKey:sceneKey]];
+		WMAsset *asset = [[WMSceneDescription alloc] initWithResourceName:sceneKey properties:[sceneDefinitions objectForKey:sceneKey] assetManager:self];
 		[scenes setObject:asset forKey:sceneKey];
 	}
 	
 	NSDictionary *scriptDefinitions = [inManifest objectForKey:WMAssetManagerManifestScriptsKey];
 	for (NSString *scriptKey in scriptDefinitions) {
-		WMAsset *asset = [[WMLuaScript alloc] initWithResourceName:scriptKey properties:[scriptDefinitions objectForKey:scriptKey]];
+		WMAsset *asset = [[WMLuaScript alloc] initWithResourceName:scriptKey properties:[scriptDefinitions objectForKey:scriptKey] assetManager:self];
 		[scripts setObject:asset forKey:scriptKey];
 	}
 	
@@ -140,7 +184,7 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 		}		
 	}
 	//Load textures
-	for (WMShader *texture in [textures allValues]) {
+	for (WMTextureAsset *texture in [textures allValues]) {
 		NSError *loadError = nil;
 		if (![texture loadWithBundle:assetBundle error:&loadError]) {
 			NSLog(@"Error loading texture : %@", texture);

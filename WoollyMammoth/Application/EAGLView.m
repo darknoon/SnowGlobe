@@ -126,6 +126,7 @@
 			glDeleteRenderbuffers(1, &depthRenderbuffer);
 			depthRenderbuffer = 0;
 		}
+		GL_CHECK_ERROR;
     }
 }
 
@@ -141,6 +142,7 @@
         glBindFramebuffer(GL_FRAMEBUFFER, defaultFramebuffer);
         
         glViewport(0, 0, framebufferWidth, framebufferHeight);
+		GL_CHECK_ERROR;
     }
 }
 
@@ -155,6 +157,7 @@
         glBindRenderbuffer(GL_RENDERBUFFER, colorRenderbuffer);
         
         success = [context presentRenderbuffer:GL_RENDERBUFFER];
+		GL_CHECK_ERROR;
     }
     
     return success;

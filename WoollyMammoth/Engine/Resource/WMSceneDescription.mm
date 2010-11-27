@@ -18,9 +18,10 @@
 - (BOOL)loadWithBundle:(NSBundle *)inBundle error:(NSError **)outError;
 {
 	if (!isLoaded) {
-		NSString *filePath = [inBundle pathForResource:resourceName ofType:@"plist"];
+		NSString *filePath = [resourceName stringByAppendingPathExtension:@"plist"];
+		[self requireAssetFileSynchronous:filePath];
 		if (filePath) {
-			sceneDescription = [NSDictionary dictionaryWithContentsOfFile:filePath];
+			sceneDescription = [NSDictionary dictionaryWithContentsOfFile:[[inBundle bundlePath] stringByAppendingPathComponent:filePath]];
 		}
 		
 		isLoaded = sceneDescription != nil;

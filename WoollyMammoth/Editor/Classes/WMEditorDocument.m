@@ -9,9 +9,21 @@
 #import "WMEditorDocument.h"
 
 #import "WMEditorPreviewController.h"
-#import "WMEditorAssetOutlineController.h"
+#import "WMEditorSidebarOutlineController.h"
+
+#import "WMEditorAsset.h"
+#import "WMBuild.h"
+#import "WMBuildManager.h"
+#import "WMEditorSidebarAssetItem.h"
+#import "WMEditorAssetViewController.h"
+#import "WMEditorAssetManager.h"
 
 @implementation WMEditorDocument
+
+@synthesize itemEditorController;
+@synthesize editingSidebarItem;
+@synthesize selectedSidebarIndexPaths;
+@synthesize assetManager;
 
 - (id)init
 {
@@ -21,15 +33,108 @@
         // Add your subclass-specific initialization here.
         // If an error occurs here, send a [self release] message and return nil.
     
+		buildManager = [[WMBuildManager alloc] init];
+		[buildManager startBuildServer];
+		
+		// NSMutableArray *testAssets = [NSMutableArray array];
+		
+		// WMEditorAsset *asset = [[[WMEditorAsset alloc] init] autorelease];
+		// asset.resourceName = @"scene";
+		// asset.relativePath = @"scene.plist";
+		// asset.assetType = WMEditorAssetTypeScene;
+		
+		// [testAssets addObject:asset];
+		
+		// self.assets = testAssets;		
+		
+		self.assetManager = [[WMEditorAssetManager alloc] init];
+		
     }
     return self;
+}
+
+- (void)setFileURL:(NSURL *)inAbsoluteURL;
+{
+	[super setFileURL:inAbsoluteURL];
+	
+	NSString *builtProductName = [[[[inAbsoluteURL path] lastPathComponent] stringByDeletingPathExtension] stringByAppendingPathExtension:@"wm"];
+	buildManager.outputDirectory = [[[[inAbsoluteURL path] stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"build"] stringByAppendingPathComponent:builtProductName];
+	assetManager.assetBasePath = [[inAbsoluteURL path] stringByAppendingPathComponent:@"assets"];
 }
 
 - (void) dealloc
 {
 	[preview release];
+	[assetManager release];
+	[selectedSidebarIndexPaths release];
+	[editingSidebarItem release];
+
+	[itemEditorController release];
+	itemEditorController = nil;
+
 	[super dealloc];
 }
+
+
+- (void)setSelectedSidebarIndexPaths:(NSSet *)inSelectedSidebarIndexPaths {
+	[self willChangeValueForKey:@"selectedSidebarIndexPaths"];
+	
+	if (selectedSidebarIndexPaths == inSelectedSidebarIndexPaths) return;
+	[selectedSidebarIndexPaths release];
+	selectedSidebarIndexPaths = [inSelectedSidebarIndexPaths retain];
+
+	//TODO: do this betetr
+	NSArray *selectedObjects = [sidebarTreeController selectedObjects];
+	
+	self.editingSidebarItem = selectedObjects.count > 0 ? [selectedObjects objectAtIndex:0] : nil;
+
+	[self didChangeValueForKey:@"selectedSidebarIndexPaths"];
+}
+
+
+- (void)setEditingSidebarItem:(WMEditorSidebarItem *)value {
+	if (editingSidebarItem == value) return;
+	[editingSidebarItem release];
+	editingSidebarItem = [value retain];
+
+	if ([editingSidebarItem isKindOfClass:[WMEditorSidebarAssetItem class]]) {
+		WMEditorAsset *asset = [(WMEditorSidebarAssetItem *)editingSidebarItem asset];
+		
+		WMEditorAssetViewController *assetViewController = [[[WMEditorAssetViewController alloc] initWithNibName:@"WMEditorAssetViewController" bundle:nil] autorelease];
+		assetViewController.item = asset;
+		self.itemEditorController = assetViewController;
+	} else {
+		self.itemEditorController = nil;
+	}
+
+}
+
+- (void)setItemEditorController:(NSViewController *)inItemEditorController {
+	if (itemEditorController == inItemEditorController) return;
+	
+	//Get rid of the current view
+	[itemEditorController.view removeFromSuperview];
+	
+	[itemEditorController release];
+	itemEditorController = [inItemEditorController retain];
+	
+	if (itemEditorController) {
+		[contentView addSubview:itemEditorController.view];
+		itemEditorController.view.frame = contentView.bounds;
+	}
+}
+
+
+
+- (void)awakeFromNib;
+{
+	sidebarViewController.assets = self.assetManager.assets;
+	
+	[sidebarTreeController bind:@"selectionIndexPaths" toObject:self withKeyPath:@"selectedSidebarIndexPaths" options:nil];
+	
+	[super awakeFromNib];
+}
+
 
 
 - (NSString *)windowNibName
@@ -55,11 +160,7 @@
 {
 	NSFileWrapper *fileWrapper = [[NSFileWrapper alloc] initDirectoryWithFileWrappers:nil];
 	
-	NSDictionary *testmanifiest = [NSDictionary dictionaryWithObject:@"test" forKey:@"title"];
-	NSString *error;
-	NSData *xmlData = [NSPropertyListSerialization dataFromPropertyList:testmanifiest
-														 format:NSPropertyListXMLFormat_v1_0
-											   errorDescription:&error];
+	NSData *xmlData = [assetManager manifestDataWithDocumentTitle:[self displayName]];
 	if(xmlData) {
 		[fileWrapper addRegularFileWithContents:xmlData preferredFilename:@"manifest.plist"];
 	} else {
@@ -75,18 +176,26 @@
 	return sup;
 }
 
-- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
-{
-    // Insert code here to read your document from the given data of the specified type.  If the given outError != NULL, ensure that you set *outError when returning NO.
 
-    // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead. 
-    
-    // For applications targeted for Panther or earlier systems, you should use the deprecated API -loadDataRepresentation:ofType. In this case you can also choose to override -readFromFile:ofType: or -loadFileWrapperRepresentation:ofType: instead.
-    
-    if ( outError != NULL ) {
-		*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
+- (BOOL)readFromFileWrapper:(NSFileWrapper *)fileWrapper ofType:(NSString *)typeName error:(NSError **)outError;
+{
+	
+	NSFileWrapper *manifestWrapper = [[fileWrapper fileWrappers] objectForKey:@"manifest.plist"];
+	
+	if (!manifestWrapper || ![manifestWrapper isRegularFile]) {
+		//TODO: return error here
+		return NO;
 	}
-    return YES;
+	
+	NSData *manifestContents = [manifestWrapper regularFileContents];
+	if (![assetManager loadManifestFromData:manifestContents error:outError]) {
+		return NO;
+	}
+		
+	//TODO: bind this
+	sidebarViewController.assets = assetManager.assets;
+	
+	return YES;
 }
 
 #pragma mark -
@@ -99,6 +208,11 @@
 		[self addWindowController:preview];
 	}
 	[preview showWindow:nil];
+}
+
+- (IBAction)build:(id)sender;
+{
+	[buildManager buildWithAssetManager:assetManager];
 }
 
 @end

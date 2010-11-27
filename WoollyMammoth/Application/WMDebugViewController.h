@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "BrowserViewController.h"
+
 @class WMViewController;
 
-@interface WMDebugViewController : UIViewController {
+@interface WMDebugViewController : UIViewController <BrowserViewControllerDelegate> {
 	WMViewController *parent;
 }
 
@@ -22,5 +24,6 @@
 
 - (IBAction)close;
 - (IBAction)reloadGame;
+- (IBAction)loadRemote;
 
 @end

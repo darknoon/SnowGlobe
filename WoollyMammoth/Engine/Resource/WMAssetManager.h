@@ -14,6 +14,8 @@
 	WMEngine *engine; //weak
 	NSBundle *assetBundle;
 	
+	NSURL *remoteBundleURL;
+	
 	NSDictionary *manifest;
 	NSMutableDictionary *models;
 	NSMutableDictionary *shaders;
@@ -22,9 +24,12 @@
 	NSMutableDictionary *scenes;
 }
 
+@property (nonatomic, retain) NSURL *remoteBundleURL;
 @property (nonatomic, readonly, retain) NSBundle *assetBundle;
 
 - (id)initWithBundlePath:(NSString *)inBundlePath engine:(WMEngine *)inEngine;
+
+- (id)initWithRemoteBundleURL:(NSURL *)inBundleURL engine:(WMEngine *)inEngine;
 
 - (id)objectForManifestKey:(NSString *)inManifestKey;
 

@@ -10,15 +10,35 @@
 #import <Cocoa/Cocoa.h>
 
 @class WMEditorPreviewController;
-@class WMEditorAssetOutlineController;
+@class WMEditorSidebarOutlineController;
+@class WMBuildManager;
+@class WMEditorSidebarItem;
+@class WMEditorAssetManager;
 
 @interface WMEditorDocument : NSDocument
 {
-	IBOutlet WMEditorAssetOutlineController *assetViewController;
+	IBOutlet WMEditorSidebarOutlineController *sidebarViewController;
+	IBOutlet NSTreeController *sidebarTreeController;
+	NSSet *selectedSidebarIndexPaths;
+	WMEditorSidebarItem *editingSidebarItem;
+	
+	IBOutlet NSView *contentView;
+	NSViewController *itemEditorController;
 	
 	WMEditorPreviewController *preview;
+		
+	WMBuildManager *buildManager;
+	
+	WMEditorAssetManager *assetManager;
 }
 
+@property (nonatomic, retain) NSViewController *itemEditorController;
+@property (nonatomic, retain) WMEditorSidebarItem *editingSidebarItem;
+@property (nonatomic, copy) NSSet *selectedSidebarIndexPaths;
+@property (nonatomic, retain) WMEditorAssetManager *assetManager;
+
 - (IBAction)showPreview:(id)sender;
+
+- (IBAction)build:(id)sender;
 
 @end

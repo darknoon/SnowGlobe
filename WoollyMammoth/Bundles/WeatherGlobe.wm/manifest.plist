@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>version</key>
+	<integer>1</integer>
+	<key>title</key>
+	<string>Weather Globe</string>
+	<key>models</key>
+	<dict/>
+	<key>shaders</key>
+	<dict>
+		<key>CrazyLens</key>
+		<dict>
+			<key>attributeNames</key>
+			<array>
+				<string>position</string>
+				<string>textureCoordinate</string>
+			</array>
+			<key>uniformNames</key>
+			<array>
+				<string>modelViewProjectionMatrix</string>
+				<string>texture</string>
+			</array>
+		</dict>
+		<key>GlobeRefract</key>
+		<dict>
+			<key>attributeNames</key>
+			<array>
+				<string>position</string>
+				<string>textureCoordinate</string>
+			</array>
+			<key>uniformNames</key>
+			<array>
+				<string>modelViewProjectionMatrix</string>
+				<string>texture</string>
+			</array>
+		</dict>
+	</dict>
+	<key>textures</key>
+	<dict/>
+	<key>scenes</key>
+	<dict>
+		<key>scene</key>
+		<dict/>
+	</dict>
+	<key>scripts</key>
+	<dict/>
+</dict>
+</plist>

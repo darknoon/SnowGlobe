@@ -31,7 +31,9 @@
 @property (nonatomic, retain, readonly) WMGameObject *rootObject;
 @property (nonatomic, retain, readonly) WMScriptingContext *scriptingContext;
 @property (nonatomic, retain, readonly) WMDebugChannel *debugChannel;
-@property (nonatomic, retain, readonly) WMAssetManager *assetManager;
+
+//Must be set before calling start
+@property (nonatomic, retain) WMAssetManager *assetManager;
 
 - (NSString *)title;
 

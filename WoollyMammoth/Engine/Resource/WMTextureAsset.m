@@ -17,6 +17,8 @@
 {
 	if (isLoaded) return NO;
 	
+	[self requireAssetFileSynchronous:resourceName];
+	
 	//File comes with extension
 	NSString *imagePath = [[inBundle bundlePath] stringByAppendingPathComponent:resourceName];
 	

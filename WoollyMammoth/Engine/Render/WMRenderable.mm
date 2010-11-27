@@ -48,24 +48,27 @@
     {
         // Use shader program.
         glUseProgram(shader.program);
-			
+
 		NSUInteger stride = [model interleavedDataStride];
 		
         // Update attribute values.
 		GLuint vertexAttribute = [shader attribIndexForName:@"position"];
         glVertexAttribPointer(vertexAttribute, 3, GL_FLOAT, GL_FALSE, stride, [model vertexDataPointer]);
         glEnableVertexAttribArray(vertexAttribute);
+
 		
 		if (texture) {
-			glBindTexture(GL_TEXTURE0, [texture glTexture]);
+			glBindTexture(GL_TEXTURE_2D, [texture glTexture]);
 			
 			int textureUniformLocation = [shader uniformLocationForName:@"texture"];
 			if (textureUniformLocation != -1) {
 				glUniform1i(textureUniformLocation, 0); //texture = texture 0
 			}
+
 			GLuint textureCoordinateAttribute = [shader attribIndexForName:@"textureCoordinate"];
 			glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, GL_FALSE, stride, [model textureCoordDataPointer]);
 			glEnableVertexAttribArray(textureCoordinateAttribute);
+
 		}
 
 		
@@ -74,7 +77,7 @@
         // glEnableVertexAttribArray(colorAttribute);
 		
 		int matrixUniform = [shader uniformLocationForName:@"modelViewProjectionMatrix"];
-		glUniformMatrix4fv(matrixUniform, 1, NO, transform.f);
+		if (matrixUniform != -1) glUniformMatrix4fv(matrixUniform, 1, NO, transform.f);
         
         // Validate program before drawing. This is a good check, but only really necessary in a debug build.
         // DEBUG macro must be defined in your debug configurations if that's not already the case.
@@ -96,7 +99,6 @@
 	}
     	
 	glDrawElements(GL_TRIANGLES, [model numberOfTriangles] * 3, [model triangleIndexType], [model triangleIndexPointer]);
-	
 
 }
 @end

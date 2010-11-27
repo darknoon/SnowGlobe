@@ -17,6 +17,9 @@
 @property (nonatomic, retain) NSMutableArray *children;
 @property (nonatomic, copy) NSString *name;
 
+- (void)insertChild:(WMEditorSidebarItem *)inChild;
+
 - (void)insertChildWithName:(NSString *)inName;
+
 
 @end

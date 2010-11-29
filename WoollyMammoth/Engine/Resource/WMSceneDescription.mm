@@ -32,8 +32,17 @@
 
 - (WMRenderable *)deserializeRenderable:(NSDictionary *)renderableRepresentation withEngine:(WMEngine *)inEngine error:(NSError **)outError;
 {
+	NSString *renderableClassName = [renderableRepresentation objectForKey:@"class"];
+
+	Class renderableClass = [WMRenderable class];
+	if (renderableClassName) {
+		Class renderableClassTemp = NSClassFromString(renderableClassName);
+		if ([renderableClassTemp isSubclassOfClass:[WMRenderable class]]) {
+			renderableClass = renderableClassTemp;
+		}
+	}
 	//TODO: can we simplify this? How can we make the renderable dynamic
-	WMRenderable *renderable = [[[WMRenderable alloc] init] autorelease];
+	WMRenderable *renderable = [[[renderableClass alloc] init] autorelease];
 	
 	NSString *modelName = [renderableRepresentation objectForKey:@"model"];
 	if (modelName) {

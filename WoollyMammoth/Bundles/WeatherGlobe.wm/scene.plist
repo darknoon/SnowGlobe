@@ -30,7 +30,33 @@
 			<string>CameraInput</string>
 		</dict>
 		<key>children</key>
-		<array/>
+		<array>
+			<dict>
+				<key>objectId</key>
+				<integer>2</integer>
+				<key>notes</key>
+				<string>Particles</string>
+				<key>script</key>
+				<string></string>
+				<key>scale</key>
+				<array>
+					<integer>1</integer>
+					<integer>1</integer>
+					<integer>1</integer>
+				</array>
+				<key>renderable</key>
+				<dict>
+					<key>class</key>
+					<string>WMParticleSystem</string>
+					<key>shader</key>
+					<string>SnowParticle</string>
+					<key>texture</key>
+					<string>SnowChunk.png</string>
+				</dict>
+				<key>children</key>
+				<array/>
+			</dict>
+		</array>
 	</dict>
 </dict>
 </plist>

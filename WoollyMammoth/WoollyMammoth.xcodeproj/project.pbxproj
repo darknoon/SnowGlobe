@@ -82,6 +82,8 @@
 		49C5525012697D250093FAFD /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49C5523C12697D250093FAFD /* ResourcePath.mm */; };
 		49C5525712697D250093FAFD /* Timer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49C5524B12697D250093FAFD /* Timer.mm */; };
 		49C55283126980610093FAFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C55282126980610093FAFD /* CoreGraphics.framework */; };
+		49C978A912A234A2004258E4 /* WMParticleSystem.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49C978A812A234A2004258E4 /* WMParticleSystem.mm */; };
+		49C97A6B12A33FEC004258E4 /* SimplexNoise.c in Sources */ = {isa = PBXBuildFile; fileRef = 49C97A6912A33FEC004258E4 /* SimplexNoise.c */; };
 		49D101FA1270BB85007E143E /* Texture2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D101EF1270BB85007E143E /* Texture2D.m */; };
 		49D101FB1270BB85007E143E /* WMAsset.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F11270BB85007E143E /* WMAsset.mm */; };
 		49D101FC1270BB85007E143E /* WMAssetManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F31270BB85007E143E /* WMAssetManager.mm */; };
@@ -289,6 +291,10 @@
 		49C5524B12697D250093FAFD /* Timer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Timer.mm; sourceTree = "<group>"; };
 		49C5524C12697D250093FAFD /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		49C55282126980610093FAFD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		49C978A712A234A2004258E4 /* WMParticleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMParticleSystem.h; sourceTree = "<group>"; };
+		49C978A812A234A2004258E4 /* WMParticleSystem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMParticleSystem.mm; sourceTree = "<group>"; };
+		49C97A6912A33FEC004258E4 /* SimplexNoise.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SimplexNoise.c; sourceTree = "<group>"; };
+		49C97A6A12A33FEC004258E4 /* SimplexNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplexNoise.h; sourceTree = "<group>"; };
 		49D101EE1270BB85007E143E /* Texture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture2D.h; sourceTree = "<group>"; };
 		49D101EF1270BB85007E143E /* Texture2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture2D.m; sourceTree = "<group>"; };
 		49D101F01270BB85007E143E /* WMAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAsset.h; sourceTree = "<group>"; };
@@ -550,6 +556,8 @@
 				4940D97512658E4B007FA76C /* WMRenderEngine.mm */,
 				4940DCE912669B1A007FA76C /* WMRenderable.h */,
 				4940DCEA12669B1A007FA76C /* WMRenderable.mm */,
+				49C978A712A234A2004258E4 /* WMParticleSystem.h */,
+				49C978A812A234A2004258E4 /* WMParticleSystem.mm */,
 				49E81F1C12714CB900127D48 /* WMQuad.h */,
 				49E81F1D12714CB900127D48 /* WMQuad.mm */,
 				49E81F6A127151DF00127D48 /* WMRenderableDataSource.h */,
@@ -572,6 +580,7 @@
 				4940D97312658E1B007FA76C /* Render */,
 				49D101ED1270BB85007E143E /* Resource */,
 				49191F481287CF8E008F6C88 /* Scripting */,
+				49C97A6512A33FDC004258E4 /* Util */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -785,6 +794,15 @@
 			path = Timing;
 			sourceTree = "<group>";
 		};
+		49C97A6512A33FDC004258E4 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				49C97A6A12A33FEC004258E4 /* SimplexNoise.h */,
+				49C97A6912A33FEC004258E4 /* SimplexNoise.c */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		49D101ED1270BB85007E143E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -995,6 +1013,8 @@
 				49FD9C9F1299FFA60028524C /* WMCameraInputTexture.m in Sources */,
 				4933187F129C8C1A0051088C /* WMAssetManifest.m in Sources */,
 				4933188C129C8E810051088C /* BrowserViewController.m in Sources */,
+				49C978A912A234A2004258E4 /* WMParticleSystem.mm in Sources */,
+				49C97A6B12A33FEC004258E4 /* SimplexNoise.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

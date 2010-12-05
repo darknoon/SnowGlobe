@@ -26,6 +26,9 @@ struct WMParticle;
 	
 	double t;
 	
+	//Potentially slower. Try turning off for performance
+	BOOL zSortParticles;
+	
 	//ignores model
 }
 

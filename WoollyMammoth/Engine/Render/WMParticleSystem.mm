@@ -16,6 +16,7 @@
 
 extern "C" {
 #import "SimplexNoise.h"
+#import "stdlib.h"
 }
 CTrivialRandomGenerator rng;
 
@@ -51,7 +52,7 @@ void WMParticle::update(double dt, double t, int i, Vec3 gravity, WMParticleSyst
 			position = position.normalize() * sphereRadius;
 		}
 		
-		float bright = 0.9 + 0.1 * position.z;
+		float bright = 0.85 + 0.1 * position.z;
 		
 		color[0] = 255 * bright;
 		color[1] = 255 * bright;
@@ -74,17 +75,23 @@ void WMParticle::init() {
 	textureCoordinate = Vec2(0.5, 0.5);
 }
 
+int particleZCompare(const void *a, const void *b) {
+	return (((WMParticle *)a)->position.z >  ((WMParticle *)b)->position.z) ? 1 : - 1;
+}
+
 @implementation WMParticleSystem
 
 - (id) init {
 	[super init];
 	if (self == nil) return self; 
 	
-	maxParticles = 300;
+	maxParticles = 400;
 	particles = new WMParticle[maxParticles];
 	for (int i=0; i<maxParticles; i++) {
 		particles[i].init();
 	}
+	
+	zSortParticles = YES;
 	
 	return self;
 }
@@ -128,6 +135,10 @@ void WMParticle::init() {
 		//Rotate with torque! (try to anyway!)
 		MatrixVec3Multiply(particles[i].position, particles[i].position, rotation);
 	}
+	
+	//Sort particles
+	if (zSortParticles)
+		qsort(particles, maxParticles, sizeof(WMParticle), particleZCompare);
 }
 
 - (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API;

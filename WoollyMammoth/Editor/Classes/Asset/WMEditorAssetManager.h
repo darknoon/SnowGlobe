@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const WMEditorAssetManagerAssetsChangedNotification;
 
 @interface WMEditorAssetManager : NSObject {
 	NSArray *assets;

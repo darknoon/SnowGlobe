@@ -11,6 +11,7 @@
 
 @implementation WMEditorAssetViewController
 
+@synthesize document;
 @synthesize assetController;
 @synthesize item;
 
@@ -41,7 +42,7 @@
 {
 	[item release];
 	[assetController release];
-
+	
 	[super dealloc];
 }
 

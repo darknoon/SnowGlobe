@@ -8,14 +8,19 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class WMEditorDocument;
 
-@interface WMEditorSidebarOutlineController : NSViewController {
+@interface WMEditorSidebarOutlineController : NSViewController <NSOutlineViewDelegate, NSOutlineViewDataSource> {
 	NSArray *items;
 	
-	NSArray *assets;
+	NSOutlineView *outlineView;
+	
+	WMEditorDocument *document;
 }
 
-@property (nonatomic, copy) NSArray *assets;
+@property (nonatomic, assign) IBOutlet WMEditorDocument *document;
+@property (nonatomic, retain) IBOutlet NSOutlineView *outlineView;
+
 @property (nonatomic, copy, readonly) NSArray *items;
 
 @end

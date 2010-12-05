@@ -17,10 +17,7 @@
 
 @interface WMEditorDocument : NSDocument
 {
-	IBOutlet WMEditorSidebarOutlineController *sidebarViewController;
-	IBOutlet NSTreeController *sidebarTreeController;
-	NSSet *selectedSidebarIndexPaths;
-	WMEditorSidebarItem *editingSidebarItem;
+	WMEditorSidebarOutlineController *sidebarViewController;
 	
 	IBOutlet NSView *contentView;
 	NSViewController *itemEditorController;
@@ -32,13 +29,15 @@
 	WMEditorAssetManager *assetManager;
 }
 
+@property (nonatomic, retain) IBOutlet WMEditorSidebarOutlineController *sidebarViewController;
 @property (nonatomic, retain) NSViewController *itemEditorController;
-@property (nonatomic, retain) WMEditorSidebarItem *editingSidebarItem;
-@property (nonatomic, copy) NSSet *selectedSidebarIndexPaths;
 @property (nonatomic, retain) WMEditorAssetManager *assetManager;
 
 - (IBAction)showPreview:(id)sender;
 
 - (IBAction)build:(id)sender;
+
+- (void)inspectSidebarItem:(WMEditorSidebarItem *)editingSidebarItem;
+
 
 @end

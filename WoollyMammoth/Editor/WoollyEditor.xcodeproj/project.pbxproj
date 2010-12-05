@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1DDD582C0DA1D0D100B32029 /* WMEditorDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58280DA1D0D100B32029 /* WMEditorDocument.xib */; };
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
+		49081AAF12A5A69E009EB9F5 /* WMEditorShaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49081AAE12A5A69E009EB9F5 /* WMEditorShaderViewController.m */; };
+		49081AB112A5A6B3009EB9F5 /* WMEditorShaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49081AB012A5A6B3009EB9F5 /* WMEditorShaderViewController.xib */; };
 		4945CB051272D96F0083983A /* Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945CB041272D96F0083983A /* Preview.png */; };
 		4945CB6F1272E15A0083983A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4945CB6E1272E15A0083983A /* OpenGL.framework */; };
 		49B8DB6D12793217004E4340 /* JGModelParent.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B8D99412793217004E4340 /* JGModelParent.m */; };
@@ -110,6 +112,9 @@
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		49081AAD12A5A69E009EB9F5 /* WMEditorShaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditorShaderViewController.h; sourceTree = "<group>"; };
+		49081AAE12A5A69E009EB9F5 /* WMEditorShaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditorShaderViewController.m; sourceTree = "<group>"; };
+		49081AB012A5A6B3009EB9F5 /* WMEditorShaderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMEditorShaderViewController.xib; sourceTree = "<group>"; };
 		4945CB041272D96F0083983A /* Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Preview.png; sourceTree = "<group>"; };
 		4945CB6E1272E15A0083983A /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		49B8D99212793217004E4340 /* JGStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGStructures.h; sourceTree = "<group>"; };
@@ -734,6 +739,9 @@
 				49D813A2129B3BD700306BF6 /* WMEditorAssetViewController.xib */,
 				49D815B2129B4E2200306BF6 /* WMEditorAssetManager.h */,
 				49D815B3129B4E2200306BF6 /* WMEditorAssetManager.m */,
+				49081AAD12A5A69E009EB9F5 /* WMEditorShaderViewController.h */,
+				49081AAE12A5A69E009EB9F5 /* WMEditorShaderViewController.m */,
+				49081AB012A5A6B3009EB9F5 /* WMEditorShaderViewController.xib */,
 			);
 			path = Asset;
 			sourceTree = "<group>";
@@ -839,6 +847,7 @@
 				49B8DEDD127966BD004E4340 /* WMEditorPreviewController.xib in Resources */,
 				49B8DEF412796733004E4340 /* Credits.rtf in Resources */,
 				49D813A3129B3BD700306BF6 /* WMEditorAssetViewController.xib in Resources */,
+				49081AB112A5A6B3009EB9F5 /* WMEditorShaderViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -926,6 +935,7 @@
 				49D813A1129B3BB000306BF6 /* WMEditorAssetViewController.m in Sources */,
 				49D815B4129B4E2200306BF6 /* WMEditorAssetManager.m in Sources */,
 				49D815EE129B51D400306BF6 /* WMAssetManifest.m in Sources */,
+				49081AAF12A5A69E009EB9F5 /* WMEditorShaderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

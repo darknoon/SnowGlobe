@@ -15,14 +15,15 @@
 #import "WMBuild.h"
 #import "WMBuildManager.h"
 #import "WMEditorSidebarAssetItem.h"
-#import "WMEditorAssetViewController.h"
 #import "WMEditorAssetManager.h"
+
+#import "WMEditorAssetViewController.h"
+#import "WMEditorShaderViewController.h"
 
 @implementation WMEditorDocument
 
+@synthesize sidebarViewController;
 @synthesize itemEditorController;
-@synthesize editingSidebarItem;
-@synthesize selectedSidebarIndexPaths;
 @synthesize assetManager;
 
 - (id)init
@@ -45,13 +46,14 @@
 		
 		// [testAssets addObject:asset];
 		
-		// self.assets = testAssets;		
+		// self.assets = testAssets;	
 		
 		self.assetManager = [[WMEditorAssetManager alloc] init];
-		
+				
     }
     return self;
 }
+
 
 - (void)setFileURL:(NSURL *)inAbsoluteURL;
 {
@@ -66,43 +68,53 @@
 {
 	[preview release];
 	[assetManager release];
-	[selectedSidebarIndexPaths release];
-	[editingSidebarItem release];
 
 	[itemEditorController release];
-	itemEditorController = nil;
+	[sidebarViewController release];
 
 	[super dealloc];
 }
 
 
-- (void)setSelectedSidebarIndexPaths:(NSSet *)inSelectedSidebarIndexPaths {
-	[self willChangeValueForKey:@"selectedSidebarIndexPaths"];
+// - (void)setSelectedSidebarIndexPaths:(NSSet *)inSelectedSidebarIndexPaths {
+	// [self willChangeValueForKey:@"selectedSidebarIndexPaths"];
 	
-	if (selectedSidebarIndexPaths == inSelectedSidebarIndexPaths) return;
-	[selectedSidebarIndexPaths release];
-	selectedSidebarIndexPaths = [inSelectedSidebarIndexPaths retain];
+	// if (selectedSidebarIndexPaths == inSelectedSidebarIndexPaths) return;
+	// [selectedSidebarIndexPaths release];
+	// selectedSidebarIndexPaths = [inSelectedSidebarIndexPaths retain];
 
-	//TODO: do this betetr
-	NSArray *selectedObjects = [sidebarTreeController selectedObjects];
+	// //TODO: do this betetr
+	// NSArray *selectedObjects = [sidebarTreeController selectedObjects];
 	
-	self.editingSidebarItem = selectedObjects.count > 0 ? [selectedObjects objectAtIndex:0] : nil;
+	// self.editingSidebarItem = selectedObjects.count > 0 ? [selectedObjects objectAtIndex:0] : nil;
 
-	[self didChangeValueForKey:@"selectedSidebarIndexPaths"];
+	// [self didChangeValueForKey:@"selectedSidebarIndexPaths"];
+// }
+
+
+- (NSViewController *)viewControllerForAsset:(WMEditorAsset *)inAsset;
+{
+	WMEditorAssetViewController *assetViewController = nil;
+	
+	if ([inAsset.assetType isEqualToString:WMEditorAssetTypeShader]) {
+		assetViewController = [[[WMEditorShaderViewController alloc] initWithNibName:@"WMEditorShaderViewController" bundle:nil] autorelease];
+	} else {
+		assetViewController = [[[WMEditorAssetViewController alloc] initWithNibName:@"WMEditorAssetViewController" bundle:nil] autorelease];
+	}
+	
+	assetViewController.document = self;
+	assetViewController.item = inAsset;
+	return assetViewController;
 }
 
 
-- (void)setEditingSidebarItem:(WMEditorSidebarItem *)value {
-	if (editingSidebarItem == value) return;
-	[editingSidebarItem release];
-	editingSidebarItem = [value retain];
 
+- (void)inspectSidebarItem:(WMEditorSidebarItem *)editingSidebarItem;
+{
 	if ([editingSidebarItem isKindOfClass:[WMEditorSidebarAssetItem class]]) {
 		WMEditorAsset *asset = [(WMEditorSidebarAssetItem *)editingSidebarItem asset];
 		
-		WMEditorAssetViewController *assetViewController = [[[WMEditorAssetViewController alloc] initWithNibName:@"WMEditorAssetViewController" bundle:nil] autorelease];
-		assetViewController.item = asset;
-		self.itemEditorController = assetViewController;
+		self.itemEditorController = [self viewControllerForAsset:asset];
 	} else {
 		self.itemEditorController = nil;
 	}
@@ -128,10 +140,6 @@
 
 - (void)awakeFromNib;
 {
-	sidebarViewController.assets = self.assetManager.assets;
-	
-	[sidebarTreeController bind:@"selectionIndexPaths" toObject:self withKeyPath:@"selectedSidebarIndexPaths" options:nil];
-	
 	[super awakeFromNib];
 }
 
@@ -191,10 +199,7 @@
 	if (![assetManager loadManifestFromData:manifestContents error:outError]) {
 		return NO;
 	}
-		
-	//TODO: bind this
-	sidebarViewController.assets = assetManager.assets;
-	
+			
 	return YES;
 }
 

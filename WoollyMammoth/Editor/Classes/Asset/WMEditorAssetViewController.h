@@ -10,11 +10,17 @@
 
 #import "WMEditorAsset.h"
 
+@class WMEditorDocument;
+
 @interface WMEditorAssetViewController : NSViewController {
 	WMEditorAsset *item;
 	NSObjectController *assetController;
+
+	//Weak 
+	WMEditorDocument *document;
 }
 
+@property (nonatomic, assign) WMEditorDocument *document;
 @property (nonatomic, retain) IBOutlet NSObjectController *assetController;
 @property (nonatomic, retain) WMEditorAsset *item;
 

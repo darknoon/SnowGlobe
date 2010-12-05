@@ -11,6 +11,8 @@
 
 #import "WMAssetManifest.h"
 
+NSString *const WMEditorAssetManagerAssetsChangedNotification = @"WMEditorAssetManagerAssetsChanged";
+
 @interface WMEditorAssetManager ()
 - (void)loadAssetsFromDictionary:(NSDictionary *)inAssetDictionary asAssetsOfType:(NSString *)inAssetType;
 @end
@@ -53,7 +55,9 @@
 	[self loadAssetsFromDictionary:[manifest objectForKey:WMAssetManagerManifestTexturesKey] asAssetsOfType:WMEditorAssetTypeTexture];
 	[self loadAssetsFromDictionary:[manifest objectForKey:WMAssetManagerManifestScriptsKey] asAssetsOfType:WMEditorAssetTypeScript];
 	[self loadAssetsFromDictionary:[manifest objectForKey:WMAssetManagerManifestScenesKey] asAssetsOfType:WMEditorAssetTypeScene];
-	 
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:WMEditorAssetManagerAssetsChangedNotification object:self];
+	
 	return YES;
 }
 

@@ -70,6 +70,9 @@
 			return nil;
 		}
 	}
+	
+	//Default = NO
+	renderable.hidden = [[renderableRepresentation objectForKey:@"hidden"] boolValue];
 
 	return renderable;
 }

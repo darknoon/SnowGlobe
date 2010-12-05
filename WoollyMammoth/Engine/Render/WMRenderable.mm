@@ -15,6 +15,7 @@
 
 @implementation WMRenderable
 
+@synthesize hidden;
 @synthesize texture;
 @synthesize shader;
 @synthesize model;
@@ -29,6 +30,7 @@
 	[texture release];
 	texture = nil;
 
+
 	[super dealloc];
 }
 
@@ -42,7 +44,7 @@
 
 - (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API;
 {
-	if (!model) return;
+	if (!model || hidden) return;
 	
 	if (API == kEAGLRenderingAPIOpenGLES2)
     {

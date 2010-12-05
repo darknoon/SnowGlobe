@@ -22,6 +22,8 @@
 		</array>
 		<key>renderable</key>
 		<dict>
+			<key>hidden</key>
+			<true/>
 			<key>shader</key>
 			<string>GlobeRefract</string>
 			<key>model</key>

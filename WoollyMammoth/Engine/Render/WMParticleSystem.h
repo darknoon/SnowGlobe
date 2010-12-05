@@ -18,10 +18,13 @@ struct WMParticle;
 	NSUInteger liveParticles;
 	WMParticle *particles;
 	
+@public
 	VECTOR4 startColor;
 	float deltaAlpha;
 	
-	CTrivialRandomGenerator rng;
+	float turbulence;
+	
+	double t;
 	
 	//ignores model
 }

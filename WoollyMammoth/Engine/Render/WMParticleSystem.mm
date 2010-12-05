@@ -12,6 +12,12 @@
 
 #import "WMShader.h"
 #import "WMTextureAsset.h"
+#import "WMAccelerometer.h"
+
+extern "C" {
+#import "SimplexNoise.h"
+}
+CTrivialRandomGenerator rng;
 
 
 struct WMParticle {
@@ -20,29 +26,50 @@ struct WMParticle {
 	Vec3 velocity;
 	unsigned char color[4];
 	Vec2 textureCoordinate;
-	void update(double dt);
+	void update(double dt, double t, int i, Vec3 gravity, WMParticleSystem *sys);
 	void init();
 };
 
-void WMParticle::update(double dt) {
+void WMParticle::update(double dt, double t, int i, Vec3 gravity, WMParticleSystem *sys) {
 	if (life > 0) {
 		life -= dt;
 		position += dt * velocity;
-		color[4] = 255 * (life / 3.0);
+		velocity *= 0.99;
+		velocity += 0.1 * gravity * dt;
+		
+		
+		//Disturb randomly
+		Vec3 noisePos = 10.0 * position;
+		velocity += 10.0f * sys->turbulence * dt * Vec3(simplexNoise3(noisePos.x, noisePos.y + 12.2512, noisePos.z + 120.2068365),
+														simplexNoise3(noisePos.x + 78343.632, noisePos.y, noisePos.z + 1242.8365),
+														simplexNoise3(noisePos.x + 267.262, noisePos.y + 12.2512, noisePos.z));
+		
+		const float sphereRadius = 0.6;
+		//Constrain to be inside sphere
+		float distanceFromOrigin2 = position.dot(position);
+		if (distanceFromOrigin2 > sphereRadius * sphereRadius) {
+			position = position.normalize() * sphereRadius;
+		}
+		
+		float bright = 0.9 + 0.1 * position.z;
+		
+		color[0] = 255 * bright;
+		color[1] = 255 * bright;
+		color[2] = 255 * bright;
+		color[3] = 255;
 	} else {
-		position = Vec3();
-		life = 3.0;
+		init();
 	}
-
 }
 
 void WMParticle::init() {
-	life = 0.0;
-	position = Vec3(MAXFLOAT,0,0);
-	velocity = Vec3(1,1,1);
+	life = 1000.0;
+	position = Vec3(0,0,0);
+	const float vinitial = 1.0;
+	velocity = Vec3(rng.randF(-vinitial,vinitial), rng.randF(-vinitial,vinitial), rng.randF(-vinitial,vinitial));
 	color[0] = 255;
-	color[1] = 100;
-	color[2] = 0;
+	color[1] = 255;
+	color[2] = 255;
 	color[3] = 255;
 	textureCoordinate = Vec2(0.5, 0.5);
 }
@@ -53,14 +80,10 @@ void WMParticle::init() {
 	[super init];
 	if (self == nil) return self; 
 	
-	maxParticles = 100;
+	maxParticles = 300;
 	particles = new WMParticle[maxParticles];
 	for (int i=0; i<maxParticles; i++) {
 		particles[i].init();
-		particles[i].life = 3.0 * rng.randF();
-		float a = i * 0.1;
-		float m = rng.randF();
-		particles[i].velocity = Vec3(m * sinf(a), m * cosf(a), 0.0f);
 	}
 	
 	return self;
@@ -69,18 +92,54 @@ void WMParticle::init() {
 
 - (void)update;
 {
+	Vec3 gravity = [WMAccelerometer sharedAccelerometer].gravity;
+	Vec3 rotationRate = [WMAccelerometer sharedAccelerometer].rotationRate;
+
+	//NSLog(@"g(%f, %f, %f) rot(%f, %f, %f)", gravity.x, gravity.y, gravity.z, rotationRate.x, rotationRate.y, rotationRate.z);
+	
 	//TODO: pass real dt
 	double dt = 1.0/60.0;
+	t += dt;
+	
+	const float turbulenceDecay = 0.99f;
+	const float turbulenceStrength = 0.1f;
+	MATRIX rotation;
+	if (t > 1.0) {
+		turbulence = turbulence * turbulenceDecay + (1.0 - turbulenceDecay) * turbulenceStrength * (fabsf(rotationRate.x) + fabsf(rotationRate.y) + fabsf(rotationRate.z));
+		turbulence = fmaxf(0.0, fminf(turbulence, 1.0));
+
+		MATRIX rotX;
+		MATRIX rotY;
+		MATRIX rotZ;
+		MatrixRotationX(rotX, dt * rotationRate.x);
+		MatrixRotationY(rotY, dt * rotationRate.y);
+		MatrixRotationZ(rotZ, dt * rotationRate.z);
+		
+		MatrixMultiply(rotation, rotX, rotY);
+		MatrixMultiply(rotation, rotation, rotZ);
+		
+	} else {
+		MatrixIdentity(rotation);
+	}
+
 	for (int i=0; i<maxParticles; i++) {
-		particles[i].update(dt);
+		particles[i].update(dt, t, i, gravity, self);
+
+		//Rotate with torque! (try to anyway!)
+		MatrixVec3Multiply(particles[i].position, particles[i].position, rotation);
 	}
 }
 
 - (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API;
 {
+
 	[self update];
+	
+	if (hidden) return;
+
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+	glDepthMask(GL_FALSE);
 	if (API == kEAGLRenderingAPIOpenGLES2)
     {
         // Use shader program.
@@ -135,7 +194,7 @@ void WMParticle::init() {
 	
 	glDrawArrays(GL_POINTS, 0, maxParticles);
 	glDisable(GL_BLEND);
-
+	glDepthMask(GL_TRUE);
 }
 
 @end

@@ -22,9 +22,11 @@
 	//TODO: how should we handle multi-texturing?
 	//Move into shader?
 	WMTextureAsset *texture;
+	BOOL hidden;
 	NSObject<WMRenderableDataSource> *model;
 }
 
+@property (nonatomic, assign) BOOL hidden;
 @property (nonatomic, retain) WMTextureAsset *texture;
 @property (nonatomic, retain) WMShader *shader;
 @property (nonatomic, retain) NSObject<WMRenderableDataSource> *model;

@@ -122,7 +122,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation; // Override to allow rotation. Default returns YES only for UIDeviceOrientationPortrait
 {
-	return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
+	return toInterfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
 - (NSInteger)animationFrameInterval

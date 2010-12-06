@@ -11,6 +11,8 @@
 #include "math.h"
 #include "unistd.h"
 
+#include "stdio.h"
+
 int p[] = {151,160,137,91,90,15, 
 131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,8,99,37,240,21,10,23, 
 190, 6,148,247,120,234,75,0,26,197,62,94,252,219,203,117,35,11,32,57,177,33, 
@@ -199,4 +201,70 @@ SNFloat simplexNoise3(SNFloat xin, SNFloat yin, SNFloat zin) {
     // Add contributions from each corner to get the final noise value. 
     // The result is scaled to stay just inside [-1,1] 
     return 32.0*(n0 + n1 + n2 + n3); 
+}
+
+
+
+//Perlin Noise
+
+//TODO: implement algorithm from
+//http://iquilezles.org/www/articles/morenoise/morenoise.htm
+void iGetIntegerAndFractional(float a, int *i, float *f) {
+	//Naive. Improve.
+	*i = (int)a;
+	*f = a - (int)a;
+}
+
+float sfrand(int *seed )
+{
+    seed[0] = 0x00269ec3 + seed[0]*0x000343fd;
+    int a = (seed[0]>>16) & 32767;
+    return( -1.0f + (2.0f/32767.0f)*(float)a );
+}
+
+float myRandomMagic(int x, int y, int z) {
+	int permuted = perm[perm[x & 255] + (y & 255)] + z;
+	//printf("%d %d %d porm: %d", x, y, z, permuted);
+	return permuted & 1 ? -1.0f : 1.0f;
+}
+
+void dnoise3f( float *vout, const float x, const float y, const float z) {
+	_initNoiseIfNecessary();
+    int   i, j, k;
+    float u, v, w;
+	
+    iGetIntegerAndFractional( x, &i, &u );
+    iGetIntegerAndFractional( y, &j, &v );
+    iGetIntegerAndFractional( z, &k, &w );
+	
+    const float du = 30.0f*u*u*(u*(u-2.0f)+1.0f);
+    const float dv = 30.0f*v*v*(v*(v-2.0f)+1.0f);
+    const float dw = 30.0f*w*w*(w*(w-2.0f)+1.0f);
+	
+    u = u*u*u*(u*(u*6.0f-15.0f)+10.0f);
+    v = v*v*v*(v*(v*6.0f-15.0f)+10.0f);
+    w = w*w*w*(w*(w*6.0f-15.0f)+10.0f);
+	
+    const float a = myRandomMagic( i+0, j+0, k+0 );
+    const float b = myRandomMagic( i+1, j+0, k+0 );
+    const float c = myRandomMagic( i+0, j+1, k+0 );
+    const float d = myRandomMagic( i+1, j+1, k+0 );
+    const float e = myRandomMagic( i+0, j+0, k+1 );
+    const float f = myRandomMagic( i+1, j+0, k+1 );
+    const float g = myRandomMagic( i+0, j+1, k+1 );
+    const float h = myRandomMagic( i+1, j+1, k+1 );
+	
+    const float k0 =   a;
+    const float k1 =   b - a;
+    const float k2 =   c - a;
+    const float k3 =   e - a;
+    const float k4 =   a - b - c + d;
+    const float k5 =   a - c - e + g;
+    const float k6 =   a - b - e + f;
+    const float k7 = - a + b + c - d + e - f - g + h;
+	
+    vout[0] = k0 + k1*u + k2*v + k3*w + k4*u*v + k5*v*w + k6*w*u + k7*u*v*w;
+    vout[1] = du * (k1 + k4*v + k6*w + k7*v*w);
+    vout[2] = dv * (k2 + k5*w + k4*u + k7*w*u);
+    vout[3] = dw * (k3 + k6*u + k5*v + k7*u*v);
 }

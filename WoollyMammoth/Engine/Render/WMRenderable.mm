@@ -41,6 +41,10 @@
 	return self;
 }
 
+- (void)update;
+{
+	//Override this
+}
 
 - (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API;
 {

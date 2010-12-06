@@ -91,10 +91,7 @@
 	}
 	
 	if (renderable) {
-		//Rotate by 1.0 rads each second
-		MATRIX rotation;
-		MatrixRotationZ(rotation, 0.5f / 60.0f);
-		//MatrixMultiply(transform, transform, rotation);
+		[renderable update];
 	}
 	
 }

@@ -31,6 +31,9 @@
 @property (nonatomic, retain) WMShader *shader;
 @property (nonatomic, retain) NSObject<WMRenderableDataSource> *model;
 
+//Gets called after every frame. do computation here
+- (void)update;
+
 - (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API;
 
 @end

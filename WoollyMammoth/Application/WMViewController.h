@@ -37,6 +37,8 @@
 	
 	//Used to calculate actual FPS
 	NSTimeInterval lastFrameEndTime;
+	double lastFPSUpdate;
+	NSUInteger framesSinceLastFPSUpdate;
 }
 
 @property (readonly, retain) WMEngine *engine;

@@ -40,7 +40,7 @@
         eaglLayer.opaque = TRUE;
         eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
                                         [NSNumber numberWithBool:FALSE], kEAGLDrawablePropertyRetainedBacking,
-                                        kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat,
+                                        kEAGLColorFormatRGB565, kEAGLDrawablePropertyColorFormat,
                                         nil];
     }
     
@@ -156,8 +156,13 @@
         
         glBindRenderbuffer(GL_RENDERBUFFER, colorRenderbuffer);
         
+		const GLenum discards[]  = {GL_DEPTH_ATTACHMENT};
+		glBindFramebuffer(GL_FRAMEBUFFER, defaultFramebuffer);
+		glDiscardFramebufferEXT(GL_FRAMEBUFFER, 1, discards);
+
         success = [context presentRenderbuffer:GL_RENDERBUFFER];
 		GL_CHECK_ERROR;
+		
     }
     
     return success;

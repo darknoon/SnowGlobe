@@ -198,19 +198,25 @@
 	
 	[engine.renderEngine drawFrameInRect:self.view.bounds];
 	
-	[engine update];
-
 	NSTimeInterval frameEndTime = CFAbsoluteTimeGetCurrent();
 	
 	NSTimeInterval timeToDrawFrame = frameEndTime - frameStartTime;
 	
-	double fps = 1.0 / (frameEndTime - lastFrameEndTime);
+	framesSinceLastFPSUpdate++;
+	if (frameEndTime - lastFPSUpdate > 1.0) {
+		float fps = framesSinceLastFPSUpdate;
+		framesSinceLastFPSUpdate = 0;
+		
+		fpsLabel.text = [NSString stringWithFormat:@"%.0lf fps (%.0lf ms)", fps, timeToDrawFrame * 1000.0];		
+		lastFPSUpdate = frameEndTime;
+	}
 	
-	fpsLabel.text = [NSString stringWithFormat:@"%.0lf fps (%.0lf ms)", fps, timeToDrawFrame * 1000.0];
 	
 	lastFrameEndTime = frameEndTime;
 
     [(EAGLView *)self.view presentFramebuffer];
+
+	[engine update];
 }
 
 #pragma mark -

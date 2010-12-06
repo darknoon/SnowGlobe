@@ -16,7 +16,6 @@
 
 extern "C" {
 #import "SimplexNoise.h"
-#import "stdlib.h"
 }
 CTrivialRandomGenerator rng;
 
@@ -26,10 +25,15 @@ struct WMParticle {
 	Vec3 position;
 	Vec3 velocity;
 	unsigned char color[4];
-	Vec2 textureCoordinate;
 	void update(double dt, double t, int i, Vec3 gravity, WMParticleSystem *sys);
 	void init();
 };
+
+struct WMParticleVertex {
+	Vec3 position;
+	unsigned char color[4];
+};
+
 
 void WMParticle::update(double dt, double t, int i, Vec3 gravity, WMParticleSystem *sys) {
 	if (life > 0) {
@@ -69,10 +73,17 @@ void WMParticle::update(double dt, double t, int i, Vec3 gravity, WMParticleSyst
 		Vec3 noisePosX = noiseScale * position + Vec3(0.000000f, 12.252f, 1230.2685f) + t * Vec3(0.2f, 0.0f, 1.2f);
 		Vec3 noisePosY = noiseScale * position + Vec3(7833.632f, 10.002f, 1242.8365f) + t * Vec3(0.0f, 1.0f, 0.2f);
 		Vec3 noisePosZ = noiseScale * position + Vec3(2673.262f, 12.252f, 1582.1523f) + t * Vec3(-1.f, 0.0f, 0.0f);
+
+#if 1
+		Vec3 noiseVec = Vec3(simplexNoise3(noisePosX.x, noisePosX.y, noisePosX.z),
+							 simplexNoise3(noisePosY.x, noisePosY.y, noisePosY.z),
+							 simplexNoise3(noisePosZ.x, noisePosZ.y, noisePosZ.z));
+#else
+		Vec3 noiseVec = Vec3(0.0f);
+#endif
+		Vec3 randomVec = Vec3(rng.randF(-1.0f, 1.0f), rng.randF(-1.0f, 1.0f), rng.randF(-1.0f, 1.0f));
 		
-		force += turbulenceForce * sys->turbulence * Vec3(simplexNoise3(noisePosX.x, noisePosX.y, noisePosX.z),
-														  simplexNoise3(noisePosY.x, noisePosY.y, noisePosY.z),
-														  simplexNoise3(noisePosZ.x, noisePosZ.y, noisePosZ.z));
+		force += turbulenceForce * sys->turbulence * (randomVec + noiseVec);
 		
 		const float particleOppositionForce = 200.0f;
 		const int particlesToConsider = 10;
@@ -141,12 +152,10 @@ void WMParticle::init() {
 		misses++;
 	} while (position.dot(position) > 0.4f * 0.4f);
 	
-	
 	color[0] = 255;
 	color[1] = 255;
 	color[2] = 255;
 	color[3] = 255;
-	textureCoordinate = Vec2(0.5, 0.5);
 }
 
 int particleZCompare(const void *a, const void *b) {
@@ -159,8 +168,9 @@ int particleZCompare(const void *a, const void *b) {
 	[super init];
 	if (self == nil) return self; 
 	
-	maxParticles = 400;
+	maxParticles = 1000;
 	particles = new WMParticle[maxParticles];
+	particleVertices = new WMParticleVertex[maxParticles];
 	for (int i=0; i<maxParticles; i++) {
 		particles[i].init();
 	}
@@ -168,6 +178,15 @@ int particleZCompare(const void *a, const void *b) {
 	zSortParticles = YES;
 	
 	return self;
+}
+
+- (void) dealloc
+{
+	glDeleteBuffers(2, particleVBOs);
+	delete particles;
+	delete particleVertices;
+	
+	[super dealloc];
 }
 
 
@@ -217,28 +236,43 @@ int particleZCompare(const void *a, const void *b) {
 	//Sort particles
 	if (zSortParticles)
 		qsort(particles, maxParticles, sizeof(WMParticle), particleZCompare);
+	
+	if (!particleVBOs[0]) {
+		//Create a VBO to hold our vertex data
+		glGenBuffers(2, particleVBOs);
+	}
+	
+	for (int i=0; i<maxParticles; i++) {
+		particleVertices[i].position = particles[i].position;
+		//copy color as int
+		*((int *)particleVertices[i].color) = *((int *)particles[i].color);
+	}
+	//Swap buffers and write
+	currentParticleVBOIndex = !currentParticleVBOIndex;
+	glBindBuffer(GL_ARRAY_BUFFER, particleVBOs[currentParticleVBOIndex]);
+	glBufferData(GL_ARRAY_BUFFER, maxParticles * sizeof(WMParticleVertex), particleVertices, GL_STREAM_DRAW);
 }
 
 - (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API;
-{
-
-	[self update];
-	
-	if (hidden) return;
+{	
+	if (hidden || !particleVBOs[0]) return;
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+	glDisable(GL_DEPTH_TEST);
 	glDepthMask(GL_FALSE);
 	if (API == kEAGLRenderingAPIOpenGLES2)
     {
         // Use shader program.
         glUseProgram(shader.program);
 		
-		NSUInteger stride = sizeof(WMParticle);
+		NSUInteger stride = sizeof(WMParticleVertex);
 		
+		glBindBuffer(GL_ARRAY_BUFFER, particleVBOs[currentParticleVBOIndex]);
+
         // Update attribute values.
 		GLuint vertexAttribute = [shader attribIndexForName:@"position"];
-        glVertexAttribPointer(vertexAttribute, 3, GL_FLOAT, GL_FALSE, stride, &particles[0].position);
+        glVertexAttribPointer(vertexAttribute, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *)offsetof(struct WMParticleVertex, position));
         glEnableVertexAttribArray(vertexAttribute);
 		
 		
@@ -250,18 +284,18 @@ int particleZCompare(const void *a, const void *b) {
 				glUniform1i(textureUniformLocation, 0); //texture = texture 0
 			}
 			
-			GLuint textureCoordinateAttribute = [shader attribIndexForName:@"textureCoordinate"];
-			if (textureCoordinateAttribute != NSNotFound) {
-				glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, GL_FALSE, stride, &particles[0].textureCoordinate);
-				glEnableVertexAttribArray(textureCoordinateAttribute);
-			}
+			// GLuint textureCoordinateAttribute = [shader attribIndexForName:@"textureCoordinate"];
+			// if (textureCoordinateAttribute != NSNotFound) {
+				// glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, GL_FALSE, stride, &particles[0].textureCoordinate);
+				// glEnableVertexAttribArray(textureCoordinateAttribute);
+			// }
 			
 		}
 		
 		
 		GLuint colorAttribute = [shader attribIndexForName:@"color"];
 		if (colorAttribute != NSNotFound) {
-			glVertexAttribPointer(colorAttribute, 4, GL_UNSIGNED_BYTE, GL_TRUE, stride, &particles[0].color);
+			glVertexAttribPointer(colorAttribute, 4, GL_UNSIGNED_BYTE, GL_TRUE, stride, (GLvoid *)offsetof(WMParticleVertex, color[0]));
 			glEnableVertexAttribArray(colorAttribute);
 		}
 		
@@ -276,14 +310,15 @@ int particleZCompare(const void *a, const void *b) {
             NSLog(@"Failed to validate program in shader: %@", shader);
             return;
         }
+		
 #endif
-    }
-    else
-    {        
+		glDrawArrays(GL_POINTS, 0, maxParticles);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	} else {        
 		//TODO: es1 support
 	}
 	
-	glDrawArrays(GL_POINTS, 0, maxParticles);
+	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
 	glDepthMask(GL_TRUE);
 }

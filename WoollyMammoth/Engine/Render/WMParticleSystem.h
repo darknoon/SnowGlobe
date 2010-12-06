@@ -13,10 +13,16 @@
 
 struct WMParticle;
 
+struct WMParticleVertex;
+
 @interface WMParticleSystem : WMRenderable {
 @public
 	NSUInteger maxParticles;
 	WMParticle *particles;
+	WMParticleVertex *particleVertices;
+	
+	NSUInteger currentParticleVBOIndex;
+	GLuint particleVBOs[2];
 	
 	VECTOR4 startColor;
 	float deltaAlpha;

@@ -33,24 +33,88 @@ struct WMParticle {
 
 void WMParticle::update(double dt, double t, int i, Vec3 gravity, WMParticleSystem *sys) {
 	if (life > 0) {
-		life -= dt;
-		position += dt * velocity;
-		velocity *= 0.99;
-		velocity += 0.1 * gravity * dt;
+		life -= dt;		
 		
+		position += dt * velocity;
+
+		const float mass = 0.01f;
+		//Elasticity of collision with sphere
+		const float elasticity = 0.70f;
+		const float coefficientOfDrag = 0.05f;
+
+		Vec3 force = Vec3(0.0f, 0.0f, 0.0f);
+		force += mass * 0.1 * gravity; // add gravitational force, cheat
+		
+		float v2 = velocity.dot(velocity);
+		float vl = sqrtf(v2);
+		if (v2 > 10.f) {
+			v2 = 10.f;
+		}
+		Vec3 drag = -coefficientOfDrag * v2 * (1.0f/vl) * velocity;
+		force += drag;
+		
+		// TODO: do using force for v^2 drag
+		// velocity *= 0.99;
+		
+		
+		
+		MATRIX ts;
+		MatrixIdentity(ts);
+		
+		
+		float turbulenceForce = 0.1f;
+		const float noiseScale = 5.f;
 		
 		//Disturb randomly
-		Vec3 noisePos = 10.0 * position;
-		velocity += 10.0f * sys->turbulence * dt * Vec3(simplexNoise3(noisePos.x, noisePos.y + 12.2512, noisePos.z + 120.2068365),
-														simplexNoise3(noisePos.x + 78343.632, noisePos.y, noisePos.z + 1242.8365),
-														simplexNoise3(noisePos.x + 267.262, noisePos.y + 12.2512, noisePos.z));
+		Vec3 noisePosX = noiseScale * position + Vec3(0.000000f, 12.252f, 1230.2685f) + t * Vec3(0.2f, 0.0f, 1.2f);
+		Vec3 noisePosY = noiseScale * position + Vec3(7833.632f, 10.002f, 1242.8365f) + t * Vec3(0.0f, 1.0f, 0.2f);
+		Vec3 noisePosZ = noiseScale * position + Vec3(2673.262f, 12.252f, 1582.1523f) + t * Vec3(-1.f, 0.0f, 0.0f);
+		
+		force += turbulenceForce * sys->turbulence * Vec3(simplexNoise3(noisePosX.x, noisePosX.y, noisePosX.z),
+														  simplexNoise3(noisePosY.x, noisePosY.y, noisePosY.z),
+														  simplexNoise3(noisePosZ.x, noisePosZ.y, noisePosZ.z));
+		
+		const float particleOppositionForce = 200.0f;
+		const int particlesToConsider = 10;
+		//Move away from other particles
+		for (int j=MAX(0, i - particlesToConsider/2); j<MIN(i+particlesToConsider/2,sys->maxParticles); j++) {
+			if (i != j) {
+				Vec3 d = (sys->particles[j].position - position);
+				float dist2 = d.dot(d);
+				const float collisionDistance = 0.03f;
+				if (dist2 < collisionDistance * collisionDistance) {
+					//Add a force away from the other particle
+					force += particleOppositionForce * (dist2 - collisionDistance * collisionDistance) * d;
+				}
+			}
+		}
 		
 		const float sphereRadius = 0.6;
 		//Constrain to be inside sphere
 		float distanceFromOrigin2 = position.dot(position);
 		if (distanceFromOrigin2 > sphereRadius * sphereRadius) {
-			position = position.normalize() * sphereRadius;
+			//Normalize vector to constrain to unit sphere
+			position.normalize();
+			
+			//Invert for normal
+			Vec3 normal = -position;
+			
+			//If velocity is heading out of bounds (should always be true)
+			if (velocity.dot(normal) < 0.0f) {
+				velocity = elasticity * (velocity - 2.0f * velocity.dot(normal) * normal);
+			}
+			
+			//Add in normal force
+			if (force.dot(normal) < 0.0f) {
+				force += force.dot(normal) * normal;
+			}
+			
+			//Scale back to sphere size
+			position *= sphereRadius;
 		}
+		
+		const float mass_inv = 1.0f/mass;
+		velocity += force * mass_inv * dt;
 		
 		float bright = 0.85 + 0.1 * position.z;
 		
@@ -68,6 +132,16 @@ void WMParticle::init() {
 	position = Vec3(0,0,0);
 	const float vinitial = 1.0;
 	velocity = Vec3(rng.randF(-vinitial,vinitial), rng.randF(-vinitial,vinitial), rng.randF(-vinitial,vinitial));
+	
+	
+	const float pinitial = 0.6f;
+	int misses = 0;
+	do {
+		position = Vec3(rng.randF(-pinitial,pinitial), rng.randF(-pinitial,pinitial), rng.randF(-pinitial,pinitial));
+		misses++;
+	} while (position.dot(position) > 0.4f * 0.4f);
+	
+	
 	color[0] = 255;
 	color[1] = 255;
 	color[2] = 255;
@@ -111,7 +185,7 @@ int particleZCompare(const void *a, const void *b) {
 	const float turbulenceDecay = 0.99f;
 	const float turbulenceStrength = 0.1f;
 	MATRIX rotation;
-	if (t > 1.0) {
+	if (t > 0.5) {
 		turbulence = turbulence * turbulenceDecay + (1.0 - turbulenceDecay) * turbulenceStrength * (fabsf(rotationRate.x) + fabsf(rotationRate.y) + fabsf(rotationRate.z));
 		turbulence = fmaxf(0.0, fminf(turbulence, 1.0));
 
@@ -173,8 +247,10 @@ int particleZCompare(const void *a, const void *b) {
 			}
 			
 			GLuint textureCoordinateAttribute = [shader attribIndexForName:@"textureCoordinate"];
-			glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, GL_FALSE, stride, &particles[0].textureCoordinate);
-			glEnableVertexAttribArray(textureCoordinateAttribute);
+			if (textureCoordinateAttribute != NSNotFound) {
+				glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, GL_FALSE, stride, &particles[0].textureCoordinate);
+				glEnableVertexAttribArray(textureCoordinateAttribute);
+			}
 			
 		}
 		

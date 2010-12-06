@@ -14,11 +14,10 @@
 struct WMParticle;
 
 @interface WMParticleSystem : WMRenderable {
+@public
 	NSUInteger maxParticles;
-	NSUInteger liveParticles;
 	WMParticle *particles;
 	
-@public
 	VECTOR4 startColor;
 	float deltaAlpha;
 	

@@ -15,7 +15,6 @@
 
 @interface WMAccelerometer : NSObject {
 	float lowPassFactor;
-	Vec3 acceleration;
 	NSTimeInterval lastLogTime;
 	CMMotionManager *motionManager;
 }

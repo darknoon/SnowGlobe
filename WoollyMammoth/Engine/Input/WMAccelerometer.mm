@@ -31,13 +31,15 @@
 	[motionManager startDeviceMotionUpdates];
 	
 	//Device is being held straight up-down unless we hear otherwise
-	acceleration = Vec3(0.0f, 10.0f, 0.0f);
 	
 	return self;
 }
 
 - (Vec3)gravity;
 {
+#if TARGET_IPHONE_SIMULATOR
+	return Vec3(0.0f, -10.0f, 0.0f);
+#endif
 	CMDeviceMotion *motion = [motionManager deviceMotion];
 	if (motion) {
 		CMAcceleration grav = [motion gravity];

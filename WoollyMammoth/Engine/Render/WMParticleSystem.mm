@@ -188,6 +188,10 @@ int particleZCompare(const void *a, const void *b) {
 	if (t > 0.5) {
 		turbulence = turbulence * turbulenceDecay + (1.0 - turbulenceDecay) * turbulenceStrength * (fabsf(rotationRate.x) + fabsf(rotationRate.y) + fabsf(rotationRate.z));
 		turbulence = fmaxf(0.0, fminf(turbulence, 1.0));
+		
+#if TARGET_IPHONE_SIMULATOR
+		turbulence = 0.5;
+#endif
 
 		MATRIX rotX;
 		MATRIX rotY;

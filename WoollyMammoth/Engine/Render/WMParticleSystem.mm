@@ -26,9 +26,11 @@ struct WMParticle {
 	float life;
 	Vec3 position;
 	Vec3 velocity;
+	Vec3 noiseVec;
 	unsigned char color[4];
 	void update(double dt, double t, int i, Vec3 gravity, WMParticleSystem *sys);
 	void init();
+	void updateNoise(double t);
 };
 
 struct WMParticleVertex {
@@ -36,6 +38,18 @@ struct WMParticleVertex {
 	unsigned char color[4];
 };
 
+void WMParticle::updateNoise(double t) {
+	const float noiseScale = 5.f;
+	//Disturb randomly
+	Vec3 noisePosX = noiseScale * position + Vec3(0.000000f, 12.252f, 1230.2685f) + t * Vec3(0.2f, 0.0f, 1.2f);
+	Vec3 noisePosY = noiseScale * position + Vec3(7833.632f, 10.002f, 1242.8365f) + t * Vec3(0.0f, 1.0f, 0.2f);
+	Vec3 noisePosZ = noiseScale * position + Vec3(2673.262f, 12.252f, 1582.1523f) + t * Vec3(-1.f, 0.0f, 0.0f);
+	
+	noiseVec = Vec3(simplexNoise3(noisePosX.x, noisePosX.y, noisePosX.z),
+					simplexNoise3(noisePosY.x, noisePosY.y, noisePosY.z),
+					simplexNoise3(noisePosZ.x, noisePosZ.y, noisePosZ.z));
+	
+}
 
 void WMParticle::update(double dt, double t, int i, Vec3 gravity, WMParticleSystem *sys) {
 	if (life > 0) {
@@ -69,23 +83,9 @@ void WMParticle::update(double dt, double t, int i, Vec3 gravity, WMParticleSyst
 		
 		
 		float turbulenceForce = 0.1f;
-		const float noiseScale = 5.f;
 		
-		//Disturb randomly
-		Vec3 noisePosX = noiseScale * position + Vec3(0.000000f, 12.252f, 1230.2685f) + t * Vec3(0.2f, 0.0f, 1.2f);
-		Vec3 noisePosY = noiseScale * position + Vec3(7833.632f, 10.002f, 1242.8365f) + t * Vec3(0.0f, 1.0f, 0.2f);
-		Vec3 noisePosZ = noiseScale * position + Vec3(2673.262f, 12.252f, 1582.1523f) + t * Vec3(-1.f, 0.0f, 0.0f);
-
-#if 1
-		Vec3 noiseVec = Vec3(simplexNoise3(noisePosX.x, noisePosX.y, noisePosX.z),
-							 simplexNoise3(noisePosY.x, noisePosY.y, noisePosY.z),
-							 simplexNoise3(noisePosZ.x, noisePosZ.y, noisePosZ.z));
-#else
-		Vec3 noiseVec = Vec3(0.0f);
-#endif
-		Vec3 randomVec = Vec3(rng.randF(-1.0f, 1.0f), rng.randF(-1.0f, 1.0f), rng.randF(-1.0f, 1.0f));
-		
-		force += turbulenceForce * sys->turbulence * (randomVec + noiseVec);
+	//	Vec3 randomVec = Vec3(rng.randF(-1.0f, 1.0f), rng.randF(-1.0f, 1.0f), rng.randF(-1.0f, 1.0f));
+		force += turbulenceForce * sys->turbulence * noiseVec;
 		
 		const float particleOppositionForce = 200.0f;
 		const int particlesToConsider = 10;
@@ -146,6 +146,7 @@ void WMParticle::init() {
 	const float vinitial = 1.0;
 	velocity = Vec3(rng.randF(-vinitial,vinitial), rng.randF(-vinitial,vinitial), rng.randF(-vinitial,vinitial));
 	
+	noiseVec = Vec3(0.0f);
 	
 	const float pinitial = 0.6f;
 	int misses = 0;
@@ -166,8 +167,6 @@ int particleZCompare(const void *a, const void *b) {
 
 @implementation WMParticleSystem
 
-@synthesize blurTexture;
-
 - (id)initWithEngine:(WMEngine *)inEngine properties:(NSDictionary *)renderableRepresentation;
 {
 	[super initWithEngine:inEngine properties:renderableRepresentation];
@@ -179,6 +178,9 @@ int particleZCompare(const void *a, const void *b) {
 	for (int i=0; i<maxParticles; i++) {
 		particles[i].init();
 	}
+	
+	particleUpdateSkip = 6;
+	particleUpdateIndex = 0;
 	
 	zSortParticles = YES;
 	
@@ -231,6 +233,10 @@ int particleZCompare(const void *a, const void *b) {
 		MatrixIdentity(rotation);
 	}
 
+	for (int i=particleUpdateIndex; i<maxParticles; i+=particleUpdateSkip) {
+		particles[i].updateNoise(t);
+	}
+	//Update particles
 	for (int i=0; i<maxParticles; i++) {
 		particles[i].update(dt, t, i, gravity, self);
 
@@ -238,15 +244,16 @@ int particleZCompare(const void *a, const void *b) {
 		MatrixVec3Multiply(particles[i].position, particles[i].position, rotation);
 	}
 	
+	
 	//Sort particles
 	if (zSortParticles)
 		qsort(particles, maxParticles, sizeof(WMParticle), particleZCompare);
 	
+	//Copy particles to VBO
 	if (!particleVBOs[0]) {
 		//Create a VBO to hold our vertex data
 		glGenBuffers(2, particleVBOs);
 	}
-	
 	for (int i=0; i<maxParticles; i++) {
 		particleVertices[i].position = particles[i].position;
 		//copy color as int

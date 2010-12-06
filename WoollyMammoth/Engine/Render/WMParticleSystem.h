@@ -18,7 +18,12 @@ struct WMParticleVertex;
 @interface WMParticleSystem : WMRenderable {
 @public
 	NSUInteger maxParticles;
+	//Evaluates the noise function for every nth particle
+	NSUInteger particleUpdateSkip;
+	//The current index modulo particleUpdateSkip to start
+	NSUInteger particleUpdateIndex;
 	WMParticle *particles;
+	
 	WMParticleVertex *particleVertices;
 	
 	NSUInteger currentParticleVBOIndex;

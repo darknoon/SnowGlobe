@@ -42,37 +42,7 @@
 		}
 	}
 	//TODO: can we simplify this? How can we make the renderable dynamic
-	WMRenderable *renderable = [[[renderableClass alloc] init] autorelease];
-	
-	NSString *modelName = [renderableRepresentation objectForKey:@"model"];
-	if (modelName) {
-		renderable.model = [inEngine.assetManager modelWithName:modelName];
-		if (!renderable.model) {
-			NSLog(@"Couldn't find model %@", modelName);
-			return nil;
-		}
-	}
-	
-	NSString *shaderName = [renderableRepresentation objectForKey:@"shader"];
-	if (shaderName) {
-		renderable.shader = [inEngine.assetManager shaderWithName:shaderName];
-		if (!renderable.shader) {
-			NSLog(@"Couldn't find shader %@", shaderName);
-			return nil;
-		}
-	}
-	
-	NSString *textureName = [renderableRepresentation objectForKey:@"texture"];
-	if (textureName) {
-		renderable.texture = [inEngine.assetManager textureWithName:textureName];
-		if (!renderable.texture) {
-			NSLog(@"Couldn't find texture: %@", textureName);
-			return nil;
-		}
-	}
-	
-	//Default = NO
-	renderable.hidden = [[renderableRepresentation objectForKey:@"hidden"] boolValue];
+	WMRenderable *renderable = [[[renderableClass alloc] initWithEngine:inEngine properties:renderableRepresentation] autorelease];
 
 	return renderable;
 }

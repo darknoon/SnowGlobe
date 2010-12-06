@@ -13,6 +13,9 @@
 #import "WMModelPOD.h"
 #import "WMTextureAsset.h"
 
+#import "WMEngine.h"
+#import "WMAssetManager.h"
+
 @implementation WMRenderable
 
 @synthesize hidden;
@@ -38,6 +41,45 @@
 	[super init];
 	if (self == nil) return self; 
 			
+	return self;
+}
+
+- (id)initWithEngine:(WMEngine *)inEngine properties:(NSDictionary *)renderableRepresentation;
+{
+	self = [self init];
+	if (!self) return nil;
+	
+	NSString *modelName = [renderableRepresentation objectForKey:@"model"];
+	if (modelName) {
+		self.model = [inEngine.assetManager modelWithName:modelName];
+		if (!self.model) {
+			NSLog(@"Couldn't find model %@", modelName);
+			return nil;
+		}
+	}
+	
+	NSString *shaderName = [renderableRepresentation objectForKey:@"shader"];
+	if (shaderName) {
+		self.shader = [inEngine.assetManager shaderWithName:shaderName];
+		if (!self.shader) {
+			NSLog(@"Couldn't find shader %@", shaderName);
+			return nil;
+		}
+	}
+	
+	NSString *textureName = [renderableRepresentation objectForKey:@"texture"];
+	if (textureName) {
+		self.texture = [inEngine.assetManager textureWithName:textureName];
+		if (!self.texture) {
+			NSLog(@"Couldn't find texture: %@", textureName);
+			return nil;
+		}
+	}
+	
+	//Default = NO
+	self.hidden = [[renderableRepresentation objectForKey:@"hidden"] boolValue];
+	
+	
 	return self;
 }
 

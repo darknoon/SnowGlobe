@@ -13,6 +13,8 @@
 #import "WMShader.h"
 #import "WMTextureAsset.h"
 #import "WMAccelerometer.h"
+#import "WMEngine.h"
+#import "WMAssetManager.h"
 
 extern "C" {
 #import "SimplexNoise.h"
@@ -164,8 +166,11 @@ int particleZCompare(const void *a, const void *b) {
 
 @implementation WMParticleSystem
 
-- (id) init {
-	[super init];
+@synthesize blurTexture;
+
+- (id)initWithEngine:(WMEngine *)inEngine properties:(NSDictionary *)renderableRepresentation;
+{
+	[super initWithEngine:inEngine properties:renderableRepresentation];
 	if (self == nil) return self; 
 	
 	maxParticles = 1000;
@@ -185,7 +190,7 @@ int particleZCompare(const void *a, const void *b) {
 	glDeleteBuffers(2, particleVBOs);
 	delete particles;
 	delete particleVertices;
-	
+
 	[super dealloc];
 }
 
@@ -250,7 +255,7 @@ int particleZCompare(const void *a, const void *b) {
 	//Swap buffers and write
 	currentParticleVBOIndex = !currentParticleVBOIndex;
 	glBindBuffer(GL_ARRAY_BUFFER, particleVBOs[currentParticleVBOIndex]);
-	glBufferData(GL_ARRAY_BUFFER, maxParticles * sizeof(WMParticleVertex), particleVertices, GL_STREAM_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, maxParticles * sizeof(WMParticleVertex), particleVertices, GL_DYNAMIC_DRAW);
 }
 
 - (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API;

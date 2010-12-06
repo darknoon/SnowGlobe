@@ -16,6 +16,7 @@
 @class WMShader;
 @class WMTextureAsset;
 @class WMModelPOD;
+@class WMEngine;
 
 @interface WMRenderable : NSObject {
 	WMShader *shader;
@@ -25,6 +26,8 @@
 	BOOL hidden;
 	NSObject<WMRenderableDataSource> *model;
 }
+
+- (id)initWithEngine:(WMEngine *)inEngine properties:(NSDictionary *)renderableRepresentation;
 
 @property (nonatomic, assign) BOOL hidden;
 @property (nonatomic, retain) WMTextureAsset *texture;

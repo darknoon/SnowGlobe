@@ -8,7 +8,6 @@
 
 uniform sampler2D texture;
 
-varying mediump vec3 v_normal;
 varying mediump vec2 v_tc;
 
 void main()

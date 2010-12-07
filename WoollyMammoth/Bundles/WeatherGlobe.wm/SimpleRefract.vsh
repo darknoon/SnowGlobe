@@ -11,7 +11,6 @@ attribute vec3 normal;
 
 uniform mat4 modelViewProjectionMatrix;
 
-varying mediump vec3 v_normal;
 varying mediump vec2 v_tc;
 
 void myRefract(in highp vec3 incom, in highp vec3 normal, 
@@ -62,7 +61,6 @@ void main()
 			  reflectance,
 			  transmittance);
 	
-	v_normal = normal;
 	//Need to flip the tc for some reason
 	v_tc = reflectionVector.yx;
 }

@@ -19,6 +19,7 @@
 
 //Fixed assets
 #import "WMQuad.h"
+#import "WMSphere.h"
 #import "WMCameraInputTexture.h"
 
 #import "WMAssetManifest.h"
@@ -127,6 +128,7 @@ const NSUInteger WMAssetManagerManifestMinimumVersionReadable = 1;
 - (void)addFixedAssets;
 {
 	[models setObject:[[[WMQuad alloc] init] autorelease] forKey:@"WMQuad"];
+	[models setObject:[[[WMSphere alloc] init] autorelease] forKey:@"WMSphere"];
 	[textures setObject:[[[WMCameraInputTexture alloc] initWithResourceName:nil properties:nil assetManager:self] autorelease] forKey:@"CameraInput"];
 }
 

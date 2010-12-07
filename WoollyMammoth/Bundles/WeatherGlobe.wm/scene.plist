@@ -16,9 +16,9 @@
 		<string></string>
 		<key>scale</key>
 		<array>
-			<integer>45</integer>
-			<integer>45</integer>
-			<integer>45</integer>
+			<integer>1</integer>
+			<integer>1</integer>
+			<integer>1</integer>
 		</array>
 		<key>renderable</key>
 		<dict>
@@ -54,6 +54,31 @@
 					<string>SnowParticle</string>
 					<key>texture</key>
 					<string>SnowChunk.png</string>
+				</dict>
+				<key>children</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>objectId</key>
+				<integer>3</integer>
+				<key>notes</key>
+				<string>Backing Sphere</string>
+				<key>script</key>
+				<string></string>
+				<key>scale</key>
+				<array>
+					<integer>1</integer>
+					<integer>1</integer>
+					<integer>1</integer>
+				</array>
+				<key>renderable</key>
+				<dict>
+					<key>shader</key>
+					<string>SimpleRefract</string>
+					<key>model</key>
+					<string>WMSphere</string>
+					<key>texture</key>
+					<string>CameraInput</string>
 				</dict>
 				<key>children</key>
 				<array/>

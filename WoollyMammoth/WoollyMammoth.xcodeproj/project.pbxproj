@@ -99,6 +99,7 @@
 		49E81DFD127130FD00127D48 /* xButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DFB127130FD00127D48 /* xButton.png */; };
 		49E81DFE127130FD00127D48 /* xButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DFC127130FD00127D48 /* xButtonPressed.png */; };
 		49E81F1E12714CB900127D48 /* WMQuad.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49E81F1D12714CB900127D48 /* WMQuad.mm */; };
+		49E8AD9E12AD7A9A00FF68E3 /* WMSphere.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49E8AD9D12AD7A9A00FF68E3 /* WMSphere.mm */; };
 		49E9D192127CB95600010020 /* WMLuaScript.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49E9D191127CB95600010020 /* WMLuaScript.mm */; };
 		49E9D2B6127CDF7100010020 /* WMGameObject.lua in Resources */ = {isa = PBXBuildFile; fileRef = 49E9D2B5127CDF7100010020 /* WMGameObject.lua */; };
 		49E9D2BB127D04EB00010020 /* complex.lua in Resources */ = {isa = PBXBuildFile; fileRef = 49E9D2B9127D04EB00010020 /* complex.lua */; };
@@ -323,6 +324,8 @@
 		49E81F1C12714CB900127D48 /* WMQuad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMQuad.h; sourceTree = "<group>"; };
 		49E81F1D12714CB900127D48 /* WMQuad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMQuad.mm; sourceTree = "<group>"; };
 		49E81F6A127151DF00127D48 /* WMRenderableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRenderableDataSource.h; sourceTree = "<group>"; };
+		49E8AD9C12AD7A9A00FF68E3 /* WMSphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSphere.h; sourceTree = "<group>"; };
+		49E8AD9D12AD7A9A00FF68E3 /* WMSphere.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMSphere.mm; sourceTree = "<group>"; };
 		49E9D190127CB95600010020 /* WMLuaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLuaScript.h; sourceTree = "<group>"; };
 		49E9D191127CB95600010020 /* WMLuaScript.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMLuaScript.mm; sourceTree = "<group>"; };
 		49E9D2B5127CDF7100010020 /* WMGameObject.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WMGameObject.lua; sourceTree = "<group>"; };
@@ -565,6 +568,8 @@
 				4940DCEA12669B1A007FA76C /* WMRenderable.mm */,
 				49C978A712A234A2004258E4 /* WMParticleSystem.h */,
 				49C978A812A234A2004258E4 /* WMParticleSystem.mm */,
+				49E8AD9C12AD7A9A00FF68E3 /* WMSphere.h */,
+				49E8AD9D12AD7A9A00FF68E3 /* WMSphere.mm */,
 				49E81F1C12714CB900127D48 /* WMQuad.h */,
 				49E81F1D12714CB900127D48 /* WMQuad.mm */,
 				49E81F6A127151DF00127D48 /* WMRenderableDataSource.h */,
@@ -1033,6 +1038,7 @@
 				49C978A912A234A2004258E4 /* WMParticleSystem.mm in Sources */,
 				49C97A6B12A33FEC004258E4 /* SimplexNoise.c in Sources */,
 				498FCD4E12AB18F900CF48A3 /* WMAccelerometer.mm in Sources */,
+				49E8AD9E12AD7A9A00FF68E3 /* WMSphere.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

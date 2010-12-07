@@ -84,7 +84,7 @@ void LogMatrix(MATRIX mat) {
 	//glDepthRangef(near, far);
 	
 	MATRIX viewMatrix;
-	Vec3 cameraPosition(0, 0, 100);
+	Vec3 cameraPosition(0, 0, 3.0f);
 	Vec3 cameraTarget(0, 0, 0);
 	Vec3 upVec(0, 1, 0);
 	MatrixLookAtRH(viewMatrix, cameraPosition, cameraTarget, upVec);

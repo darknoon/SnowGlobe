@@ -49,6 +49,19 @@
 				<string>texture</string>
 			</array>
 		</dict>
+		<key>SimpleRefract</key>
+		<dict>
+			<key>attributeNames</key>
+			<array>
+				<string>position</string>
+				<string>normal</string>
+			</array>
+			<key>uniformNames</key>
+			<array>
+				<string>modelViewProjectionMatrix</string>
+				<string>texture</string>
+			</array>
+		</dict>
 	</dict>
 	<key>textures</key>
 	<dict>

@@ -99,26 +99,28 @@
 
 		NSUInteger stride = [model interleavedDataStride];
 		
-        // Update attribute values.
+		// Update attribute values.
 		GLuint vertexAttribute = [shader attribIndexForName:@"position"];
-        glVertexAttribPointer(vertexAttribute, 3, GL_FLOAT, GL_FALSE, stride, [model vertexDataPointer]);
-        glEnableVertexAttribArray(vertexAttribute);
-
+		glVertexAttribPointer(vertexAttribute, 3, GL_FLOAT, GL_FALSE, stride, [model vertexDataPointer]);
+		glEnableVertexAttribArray(vertexAttribute);
 		
-		if (texture) {
+		GLuint normalAttribute = [shader attribIndexForName:@"normal"];
+		if (normalAttribute != NSNotFound && [model normalCoordDataPointer] != NULL) {
+			glVertexAttribPointer(normalAttribute, 3, GL_FLOAT, GL_FALSE, stride, [model normalCoordDataPointer]);
+			glEnableVertexAttribArray(normalAttribute);
+		}
+		
+		int textureUniformLocation = [shader uniformLocationForName:@"texture"];
+		if (texture && textureUniformLocation != -1) {
 			glBindTexture(GL_TEXTURE_2D, [texture glTexture]);
-			
-			int textureUniformLocation = [shader uniformLocationForName:@"texture"];
-			if (textureUniformLocation != -1) {
-				glUniform1i(textureUniformLocation, 0); //texture = texture 0
-			}
-
-			GLuint textureCoordinateAttribute = [shader attribIndexForName:@"textureCoordinate"];
+			glUniform1i(textureUniformLocation, 0); //texture = texture 0
+		}
+		
+		GLuint textureCoordinateAttribute = [shader attribIndexForName:@"textureCoordinate"];
+		if (textureCoordinateAttribute != NSNotFound) {
 			glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, GL_FALSE, stride, [model textureCoordDataPointer]);
 			glEnableVertexAttribArray(textureCoordinateAttribute);
-
 		}
-
 		
 		// GLuint colorAttribute = [shader attribIndexForName:@"color"];
         // glVertexAttribPointer(colorAttribute, 4, GL_UNSIGNED_BYTE, 1, 0, squareColors);
@@ -136,6 +138,15 @@
             return;
         }
 #endif
+		
+		glDrawElements(GL_TRIANGLES, [model numberOfTriangles] * 3, [model triangleIndexType], [model triangleIndexPointer]);
+		
+		if (textureCoordinateAttribute != NSNotFound) {
+			glDisableVertexAttribArray(textureCoordinateAttribute);
+		}
+		if (normalAttribute != -1) {
+			glDisableVertexAttribArray(normalAttribute);
+		}
     }
     else
     {        
@@ -146,7 +157,6 @@
 		glDrawArrays(GL_POINTS, 0, [model numberOfVertices]);
 	}
     	
-	glDrawElements(GL_TRIANGLES, [model numberOfTriangles] * 3, [model triangleIndexType], [model triangleIndexPointer]);
 
 }
 @end

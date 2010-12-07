@@ -304,7 +304,6 @@ int particleZCompare(const void *a, const void *b) {
 			
 		}
 		
-		
 		GLuint colorAttribute = [shader attribIndexForName:@"color"];
 		if (colorAttribute != NSNotFound) {
 			glVertexAttribPointer(colorAttribute, 4, GL_UNSIGNED_BYTE, GL_TRUE, stride, (GLvoid *)offsetof(WMParticleVertex, color[0]));
@@ -325,7 +324,9 @@ int particleZCompare(const void *a, const void *b) {
 		
 #endif
 		glDrawArrays(GL_POINTS, 0, maxParticles);
+
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glDisableVertexAttribArray(vertexAttribute);
 	} else {        
 		//TODO: es1 support
 	}

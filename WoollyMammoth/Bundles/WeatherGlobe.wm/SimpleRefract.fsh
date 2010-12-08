@@ -13,6 +13,5 @@ varying mediump vec2 v_tc;
 void main()
 {
 	mediump vec2 outTC = 0.5 * v_tc.xy + vec2(0.5);
-
-    gl_FragColor = texture2D(texture, outTC);
+    gl_FragColor = 0.8 * texture2D(texture, outTC);
 }

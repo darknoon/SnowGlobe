@@ -28,7 +28,7 @@ struct WMSphereVertex {
 	unum = 50;
 	vnum = 50;
 	
-	radius = 0.8f;
+	radius = 0.6f;
 	
 	vertexData = new WMSphereVertex[unum * vnum];
 	if (!vertexData) {

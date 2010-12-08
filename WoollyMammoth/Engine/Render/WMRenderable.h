@@ -18,14 +18,18 @@
 @class WMModelPOD;
 @class WMEngine;
 
+
 @interface WMRenderable : NSObject {
 	WMShader *shader;
 	//TODO: how should we handle multi-texturing?
 	//Move into shader?
 	WMTextureAsset *texture;
+	NSString *blendMode;
 	BOOL hidden;
 	NSObject<WMRenderableDataSource> *model;
 }
+
+@property (nonatomic, copy) NSString *blendMode;
 
 - (id)initWithEngine:(WMEngine *)inEngine properties:(NSDictionary *)renderableRepresentation;
 

@@ -16,7 +16,11 @@
 
 @interface WMTextureAsset : WMAsset {
 	Texture2D *texture;
+	
+	NSString *type;
 }
+
+@property (nonatomic, copy) NSString *type;
 
 - (GLuint)glTexture;
 

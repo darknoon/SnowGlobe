@@ -72,7 +72,7 @@ void LogMatrix(MATRIX mat) {
 	glCullFace(GL_BACK);
 	
 	MATRIX projectionMatrix;
-	GLfloat viewAngle = 45.f * M_PI / 180.0f;
+	GLfloat viewAngle = 35.f * M_PI / 180.0f;
 	
 	const float near = 0.1;
 	const float far = 1000.0;

@@ -11,6 +11,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
+		4911691D12AF2615004CE4B1 /* GLDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 4911690D12AF2591004CE4B1 /* GLDefines.m */; };
 		49191F4D1287CF8E008F6C88 /* WMDebugChannel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49191F4A1287CF8E008F6C88 /* WMDebugChannel.mm */; };
 		49191F4E1287CF8E008F6C88 /* WMScriptingContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49191F4C1287CF8E008F6C88 /* WMScriptingContext.mm */; };
 		49191F521287D202008F6C88 /* WMScriptInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 49191F511287D202008F6C88 /* WMScriptInstance.m */; };
@@ -58,7 +59,9 @@
 		4940D92012658B37007FA76C /* WMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4940D91F12658B37007FA76C /* WMViewController.xib */; };
 		4940D97612658E4B007FA76C /* WMRenderEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D97512658E4B007FA76C /* WMRenderEngine.mm */; };
 		4940DCEB12669B1A007FA76C /* WMRenderable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940DCEA12669B1A007FA76C /* WMRenderable.mm */; };
+		4949A0B112AF189A009749D4 /* DNAssertionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4949A0B012AF189A009749D4 /* DNAssertionHandler.m */; };
 		49570A16127A52250007280E /* WMSceneDescription.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49570A15127A52250007280E /* WMSceneDescription.mm */; };
+		498B916D12AEDF9E0025CEA6 /* WMTextureCubeMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 498B916C12AEDF9E0025CEA6 /* WMTextureCubeMap.m */; };
 		498FCD4E12AB18F900CF48A3 /* WMAccelerometer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 498FCD4D12AB18F900CF48A3 /* WMAccelerometer.mm */; };
 		498FCDFA12AB234C00CF48A3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498FCDF912AB234C00CF48A3 /* CoreMotion.framework */; };
 		49C54F2A126962A50093FAFD /* JGResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C54F29126962A50093FAFD /* JGResource.m */; };
@@ -119,6 +122,7 @@
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* WoollyMammoth_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WoollyMammoth_Prefix.pch; sourceTree = "<group>"; };
+		4911690D12AF2591004CE4B1 /* GLDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDefines.m; sourceTree = "<group>"; };
 		49191F491287CF8E008F6C88 /* WMDebugChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDebugChannel.h; sourceTree = "<group>"; };
 		49191F4A1287CF8E008F6C88 /* WMDebugChannel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMDebugChannel.mm; sourceTree = "<group>"; };
 		49191F4B1287CF8E008F6C88 /* WMScriptingContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScriptingContext.h; sourceTree = "<group>"; };
@@ -208,8 +212,13 @@
 		4940DCE912669B1A007FA76C /* WMRenderable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRenderable.h; sourceTree = "<group>"; };
 		4940DCEA12669B1A007FA76C /* WMRenderable.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMRenderable.mm; sourceTree = "<group>"; };
 		4940DCF212669BFA007FA76C /* WMRenderCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRenderCommon.h; sourceTree = "<group>"; };
+		4949A0A412AF17FD009749D4 /* GLDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDefines.h; sourceTree = "<group>"; };
+		4949A0AF12AF189A009749D4 /* DNAssertionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNAssertionHandler.h; sourceTree = "<group>"; };
+		4949A0B012AF189A009749D4 /* DNAssertionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNAssertionHandler.m; sourceTree = "<group>"; };
 		49570A14127A52250007280E /* WMSceneDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSceneDescription.h; sourceTree = "<group>"; };
 		49570A15127A52250007280E /* WMSceneDescription.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMSceneDescription.mm; sourceTree = "<group>"; };
+		498B916B12AEDF9E0025CEA6 /* WMTextureCubeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTextureCubeMap.h; sourceTree = "<group>"; };
+		498B916C12AEDF9E0025CEA6 /* WMTextureCubeMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTextureCubeMap.m; sourceTree = "<group>"; };
 		498FCD4C12AB18F900CF48A3 /* WMAccelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAccelerometer.h; sourceTree = "<group>"; };
 		498FCD4D12AB18F900CF48A3 /* WMAccelerometer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMAccelerometer.mm; sourceTree = "<group>"; };
 		498FCDF912AB234C00CF48A3 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -543,6 +552,8 @@
 				49D102C51270C55E007E143E /* WMDebugViewController.xib */,
 				4940D8DF12658992007FA76C /* WoollyMammothAppDelegate.h */,
 				4940D8E012658992007FA76C /* WoollyMammothAppDelegate.m */,
+				4949A0AF12AF189A009749D4 /* DNAssertionHandler.h */,
+				4949A0B012AF189A009749D4 /* DNAssertionHandler.m */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -561,6 +572,8 @@
 		4940D97312658E1B007FA76C /* Render */ = {
 			isa = PBXGroup;
 			children = (
+				4949A0A412AF17FD009749D4 /* GLDefines.h */,
+				4911690D12AF2591004CE4B1 /* GLDefines.m */,
 				4940DCF212669BFA007FA76C /* WMRenderCommon.h */,
 				4940D97412658E4B007FA76C /* WMRenderEngine.h */,
 				4940D97512658E4B007FA76C /* WMRenderEngine.mm */,
@@ -841,6 +854,8 @@
 				49D101F71270BB85007E143E /* WMShader.m */,
 				49D101EE1270BB85007E143E /* Texture2D.h */,
 				49D101EF1270BB85007E143E /* Texture2D.m */,
+				498B916B12AEDF9E0025CEA6 /* WMTextureCubeMap.h */,
+				498B916C12AEDF9E0025CEA6 /* WMTextureCubeMap.m */,
 				49570A14127A52250007280E /* WMSceneDescription.h */,
 				49570A15127A52250007280E /* WMSceneDescription.mm */,
 				49E9D190127CB95600010020 /* WMLuaScript.h */,
@@ -1039,6 +1054,9 @@
 				49C97A6B12A33FEC004258E4 /* SimplexNoise.c in Sources */,
 				498FCD4E12AB18F900CF48A3 /* WMAccelerometer.mm in Sources */,
 				49E8AD9E12AD7A9A00FF68E3 /* WMSphere.mm in Sources */,
+				498B916D12AEDF9E0025CEA6 /* WMTextureCubeMap.m in Sources */,
+				4949A0B112AF189A009749D4 /* DNAssertionHandler.m in Sources */,
+				4911691D12AF2615004CE4B1 /* GLDefines.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

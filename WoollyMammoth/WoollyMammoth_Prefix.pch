@@ -10,7 +10,6 @@
 
 #import <TargetConditionals.h>
 
-#define DEBUG_GL 0
 
 
 #ifdef DEBUG
@@ -29,19 +28,7 @@
 
 #define ZAssert(condition, ...) do { if (!(condition)) { ALog(__VA_ARGS__); }} while(0)
 
-
-
-
-#if DEBUG_GL
-#warning Debug GL on. Performace may be slower.
-#define GL_CHECK_ERROR \
-{\
-GLenum _glError = glGetError();\
-ZAssert(_glError == GL_NO_ERROR, @"GL error %d", _glError);\
-}
-#else
-#define GL_CHECK_ERROR
-#endif
+#import "GLDefines.h"
 
 
 #ifdef __OBJC__

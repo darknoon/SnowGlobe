@@ -16,8 +16,12 @@
 #import "WMEngine.h"
 #import "WMAssetManager.h"
 
+NSString *WMRenderableBlendModeAdd = @"add";
+NSString *WMRenderableBlendModeNormal = @"normal";
+
 @implementation WMRenderable
 
+@synthesize blendMode;
 @synthesize hidden;
 @synthesize texture;
 @synthesize shader;
@@ -33,6 +37,9 @@
 	[texture release];
 	texture = nil;
 
+
+	[blendMode release];
+	blendMode = nil;
 
 	[super dealloc];
 }
@@ -79,6 +86,8 @@
 	//Default = NO
 	self.hidden = [[renderableRepresentation objectForKey:@"hidden"] boolValue];
 	
+	self.blendMode = [renderableRepresentation objectForKey:@"blendMode"];
+	ZAssert([blendMode isEqualToString:WMRenderableBlendModeAdd] || [blendMode isEqualToString:WMRenderableBlendModeNormal] || !blendMode, @"Invalid blending mode");
 	
 	return self;
 }
@@ -92,6 +101,7 @@
 {
 	if (!model || hidden) return;
 	
+	GL_CHECK_ERROR;
 	if (API == kEAGLRenderingAPIOpenGLES2)
     {
         // Use shader program.
@@ -112,8 +122,16 @@
 		
 		int textureUniformLocation = [shader uniformLocationForName:@"texture"];
 		if (texture && textureUniformLocation != -1) {
-			glBindTexture(GL_TEXTURE_2D, [texture glTexture]);
+			GL_CHECK_ERROR;
+			if ([texture.type isEqualToString:@"cubemap"]) {
+				glBindTexture(GL_TEXTURE_CUBE_MAP, [texture glTexture]);
+			} else {
+				glBindTexture(GL_TEXTURE_2D, [texture glTexture]);
+			}
+			GL_CHECK_ERROR;
+
 			glUniform1i(textureUniformLocation, 0); //texture = texture 0
+			GL_CHECK_ERROR;
 		}
 		
 		GLuint textureCoordinateAttribute = [shader attribIndexForName:@"textureCoordinate"];
@@ -139,6 +157,15 @@
         }
 #endif
 		
+		//set blending
+		if ([blendMode isEqualToString:WMRenderableBlendModeAdd]) {
+			glEnable(GL_BLEND);
+			glBlendFunc(GL_ONE, GL_ONE);
+		} else {
+			glDisable(GL_BLEND);
+		}
+
+
 		glDrawElements(GL_TRIANGLES, [model numberOfTriangles] * 3, [model triangleIndexType], [model triangleIndexPointer]);
 		
 		if (textureCoordinateAttribute != NSNotFound) {
@@ -147,6 +174,7 @@
 		if (normalAttribute != -1) {
 			glDisableVertexAttribArray(normalAttribute);
 		}
+
     }
     else
     {        
@@ -157,6 +185,7 @@
 		glDrawArrays(GL_POINTS, 0, [model numberOfVertices]);
 	}
     	
+	GL_CHECK_ERROR;
 
 }
 @end

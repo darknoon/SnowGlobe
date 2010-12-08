@@ -12,6 +12,8 @@
 #import "WMEngine.h"
 #import "WMViewController.h"
 
+#import "DNAssertionHandler.h"
+
 @implementation WoollyMammothAppDelegate
 
 @synthesize window;
@@ -21,6 +23,9 @@
 {
 	[window addSubview:viewController.view];
 	[window makeKeyWindow];
+	
+	//Set our assertion handler
+	[[[NSThread currentThread] threadDictionary] setObject:[[[DNAssertionHandler alloc] init] autorelease] forKey:NSAssertionHandlerKey];
 	
 	return YES;
 }

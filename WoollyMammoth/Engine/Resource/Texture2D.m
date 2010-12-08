@@ -143,8 +143,6 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	void*					data = nil;;
 	CGColorSpaceRef			colorSpace;
 	void*					tempData;
-	unsigned int*			inPixel32;
-	unsigned short*			outPixel16;
 	BOOL					hasAlpha;
 	CGImageAlphaInfo		info;
 	CGAffineTransform		transform;
@@ -231,8 +229,12 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	if(!CGAffineTransformIsIdentity(transform))
 		CGContextConcatCTM(context, transform);
 	CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image), CGImageGetHeight(image)), image);
-	//Convert "RRRRRRRRRGGGGGGGGBBBBBBBBAAAAAAAA" to "RRRRRGGGGGGBBBBB"
+
 	if(pixelFormat == kTexture2DPixelFormat_RGB565) {
+		//Convert "RRRRRRRRRGGGGGGGGBBBBBBBBAAAAAAAA" to "RRRRRGGGGGGBBBBB"
+		unsigned int*			inPixel32;
+		unsigned short*			outPixel16;
+
 		tempData = malloc(height * width * 2);
 		inPixel32 = (unsigned int*)data;
 		outPixel16 = (unsigned short*)tempData;
@@ -240,8 +242,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 			*outPixel16++ = ((((*inPixel32 >> 0) & 0xFF) >> 3) << 11) | ((((*inPixel32 >> 8) & 0xFF) >> 2) << 5) | ((((*inPixel32 >> 16) & 0xFF) >> 3) << 0);
 		free(data);
 		data = tempData;
-		
 	}
+	
 	self = [self initWithData:data pixelFormat:pixelFormat pixelsWide:width pixelsHigh:height contentSize:imageSize];
 	
 	CGContextRelease(context);

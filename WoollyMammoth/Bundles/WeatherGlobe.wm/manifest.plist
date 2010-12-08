@@ -62,11 +62,29 @@
 				<string>texture</string>
 			</array>
 		</dict>
+		<key>CubeMapReflect</key>
+		<dict>
+			<key>attributeNames</key>
+			<array>
+				<string>position</string>
+				<string>normal</string>
+			</array>
+			<key>uniformNames</key>
+			<array>
+				<string>modelViewProjectionMatrix</string>
+				<string>texture</string>
+			</array>
+		</dict>
 	</dict>
 	<key>textures</key>
 	<dict>
 		<key>SnowChunk.png</key>
 		<dict/>
+		<key>env</key>
+		<dict>
+			<key>type</key>
+			<string>cubemap</string>
+		</dict>
 	</dict>
 	<key>scenes</key>
 	<dict>

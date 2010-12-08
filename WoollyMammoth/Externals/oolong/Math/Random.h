@@ -43,7 +43,7 @@ public:
 
 inline F32 CRandomGenerator::randF()
 {
-   return F32(randI()) / F32(smRandMax);
+   return F32(randI()) / F32(smRandMax);	
 }
 
 inline S32 CRandomGenerator::randI(S32 a, S32 b)
@@ -52,10 +52,22 @@ inline S32 CRandomGenerator::randI(S32 a, S32 b)
    return a + (randI() % (b - a + 1));
 }
 
+
 inline F32 CRandomGenerator::randF(F32 a, F32 b)
 {
    if(a > b) { F32 t = a; a = b; b = t; }
    return a + ((b - a) * randF());
 }
+
+#if 0
+inline F32 CTrivialRandomGenerator::randF() {
+	//More performant version from Inigo Quilez
+	//http://iquilezles.org/www/articles/sfrand/sfrand.htm
+    float res;
+    mSeed *= 16807;	
+    *((unsigned int *) &res) = ( ((unsigned int)mSeed)>>9 ) | 0x40000000;
+    return( res-3.0f );	
+}
+#endif
 
 extern CTrivialRandomGenerator gRandom;

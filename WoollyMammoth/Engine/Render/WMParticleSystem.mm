@@ -294,19 +294,16 @@ int particleZCompare(const void *a, const void *b) {
 		glBindBuffer(GL_ARRAY_BUFFER, particleVBOs[currentParticleVBOIndex]);
 
         // Update attribute values.
-        glVertexAttribPointer(WMShaderAttributePosition, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *)offsetof(struct WMParticleVertex, position));
+        glVertexAttribPointer(WMShaderAttributePosition, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *)(0));
 		
-		if (texture) {
-			glBindTexture(GL_TEXTURE_2D, [texture glTexture]);
-			
-			int textureUniformLocation = [shader uniformLocationForName:@"texture"];
-			if (textureUniformLocation != -1) {
-				glUniform1i(textureUniformLocation, 0); //texture = texture 0
-			}			
+		int textureUniformLocation = [shader uniformLocationForName:@"texture"];
+		if (texture && textureUniformLocation != -1) {
+			glBindTexture(GL_TEXTURE_2D, [texture glTexture]);			
+			glUniform1i(textureUniformLocation, 0); //texture = texture 0
 		}
 		
 		if (enableMask & WMRenderableDataAvailableColor) {
-			glVertexAttribPointer(WMShaderAttributeColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, stride, (GLvoid *)offsetof(WMParticleVertex, color[0]));
+			glVertexAttribPointer(WMShaderAttributeColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, stride, (GLvoid *)sizeof(Vec3));
 		}
 		
 		int matrixUniform = [shader uniformLocationForName:@"modelViewProjectionMatrix"];
@@ -325,7 +322,7 @@ int particleZCompare(const void *a, const void *b) {
 		
 #endif
 		glDrawArrays(GL_POINTS, 0, maxParticles);
-
+		
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	} else {        
 		//TODO: es1 support

@@ -14,8 +14,9 @@ struct WMSphereVertex;
 
 //Should render a nice sphere. Right now does a janky one :P
 @interface WMSphere : NSObject <WMRenderableDataSource> {
-	WMSphereVertex *vertexData;
-	unsigned short *indexData;
+	GLuint vbo;
+	GLuint ebo;
+	
 	float radius;
 	float rhoStart;
 	float rhoEnd;

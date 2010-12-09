@@ -14,6 +14,8 @@
 
 @class Texture2D;
 
+extern NSString *const WMTextureAssetTypeCubeMap;
+
 @interface WMTextureAsset : WMAsset {
 	Texture2D *texture;
 	

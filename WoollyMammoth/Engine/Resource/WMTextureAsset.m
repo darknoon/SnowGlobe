@@ -11,6 +11,8 @@
 #import "Texture2D.h"
 #import "WMTextureCubeMap.h"
 
+NSString *const WMTextureAssetTypeCubeMap = @"cubemap";
+
 @implementation WMTextureAsset
 
 @synthesize type;

@@ -291,7 +291,7 @@ NSString *const WMShaderAttributeTypeTexCoord1 = @"vec2";
 			attributeMask |= (1 << attribIndex);
 		}
 	}
-		
+	
 	// Link program.
 	if (![self linkProgram:program])
 	{

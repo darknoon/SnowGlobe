@@ -117,35 +117,37 @@ NSString *WMRenderableBlendModeNormal = @"normal";
 		} else {
 			[inGLState setBlendState:0];
 		}
-
-        // Use shader program.
-        glUseProgram(shader.program);
-
-		NSUInteger stride = [model interleavedDataStride];
 		
-		// Update attribute values.
-		glVertexAttribPointer(WMShaderAttributePosition, 3, GL_FLOAT, GL_FALSE, stride, [model vertexDataPointer]);
+		glUseProgram(shader.program);
+		
+		size_t stride = [model interleavedDataStride];
+		
+		//Bind VBO, EBO
+		glBindBuffer(GL_ARRAY_BUFFER, [model vbo]);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, [model ebo]);
+
+		//Position
+		glVertexAttribPointer(WMShaderAttributePosition, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *)[model positionOffset]);
 		ZAssert(enableMask & WMRenderableDataAvailablePosition, @"Position issue");
-		
+
+		//Normal
 		if (enableMask & WMRenderableDataAvailableNormal)
-			glVertexAttribPointer(WMShaderAttributeNormal, 3, GL_FLOAT, GL_FALSE, stride, [model normalCoordDataPointer]);
+			glVertexAttribPointer(WMShaderAttributeNormal, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *)[model normalOffset]);
+
+		
+		//TexCoord0
+		if (enableMask & WMRenderableDataAvailableTexCoord0) {
+			glVertexAttribPointer(WMShaderAttributeTexCoord0, 2, GL_FLOAT, GL_FALSE, stride, (GLvoid *)[model texCoord0Offset]);
+		}
 		
 		int textureUniformLocation = [shader uniformLocationForName:@"texture"];
 		if (texture && textureUniformLocation != -1) {
-			GL_CHECK_ERROR;
-			if ([texture.type isEqualToString:@"cubemap"]) {
+			if ([texture.type isEqualToString:WMTextureAssetTypeCubeMap]) {
 				glBindTexture(GL_TEXTURE_CUBE_MAP, [texture glTexture]);
 			} else {
 				glBindTexture(GL_TEXTURE_2D, [texture glTexture]);
 			}
-			GL_CHECK_ERROR;
-
 			glUniform1i(textureUniformLocation, 0); //texture = texture 0
-			GL_CHECK_ERROR;
-		}
-		
-		if (enableMask & WMRenderableDataAvailableTexCoord0) {
-			glVertexAttribPointer(WMShaderAttributeTexCoord0, 2, GL_FLOAT, GL_FALSE, stride, [model textureCoordDataPointer]);
 		}
 		
 		int matrixUniform = [shader uniformLocationForName:@"modelViewProjectionMatrix"];
@@ -162,10 +164,15 @@ NSString *WMRenderableBlendModeNormal = @"normal";
             return;
         }
 #endif
-		
 
+		GL_CHECK_ERROR;
 
-		glDrawElements(GL_TRIANGLES, [model numberOfTriangles] * 3, [model triangleIndexType], [model triangleIndexPointer]);
+		glDrawElements(GL_TRIANGLES, [model numberOfTriangles] * 3, [model triangleIndexType], 0);
+
+		GL_CHECK_ERROR;
+
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
     else
     {        

@@ -22,22 +22,33 @@ struct WMSphereVertex {
 
 - (id)init;
 {
+	GL_CHECK_ERROR;
+
 	self = [super init];
 	if (!self) return nil;
+
+	
+	WMSphereVertex *vertexData;
+	unsigned short *indexData;
 
 	unum = 50;
 	vnum = 50;
 	
 	radius = 0.6f;
 	
+	glGenBuffers(1, &vbo);
+	glGenBuffers(1, &ebo);
+	
 	vertexData = new WMSphereVertex[unum * vnum];
 	if (!vertexData) {
 		[self release];
+		NSLog(@"Out of mem");
 		return nil;
 	}
 	indexData = new unsigned short [unum * (vnum - 1) * 2 * 3]; 
 	if (!indexData) {
 		[self release];
+		NSLog(@"Out of mem");
 		return nil;
 	}
 	
@@ -77,34 +88,67 @@ struct WMSphereVertex {
 	ZAssert(maxRefI < unum * vnum, @"Bad tri index!");
 #endif
 	
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+
+	glBufferData(GL_ARRAY_BUFFER, unum * vnum * sizeof(WMSphereVertex), vertexData, GL_STATIC_DRAW);
+	GL_CHECK_ERROR;
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, unum * (vnum - 1) * 2 * 3 * sizeof (unsigned short), indexData, GL_STATIC_DRAW);
+
+	GL_CHECK_ERROR;
+	
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	
+	if (vertexData) delete vertexData;
+	if (indexData) delete indexData;
+
 	return self;
 }
 
-- (void) dealloc
+- (void)dealloc;
 {
-	if (vertexData) free(vertexData);
-	if (indexData) free(indexData);
+	if (vbo) glDeleteBuffers(1, &vbo);
+	if (ebo) glDeleteBuffers(1, &ebo);
 	
 	[super dealloc];
 }
-
 
 - (unsigned int)dataMask;
 {
 	return WMRenderableDataAvailablePosition | WMRenderableDataAvailableNormal | WMRenderableDataAvailableTexCoord0 | WMRenderableDataAvailableIndexBuffer;
 }
 
-- (void *)vertexDataPointer;
+- (GLuint)vbo;
 {
-	return &(vertexData[0].v);
+	return vbo;
 }
-- (void *)textureCoordDataPointer;
+
+- (GLenum)ebo; //element buffer object
 {
-	return &(vertexData[0].tc);
+	return ebo;
 }
-- (void *)normalCoordDataPointer;
+
+
+
+- (int)positionOffset;
 {
-	return &(vertexData[0].n);
+	return 0;
+}
+
+- (int)colorOffset;
+{
+	ZAssert(0, @"No coor component of sphere");
+	return 0;
+}
+- (int)texCoord0Offset;
+{
+	return 2 * sizeof(Vec3);
+}
+
+- (int)normalOffset;
+{
+	return sizeof(Vec3);
 }
 
 - (size_t)interleavedDataStride;
@@ -125,9 +169,5 @@ struct WMSphereVertex {
 	return GL_UNSIGNED_SHORT;
 }
 
-- (unsigned short *)triangleIndexPointer;
-{
-	return indexData;
-}
 
 @end

@@ -12,11 +12,11 @@ attribute vec3 normal;
 uniform mat4 modelViewProjectionMatrix;
 
 varying mediump vec3 v_tc;
+varying mediump float v_factor;
 
 void main()
 {
 	gl_Position = modelViewProjectionMatrix * position;
-
-	//Need to flip the tc for some reason
 	v_tc = normal;
+	v_factor = 0.8 * (1.0 - abs(normal.z));
 }

@@ -9,9 +9,9 @@
 uniform samplerCube texture;
 
 varying mediump vec3 v_tc;
+varying mediump float v_factor;
 
 void main()
 {
-	mediump float factor = 0.8 * (1.0 - abs(v_tc.z));
-    gl_FragColor = factor * textureCube(texture, v_tc);
+    gl_FragColor = v_factor * textureCube(texture, v_tc);
 }

@@ -183,7 +183,7 @@ int particleZCompare(const void *a, const void *b) {
 	particleUpdateIndex = 0;
 	
 	zSortParticles = YES;
-	
+
 	return self;
 }
 
@@ -205,9 +205,15 @@ int particleZCompare(const void *a, const void *b) {
 	//NSLog(@"g(%f, %f, %f) rot(%f, %f, %f)", gravity.x, gravity.y, gravity.z, rotationRate.x, rotationRate.y, rotationRate.z);
 	
 	//TODO: pass real dt
+#if 0
 	double t_prev = t;
 	t = CFAbsoluteTimeGetCurrent();
 	double dt = t - t_prev;
+	dt = fmax(1.0/30.0, fmin(dt, 1.0/60.0));
+#else
+	double dt = 1.0/60.0;
+	t += dt;
+#endif
 	
 	const float turbulenceDecay = 0.99f;
 	const float turbulenceStrength = 0.1f;

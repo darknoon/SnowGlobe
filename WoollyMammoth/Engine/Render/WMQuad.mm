@@ -21,6 +21,12 @@ typedef struct WMQuadVertex {
 	self = [super init];
 	if (!self) return nil;
 	
+	glGenBuffers(1, &vbo);
+	glGenBuffers(1, &ebo);
+	
+	void *vertexData;
+	unsigned short *indexData;
+
 	vertexData = malloc(sizeof(WMQuadVertex) * 4);
 	if (!vertexData) {
 		[self release];
@@ -57,14 +63,30 @@ typedef struct WMQuadVertex {
 	indexData[4] = 2;
 	indexData[5] = 3;
 	
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	
+	glBufferData(GL_ARRAY_BUFFER, sizeof(WMQuadVertex) * 4, vertexData, GL_STATIC_DRAW);
+	GL_CHECK_ERROR;
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof (unsigned short), indexData, GL_STATIC_DRAW);
+	
+	GL_CHECK_ERROR;
+	
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	
+	
+	if (vertexData) free(vertexData);
+	if (indexData) free(indexData);
+
+	
 	return self;
 }
 
 - (void) dealloc
-{
-	if (vertexData) free(vertexData);
-	if (indexData) free(indexData);
-	
+{	
+	if (vbo) glDeleteBuffers(1, &vbo);
+	if (ebo) glDeleteBuffers(1, &ebo);
 	[super dealloc];
 }
 
@@ -73,17 +95,37 @@ typedef struct WMQuadVertex {
 	return WMRenderableDataAvailablePosition | WMRenderableDataAvailableTexCoord0 | WMRenderableDataAvailableIndexBuffer;
 }
 
-- (void *)vertexDataPointer;
+- (GLuint)vbo;
 {
-	return vertexData;
+	return vbo;
 }
-- (void *)textureCoordDataPointer;
+
+- (GLenum)ebo; //element buffer object
 {
-	return (void *)&(((WMQuadVertex *)vertexData)[0].tc);
+	return ebo;
 }
-- (void *)normalCoordDataPointer;
+
+
+
+- (int)positionOffset;
 {
-	return NULL;
+	return 0;
+}
+
+- (int)colorOffset;
+{
+	ZAssert(0, @"No color component of quad");
+	return 0;
+}
+- (int)texCoord0Offset;
+{
+	return 3 * sizeof(float);
+}
+
+- (int)normalOffset;
+{
+	ZAssert(0, @"No normal component of quad");
+	return 0;
 }
 
 - (size_t)interleavedDataStride;
@@ -104,9 +146,6 @@ typedef struct WMQuadVertex {
 	return GL_UNSIGNED_SHORT;
 }
 
-- (unsigned short *)triangleIndexPointer;
-{
-	return indexData;
-}
+
 
 @end

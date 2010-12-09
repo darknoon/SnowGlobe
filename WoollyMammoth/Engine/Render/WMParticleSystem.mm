@@ -102,7 +102,8 @@ void WMParticle::update(double dt, double t, int i, Vec3 gravity, WMParticleSyst
 			}
 		}
 		
-		const float sphereRadius = 0.6;
+		const float sphereRadius = 0.58f;
+;
 		//Constrain to be inside sphere
 		float distanceFromOrigin2 = position.dot(position);
 		if (distanceFromOrigin2 > sphereRadius * sphereRadius) {
@@ -261,8 +262,9 @@ int particleZCompare(const void *a, const void *b) {
 		//Create a VBO to hold our vertex data
 		glGenBuffers(2, particleVBOs);
 	}
+	Vec3 spherePosition = Vec3(0.0f, 0.145f, 0.0f);
 	for (int i=0; i<maxParticles; i++) {
-		particleVertices[i].position = particles[i].position;
+		particleVertices[i].position = particles[i].position + spherePosition;
 		//copy color as int
 		*((int *)particleVertices[i].color) = *((int *)particles[i].color);
 	}

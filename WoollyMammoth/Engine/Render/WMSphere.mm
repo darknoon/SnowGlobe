@@ -34,7 +34,7 @@ struct WMSphereVertex {
 	unum = 50;
 	vnum = 50;
 	
-	radius = 0.6f;
+	radius = 0.58f;
 	
 	glGenBuffers(1, &vbo);
 	glGenBuffers(1, &ebo);
@@ -52,6 +52,8 @@ struct WMSphereVertex {
 		return nil;
 	}
 	
+	Vec3 spherePosition = Vec3(0.0f, 0.145f, 0.0f);
+	
 	//Add vertices
 	for (int u=0, i=0, indexDataIndex=0; u<unum; u++) {
 		for (int v=0; v<vnum; v++, i++) {
@@ -61,7 +63,7 @@ struct WMSphereVertex {
 			vertexData[i].n = Vec3(sinf(phi)*cosf(theta),
 								   sinf(phi)*sinf(theta), 
 								   cosf(phi));
-			vertexData[i].v = radius * vertexData[i].n;
+			vertexData[i].v = radius * vertexData[i].n + spherePosition;
 			vertexData[i].tc = Vec2(theta, phi);
 			
 			//Add the triangles in the quad {(u,v), (u+1,v), (u,v+1), (u+1,v+1)}

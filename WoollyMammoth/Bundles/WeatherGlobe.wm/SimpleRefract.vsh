@@ -61,6 +61,5 @@ void main()
 			  reflectance,
 			  transmittance);
 	
-	//Need to flip the tc for some reason
-	v_tc = 0.5 * reflectionVector.yx + vec2(0.5);
+	v_tc = vec2(0.5 - 0.5 * reflectionVector.y, 0.5 - 0.5 * reflectionVector.x);
 }

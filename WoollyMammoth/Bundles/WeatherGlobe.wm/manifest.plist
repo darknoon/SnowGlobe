@@ -39,6 +39,14 @@
 				<string>texture</string>
 			</array>
 		</dict>
+		<key>BackgroundCamera</key>
+		<dict>
+			<key>uniformNames</key>
+			<array>
+				<string>modelViewProjectionMatrix</string>
+				<string>texture</string>
+			</array>
+		</dict>
 	</dict>
 	<key>textures</key>
 	<dict>
@@ -49,6 +57,8 @@
 			<key>type</key>
 			<string>cubemap</string>
 		</dict>
+		<key>UIOverlay@2x.png</key>
+		<dict/>
 	</dict>
 	<key>scenes</key>
 	<dict>

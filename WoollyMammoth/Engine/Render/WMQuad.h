@@ -12,8 +12,8 @@
 
 //Just renders a quad, nothing special :)
 @interface WMQuad : NSObject <WMRenderableDataSource> {
-	void *vertexData;
-	unsigned short *indexData;
+	GLuint vbo;
+	GLuint ebo;
 }
 
 @end

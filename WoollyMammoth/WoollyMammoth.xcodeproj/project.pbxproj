@@ -11,6 +11,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
+		4908214912B192230061E487 /* UIOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4908214812B192230061E487 /* UIOverlay@2x.png */; };
 		4911691D12AF2615004CE4B1 /* GLDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 4911690D12AF2591004CE4B1 /* GLDefines.m */; };
 		49191F4D1287CF8E008F6C88 /* WMDebugChannel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49191F4A1287CF8E008F6C88 /* WMDebugChannel.mm */; };
 		49191F4E1287CF8E008F6C88 /* WMScriptingContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49191F4C1287CF8E008F6C88 /* WMScriptingContext.mm */; };
@@ -123,6 +124,7 @@
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* WoollyMammoth_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WoollyMammoth_Prefix.pch; sourceTree = "<group>"; };
+		4908214812B192230061E487 /* UIOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIOverlay@2x.png"; sourceTree = "<group>"; };
 		4911690D12AF2591004CE4B1 /* GLDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDefines.m; sourceTree = "<group>"; };
 		49191F491287CF8E008F6C88 /* WMDebugChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDebugChannel.h; sourceTree = "<group>"; };
 		49191F4A1287CF8E008F6C88 /* WMDebugChannel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMDebugChannel.mm; sourceTree = "<group>"; };
@@ -881,6 +883,7 @@
 		49E81DD912712FE400127D48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4908214812B192230061E487 /* UIOverlay@2x.png */,
 				49E81DFB127130FD00127D48 /* xButton.png */,
 				49E81DFC127130FD00127D48 /* xButtonPressed.png */,
 				49E81DDC12712FF800127D48 /* WoollyMammoth-Info.plist */,
@@ -967,6 +970,7 @@
 				49E9D2BB127D04EB00010020 /* complex.lua in Resources */,
 				49E9D2BC127D04EB00010020 /* matrix.lua in Resources */,
 				49FD9C621299FF1D0028524C /* WeatherGlobe.wm in Resources */,
+				4908214912B192230061E487 /* UIOverlay@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -51,13 +51,13 @@
 	}
 
 	if ((inBlendState & DNGLStateBlendModeAdd) && !(blendState & DNGLStateBlendModeAdd)) {
-		//Source over
-		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-	} else if (!(inBlendState & DNGLStateBlendModeAdd) && (blendState & DNGLStateBlendModeAdd)) {
 		//Add mode
 		glBlendFunc(GL_ONE, GL_ONE);
+	} else if (!(inBlendState & DNGLStateBlendModeAdd) && (blendState & DNGLStateBlendModeAdd)) {
+		//Source over
+		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 	}
-	
+	blendState = inBlendState;
 }
 
 - (void)setDepthState:(int)inDepthState;

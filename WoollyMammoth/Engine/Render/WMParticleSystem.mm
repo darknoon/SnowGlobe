@@ -271,13 +271,14 @@ int particleZCompare(const void *a, const void *b) {
 {	
 	if (!particleVBOs[0]) return;
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 	if (API == kEAGLRenderingAPIOpenGLES2)
     {
  		unsigned int attributeMask = WMRenderableDataAvailablePosition | WMRenderableDataAvailableColor;
 		unsigned int enableMask = attributeMask & [shader attributeMask];
 		[inGLState setVertexAttributeEnableState:enableMask];
+		
+		[inGLState setDepthState:0];
+		[inGLState setBlendState:DNGLStateBlendEnabled];
 
 		// Use shader program.
         glUseProgram(shader.program);
@@ -323,7 +324,6 @@ int particleZCompare(const void *a, const void *b) {
 	} else {        
 		//TODO: es1 support
 	}	
-	glDisable(GL_BLEND);
 }
 
 @end

@@ -25,7 +25,8 @@ typedef enum {
 } DNGLStateBlendMask;
 
 typedef enum {
-	DNGLStateDepthTestEnabled = 1 << 0,
+	DNGLStateDepthTestEnabled  = 1 << 0,
+	DNGLStateDepthWriteEnabled = 1 << 1,
 } DNGLStateDepthMask;
 
 @interface DNGLState : NSObject {
@@ -35,8 +36,10 @@ typedef enum {
 	DNGLStateDepthMask depthState;
 }
 
-- (void)setVertexAttributeEnableState:(unsigned int)vertexAttributeEnableState;
+- (void)setVertexAttributeEnableState:(int)vertexAttributeEnableState;
 
-- (void)setBlendState:(DNGLStateBlendMask)inBlendState;
+- (void)setBlendState:(int)inBlendState;
+
+- (void)setDepthState:(int)inDepthState;
 
 @end

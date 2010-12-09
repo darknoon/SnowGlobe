@@ -120,9 +120,9 @@
 	
 	WMRenderable *renderable = inObject.renderable;
 	if (!renderable.hidden) {
-		NSLog(@"before %@:  %@", inObject.notes, glState);
+		// NSLog(@"before %@:  %@", inObject.notes, glState);
 		[renderable drawWithTransform:transform API:context.API glState:glState];
-		NSLog(@"after %@: %@", inObject.notes, glState);
+		// NSLog(@"after %@: %@", inObject.notes, glState);
 	}
 	
 	for (WMGameObject *object in inObject.children) {

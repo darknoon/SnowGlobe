@@ -110,6 +110,14 @@ NSString *WMRenderableBlendModeNormal = @"normal";
 		unsigned int enableMask = attributeMask & shaderMask;
 		[inGLState setVertexAttributeEnableState:enableMask];
 		
+		[inGLState setDepthState:DNGLStateDepthTestEnabled | DNGLStateDepthWriteEnabled];
+		
+		if ([blendMode isEqualToString:WMRenderableBlendModeAdd]) {
+			[inGLState setBlendState:DNGLStateBlendEnabled | DNGLStateBlendModeAdd];
+		} else {
+			[inGLState setBlendState:0];
+		}
+
         // Use shader program.
         glUseProgram(shader.program);
 
@@ -155,13 +163,6 @@ NSString *WMRenderableBlendModeNormal = @"normal";
         }
 #endif
 		
-		//set blending
-		// if ([blendMode isEqualToString:WMRenderableBlendModeAdd]) {
-			// glEnable(GL_BLEND);
-			// glBlendFunc(GL_ONE, GL_ONE);
-		// } else {
-			// glDisable(GL_BLEND);
-		// }
 
 
 		glDrawElements(GL_TRIANGLES, [model numberOfTriangles] * 3, [model triangleIndexType], [model triangleIndexPointer]);

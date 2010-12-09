@@ -16,6 +16,6 @@ varying lowp vec4 v_color;
 void main()
 {
     gl_Position = modelViewProjectionMatrix * position;
-	gl_PointSize = 30.0 / gl_Position.z;
+	gl_PointSize = 40.0 / gl_Position.z;
 	v_color	= color;
 }

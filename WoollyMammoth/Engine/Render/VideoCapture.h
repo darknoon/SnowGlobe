@@ -13,21 +13,20 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
+@interface VideoCapture : NSObject
 #if TARGET_OS_EMBEDDED
-@interface VideoCapture : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate> {
+<AVCaptureVideoDataOutputSampleBufferDelegate> 
+#endif
+{
+#if TARGET_OS_EMBEDDED
 	AVCaptureSession *captureSession;
 	AVCaptureInput  *input;
 	AVCaptureVideoDataOutput  *output;
 	AVCaptureDevice *cameraDevice;
-#else
-	@interface VideoCapture : NSObject {
-#endif
-	
-	BOOL capturing;
-		
-#if TARGET_IPHONE_SIMULATOR
+#else			
 	NSTimer *simulatorDebugTimer;
 #endif
+	BOOL capturing;
 	
 	//Swap between textures to reduce locking issues?
 	GLuint textures[1];

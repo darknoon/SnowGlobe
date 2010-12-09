@@ -27,6 +27,8 @@
 	//Set our assertion handler
 	[[[NSThread currentThread] threadDictionary] setObject:[[[DNAssertionHandler alloc] init] autorelease] forKey:NSAssertionHandlerKey];
 	
+	[viewController reloadGame];
+	
 	return YES;
 }
 

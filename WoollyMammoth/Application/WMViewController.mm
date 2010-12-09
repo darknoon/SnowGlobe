@@ -58,7 +58,6 @@
 
 - (void)awakeFromNib
 {
-	[self reloadGame];
     animationFrameInterval = 1;
     
     // Use of CADisplayLink requires iOS version 3.1 or greater.

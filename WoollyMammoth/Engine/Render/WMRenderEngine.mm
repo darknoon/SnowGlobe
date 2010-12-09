@@ -47,11 +47,7 @@
 	[EAGLContext setCurrentContext:context];
 	
 	glState = [[DNGLState alloc] init];
-	
-	glEnable(GL_DEPTH_TEST);
-	glDepthMask(GL_TRUE);
-	glDepthFunc(GL_LEQUAL);	
-	
+		
 	return self;
 }
 

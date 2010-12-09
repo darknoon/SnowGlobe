@@ -205,8 +205,9 @@ int particleZCompare(const void *a, const void *b) {
 	//NSLog(@"g(%f, %f, %f) rot(%f, %f, %f)", gravity.x, gravity.y, gravity.z, rotationRate.x, rotationRate.y, rotationRate.z);
 	
 	//TODO: pass real dt
-	double dt = 1.0/60.0;
-	t += dt;
+	double t_prev = t;
+	t = CFAbsoluteTimeGetCurrent();
+	double dt = t - t_prev;
 	
 	const float turbulenceDecay = 0.99f;
 	const float turbulenceStrength = 0.1f;
@@ -263,19 +264,22 @@ int particleZCompare(const void *a, const void *b) {
 	currentParticleVBOIndex = !currentParticleVBOIndex;
 	glBindBuffer(GL_ARRAY_BUFFER, particleVBOs[currentParticleVBOIndex]);
 	glBufferData(GL_ARRAY_BUFFER, maxParticles * sizeof(WMParticleVertex), particleVertices, GL_DYNAMIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-- (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API;
+- (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API glState:(DNGLState *)inGLState;
 {	
-	if (hidden || !particleVBOs[0]) return;
+	if (!particleVBOs[0]) return;
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-	glDisable(GL_DEPTH_TEST);
-	glDepthMask(GL_FALSE);
 	if (API == kEAGLRenderingAPIOpenGLES2)
     {
-        // Use shader program.
+ 		unsigned int attributeMask = WMRenderableDataAvailablePosition | WMRenderableDataAvailableColor;
+		unsigned int enableMask = attributeMask & [shader attributeMask];
+		[inGLState setVertexAttributeEnableState:enableMask];
+
+		// Use shader program.
         glUseProgram(shader.program);
 		
 		NSUInteger stride = sizeof(WMParticleVertex);
@@ -283,10 +287,7 @@ int particleZCompare(const void *a, const void *b) {
 		glBindBuffer(GL_ARRAY_BUFFER, particleVBOs[currentParticleVBOIndex]);
 
         // Update attribute values.
-		GLuint vertexAttribute = [shader attribIndexForName:@"position"];
-        glVertexAttribPointer(vertexAttribute, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *)offsetof(struct WMParticleVertex, position));
-        glEnableVertexAttribArray(vertexAttribute);
-		
+        glVertexAttribPointer(WMShaderAttributePosition, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *)offsetof(struct WMParticleVertex, position));
 		
 		if (texture) {
 			glBindTexture(GL_TEXTURE_2D, [texture glTexture]);
@@ -294,24 +295,17 @@ int particleZCompare(const void *a, const void *b) {
 			int textureUniformLocation = [shader uniformLocationForName:@"texture"];
 			if (textureUniformLocation != -1) {
 				glUniform1i(textureUniformLocation, 0); //texture = texture 0
-			}
-			
-			// GLuint textureCoordinateAttribute = [shader attribIndexForName:@"textureCoordinate"];
-			// if (textureCoordinateAttribute != NSNotFound) {
-				// glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, GL_FALSE, stride, &particles[0].textureCoordinate);
-				// glEnableVertexAttribArray(textureCoordinateAttribute);
-			// }
-			
+			}			
 		}
 		
-		GLuint colorAttribute = [shader attribIndexForName:@"color"];
-		if (colorAttribute != NSNotFound) {
-			glVertexAttribPointer(colorAttribute, 4, GL_UNSIGNED_BYTE, GL_TRUE, stride, (GLvoid *)offsetof(WMParticleVertex, color[0]));
-			glEnableVertexAttribArray(colorAttribute);
+		if (enableMask & WMRenderableDataAvailableColor) {
+			glVertexAttribPointer(WMShaderAttributeColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, stride, (GLvoid *)offsetof(WMParticleVertex, color[0]));
 		}
 		
 		int matrixUniform = [shader uniformLocationForName:@"modelViewProjectionMatrix"];
-		if (matrixUniform != -1) glUniformMatrix4fv(matrixUniform, 1, NO, transform.f);
+		if (matrixUniform != -1) {
+			glUniformMatrix4fv(matrixUniform, 1, NO, transform.f);
+		}
         
         // Validate program before drawing. This is a good check, but only really necessary in a debug build.
         // DEBUG macro must be defined in your debug configurations if that's not already the case.
@@ -326,14 +320,10 @@ int particleZCompare(const void *a, const void *b) {
 		glDrawArrays(GL_POINTS, 0, maxParticles);
 
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		glDisableVertexAttribArray(vertexAttribute);
 	} else {        
 		//TODO: es1 support
-	}
-	
-	glEnable(GL_DEPTH_TEST);
+	}	
 	glDisable(GL_BLEND);
-	glDepthMask(GL_TRUE);
 }
 
 @end

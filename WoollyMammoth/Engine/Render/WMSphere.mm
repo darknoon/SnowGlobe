@@ -14,7 +14,7 @@
 struct WMSphereVertex {
 	Vec3 v;
 	Vec3 n;
-	Vec3 tc;
+	Vec2 tc;
 	//TODO: Align to even 32-byte boundary?
 };
 
@@ -51,6 +51,7 @@ struct WMSphereVertex {
 								   sinf(phi)*sinf(theta), 
 								   cosf(phi));
 			vertexData[i].v = radius * vertexData[i].n;
+			vertexData[i].tc = Vec2(theta, phi);
 			
 			//Add the triangles in the quad {(u,v), (u+1,v), (u,v+1), (u+1,v+1)}
 			unsigned short nextU = (u+1) % unum;
@@ -68,10 +69,13 @@ struct WMSphereVertex {
 		}
 	}
 	
+#if DEBUG
 	int maxRefI = 0;
 	for (int i=0; i<[self numberOfTriangles]*3; i++) {
 		maxRefI = MAX(maxRefI, indexData[i]);
 	}
+	ZAssert(maxRefI < unum * vnum, @"Bad tri index!");
+#endif
 	
 	return self;
 }
@@ -84,6 +88,11 @@ struct WMSphereVertex {
 	[super dealloc];
 }
 
+
+- (unsigned int)dataMask;
+{
+	return WMRenderableDataAvailablePosition | WMRenderableDataAvailableNormal | WMRenderableDataAvailableTexCoord0 | WMRenderableDataAvailableIndexBuffer;
+}
 
 - (void *)vertexDataPointer;
 {

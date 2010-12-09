@@ -16,12 +16,6 @@
 
 #define DEBUG_LOG_RENDER_MATRICES 0
 
-void LogMatrix(MATRIX mat) {
-	for (int i=0; i<4; i++) {
-		NSLog(@"|%f \t%f \t%f \t%f|", mat[i][0], mat[i][1], mat[i][2], mat[i][3]);
-	}
-}
-
 @interface WMRenderEngine ()
 - (void)setCameraMatrixWithRect:(CGRect)inBounds;
 @end
@@ -52,6 +46,12 @@ void LogMatrix(MATRIX mat) {
 		
 	[EAGLContext setCurrentContext:context];
 	
+	glState = [[DNGLState alloc] init];
+	
+	glEnable(GL_DEPTH_TEST);
+	glDepthMask(GL_TRUE);
+	glDepthFunc(GL_LEQUAL);	
+	
 	return self;
 }
 
@@ -61,7 +61,7 @@ void LogMatrix(MATRIX mat) {
     if ([EAGLContext currentContext] == context)
         [EAGLContext setCurrentContext:nil];
 	[context release];
-	context = nil;
+	[glState release];
 	
 	[super dealloc];
 }
@@ -94,13 +94,13 @@ void LogMatrix(MATRIX mat) {
 #if DEBUG_LOG_RENDER_MATRICES
 	
 	NSLog(@"Perspective: ");
-	LogMatrix(projectionMatrix);
+	MatrixPrint(projectionMatrix);
 	
 	NSLog(@"Look At: ");
-	LogMatrix(viewMatrix);
+	MatrixPrint(viewMatrix);
 
 	NSLog(@"Final: ");
-	LogMatrix(cameraMatrix);
+	MatrixPrint(cameraMatrix);
 	
 	Vec3 position(0,0,0);
 	MatrixVec3Multiply(position, position, cameraMatrix);
@@ -119,8 +119,12 @@ void LogMatrix(MATRIX mat) {
 	MatrixMultiply(transform, inObject.transform, parentTransform);
 	
 	WMRenderable *renderable = inObject.renderable;
-	[renderable drawWithTransform:transform API:context.API];
-
+	if (!renderable.hidden) {
+		NSLog(@"before %@:  %@", inObject.notes, glState);
+		[renderable drawWithTransform:transform API:context.API glState:glState];
+		NSLog(@"after %@: %@", inObject.notes, glState);
+	}
+	
 	for (WMGameObject *object in inObject.children) {
 		[self drawFrameRecursive:object transform:transform];
 	}
@@ -129,9 +133,6 @@ void LogMatrix(MATRIX mat) {
 - (void)drawFrameInRect:(CGRect)inBounds;
 {
 	[self setCameraMatrixWithRect:inBounds];
-
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LEQUAL);
 	
     glClearColor(0.5f, 0.6f, 0.6f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

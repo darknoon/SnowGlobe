@@ -12,17 +12,28 @@
 //Then load the shaders, compile and link into a program in the current context
 - (BOOL)loadShaders;
 @property (nonatomic, copy) NSArray *uniformNames;
-@property (nonatomic, copy) NSArray *attributeNames;
 @property (nonatomic, copy) NSString *vertexShader;
 @property (nonatomic, copy) NSString *pixelShader;
 
 @end
 
+NSString *const WMShaderAttributeNamePosition = @"position";
+NSString *const WMShaderAttributeNameColor = @"color";
+NSString *const WMShaderAttributeNameNormal = @"normal";
+NSString *const WMShaderAttributeNameTexCoord0 = @"texCoord0";
+NSString *const WMShaderAttributeNameTexCoord1 = @"texCoord1";
+
+NSString *const WMShaderAttributeTypePosition = @"vec4";
+NSString *const WMShaderAttributeTypeColor = @"vec4";
+NSString *const WMShaderAttributeTypeNormal = @"vec3";
+NSString *const WMShaderAttributeTypeTexCoord0 = @"vec2";
+NSString *const WMShaderAttributeTypeTexCoord1 = @"vec2";
+
 
 @implementation WMShader
 
+@synthesize attributeMask;
 @synthesize uniformNames;
-@synthesize attributeNames;
 @synthesize vertexShader;
 @synthesize pixelShader;
 @synthesize program;
@@ -35,7 +46,6 @@
 	
 	uniformLocations = [[NSMutableDictionary alloc] init];
 
-	self.attributeNames = [inProperties objectForKey:@"attributeNames"];
 	self.uniformNames = [inProperties objectForKey:@"uniformNames"];
 	
 	return self;
@@ -48,7 +58,6 @@
 	[pixelShader release];
 	[uniformNames release];
 	[uniformLocations release];
-	[attributeNames release];
 
 	if (program)
     {
@@ -56,8 +65,32 @@
         program = 0;
     }
 
+
 	[super dealloc];
 }
+
++ (NSString *)nameForShaderAttribute:(NSUInteger)shaderAttribute;
+{
+	NSString *const WMShaderAttributeNames[] = {
+		WMShaderAttributeNamePosition, 
+		WMShaderAttributeNameNormal, 
+		WMShaderAttributeNameColor, 
+		WMShaderAttributeNameTexCoord0,
+		WMShaderAttributeNameTexCoord1};
+	return WMShaderAttributeNames[shaderAttribute];
+}
+
++ (NSString *)typeForShaderAttribute:(NSUInteger)shaderAttribute;
+{
+	NSString *const WMShaderAttributeTypes[] = {
+		WMShaderAttributeTypePosition, 
+		WMShaderAttributeTypeNormal, 
+		WMShaderAttributeTypeColor, 
+		WMShaderAttributeTypeTexCoord0,
+		WMShaderAttributeTypeTexCoord1};
+	return WMShaderAttributeTypes[shaderAttribute];
+}
+
 
 - (BOOL)loadWithBundle:(NSBundle *)inBundle error:(NSError **)outError;
 {
@@ -103,6 +136,18 @@
 	pixelShader = [inPixelShader copy];
 }
 
+- (BOOL)shaderText:(NSString *)inShaderText hasAttribute:(WMShaderAttribute)attribute;
+{
+	NSString *attributeName = [WMShader nameForShaderAttribute:attribute];
+	NSString *type = [WMShader typeForShaderAttribute:attribute];
+	ZAssert(attributeName, @"Could not find name for attribute!");
+	ZAssert(type, @"Could not find type for attribute!");
+	//attribute vec4 position;
+	NSString *searchText = [NSString stringWithFormat:@"attribute %@ %@;", type, attributeName];
+	return [inShaderText rangeOfString:searchText].location != NSNotFound;
+}
+
+
 - (int)uniformLocationForName:(NSString *)inName;
 {
 	NSNumber *unifiormLocationValue = [uniformLocations objectForKey:inName];
@@ -117,11 +162,12 @@
 
 - (GLuint)attribIndexForName:(NSString *)inName;
 {
-	GLuint attribIndex = [attributeNames indexOfObject:inName];
-	if (attribIndex == NSNotFound) {
-		//NSLog(@"Attempt to get attribute index for \"%@\", which was not specified in the shader.", inName);
+	NSArray *attribArray = [NSArray arrayWithObjects:WMShaderAttributeNamePosition, WMShaderAttributeNameColor, WMShaderAttributeNameNormal, WMShaderAttributeNameTexCoord0, WMShaderAttributeNameTexCoord1, nil];
+	NSUInteger idx = [attribArray indexOfObject:inName];
+	if (idx == NSNotFound) {
+		NSLog(@"Illegal attribute name: %@", inName);
 	}
-	return attribIndex;
+	return idx;
 }
 
 - (BOOL)compileShaderSource:(NSString *)inSourceString toShader:(GLuint *)shader type:(GLenum)type;
@@ -233,10 +279,17 @@
 	
 	// Bind attribute locations.
 	// This needs to be done prior to linking.
-	GLuint attribIndex = 0;
-	for (NSString *attribName in attributeNames) {
-		glBindAttribLocation(program, attribIndex, [attribName UTF8String]);
-		attribIndex++;
+	attributeMask = 0;
+	for (GLuint attribIndex = WMShaderAttributePosition; attribIndex < WMShaderAttributeCount; attribIndex++) {
+		if ([self shaderText:vertexShader hasAttribute:attribIndex]) {
+			//TODO: SECURITY: is utf-8 valid in GL attrib names
+			
+			//Bind name to number in OGL
+			glBindAttribLocation(program, attribIndex, [[WMShader nameForShaderAttribute:attribIndex] UTF8String]);
+
+			//set it in the mask
+			attributeMask |= (1 << attribIndex);
+		}
 	}
 		
 	// Link program.
@@ -261,6 +314,7 @@
 	}
 	
 	//Get uniform locations
+	//TODO: switch to glGetActiveUniform to simplify manifest.plist
 	for (NSString *uniformName in uniformNames) {
 		int uniformLocation = glGetUniformLocation(program, [uniformName UTF8String]);
 		[uniformLocations setObject:[NSNumber numberWithInt:uniformLocation] forKey:uniformName];

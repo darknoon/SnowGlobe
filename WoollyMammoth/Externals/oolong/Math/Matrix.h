@@ -349,5 +349,7 @@ void MatrixLinearEqSolve(
 	float		** const pSrc,
 	const int	nCnt);
 
+void MatrixPrint(MATRIX mat);
+
 #endif // MATRIX_H_
 

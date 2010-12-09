@@ -7,6 +7,7 @@
 //
 
 #import "WMRenderable.h"
+#import "DNGLState.h"
 
 #import "WMShader.h"
 
@@ -97,28 +98,29 @@ NSString *WMRenderableBlendModeNormal = @"normal";
 	//Override this
 }
 
-- (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API;
+- (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API glState:(DNGLState *)inGLState;
 {
-	if (!model || hidden) return;
+	if (!model) return;
 	
 	GL_CHECK_ERROR;
 	if (API == kEAGLRenderingAPIOpenGLES2)
     {
+		unsigned int attributeMask = [model dataMask];
+		unsigned int shaderMask = [shader attributeMask];
+		unsigned int enableMask = attributeMask & shaderMask;
+		[inGLState setVertexAttributeEnableState:enableMask];
+		
         // Use shader program.
         glUseProgram(shader.program);
 
 		NSUInteger stride = [model interleavedDataStride];
 		
 		// Update attribute values.
-		GLuint vertexAttribute = [shader attribIndexForName:@"position"];
-		glVertexAttribPointer(vertexAttribute, 3, GL_FLOAT, GL_FALSE, stride, [model vertexDataPointer]);
-		glEnableVertexAttribArray(vertexAttribute);
+		glVertexAttribPointer(WMShaderAttributePosition, 3, GL_FLOAT, GL_FALSE, stride, [model vertexDataPointer]);
+		ZAssert(enableMask & WMRenderableDataAvailablePosition, @"Position issue");
 		
-		GLuint normalAttribute = [shader attribIndexForName:@"normal"];
-		if (normalAttribute != NSNotFound && [model normalCoordDataPointer] != NULL) {
-			glVertexAttribPointer(normalAttribute, 3, GL_FLOAT, GL_FALSE, stride, [model normalCoordDataPointer]);
-			glEnableVertexAttribArray(normalAttribute);
-		}
+		if (enableMask & WMRenderableDataAvailableNormal)
+			glVertexAttribPointer(WMShaderAttributeNormal, 3, GL_FLOAT, GL_FALSE, stride, [model normalCoordDataPointer]);
 		
 		int textureUniformLocation = [shader uniformLocationForName:@"texture"];
 		if (texture && textureUniformLocation != -1) {
@@ -134,18 +136,14 @@ NSString *WMRenderableBlendModeNormal = @"normal";
 			GL_CHECK_ERROR;
 		}
 		
-		GLuint textureCoordinateAttribute = [shader attribIndexForName:@"textureCoordinate"];
-		if (textureCoordinateAttribute != NSNotFound) {
-			glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, GL_FALSE, stride, [model textureCoordDataPointer]);
-			glEnableVertexAttribArray(textureCoordinateAttribute);
+		if (enableMask & WMRenderableDataAvailableTexCoord0) {
+			glVertexAttribPointer(WMShaderAttributeTexCoord0, 2, GL_FLOAT, GL_FALSE, stride, [model textureCoordDataPointer]);
 		}
 		
-		// GLuint colorAttribute = [shader attribIndexForName:@"color"];
-        // glVertexAttribPointer(colorAttribute, 4, GL_UNSIGNED_BYTE, 1, 0, squareColors);
-        // glEnableVertexAttribArray(colorAttribute);
-		
 		int matrixUniform = [shader uniformLocationForName:@"modelViewProjectionMatrix"];
-		if (matrixUniform != -1) glUniformMatrix4fv(matrixUniform, 1, NO, transform.f);
+		if (matrixUniform != -1) {
+			glUniformMatrix4fv(matrixUniform, 1, NO, transform.f);
+		}
         
         // Validate program before drawing. This is a good check, but only really necessary in a debug build.
         // DEBUG macro must be defined in your debug configurations if that's not already the case.
@@ -158,23 +156,15 @@ NSString *WMRenderableBlendModeNormal = @"normal";
 #endif
 		
 		//set blending
-		if ([blendMode isEqualToString:WMRenderableBlendModeAdd]) {
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_ONE, GL_ONE);
-		} else {
-			glDisable(GL_BLEND);
-		}
+		// if ([blendMode isEqualToString:WMRenderableBlendModeAdd]) {
+			// glEnable(GL_BLEND);
+			// glBlendFunc(GL_ONE, GL_ONE);
+		// } else {
+			// glDisable(GL_BLEND);
+		// }
 
 
 		glDrawElements(GL_TRIANGLES, [model numberOfTriangles] * 3, [model triangleIndexType], [model triangleIndexPointer]);
-		
-		if (textureCoordinateAttribute != NSNotFound) {
-			glDisableVertexAttribArray(textureCoordinateAttribute);
-		}
-		if (normalAttribute != -1) {
-			glDisableVertexAttribArray(normalAttribute);
-		}
-
     }
     else
     {        

@@ -20,44 +20,8 @@
 			<integer>1</integer>
 			<integer>1</integer>
 		</array>
-		<key>renderable</key>
-		<dict>
-			<key>hidden</key>
-			<true/>
-			<key>shader</key>
-			<string>GlobeRefract</string>
-			<key>model</key>
-			<string>WMQuad</string>
-			<key>texture</key>
-			<string>CameraInput</string>
-		</dict>
 		<key>children</key>
 		<array>
-			<dict>
-				<key>objectId</key>
-				<integer>2</integer>
-				<key>notes</key>
-				<string>Particles</string>
-				<key>script</key>
-				<string></string>
-				<key>scale</key>
-				<array>
-					<integer>1</integer>
-					<integer>1</integer>
-					<integer>1</integer>
-				</array>
-				<key>renderable</key>
-				<dict>
-					<key>class</key>
-					<string>WMParticleSystem</string>
-					<key>shader</key>
-					<string>SnowParticle</string>
-					<key>texture</key>
-					<string>SnowChunk.png</string>
-				</dict>
-				<key>children</key>
-				<array/>
-			</dict>
 			<dict>
 				<key>objectId</key>
 				<integer>3</integer>
@@ -100,6 +64,8 @@
 				</array>
 				<key>renderable</key>
 				<dict>
+					<key>hidden</key>
+					<true/>
 					<key>shader</key>
 					<string>CubeMapReflect</string>
 					<key>model</key>
@@ -108,6 +74,33 @@
 					<string>env</string>
 					<key>blendMode</key>
 					<string>add</string>
+				</dict>
+				<key>children</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>objectId</key>
+				<integer>2</integer>
+				<key>notes</key>
+				<string>Particles</string>
+				<key>script</key>
+				<string></string>
+				<key>scale</key>
+				<array>
+					<integer>1</integer>
+					<integer>1</integer>
+					<integer>1</integer>
+				</array>
+				<key>renderable</key>
+				<dict>
+					<key>hidden</key>
+					<false/>
+					<key>class</key>
+					<string>WMParticleSystem</string>
+					<key>shader</key>
+					<string>SnowParticle</string>
+					<key>texture</key>
+					<string>SnowChunk.png</string>
 				</dict>
 				<key>children</key>
 				<array/>

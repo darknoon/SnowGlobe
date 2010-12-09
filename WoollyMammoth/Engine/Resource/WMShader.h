@@ -11,31 +11,47 @@
 #import "WMRenderCommon.h"
 
 #import "WMAsset.h"
-//ASSUME: This must be used in only one GL context.
+//ASSUME: Shader must be used in only one GL context.
+
+typedef enum {
+	WMShaderAttributePosition = 0,
+	WMShaderAttributeNormal,
+	WMShaderAttributeColor,
+	WMShaderAttributeTexCoord0,
+	WMShaderAttributeTexCoord1,
+	WMShaderAttributeCount, //How many attributes we have defined
+} WMShaderAttribute;
+
+extern NSString *const WMShaderAttributeNamePosition;  // "position"
+extern NSString *const WMShaderAttributeNameNormal;    // "normal"
+extern NSString *const WMShaderAttributeNameColor;     // "color"
+extern NSString *const WMShaderAttributeNameTexCoord0; // "texCoord0"
+extern NSString *const WMShaderAttributeNameTexCoord1; // "texCoord1"
 
 @interface WMShader : WMAsset {
 	//TODO: Add ES1 Pipeline features?
 	
 	//If rendering with ES2
-	NSArray *attributeNames;
 	NSArray *uniformNames;
 	NSString *vertexShader;
 	NSString *pixelShader;
+	unsigned int attributeMask;
 
 	GLuint program;
 	NSMutableDictionary *uniformLocations;
 }
 
++ (NSString *)nameForShaderAttribute:(NSUInteger)shaderAttribute;
+
+@property (nonatomic, assign) unsigned int attributeMask;
+
 /**
  Supported properties:
- attributeNames[]	Array of names for shader attributes
  uniformNames[]		Array of uniform names
  
  */
-//- (id)initWithResourceName:(NSString *)inResourceName properties:(NSDictionary *)inProperties assetManager:(WMAssetManager *)inAssetManager;
 
 @property (nonatomic, copy, readonly) NSArray *uniformNames;
-@property (nonatomic, copy, readonly) NSArray *attributeNames;
 @property (nonatomic, copy, readonly) NSString *vertexShader;
 @property (nonatomic, copy, readonly) NSString *pixelShader;
 
@@ -44,7 +60,6 @@
 
 //Use this to draw
 @property (nonatomic, readonly) GLuint program;
-- (GLuint)attribIndexForName:(NSString *)inName;
 - (int)uniformLocationForName:(NSString *)inName;
 
 @end

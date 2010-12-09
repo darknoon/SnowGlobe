@@ -10,39 +10,8 @@
 	<dict/>
 	<key>shaders</key>
 	<dict>
-		<key>CrazyLens</key>
-		<dict>
-			<key>attributeNames</key>
-			<array>
-				<string>position</string>
-				<string>textureCoordinate</string>
-			</array>
-			<key>uniformNames</key>
-			<array>
-				<string>modelViewProjectionMatrix</string>
-				<string>texture</string>
-			</array>
-		</dict>
-		<key>GlobeRefract</key>
-		<dict>
-			<key>attributeNames</key>
-			<array>
-				<string>position</string>
-				<string>textureCoordinate</string>
-			</array>
-			<key>uniformNames</key>
-			<array>
-				<string>modelViewProjectionMatrix</string>
-				<string>texture</string>
-			</array>
-		</dict>
 		<key>SnowParticle</key>
 		<dict>
-			<key>attributeNames</key>
-			<array>
-				<string>position</string>
-				<string>color</string>
-			</array>
 			<key>uniformNames</key>
 			<array>
 				<string>modelViewProjectionMatrix</string>
@@ -51,11 +20,6 @@
 		</dict>
 		<key>SimpleRefract</key>
 		<dict>
-			<key>attributeNames</key>
-			<array>
-				<string>position</string>
-				<string>normal</string>
-			</array>
 			<key>uniformNames</key>
 			<array>
 				<string>modelViewProjectionMatrix</string>

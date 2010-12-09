@@ -68,6 +68,10 @@ typedef struct WMQuadVertex {
 	[super dealloc];
 }
 
+- (unsigned int)dataMask;
+{
+	return WMRenderableDataAvailablePosition | WMRenderableDataAvailableTexCoord0 | WMRenderableDataAvailableIndexBuffer;
+}
 
 - (void *)vertexDataPointer;
 {

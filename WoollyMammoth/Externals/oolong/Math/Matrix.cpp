@@ -1041,4 +1041,10 @@ void MatrixLinearEqSolve(
 #endif
 }
 
+void MatrixPrint(MATRIX mat) {
+	for (int i=0; i<4; i++) {
+		printf("|%f \t%f \t%f \t%f|\n", mat[i][0], mat[i][1], mat[i][2], mat[i][3]);
+	}
+}
+
 

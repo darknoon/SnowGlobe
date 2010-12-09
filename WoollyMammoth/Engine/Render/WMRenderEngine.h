@@ -14,9 +14,11 @@
 
 @class WMShader;
 @class WMEngine;
+@class DNGLState;
 
 @interface WMRenderEngine : NSObject {
 	EAGLContext *context;
+	DNGLState *glState;
 	
 	MATRIX cameraMatrix;
 	

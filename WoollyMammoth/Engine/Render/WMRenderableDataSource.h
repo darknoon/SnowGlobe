@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "WMRenderCommon.h"
+#import "DNGLState.h"
 
 @protocol WMRenderableDataSource
+
+- (unsigned int)dataMask;
 
 - (void *)vertexDataPointer;
 - (void *)textureCoordDataPointer;

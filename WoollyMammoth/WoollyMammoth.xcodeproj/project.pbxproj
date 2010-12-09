@@ -16,6 +16,7 @@
 		49191F4E1287CF8E008F6C88 /* WMScriptingContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49191F4C1287CF8E008F6C88 /* WMScriptingContext.mm */; };
 		49191F521287D202008F6C88 /* WMScriptInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 49191F511287D202008F6C88 /* WMScriptInstance.m */; };
 		492483AF1270D4BD00B59759 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492483AE1270D4BD00B59759 /* OpenGLES.framework */; };
+		4924BB2712B03ADA0092F7DE /* DNGLState.m in Sources */ = {isa = PBXBuildFile; fileRef = 4924BB2612B03ADA0092F7DE /* DNGLState.m */; };
 		4933187F129C8C1A0051088C /* WMAssetManifest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4933187E129C8C1A0051088C /* WMAssetManifest.m */; };
 		4933188C129C8E810051088C /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4933188B129C8E810051088C /* BrowserViewController.m */; };
 		4940D0641264F5F7007FA76C /* WMGameObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0631264F5F7007FA76C /* WMGameObject.mm */; };
@@ -130,6 +131,8 @@
 		49191F501287D202008F6C88 /* WMScriptInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScriptInstance.h; sourceTree = "<group>"; };
 		49191F511287D202008F6C88 /* WMScriptInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScriptInstance.m; sourceTree = "<group>"; };
 		492483AE1270D4BD00B59759 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		4924BB2512B03ADA0092F7DE /* DNGLState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNGLState.h; sourceTree = "<group>"; };
+		4924BB2612B03ADA0092F7DE /* DNGLState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNGLState.m; sourceTree = "<group>"; };
 		4933187D129C8C1A0051088C /* WMAssetManifest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAssetManifest.h; sourceTree = "<group>"; };
 		4933187E129C8C1A0051088C /* WMAssetManifest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAssetManifest.m; sourceTree = "<group>"; };
 		4933188A129C8E810051088C /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
@@ -577,6 +580,8 @@
 				4940DCF212669BFA007FA76C /* WMRenderCommon.h */,
 				4940D97412658E4B007FA76C /* WMRenderEngine.h */,
 				4940D97512658E4B007FA76C /* WMRenderEngine.mm */,
+				4924BB2512B03ADA0092F7DE /* DNGLState.h */,
+				4924BB2612B03ADA0092F7DE /* DNGLState.m */,
 				4940DCE912669B1A007FA76C /* WMRenderable.h */,
 				4940DCEA12669B1A007FA76C /* WMRenderable.mm */,
 				49C978A712A234A2004258E4 /* WMParticleSystem.h */,
@@ -1057,6 +1062,7 @@
 				498B916D12AEDF9E0025CEA6 /* WMTextureCubeMap.m in Sources */,
 				4949A0B112AF189A009749D4 /* DNAssertionHandler.m in Sources */,
 				4911691D12AF2615004CE4B1 /* GLDefines.m in Sources */,
+				4924BB2712B03ADA0092F7DE /* DNGLState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

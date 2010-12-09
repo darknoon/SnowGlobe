@@ -10,9 +10,23 @@
 
 #import <CoreVideo/CoreVideo.h>
 
+#define USE_LOW_RES_CAMERA 0
+
 @implementation VideoCapture
 
 @synthesize capturing;
+
+- (id) init {
+	[super init];
+	if (self == nil) return self; 
+	
+	//Try to keep the write texture ahead of the read texture
+	// currentReadTexture = 0;
+	// currentWriteTexture = 1;
+	
+	return self;
+}
+
 
 - (void)dealloc
 {
@@ -42,13 +56,16 @@
 
 	GL_CHECK_ERROR;
 	
-	glGenTextures(1, textures);	
+	glGenTextures(VideoCapture_NumTextures, textures);	
 	
-	
-	glBindTexture(GL_TEXTURE_2D, textures[0]);
-	
+	//TODO: get these from the camera session somehow
+#if USE_LOW_RES_CAMERA
+	unsigned width = 192;
+	unsigned height = 144;
+#else
 	unsigned width = 640;
 	unsigned height = 480;
+#endif
 	
 	//Initialize the buffer
 	unsigned char *buffer = malloc(4 * width * height);
@@ -63,14 +80,18 @@
 
 	//glTexParameterf(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_FALSE);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, buffer);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	for (int texture = 0; texture < VideoCapture_NumTextures; texture++) {
+		 glBindTexture(GL_TEXTURE_2D, textures[texture]);
+		
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, buffer);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		GL_CHECK_ERROR;
+	}
 	glBindTexture(GL_TEXTURE_2D, 0);	
 	
-	GL_CHECK_ERROR;
 	
 	free(buffer);
 }
@@ -85,8 +106,12 @@
 	
 #if TARGET_OS_EMBEDDED
 	captureSession = [[AVCaptureSession alloc] init];
+
+#if USE_LOW_RES_CAMERA
+	[captureSession setSessionPreset:AVCaptureSessionPresetLow];
+#else
 	[captureSession setSessionPreset:AVCaptureSessionPreset640x480];
-	
+#endif	
 	NSError *error = nil;
 	
 	NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
@@ -137,7 +162,7 @@
 	
 	capturing = NO;
 
-	glDeleteTextures(1, textures);
+	glDeleteTextures(VideoCapture_NumTextures, textures);
 }
 
 #if TARGET_OS_EMBEDDED
@@ -148,8 +173,15 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 	   fromConnection:(AVCaptureConnection *)connection;
 {
 
+	if (!textureWasRead) {
+		//NSLog(@"Texture was not read before swap!");
+		return;
+	}
+	//Advance the current texture
+	currentTexture = !currentTexture;
+	textureWasRead = NO;
 	//Get the texture ready
-	glBindTexture(GL_TEXTURE_2D, textures[0]);
+	glBindTexture(GL_TEXTURE_2D, textures[currentTexture]);
 	
 	//Get buffer info
 	CVPixelBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
@@ -173,7 +205,10 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (void)simulatorUploadTexture;
 {
-	glBindTexture(GL_TEXTURE_2D, textures[0]);
+	//Advance the current texture
+	currentTexture = !currentTexture;
+	//Get the texture ready
+	glBindTexture(GL_TEXTURE_2D, textures[currentTexture]);
 	
 	unsigned width = 640;
 	unsigned height = 480;
@@ -205,10 +240,11 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (GLuint)getVideoTexture;
 {	
+	textureWasRead = YES;
 #if TARGET_IPHONE_SIMULATOR
 	[self simulatorUploadTexture];
 #endif
-	return textures[0];
+	return textures[currentTexture];
 }
 
 

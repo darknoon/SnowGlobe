@@ -13,6 +13,8 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
+#define VideoCapture_NumTextures 2
+
 @interface VideoCapture : NSObject
 #if TARGET_OS_EMBEDDED
 <AVCaptureVideoDataOutputSampleBufferDelegate> 
@@ -29,7 +31,9 @@
 	BOOL capturing;
 	
 	//Swap between textures to reduce locking issues?
-	GLuint textures[1];
+	NSUInteger currentTexture;
+	GLuint textures[VideoCapture_NumTextures];
+	BOOL textureWasRead;
 }
 
 @property (nonatomic, readonly) BOOL capturing;

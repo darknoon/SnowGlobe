@@ -21,8 +21,6 @@ extern "C" {
 }
 CTrivialRandomGenerator rng;
 
-#define USE_INDEX_BUFFER 1
-
 struct WMParticle {
 	float life;
 	Vec3 position;
@@ -177,11 +175,8 @@ int particleZCompare(const void *a, const void *b) {
 	
 	maxParticles = 1000;
 	particles = new WMParticle[maxParticles];
-#if USE_INDEX_BUFFER
+
 	particleVertices = new WMParticleVertex[maxParticles * 4];
-#else
-	particleVertices = new WMParticleVertex[maxParticles * 6];
-#endif
 	for (int i=0; i<maxParticles; i++) {
 		particles[i].init();
 	}
@@ -298,7 +293,6 @@ int particleZCompare(const void *a, const void *b) {
 	Vec3 spherePosition = Vec3(0.0f, 0.145f, 0.0f);
 	float sz = 0.01f;
 	
-#if	USE_INDEX_BUFFER
 	const Vec3 offsets[4] = {
 		Vec3(-sz, -sz, 0),
 		Vec3( sz, -sz, 0),
@@ -327,40 +321,6 @@ int particleZCompare(const void *a, const void *b) {
 	}
 	glBufferData(GL_ARRAY_BUFFER, maxParticles * 4 * sizeof(WMParticleVertex), particleVertices, GL_STREAM_DRAW);
 	GL_CHECK_ERROR;
-#else
-	const Vec3 offsets[6] = {
-		Vec3(-sz, -sz, 0),
-		Vec3( sz, -sz, 0),
-		Vec3(-sz,  sz, 0),
-		Vec3( sz, -sz, 0),
-		Vec3(-sz,  sz, 0),
-		Vec3( sz,  sz, 0),
-	};
-	const unsigned char textureCoords[6][2] = {
-		{0,0},
-		{1,0},
-		{0,1},
-		{1,0},
-		{0,1},
-		{1,1},
-	};
-	
-	for (int i=0; i<maxParticles; i++) {
-		for (int v=0; v<6; v++) {
-			//Calculate the particle position
-			particleVertices[6 * i + v].position = particles[i].position + spherePosition + offsets[v];
-			
-			//copy color as int
-			*((int *)particleVertices[4 * i + v].color) = *((int *)particles[i].color);
-			
-			//copy tex coord as short
-			particleVertices[6 * i + v].texCoord0[0] = textureCoords[v][0];
-			particleVertices[6 * i + v].texCoord0[1] = textureCoords[v][1];
-		}
-	}
-	glBufferData(GL_ARRAY_BUFFER, maxParticles * 6 * sizeof(WMParticleVertex), particleVertices, GL_STREAM_DRAW);
-	GL_CHECK_ERROR;
-#endif
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	particleDataAvailable++;
@@ -387,9 +347,7 @@ int particleZCompare(const void *a, const void *b) {
 		NSUInteger stride = sizeof(WMParticleVertex);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, particleVBOs[currentParticleVBOIndex]);
-#if	USE_INDEX_BUFFER
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, particleEBO);
-#endif
 		GL_CHECK_ERROR;
 
         // Update attribute values.
@@ -430,17 +388,11 @@ int particleZCompare(const void *a, const void *b) {
 #endif
 		//glDrawArrays(GL_POINTS, 0, maxParticles);
 		GL_CHECK_ERROR;
-#if	USE_INDEX_BUFFER
 		glDrawElements(GL_TRIANGLES, maxParticles * 6, GL_UNSIGNED_SHORT, 0); //use element array buffer ebo
-#else
-		glDrawArrays(GL_TRIANGLES, 0, maxParticles * 6);
-#endif
 		GL_CHECK_ERROR;
 		
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
-#if	USE_INDEX_BUFFER
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-#endif
 	} else {        
 		//TODO: es1 support
 	}	

@@ -21,6 +21,7 @@ extern "C" {
 }
 CTrivialRandomGenerator rng;
 
+#define USE_INDEX_BUFFER 1
 
 struct WMParticle {
 	float life;
@@ -36,6 +37,7 @@ struct WMParticle {
 struct WMParticleVertex {
 	Vec3 position;
 	unsigned char color[4];
+	unsigned char texCoord0[2];
 };
 
 void WMParticle::updateNoise(double t) {
@@ -175,7 +177,11 @@ int particleZCompare(const void *a, const void *b) {
 	
 	maxParticles = 1000;
 	particles = new WMParticle[maxParticles];
-	particleVertices = new WMParticleVertex[maxParticles];
+#if USE_INDEX_BUFFER
+	particleVertices = new WMParticleVertex[maxParticles * 4];
+#else
+	particleVertices = new WMParticleVertex[maxParticles * 6];
+#endif
 	for (int i=0; i<maxParticles; i++) {
 		particles[i].init();
 	}
@@ -184,7 +190,34 @@ int particleZCompare(const void *a, const void *b) {
 	particleUpdateIndex = 0;
 	
 	zSortParticles = YES;
+	
+	glGenBuffers(2, particleVBOs);
+	glGenBuffers(1, &particleEBO);
+	
+	//Create our index buffer. 2 triangles = 6 indices per particle
+	size_t indexBufferLength = maxParticles * 6;
+	//TODO: maybe use map buffer here (better memory allocation?)
+	unsigned short *indexBuffer = new unsigned short[indexBufferLength];
+	
+	//Fill up the index buffer lols no sharts only shorts here
+	for (int i=0; i<maxParticles; i++) {
+		//TODO: is this the correct winding???
+		indexBuffer[6 * i + 0] = 4 * i + 0;
+		indexBuffer[6 * i + 1] = 4 * i + 1;
+		indexBuffer[6 * i + 2] = 4 * i + 2;
+		indexBuffer[6 * i + 3] = 4 * i + 1;
+		indexBuffer[6 * i + 4] = 4 * i + 2;
+		indexBuffer[6 * i + 5] = 4 * i + 3;
+	}
+	
+	GL_CHECK_ERROR;
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, particleEBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexBufferLength * sizeof(unsigned short), indexBuffer, GL_STATIC_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	GL_CHECK_ERROR;
 
+	delete indexBuffer;
+	
 	return self;
 }
 
@@ -215,6 +248,7 @@ int particleZCompare(const void *a, const void *b) {
 	double dt = 1.0/60.0;
 	t += dt;
 #endif
+
 	
 	const float turbulenceDecay = 0.99f;
 	const float turbulenceStrength = 0.1f;
@@ -257,31 +291,90 @@ int particleZCompare(const void *a, const void *b) {
 	if (zSortParticles)
 		qsort(particles, maxParticles, sizeof(WMParticle), particleZCompare);
 	
-	//Copy particles to VBO
-	if (!particleVBOs[0]) {
-		//Create a VBO to hold our vertex data
-		glGenBuffers(2, particleVBOs);
-	}
-	Vec3 spherePosition = Vec3(0.0f, 0.145f, 0.0f);
-	for (int i=0; i<maxParticles; i++) {
-		particleVertices[i].position = particles[i].position + spherePosition;
-		//copy color as int
-		*((int *)particleVertices[i].color) = *((int *)particles[i].color);
-	}
-	//Swap buffers and write
+	//Swap buffers and write particles to VBO
 	currentParticleVBOIndex = !currentParticleVBOIndex;
 	glBindBuffer(GL_ARRAY_BUFFER, particleVBOs[currentParticleVBOIndex]);
-	glBufferData(GL_ARRAY_BUFFER, maxParticles * sizeof(WMParticleVertex), particleVertices, GL_DYNAMIC_DRAW);
+	
+	Vec3 spherePosition = Vec3(0.0f, 0.145f, 0.0f);
+	float sz = 0.01f;
+	
+#if	USE_INDEX_BUFFER
+	const Vec3 offsets[4] = {
+		Vec3(-sz, -sz, 0),
+		Vec3( sz, -sz, 0),
+		Vec3(-sz,  sz, 0),
+		Vec3( sz,  sz, 0),
+	};
+	const unsigned char textureCoords[4][2] = {
+		{0,0},
+		{1,0},
+		{0,1},
+		{1,1},
+	};
+	
+	for (int i=0; i<maxParticles; i++) {
+		for (int v=0; v<4; v++) {
+			//Calculate the particle position
+			particleVertices[4 * i + v].position = particles[i].position + spherePosition + offsets[v];
+			
+			//copy color as int
+			*((int *)particleVertices[4 * i + v].color) = *((int *)particles[i].color);
+			
+			//copy tex coord as short
+			particleVertices[4 * i + v].texCoord0[0] = textureCoords[v][0];
+			particleVertices[4 * i + v].texCoord0[1] = textureCoords[v][1];
+		}
+	}
+	glBufferData(GL_ARRAY_BUFFER, maxParticles * 4 * sizeof(WMParticleVertex), particleVertices, GL_STREAM_DRAW);
+	GL_CHECK_ERROR;
+#else
+	const Vec3 offsets[6] = {
+		Vec3(-sz, -sz, 0),
+		Vec3( sz, -sz, 0),
+		Vec3(-sz,  sz, 0),
+		Vec3( sz, -sz, 0),
+		Vec3(-sz,  sz, 0),
+		Vec3( sz,  sz, 0),
+	};
+	const unsigned char textureCoords[6][2] = {
+		{0,0},
+		{1,0},
+		{0,1},
+		{1,0},
+		{0,1},
+		{1,1},
+	};
+	
+	for (int i=0; i<maxParticles; i++) {
+		for (int v=0; v<6; v++) {
+			//Calculate the particle position
+			particleVertices[6 * i + v].position = particles[i].position + spherePosition + offsets[v];
+			
+			//copy color as int
+			*((int *)particleVertices[4 * i + v].color) = *((int *)particles[i].color);
+			
+			//copy tex coord as short
+			particleVertices[6 * i + v].texCoord0[0] = textureCoords[v][0];
+			particleVertices[6 * i + v].texCoord0[1] = textureCoords[v][1];
+		}
+	}
+	glBufferData(GL_ARRAY_BUFFER, maxParticles * 6 * sizeof(WMParticleVertex), particleVertices, GL_STREAM_DRAW);
+	GL_CHECK_ERROR;
+#endif
+
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	particleDataAvailable++;
+
 }
 
 - (void)drawWithTransform:(MATRIX)transform API:(EAGLRenderingAPI)API glState:(DNGLState *)inGLState;
 {	
-	if (!particleVBOs[0]) return;
+	if (particleDataAvailable < 2) return;
 
+	GL_CHECK_ERROR;
 	if (API == kEAGLRenderingAPIOpenGLES2)
     {
- 		unsigned int attributeMask = WMRenderableDataAvailablePosition | WMRenderableDataAvailableColor;
+ 		unsigned int attributeMask = WMRenderableDataAvailablePosition | WMRenderableDataAvailableColor | WMRenderableDataAvailableTexCoord0;
 		unsigned int enableMask = attributeMask & [shader attributeMask];
 		[inGLState setVertexAttributeEnableState:enableMask];
 		
@@ -294,24 +387,36 @@ int particleZCompare(const void *a, const void *b) {
 		NSUInteger stride = sizeof(WMParticleVertex);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, particleVBOs[currentParticleVBOIndex]);
+#if	USE_INDEX_BUFFER
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, particleEBO);
+#endif
+		GL_CHECK_ERROR;
 
         // Update attribute values.
-        glVertexAttribPointer(WMShaderAttributePosition, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *)(0));
+        glVertexAttribPointer(WMShaderAttributePosition, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *)offsetof(WMParticleVertex, position));
 		
 		int textureUniformLocation = [shader uniformLocationForName:@"texture"];
 		if (texture && textureUniformLocation != -1) {
 			glBindTexture(GL_TEXTURE_2D, [texture glTexture]);			
 			glUniform1i(textureUniformLocation, 0); //texture = texture 0
 		}
-		
+		GL_CHECK_ERROR;
+
 		if (enableMask & WMRenderableDataAvailableColor) {
-			glVertexAttribPointer(WMShaderAttributeColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, stride, (GLvoid *)sizeof(Vec3));
+			glVertexAttribPointer(WMShaderAttributeColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, stride, (GLvoid *)offsetof(WMParticleVertex, color[0]));
 		}
+		GL_CHECK_ERROR;
+		
+		if (enableMask & WMRenderableDataAvailableTexCoord0) {
+			glVertexAttribPointer(WMShaderAttributeTexCoord0, 2, GL_UNSIGNED_BYTE, GL_FALSE, stride, (GLvoid *)offsetof(WMParticleVertex, texCoord0[0]) );
+		}
+		GL_CHECK_ERROR;
 		
 		int matrixUniform = [shader uniformLocationForName:@"modelViewProjectionMatrix"];
 		if (matrixUniform != -1) {
 			glUniformMatrix4fv(matrixUniform, 1, NO, transform.f);
 		}
+		GL_CHECK_ERROR;
         
         // Validate program before drawing. This is a good check, but only really necessary in a debug build.
         // DEBUG macro must be defined in your debug configurations if that's not already the case.
@@ -323,9 +428,19 @@ int particleZCompare(const void *a, const void *b) {
         }
 		
 #endif
-		glDrawArrays(GL_POINTS, 0, maxParticles);
+		//glDrawArrays(GL_POINTS, 0, maxParticles);
+		GL_CHECK_ERROR;
+#if	USE_INDEX_BUFFER
+		glDrawElements(GL_TRIANGLES, maxParticles * 6, GL_UNSIGNED_SHORT, 0); //use element array buffer ebo
+#else
+		glDrawArrays(GL_TRIANGLES, 0, maxParticles * 6);
+#endif
+		GL_CHECK_ERROR;
 		
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
+#if	USE_INDEX_BUFFER
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+#endif
 	} else {        
 		//TODO: es1 support
 	}	

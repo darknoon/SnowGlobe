@@ -8,14 +8,16 @@
 
 attribute vec4 position;
 attribute vec4 color;
+attribute vec2 texCoord0;
 
 uniform mat4 modelViewProjectionMatrix;
 
 varying lowp vec4 v_color;
+varying mediump vec2 v_tc;
 
 void main()
 {
     gl_Position = modelViewProjectionMatrix * position;
-	gl_PointSize = 40.0 / gl_Position.z;
 	v_color	= color;
+	v_tc = texCoord0;
 }

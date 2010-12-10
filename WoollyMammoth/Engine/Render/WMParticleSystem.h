@@ -26,8 +26,13 @@ struct WMParticleVertex;
 	
 	WMParticleVertex *particleVertices;
 	
+	//0 when no data, 1 when 1st buffer, filled 2 when both
+	int particleDataAvailable;
 	NSUInteger currentParticleVBOIndex;
 	GLuint particleVBOs[2];
+	
+	//Holds indices. always the same, as each particle is a quad! ie boring (0,1,2, 1,2,3 … )
+	GLuint particleEBO;
 	
 	VECTOR4 startColor;
 	float deltaAlpha;
@@ -38,8 +43,6 @@ struct WMParticleVertex;
 	
 	//Potentially slower. Try turning off for performance
 	BOOL zSortParticles;
-	
-	//ignores model
 }
 
 @end

@@ -26,6 +26,7 @@ struct WMParticle {
 	Vec3 position;
 	Vec3 velocity;
 	Vec3 noiseVec;
+	QUATERNION quaternion;
 	unsigned char color[4];
 	void update(double dt, double t, int i, Vec3 gravity, WMParticleSystem *sys);
 	void init();
@@ -86,6 +87,11 @@ void WMParticle::update(double dt, double t, int i, Vec3 gravity, WMParticleSyst
 		
 	//	Vec3 randomVec = Vec3(rng.randF(-1.0f, 1.0f), rng.randF(-1.0f, 1.0f), rng.randF(-1.0f, 1.0f));
 		force += turbulenceForce * sys->turbulence * noiseVec;
+		
+		//Have the particle kind of randomly rotate, yay
+		QUATERNION rotation;
+		MatrixQuaternionRotationAxis(rotation, noiseVec, 2.0 * dt);
+		MatrixQuaternionMultiply(quaternion, quaternion, rotation);
 		
 		const float particleOppositionForce = 200.0f;
 		const int particlesToConsider = 10;
@@ -155,6 +161,8 @@ void WMParticle::init() {
 		position = Vec3(rng.randF(-pinitial,pinitial), rng.randF(-pinitial,pinitial), rng.randF(-pinitial,pinitial));
 		misses++;
 	} while (position.dot(position) > 0.4f * 0.4f);
+	
+	MatrixQuaternionIdentity(quaternion);
 	
 	color[0] = 255;
 	color[1] = 255;
@@ -291,13 +299,13 @@ int particleZCompare(const void *a, const void *b) {
 	glBindBuffer(GL_ARRAY_BUFFER, particleVBOs[currentParticleVBOIndex]);
 	
 	Vec3 spherePosition = Vec3(0.0f, 0.145f, 0.0f);
-	float sz = 0.01f;
+	float sz = 0.015f;
 	
 	const Vec3 offsets[4] = {
-		Vec3(-sz, -sz, 0),
-		Vec3( sz, -sz, 0),
 		Vec3(-sz,  sz, 0),
 		Vec3( sz,  sz, 0),
+		Vec3(-sz, -sz, 0),
+		Vec3( sz, -sz, 0),
 	};
 	const unsigned char textureCoords[4][2] = {
 		{0,0},
@@ -307,9 +315,13 @@ int particleZCompare(const void *a, const void *b) {
 	};
 	
 	for (int i=0; i<maxParticles; i++) {
+		MATRIX mat;
+		MatrixRotationQuaternion(mat, particles[i].quaternion);
 		for (int v=0; v<4; v++) {
 			//Calculate the particle position
-			particleVertices[4 * i + v].position = particles[i].position + spherePosition + offsets[v];
+			Vec3 outVec;
+			MatrixVec3Multiply(outVec, offsets[v], mat);
+			particleVertices[4 * i + v].position = particles[i].position + spherePosition + outVec;
 			
 			//copy color as int
 			*((int *)particleVertices[4 * i + v].color) = *((int *)particles[i].color);

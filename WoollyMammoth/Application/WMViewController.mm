@@ -17,6 +17,8 @@
 #import "WMDebugViewController.h"
 #import "WMAssetManager.h"
 
+#import "SHK.h"
+
 @interface WMViewController ()
 @end
 
@@ -219,6 +221,14 @@
 }
 
 #pragma mark -
+
+- (UIImage *)screenshotImage;
+{
+	return [(EAGLView *)self.view screenshotImage];
+}
+
+
+#pragma mark -
 #pragma mark Actions
 
 - (IBAction)showDebug:(id)sender;
@@ -226,6 +236,16 @@
 	[self.view addSubview:debugViewController.view];
 	debugViewController.view.frame = self.view.bounds;
 }
+
+- (IBAction)showShare:(id)sender;
+{
+	SHKItem *item = [SHKItem image:[self screenshotImage] title:@"My Snow Globe"];
+	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+	
+	[actionSheet showFromRect:CGRectZero inView:self.view animated:YES];
+}
+
+#pragma mark -
 
 - (void)didReceiveMemoryWarning
 {

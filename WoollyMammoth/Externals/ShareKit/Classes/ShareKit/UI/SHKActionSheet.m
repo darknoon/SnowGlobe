@@ -99,7 +99,7 @@
 	}
 	
 	// More
-	else if (buttonIndex == sharers.count)
+	else if (buttonIndex == sharers.count && buttonIndex != self.cancelButtonIndex)
 	{
 		SHKShareMenu *shareMenu = [[SHKCustomShareMenu alloc] initWithStyle:UITableViewStyleGrouped];
 		shareMenu.item = item;

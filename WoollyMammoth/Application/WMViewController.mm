@@ -240,7 +240,7 @@
 
 - (IBAction)showShare:(id)sender;
 {
-	SHKItem *item = [SHKItem image:[self screenshotImage] title:@"My Snow Globe"];
+	SHKItem *item = [SHKItem image:[self screenshotImage] title:@"It's a Snow Day on my iPhone!"];
 	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForType:item.shareType 
 															 sharers:[NSArray arrayWithObjects:@"SHKTwitter", @"SHKFacebook", @"SHKMail", @"SHKCopy", nil]
 													  showMoreButton:NO];

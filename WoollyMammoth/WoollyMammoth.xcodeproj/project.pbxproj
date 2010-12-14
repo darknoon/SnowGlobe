@@ -157,6 +157,7 @@
 		49C55283126980610093FAFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C55282126980610093FAFD /* CoreGraphics.framework */; };
 		49C978A912A234A2004258E4 /* WMParticleSystem.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49C978A812A234A2004258E4 /* WMParticleSystem.mm */; };
 		49C97A6B12A33FEC004258E4 /* SimplexNoise.c in Sources */ = {isa = PBXBuildFile; fileRef = 49C97A6912A33FEC004258E4 /* SimplexNoise.c */; };
+		49CB509E12B7458E003C4362 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CB509D12B7458E003C4362 /* Icon@2x.png */; };
 		49D101FA1270BB85007E143E /* Texture2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D101EF1270BB85007E143E /* Texture2D.m */; };
 		49D101FB1270BB85007E143E /* WMAsset.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F11270BB85007E143E /* WMAsset.mm */; };
 		49D101FC1270BB85007E143E /* WMAssetManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F31270BB85007E143E /* WMAssetManager.mm */; };
@@ -185,7 +186,7 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* WoollyMammoth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WoollyMammoth.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Snow Day.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snow Day.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -512,6 +513,7 @@
 		49C978A812A234A2004258E4 /* WMParticleSystem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMParticleSystem.mm; sourceTree = "<group>"; };
 		49C97A6912A33FEC004258E4 /* SimplexNoise.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SimplexNoise.c; sourceTree = "<group>"; };
 		49C97A6A12A33FEC004258E4 /* SimplexNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplexNoise.h; sourceTree = "<group>"; };
+		49CB509D12B7458E003C4362 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		49D101EE1270BB85007E143E /* Texture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture2D.h; sourceTree = "<group>"; };
 		49D101EF1270BB85007E143E /* Texture2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture2D.m; sourceTree = "<group>"; };
 		49D101F01270BB85007E143E /* WMAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAsset.h; sourceTree = "<group>"; };
@@ -581,7 +583,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* WoollyMammoth.app */,
+				1D6058910D05DD3D006BFB54 /* Snow Day.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1446,6 +1448,7 @@
 		49E81DD912712FE400127D48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				49CB509D12B7458E003C4362 /* Icon@2x.png */,
 				4908214812B192230061E487 /* UIOverlay@2x.png */,
 				49E81DFB127130FD00127D48 /* xButton.png */,
 				49E81DFC127130FD00127D48 /* xButtonPressed.png */,
@@ -1491,7 +1494,7 @@
 			);
 			name = WoollyMammoth;
 			productName = WoollyMammoth;
-			productReference = 1D6058910D05DD3D006BFB54 /* WoollyMammoth.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* Snow Day.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1539,6 +1542,7 @@
 				4909265212B6E1A80076342D /* SHKSharers.plist in Resources */,
 				4909265712B6E1A80076342D /* Localizable.strings in Resources */,
 				4909265E12B6E1A80076342D /* FBConnect.bundle in Resources */,
+				49CB509E12B7458E003C4362 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1731,7 +1735,7 @@
 					"-Wno-write-strings",
 					"$(OTHER_CFLAGS)",
 				);
-				PRODUCT_NAME = WoollyMammoth;
+				PRODUCT_NAME = "Snow Day";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$SRCROOT/Externals/Bullet/src $SRCROOT/Externals/oolong/Include";
 			};
@@ -1753,7 +1757,7 @@
 					"-Wno-write-strings",
 					"$(OTHER_CFLAGS)",
 				);
-				PRODUCT_NAME = WoollyMammoth;
+				PRODUCT_NAME = "Snow Day";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$SRCROOT/Externals/Bullet/src $SRCROOT/Externals/oolong/Include";
 				VALIDATE_PRODUCT = YES;
@@ -1763,7 +1767,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -1779,7 +1783,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

@@ -41,5 +41,6 @@
 
 + (SHKActionSheet *)actionSheetForType:(SHKShareType)type;
 + (SHKActionSheet *)actionSheetForItem:(SHKItem *)i;
++ (SHKActionSheet *)actionSheetForType:(SHKShareType)inType sharers:(NSArray *)inSharers showMoreButton:(BOOL)inShowMoreButton;
 
 @end

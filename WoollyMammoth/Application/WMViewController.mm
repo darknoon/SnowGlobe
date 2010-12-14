@@ -18,6 +18,7 @@
 #import "WMAssetManager.h"
 
 #import "SHK.h"
+#import "SHKItem.h"
 
 @interface WMViewController ()
 @end
@@ -240,7 +241,10 @@
 - (IBAction)showShare:(id)sender;
 {
 	SHKItem *item = [SHKItem image:[self screenshotImage] title:@"My Snow Globe"];
-	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForType:item.shareType 
+															 sharers:[NSArray arrayWithObjects:@"SHKTwitter", @"SHKFacebook", @"SHKMail", @"SHKCopy", nil]
+													  showMoreButton:NO];
+	actionSheet.item = item;
 	
 	[actionSheet showFromRect:CGRectZero inView:self.view animated:YES];
 }

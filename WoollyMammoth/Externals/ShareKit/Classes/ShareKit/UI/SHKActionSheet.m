@@ -42,7 +42,7 @@
 	[super dealloc];
 }
 
-+ (SHKActionSheet *)actionSheetForType:(SHKShareType)type
++ (SHKActionSheet *)actionSheetForType:(SHKShareType)inType sharers:(NSArray *)inSharers showMoreButton:(BOOL)inShowMoreButton;
 {
 	SHKActionSheet *as = [[SHKActionSheet alloc] initWithTitle:SHKLocalizedString(@"Share")
 													  delegate:self
@@ -50,14 +50,13 @@
 										destructiveButtonTitle:nil
 											 otherButtonTitles:nil];
 	as.item = [[[SHKItem alloc] init] autorelease];
-	as.item.shareType = type;
+	as.item.shareType = inType;
 	
-	as.sharers = [NSMutableArray arrayWithCapacity:0];
-	NSArray *favoriteSharers = [SHK favoriteSharersForType:type];
+	as.sharers = [NSMutableArray array];
 		
 	// Add buttons for each favorite sharer
 	id class;
-	for(NSString *sharerId in favoriteSharers)
+	for(NSString *sharerId in inSharers)
 	{
 		class = NSClassFromString(sharerId);
 		if ([class canShare])
@@ -68,7 +67,7 @@
 	}
 	
 	// Add More button
-	[as addButtonWithTitle:SHKLocalizedString(@"More...")];
+	if (inShowMoreButton) [as addButtonWithTitle:SHKLocalizedString(@"More...")];
 	
 	// Add Cancel button
 	[as addButtonWithTitle:SHKLocalizedString(@"Cancel")];
@@ -76,6 +75,13 @@
 	
 	return [as autorelease];
 }
+
++ (SHKActionSheet *)actionSheetForType:(SHKShareType)inType
+{
+	return [self actionSheetForType:inType sharers:[SHK favoriteSharersForType:inType] showMoreButton:YES];
+}
+
+
 
 + (SHKActionSheet *)actionSheetForItem:(SHKItem *)i
 {

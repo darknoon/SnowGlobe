@@ -15,6 +15,12 @@
 
 #define VideoCapture_NumTextures 2
 
+#define USE_LOW_RES_CAMERA 0
+//Otherwise, use RGBA
+#define USE_BGRA 1
+#define DEBUG_TEXTURE_UPLOAD 0
+
+
 @interface VideoCapture : NSObject
 #if TARGET_OS_EMBEDDED
 <AVCaptureVideoDataOutputSampleBufferDelegate> 
@@ -30,10 +36,16 @@
 #endif
 	BOOL capturing;
 	
-	//Swap between textures to reduce locking issues?
-	NSUInteger currentTexture;
 	GLuint textures[VideoCapture_NumTextures];
+		
+	//Swap between textures to reduce locking issues
+	NSUInteger currentTexture; //This is the texture that was just written into
 	BOOL textureWasRead;
+	
+#if DEBUG_TEXTURE_UPLOAD
+	int logi;
+	char log[10000];
+#endif
 }
 
 @property (nonatomic, readonly) BOOL capturing;

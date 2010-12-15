@@ -10,8 +10,6 @@
 
 #import <CoreVideo/CoreVideo.h>
 
-#define USE_LOW_RES_CAMERA 0
-
 @implementation VideoCapture
 
 @synthesize capturing;
@@ -71,7 +69,7 @@
 	unsigned char *buffer = malloc(4 * width * height);
 	for (int y=0, i=0; y<height; y++) {
 		for (int x=0; x<width; x++, i++) {
-			buffer[4*i + 0] = 255;
+			buffer[4*i + 0] = 10;
 			buffer[4*i + 1] = 0;
 			buffer[4*i + 2] = 255;
 			buffer[4*i + 3] = 255;
@@ -81,13 +79,18 @@
 	//glTexParameterf(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_FALSE);
 
 	for (int texture = 0; texture < VideoCapture_NumTextures; texture++) {
-		 glBindTexture(GL_TEXTURE_2D, textures[texture]);
+		glBindTexture(GL_TEXTURE_2D, textures[texture]);
 		
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, buffer);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+#if USE_BGRA
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, buffer);
+#else
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA8_OES, GL_UNSIGNED_BYTE, buffer);
+#endif
 		GL_CHECK_ERROR;
 	}
 	glBindTexture(GL_TEXTURE_2D, 0);	
@@ -142,7 +145,10 @@
 								   [NSNumber numberWithBool:YES], (id)kCVPixelBufferOpenGLCompatibilityKey, nil];
 	
 	[output setVideoSettings:videoSettings];	
-	
+	[output setAlwaysDiscardsLateVideoFrames:YES];
+	//1.0 / 60.0 seconds
+	[output setMinFrameDuration:CMTimeMake(1, 30)];
+
 	[output setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
 	
 	[captureSession addInput:input];
@@ -172,17 +178,22 @@
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer 
 	   fromConnection:(AVCaptureConnection *)connection;
 {
+	
+#if DEBUG_TEXTURE_UPLOAD
+	NSTimeInterval __START_TIME = CFAbsoluteTimeGetCurrent();
+#endif
 
 	if (!textureWasRead) {
 		//NSLog(@"Texture was not read before swap!");
 		return;
 	}
 	//Advance the current texture
-	currentTexture = !currentTexture;
+	currentTexture = (currentTexture+1) % VideoCapture_NumTextures;
 	textureWasRead = NO;
-	//Get the texture ready
+
+//Get the texture ready
 	glBindTexture(GL_TEXTURE_2D, textures[currentTexture]);
-	
+
 	//Get buffer info
 	CVPixelBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
 	CVPixelBufferLockBaseAddress(imageBuffer,0);
@@ -195,18 +206,37 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 	//Copy buffer contents into vram
 	GL_CHECK_ERROR;
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_BGRA_EXT, GL_UNSIGNED_BYTE, baseAddress);
+	//glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_BGRA, GL_UNSIGNED_BYTE, baseAddress);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, baseAddress);
 	GL_CHECK_ERROR;
 	
 	//Now release the lock
 	CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
+	
+#if DEBUG_TEXTURE_UPLOAD
+	NSTimeInterval __END_TIME = CFAbsoluteTimeGetCurrent();
+	
+	NSTimeInterval mstime = (__END_TIME - __START_TIME) * 1000.0;
+	
+	//'W' if greater that 10 ms 'w' if less to upload texture
+	log[logi++] = mstime > 10.0 ? 'W' : 'w';
+	log[logi++] = '0' + (char)currentTexture;
+
+	static int i=0;
+	if (i%10 == 0) {
+		log[logi] = '\0';
+		logi = 0;
+		NSLog(@"Texture upload time: %.3lf ms %s", mstime, log);
+	}
+	i = (i+1 % 10);
+#endif DEBUG_TEXTURE_UPLOAD
 }
 #else
 
 - (void)simulatorUploadTexture;
 {
 	//Advance the current texture
-	currentTexture = !currentTexture;
+	currentTexture = (currentTexture+1) % VideoCapture_NumTextures;
 	//Get the texture ready
 	glBindTexture(GL_TEXTURE_2D, textures[currentTexture]);
 	
@@ -240,11 +270,16 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (GLuint)getVideoTexture;
 {	
+	int textureToRead = (currentTexture - 1 + VideoCapture_NumTextures) % VideoCapture_NumTextures;
 	textureWasRead = YES;
+#if DEBUG_TEXTURE_UPLOAD
+	log[logi++] = 'r';
+	log[logi++] = '0' + (char)textureToRead;
+#endif
 #if TARGET_IPHONE_SIMULATOR
 	[self simulatorUploadTexture];
 #endif
-	return textures[currentTexture];
+	return textures[textureToRead];
 }
 
 

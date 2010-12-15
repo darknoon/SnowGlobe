@@ -212,7 +212,7 @@ int particleZCompare(const void *a, const void *b) {
 	double dt = t - t_prev;
 	dt = fmax(1.0/30.0, fmin(dt, 1.0/60.0));
 #else
-	double dt = 1.0/60.0;
+	double dt = 1.0/30.0;
 	t += dt;
 #endif
 	

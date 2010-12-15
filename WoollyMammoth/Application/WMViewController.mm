@@ -61,7 +61,7 @@
 
 - (void)awakeFromNib
 {
-    animationFrameInterval = 1;
+    animationFrameInterval = 2;
     
     // Use of CADisplayLink requires iOS version 3.1 or greater.
 	// The NSTimer object is used as fallback when it isn't available.

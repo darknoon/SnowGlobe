@@ -21,6 +21,7 @@ extern "C" {
 }
 CTrivialRandomGenerator rng;
 
+#define PARTICLES_USE_REAL_GRAVITY 0
 
 struct WMParticle {
 	float life;
@@ -200,7 +201,11 @@ int particleZCompare(const void *a, const void *b) {
 
 - (void)update;
 {
+#if PARTICLES_USE_REAL_GRAVITY
 	Vec3 gravity = [WMAccelerometer sharedAccelerometer].gravity;
+#else
+	Vec3 gravity = Vec3(0.0f, -1.0f, 0.0f);
+#endif
 	Vec3 rotationRate = [WMAccelerometer sharedAccelerometer].rotationRate;
 
 	//NSLog(@"g(%f, %f, %f) rot(%f, %f, %f)", gravity.x, gravity.y, gravity.z, rotationRate.x, rotationRate.y, rotationRate.z);

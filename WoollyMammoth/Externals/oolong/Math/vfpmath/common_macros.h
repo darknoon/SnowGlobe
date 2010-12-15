@@ -47,7 +47,8 @@ not be misrepresented as being the original software.
 #ifndef NO_THUMB
 #warning "Compiling in Thumb Mode. Mode switches activated."
 #else
-#warning "Compiling in ARM mode. Mode switches deactivated."
+//AKP: I don't think this is actually something to warn about.
+//#warning "Compiling in ARM mode. Mode switches deactivated."
 #endif
 
 // Switches to from THUMB to ARM mode.

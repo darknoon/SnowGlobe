@@ -17,6 +17,9 @@
 #import "WMDebugViewController.h"
 #import "WMAssetManager.h"
 
+#import "SHK.h"
+#import "SHKItem.h"
+
 @interface WMViewController ()
 @end
 
@@ -58,7 +61,7 @@
 
 - (void)awakeFromNib
 {
-    animationFrameInterval = 1;
+    animationFrameInterval = 2;
     
     // Use of CADisplayLink requires iOS version 3.1 or greater.
 	// The NSTimer object is used as fallback when it isn't available.
@@ -219,6 +222,14 @@
 }
 
 #pragma mark -
+
+- (UIImage *)screenshotImage;
+{
+	return [(EAGLView *)self.view screenshotImage];
+}
+
+
+#pragma mark -
 #pragma mark Actions
 
 - (IBAction)showDebug:(id)sender;
@@ -226,6 +237,19 @@
 	[self.view addSubview:debugViewController.view];
 	debugViewController.view.frame = self.view.bounds;
 }
+
+- (IBAction)showShare:(id)sender;
+{
+	SHKItem *item = [SHKItem image:[self screenshotImage] title:@"It's a Snow Day on my iPhone!"];
+	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForType:item.shareType 
+															 sharers:[NSArray arrayWithObjects:@"SHKTwitter", @"SHKFacebook", @"SHKMail", @"SHKCopy", nil]
+													  showMoreButton:NO];
+	actionSheet.item = item;
+	
+	[actionSheet showFromRect:CGRectZero inView:self.view animated:YES];
+}
+
+#pragma mark -
 
 - (void)didReceiveMemoryWarning
 {

@@ -34,7 +34,7 @@ struct WMSphereVertex {
 	unum = 50;
 	vnum = 50;
 	
-	radius = 0.58f;
+	radius = 0.535f;
 	
 	glGenBuffers(1, &vbo);
 	glGenBuffers(1, &ebo);
@@ -52,7 +52,7 @@ struct WMSphereVertex {
 		return nil;
 	}
 	
-	Vec3 spherePosition = Vec3(0.0f, 0.145f, 0.0f);
+	Vec3 spherePosition = Vec3(0.0f, 0.045f, 0.0f);
 	
 	//Add vertices
 	for (int u=0, i=0, indexDataIndex=0; u<unum; u++) {

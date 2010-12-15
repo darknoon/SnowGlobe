@@ -21,6 +21,8 @@ extern "C" {
 }
 CTrivialRandomGenerator rng;
 
+#define PARTICLES_USE_REAL_GRAVITY 0
+
 struct WMParticle {
 	float life;
 	Vec3 position;
@@ -107,9 +109,8 @@ void WMParticle::update(double dt, double t, int i, Vec3 gravity, WMParticleSyst
 				}
 			}
 		}
-		
-		const float sphereRadius = 0.58f;
-;
+		const float sphereRadius = 0.53f;
+
 		//Constrain to be inside sphere
 		float distanceFromOrigin2 = position.dot(position);
 		if (distanceFromOrigin2 > sphereRadius * sphereRadius) {
@@ -236,7 +237,11 @@ int particleZCompare(const void *a, const void *b) {
 
 - (void)update;
 {
+#if PARTICLES_USE_REAL_GRAVITY
 	Vec3 gravity = [WMAccelerometer sharedAccelerometer].gravity;
+#else
+	Vec3 gravity = Vec3(0.0f, -1.0f, 0.0f);
+#endif
 	Vec3 rotationRate = [WMAccelerometer sharedAccelerometer].rotationRate;
 
 	//NSLog(@"g(%f, %f, %f) rot(%f, %f, %f)", gravity.x, gravity.y, gravity.z, rotationRate.x, rotationRate.y, rotationRate.z);
@@ -248,7 +253,7 @@ int particleZCompare(const void *a, const void *b) {
 	double dt = t - t_prev;
 	dt = fmax(1.0/30.0, fmin(dt, 1.0/60.0));
 #else
-	double dt = 1.0/60.0;
+	double dt = 1.0/30.0;
 	t += dt;
 #endif
 
@@ -298,7 +303,7 @@ int particleZCompare(const void *a, const void *b) {
 	currentParticleVBOIndex = !currentParticleVBOIndex;
 	glBindBuffer(GL_ARRAY_BUFFER, particleVBOs[currentParticleVBOIndex]);
 	
-	Vec3 spherePosition = Vec3(0.0f, 0.145f, 0.0f);
+	Vec3 spherePosition = Vec3(0.0f, 0.045f, 0.0f);
 	float sz = 0.015f;
 	
 	const Vec3 offsets[4] = {

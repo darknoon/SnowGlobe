@@ -10,6 +10,11 @@
 
 #import "EAGLView.h"
 
+void releaseScreenshotData(void *info, const void *data, size_t size) {
+	free((void *)data);
+};
+
+
 @interface EAGLView (PrivateMethods)
 - (void)createFramebuffer;
 - (void)deleteFramebuffer;
@@ -166,6 +171,50 @@
     }
     
     return success;
+}
+
+- (UIImage *)screenshotImage;
+{
+	NSInteger myDataLength = framebufferWidth * framebufferHeight * 4;
+	
+	// allocate array and read pixels into it.
+	GLuint *buffer = (GLuint *) malloc(myDataLength);
+	glReadPixels(0, 0, framebufferWidth, framebufferHeight, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+	
+	// gl renders "upside down" so swap top to bottom into new array.
+	for(int y = 0; y < framebufferHeight / 2; y++) {
+		for(int x = 0; x < framebufferWidth; x++) {
+			//Swap top and bottom bytes
+			GLuint top = buffer[y * framebufferWidth + x];
+			GLuint bottom = buffer[(framebufferHeight - 1 - y) * framebufferWidth + x];
+			buffer[(framebufferHeight - 1 - y) * framebufferWidth + x] = top;
+			buffer[y * framebufferWidth + x] = bottom;
+		}
+	}
+	
+	// make data provider with data.
+	CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, buffer, myDataLength, releaseScreenshotData);
+	
+	// prep the ingredients
+	const int bitsPerComponent = 8;
+	const int bitsPerPixel = 4 * bitsPerComponent;
+	const int bytesPerRow = 4 * framebufferWidth;
+	CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
+	CGBitmapInfo bitmapInfo = kCGBitmapByteOrderDefault;
+	CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;
+	
+	// make the cgimage
+	CGImageRef imageRef = CGImageCreate(framebufferWidth, framebufferHeight, bitsPerComponent, bitsPerPixel, bytesPerRow, colorSpaceRef, bitmapInfo, provider, NULL, NO, renderingIntent);
+	CGColorSpaceRelease(colorSpaceRef);
+	CGDataProviderRelease(provider);
+	
+	// then make the UIImage from that
+	UIImage *myImage = [UIImage imageWithCGImage:imageRef];
+	CGImageRelease(imageRef);
+	
+	//Buffer will be freed by releaseScreenshotData callback
+	
+	return myImage;
 }
 
 - (void)layoutSubviews

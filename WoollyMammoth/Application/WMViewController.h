@@ -17,7 +17,7 @@
 @class WMEngine;
 @class WMDebugViewController;
 
-@interface WMViewController : UIViewController
+@interface WMViewController : UIViewController <UIActionSheetDelegate>
 {
 	WMEngine *engine;
 	    
@@ -46,7 +46,10 @@
 @property (nonatomic) NSInteger animationFrameInterval;
 @property (nonatomic, retain) IBOutlet WMDebugViewController *debugViewController;
 
+- (UIImage *)screenshotImage;
+
 - (IBAction)showDebug:(id)sender;
+- (IBAction)showShare:(id)sender;
 
 - (void)reloadGame;
 - (void)reloadGameFromURL:(NSURL *)inRemoteURL;

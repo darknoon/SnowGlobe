@@ -23,7 +23,7 @@ CTrivialRandomGenerator rng;
 
 #define PARTICLES_ATLAS_WIDTH 4
 
-#define PARTICLES_USE_REAL_GRAVITY 0
+#define PARTICLES_USE_REAL_GRAVITY 1
 
 struct WMParticle {
 	float life;
@@ -33,6 +33,7 @@ struct WMParticle {
 	QUATERNION quaternion;
 	unsigned char color[4];
 	char atlasPosition[2]; //texture coord at origin 0-255 range
+	float opposition; //Random float, basically how much it gets pushed out from the centroid
 	void update(double dt, double t, int i, Vec3 gravity, WMParticleSystem *sys);
 	void init();
 	void updateNoise(double t);
@@ -92,35 +93,17 @@ void WMParticle::update(double dt, double t, int i, Vec3 gravity, WMParticleSyst
 		
 	//	Vec3 randomVec = Vec3(rng.randF(-1.0f, 1.0f), rng.randF(-1.0f, 1.0f), rng.randF(-1.0f, 1.0f));
 		force += turbulenceForce * sys->turbulence * noiseVec;
+				
+		const float particleOppositionForce = 0.0001f;
+		//Push away from the centroid of other particles
+		const float coff = 0.1f;
+		//Force = opposition * 0.1 / (10.f * dist^2 + coff)
+		Vec3 displacementFromFromCentroid = position - sys->particleCentroid;
 		
-		//Have the particle kind of randomly rotate, yay
-		QUATERNION rotation;
+		//TODO: can we eliminate this sqrt?
+		float distanceFromFromCentroid2 = displacementFromFromCentroid.dot(displacementFromFromCentroid);
+		force += opposition * (particleOppositionForce / (10.f * distanceFromFromCentroid2 + coff)) * (displacementFromFromCentroid / sqrtf(distanceFromFromCentroid2));
 		
-		float fSin = sinf(2.0f * 2.0f * 1.0f / 30.0f);
-		float fCos = cosf(2.0f * 2.0f * 1.0f / 30.0f);
-		
-		/* Create quaternion */
-		rotation.x = noiseVec.x * fSin;
-		rotation.y = noiseVec.y * fSin;
-		rotation.z = noiseVec.z * fSin;
-		rotation.w = fCos;
-		//MatrixQuaternionRotationAxis(rotation, noiseVec, 2.0 * dt);
-		MatrixQuaternionMultiply(quaternion, quaternion, rotation);
-		
-		const float particleOppositionForce = 200.0f;
-		const int particlesToConsider = 0;
-		//Move away from other particles
-		for (int j=MAX(0, i - particlesToConsider/2); j<MIN(i+particlesToConsider/2,sys->maxParticles); j++) {
-			if (i != j) {
-				Vec3 d = (sys->particles[j].position - position);
-				float dist2 = d.dot(d);
-				const float collisionDistance = 0.03f;
-				if (dist2 < collisionDistance * collisionDistance) {
-					//Add a force away from the other particle
-					force += particleOppositionForce * (dist2 - collisionDistance * collisionDistance) * d;
-				}
-			}
-		}
 		const float sphereRadius = 0.53f;
 
 		//Constrain to be inside sphere
@@ -144,7 +127,23 @@ void WMParticle::update(double dt, double t, int i, Vec3 gravity, WMParticleSyst
 			
 			//Scale back to sphere size
 			position *= sphereRadius;
+		} else {
+			//If we're not on the edge of the sphere
+			//Have the particle kind of randomly rotate, yay
+			QUATERNION rotation;
+			
+			float fSin = sinf(2.0f * 2.0f * 1.0f / 30.0f);
+			float fCos = cosf(2.0f * 2.0f * 1.0f / 30.0f);
+			
+			/* Create quaternion */
+			rotation.x = noiseVec.x * fSin;
+			rotation.y = noiseVec.y * fSin;
+			rotation.z = noiseVec.z * fSin;
+			rotation.w = fCos;
+			//MatrixQuaternionRotationAxis(rotation, noiseVec, 2.0 * dt);
+			MatrixQuaternionMultiply(quaternion, quaternion, rotation);			
 		}
+
 		
 		const float mass_inv = 1.0f/mass;
 		velocity += force * mass_inv * dt;
@@ -174,6 +173,8 @@ void WMParticle::init() {
 		position = Vec3(rng.randF(-pinitial,pinitial), rng.randF(-pinitial,pinitial), rng.randF(-pinitial,pinitial));
 		misses++;
 	} while (position.dot(position) > 0.4f * 0.4f);
+	
+	opposition = rng.randF();
 	
 	//Randomize position in atlas
 	atlasPosition[0] = (rng.randI() % PARTICLES_ATLAS_WIDTH) * (255 / PARTICLES_ATLAS_WIDTH);
@@ -274,6 +275,7 @@ int particleZCompare(const void *a, const void *b) {
 #endif
 
 	
+	
 	const float turbulenceDecay = 0.99f;
 	const float turbulenceStrength = 0.1f;
 	MATRIX rotation;
@@ -304,14 +306,21 @@ int particleZCompare(const void *a, const void *b) {
 	}
 	particleUpdateIndex = (particleUpdateIndex + 1) % particleUpdateSkip;
 	
+	
 	//Update particles
 	for (int i=0; i<maxParticles; i++) {
 		particles[i].update(dt, t, i, gravity, self);
 
+		
 		//Rotate with torque! (try to anyway!)
 		MatrixVec3Multiply(particles[i].position, particles[i].position, rotation);
 	}
-	
+	//Update centroid
+	particleCentroid = Vec3(0.0f);
+	for (int i=0; i<maxParticles; i++) {
+		particleCentroid += particles[i].position;
+	}
+	particleCentroid *= 1.0f / maxParticles;
 	
 	//Sort particles (if necessary)
 	if (zSortParticles)

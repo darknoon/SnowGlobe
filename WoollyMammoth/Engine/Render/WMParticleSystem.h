@@ -37,6 +37,8 @@ struct WMParticleVertex;
 	VECTOR4 startColor;
 	float deltaAlpha;
 	
+	Vec3 particleCentroid;
+	
 	float turbulence;
 	
 	double t;

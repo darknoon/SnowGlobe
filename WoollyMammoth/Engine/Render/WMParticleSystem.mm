@@ -21,6 +21,8 @@ extern "C" {
 }
 CTrivialRandomGenerator rng;
 
+#define PARTICLES_ATLAS_WIDTH 4
+
 #define PARTICLES_USE_REAL_GRAVITY 0
 
 struct WMParticle {
@@ -30,6 +32,7 @@ struct WMParticle {
 	Vec3 noiseVec;
 	QUATERNION quaternion;
 	unsigned char color[4];
+	char atlasPosition[2]; //texture coord at origin 0-255 range
 	void update(double dt, double t, int i, Vec3 gravity, WMParticleSystem *sys);
 	void init();
 	void updateNoise(double t);
@@ -63,10 +66,10 @@ void WMParticle::update(double dt, double t, int i, Vec3 gravity, WMParticleSyst
 		const float mass = 0.01f;
 		//Elasticity of collision with sphere
 		const float elasticity = 0.70f;
-		const float coefficientOfDrag = 0.05f;
+		const float coefficientOfDrag = 0.07f;
 
 		Vec3 force = Vec3(0.0f, 0.0f, 0.0f);
-		force += mass * 0.1 * gravity; // add gravitational force, cheat
+		force += mass * 0.06 * gravity; // add gravitational force, cheat
 		
 		float v2 = velocity.dot(velocity);
 		float vl = sqrtf(v2);
@@ -92,11 +95,20 @@ void WMParticle::update(double dt, double t, int i, Vec3 gravity, WMParticleSyst
 		
 		//Have the particle kind of randomly rotate, yay
 		QUATERNION rotation;
-		MatrixQuaternionRotationAxis(rotation, noiseVec, 2.0 * dt);
+		
+		float fSin = sinf(2.0f * 2.0f * 1.0f / 30.0f);
+		float fCos = cosf(2.0f * 2.0f * 1.0f / 30.0f);
+		
+		/* Create quaternion */
+		rotation.x = noiseVec.x * fSin;
+		rotation.y = noiseVec.y * fSin;
+		rotation.z = noiseVec.z * fSin;
+		rotation.w = fCos;
+		//MatrixQuaternionRotationAxis(rotation, noiseVec, 2.0 * dt);
 		MatrixQuaternionMultiply(quaternion, quaternion, rotation);
 		
 		const float particleOppositionForce = 200.0f;
-		const int particlesToConsider = 10;
+		const int particlesToConsider = 0;
 		//Move away from other particles
 		for (int j=MAX(0, i - particlesToConsider/2); j<MIN(i+particlesToConsider/2,sys->maxParticles); j++) {
 			if (i != j) {
@@ -163,6 +175,10 @@ void WMParticle::init() {
 		misses++;
 	} while (position.dot(position) > 0.4f * 0.4f);
 	
+	//Randomize position in atlas
+	atlasPosition[0] = (rng.randI() % PARTICLES_ATLAS_WIDTH) * (255 / PARTICLES_ATLAS_WIDTH);
+	atlasPosition[1] = (rng.randI() % PARTICLES_ATLAS_WIDTH) * (255 / PARTICLES_ATLAS_WIDTH);
+	
 	MatrixQuaternionIdentity(quaternion);
 	
 	color[0] = 255;
@@ -182,7 +198,7 @@ int particleZCompare(const void *a, const void *b) {
 	[super initWithEngine:inEngine properties:renderableRepresentation];
 	if (self == nil) return self; 
 	
-	maxParticles = 1000;
+	maxParticles = 2000;
 	particles = new WMParticle[maxParticles];
 
 	particleVertices = new WMParticleVertex[maxParticles * 4];
@@ -190,10 +206,10 @@ int particleZCompare(const void *a, const void *b) {
 		particles[i].init();
 	}
 	
-	particleUpdateSkip = 6;
+	particleUpdateSkip = 12;
 	particleUpdateIndex = 0;
 	
-	zSortParticles = YES;
+	zSortParticles = NO;
 	
 	glGenBuffers(2, particleVBOs);
 	glGenBuffers(1, &particleEBO);
@@ -286,6 +302,8 @@ int particleZCompare(const void *a, const void *b) {
 	for (int i=particleUpdateIndex; i<maxParticles; i+=particleUpdateSkip) {
 		particles[i].updateNoise(t);
 	}
+	particleUpdateIndex = (particleUpdateIndex + 1) % particleUpdateSkip;
+	
 	//Update particles
 	for (int i=0; i<maxParticles; i++) {
 		particles[i].update(dt, t, i, gravity, self);
@@ -295,7 +313,7 @@ int particleZCompare(const void *a, const void *b) {
 	}
 	
 	
-	//Sort particles
+	//Sort particles (if necessary)
 	if (zSortParticles)
 		qsort(particles, maxParticles, sizeof(WMParticle), particleZCompare);
 	
@@ -304,7 +322,7 @@ int particleZCompare(const void *a, const void *b) {
 	glBindBuffer(GL_ARRAY_BUFFER, particleVBOs[currentParticleVBOIndex]);
 	
 	Vec3 spherePosition = Vec3(0.0f, 0.045f, 0.0f);
-	float sz = 0.015f;
+	float sz = 0.010f;
 	
 	const Vec3 offsets[4] = {
 		Vec3(-sz,  sz, 0),
@@ -312,11 +330,13 @@ int particleZCompare(const void *a, const void *b) {
 		Vec3(-sz, -sz, 0),
 		Vec3( sz, -sz, 0),
 	};
+	
+	const unsigned char an = (255 / PARTICLES_ATLAS_WIDTH);
 	const unsigned char textureCoords[4][2] = {
 		{0,0},
-		{1,0},
-		{0,1},
-		{1,1},
+		{an,0},
+		{0,an},
+		{an,an},
 	};
 	
 	for (int i=0; i<maxParticles; i++) {
@@ -332,8 +352,8 @@ int particleZCompare(const void *a, const void *b) {
 			*((int *)particleVertices[4 * i + v].color) = *((int *)particles[i].color);
 			
 			//copy tex coord as short
-			particleVertices[4 * i + v].texCoord0[0] = textureCoords[v][0];
-			particleVertices[4 * i + v].texCoord0[1] = textureCoords[v][1];
+			particleVertices[4 * i + v].texCoord0[0] = particles[i].atlasPosition[0] + textureCoords[v][0];
+			particleVertices[4 * i + v].texCoord0[1] = particles[i].atlasPosition[1] + textureCoords[v][1];
 		}
 	}
 	glBufferData(GL_ARRAY_BUFFER, maxParticles * 4 * sizeof(WMParticleVertex), particleVertices, GL_STREAM_DRAW);
@@ -383,7 +403,7 @@ int particleZCompare(const void *a, const void *b) {
 		GL_CHECK_ERROR;
 		
 		if (enableMask & WMRenderableDataAvailableTexCoord0) {
-			glVertexAttribPointer(WMShaderAttributeTexCoord0, 2, GL_UNSIGNED_BYTE, GL_FALSE, stride, (GLvoid *)offsetof(WMParticleVertex, texCoord0[0]) );
+			glVertexAttribPointer(WMShaderAttributeTexCoord0, 2, GL_UNSIGNED_BYTE, GL_TRUE, stride, (GLvoid *)offsetof(WMParticleVertex, texCoord0[0]) );
 		}
 		GL_CHECK_ERROR;
 		

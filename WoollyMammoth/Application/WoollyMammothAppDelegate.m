@@ -29,6 +29,9 @@
 	
 	[viewController reloadGame];
 	
+	//Disable screen dim / turn off because we don't use touch input
+	[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+	
 	return YES;
 }
 

@@ -1804,7 +1804,7 @@
 					"$(OTHER_CFLAGS)",
 				);
 				PRODUCT_NAME = "Snow Globe";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$SRCROOT/Externals/Bullet/src $SRCROOT/Externals/oolong/Include";
 			};
 			name = Debug;
@@ -1826,7 +1826,7 @@
 					"$(OTHER_CFLAGS)",
 				);
 				PRODUCT_NAME = "Snow Globe";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$SRCROOT/Externals/Bullet/src $SRCROOT/Externals/oolong/Include";
 				VALIDATE_PRODUCT = YES;
 			};

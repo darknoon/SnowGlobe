@@ -20,6 +20,7 @@
 #import "SoundManager.h"
 
 #import "SGRibbon.h"
+#import "SGAboutViewController.h"
 
 #import "SHK.h"
 #import "SHKItem.h"
@@ -32,6 +33,7 @@
 
 @implementation WMViewController
 
+@synthesize aboutViewController;
 @synthesize ribbon;
 @synthesize engine;
 @synthesize animating;
@@ -108,6 +110,9 @@
 
 	[ribbon release];
 	ribbon = nil;
+
+	[aboutViewController release];
+	aboutViewController = nil;
 
     [super dealloc];
 }
@@ -256,6 +261,13 @@
 	[[SoundManager sharedManager] playSound:@"shutter"];
 	[self stopAnimation];
 	[ribbon setOpen:YES animated:YES];
+}
+
+- (IBAction)showAbout:(id)sender;
+{
+	[self.view addSubview:aboutViewController.view];
+	aboutViewController.view.frame = self.view.bounds;
+	[aboutViewController showWithAnimation];	
 }
 
 - (IBAction)showDebug:(id)sender;

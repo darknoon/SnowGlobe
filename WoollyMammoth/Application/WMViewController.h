@@ -17,6 +17,7 @@
 @class WMEngine;
 @class WMDebugViewController;
 @class SGRibbon;
+@class SGAboutViewController;
 
 @interface WMViewController : UIViewController <UIActionSheetDelegate>
 {
@@ -34,7 +35,9 @@
     NSTimer *animationTimer;
 	
 	UILabel *fpsLabel;
-	IBOutlet WMDebugViewController *debugViewController;	
+	IBOutlet WMDebugViewController *debugViewController;
+	
+	IBOutlet SGAboutViewController *aboutViewController;
 	
 	IBOutlet SGRibbon *ribbon;
 	
@@ -49,9 +52,11 @@
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
 @property (nonatomic) NSInteger animationFrameInterval;
 @property (nonatomic, retain) IBOutlet WMDebugViewController *debugViewController;
+@property (nonatomic, retain) SGAboutViewController *aboutViewController;
 
 - (UIImage *)screenshotImage;
 
+- (IBAction)showAbout:(id)sender;
 - (IBAction)showDebug:(id)sender;
 
 - (IBAction)showShare:(id)sender;

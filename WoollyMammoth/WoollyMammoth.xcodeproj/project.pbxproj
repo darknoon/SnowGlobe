@@ -106,6 +106,12 @@
 		4930F69412BB4AB400607497 /* infoHolly.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F69012BB4AB400607497 /* infoHolly.png */; };
 		4930F69512BB4AB400607497 /* infoHollyPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F69112BB4AB400607497 /* infoHollyPressed.png */; };
 		4930F69612BB4AB400607497 /* UIOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F69212BB4AB400607497 /* UIOverlay.png */; };
+		4930F75712BB4F9F00607497 /* SGAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4930F75512BB4F9F00607497 /* SGAboutViewController.m */; };
+		4930F75812BB4F9F00607497 /* SGAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4930F75612BB4F9F00607497 /* SGAboutViewController.xib */; };
+		4930F75C12BB503000607497 /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F75A12BB503000607497 /* about.png */; };
+		4930F75D12BB503000607497 /* about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F75B12BB503000607497 /* about@2x.png */; };
+		4930F7B012BB5B4A00607497 /* AccelerationAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4930F7AD12BB5B4A00607497 /* AccelerationAnimation.m */; };
+		4930F7B112BB5B4A00607497 /* Evaluate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4930F7AF12BB5B4A00607497 /* Evaluate.m */; };
 		4933187F129C8C1A0051088C /* WMAssetManifest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4933187E129C8C1A0051088C /* WMAssetManifest.m */; };
 		4933188C129C8E810051088C /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4933188B129C8E810051088C /* BrowserViewController.m */; };
 		4940D0641264F5F7007FA76C /* WMGameObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0631264F5F7007FA76C /* WMGameObject.mm */; };
@@ -379,6 +385,15 @@
 		4930F69012BB4AB400607497 /* infoHolly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoHolly.png; sourceTree = "<group>"; };
 		4930F69112BB4AB400607497 /* infoHollyPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoHollyPressed.png; sourceTree = "<group>"; };
 		4930F69212BB4AB400607497 /* UIOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIOverlay.png; sourceTree = "<group>"; };
+		4930F75412BB4F9F00607497 /* SGAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAboutViewController.h; sourceTree = "<group>"; };
+		4930F75512BB4F9F00607497 /* SGAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAboutViewController.m; sourceTree = "<group>"; };
+		4930F75612BB4F9F00607497 /* SGAboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SGAboutViewController.xib; sourceTree = "<group>"; };
+		4930F75A12BB503000607497 /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
+		4930F75B12BB503000607497 /* about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about@2x.png"; sourceTree = "<group>"; };
+		4930F7AC12BB5B4A00607497 /* AccelerationAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerationAnimation.h; sourceTree = "<group>"; };
+		4930F7AD12BB5B4A00607497 /* AccelerationAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerationAnimation.m; sourceTree = "<group>"; };
+		4930F7AE12BB5B4A00607497 /* Evaluate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Evaluate.h; sourceTree = "<group>"; };
+		4930F7AF12BB5B4A00607497 /* Evaluate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Evaluate.m; sourceTree = "<group>"; };
 		4933187D129C8C1A0051088C /* WMAssetManifest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAssetManifest.h; sourceTree = "<group>"; };
 		4933187E129C8C1A0051088C /* WMAssetManifest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAssetManifest.m; sourceTree = "<group>"; };
 		4933188A129C8E810051088C /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
@@ -1070,6 +1085,17 @@
 			path = "Ribbon Bits";
 			sourceTree = "<group>";
 		};
+		4930F7AB12BB5B4A00607497 /* AnimationAcceleration */ = {
+			isa = PBXGroup;
+			children = (
+				4930F7AC12BB5B4A00607497 /* AccelerationAnimation.h */,
+				4930F7AD12BB5B4A00607497 /* AccelerationAnimation.m */,
+				4930F7AE12BB5B4A00607497 /* Evaluate.h */,
+				4930F7AF12BB5B4A00607497 /* Evaluate.m */,
+			);
+			path = AnimationAcceleration;
+			sourceTree = "<group>";
+		};
 		49331879129C8BFE0051088C /* Apple */ = {
 			isa = PBXGroup;
 			children = (
@@ -1091,6 +1117,7 @@
 		4940D06B1264F641007FA76C /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				4930F7AB12BB5B4A00607497 /* AnimationAcceleration */,
 				4909259D12B6E1A80076342D /* ShareKit */,
 				49331879129C8BFE0051088C /* Apple */,
 				49C54F27126962A50093FAFD /* Galaxy */,
@@ -1192,6 +1219,9 @@
 				4930F38512BAE3A700607497 /* SGRibbon.m */,
 				4930F41212BAEAA600607497 /* SoundManager.h */,
 				4930F41312BAEAA600607497 /* SoundManager.m */,
+				4930F75412BB4F9F00607497 /* SGAboutViewController.h */,
+				4930F75512BB4F9F00607497 /* SGAboutViewController.m */,
+				4930F75612BB4F9F00607497 /* SGAboutViewController.xib */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -1516,6 +1546,8 @@
 		49E81DD912712FE400127D48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4930F75A12BB503000607497 /* about.png */,
+				4930F75B12BB503000607497 /* about@2x.png */,
 				4930F68F12BB4AB400607497 /* Icon.png */,
 				4930F40E12BAEA5100607497 /* Sounds.plist */,
 				4930F41012BAEA7E00607497 /* shutter.aif */,
@@ -1629,6 +1661,9 @@
 				4930F69412BB4AB400607497 /* infoHolly.png in Resources */,
 				4930F69512BB4AB400607497 /* infoHollyPressed.png in Resources */,
 				4930F69612BB4AB400607497 /* UIOverlay.png in Resources */,
+				4930F75812BB4F9F00607497 /* SGAboutViewController.xib in Resources */,
+				4930F75C12BB503000607497 /* about.png in Resources */,
+				4930F75D12BB503000607497 /* about@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1787,6 +1822,9 @@
 				4909267912B6E1A80076342D /* SHKViewControllerWrapper.m in Sources */,
 				4930F38612BAE3A700607497 /* SGRibbon.m in Sources */,
 				4930F41412BAEAA600607497 /* SoundManager.m in Sources */,
+				4930F75712BB4F9F00607497 /* SGAboutViewController.m in Sources */,
+				4930F7B012BB5B4A00607497 /* AccelerationAnimation.m in Sources */,
+				4930F7B112BB5B4A00607497 /* Evaluate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

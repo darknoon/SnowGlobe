@@ -31,8 +31,10 @@
 	//TODO: handle non-iPhone 4 case
 	if ([motionManager isDeviceMotionAvailable]) {
 		[motionManager startDeviceMotionUpdates];
+		gyroAvailable = YES;
 	} else {
 		[motionManager startAccelerometerUpdates];
+		gyroAvailable = NO;
 	}
 	
 	gravity = Vec3(0.0f, 0.5f, 0.5f);

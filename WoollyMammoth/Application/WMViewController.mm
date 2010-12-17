@@ -262,6 +262,8 @@
 {
 	[[SoundManager sharedManager] playSound:@"shutter"];
 	[self stopAnimation];
+	ribbon.mailButton.enabled = [SHKMail canShare];
+
 	[ribbon setOpen:YES animated:YES];
 }
 

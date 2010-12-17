@@ -97,6 +97,15 @@
 		4930F41412BAEAA600607497 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4930F41312BAEAA600607497 /* SoundManager.m */; };
 		4930F45912BAEE7000607497 /* infoHolly@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F45712BAEE7000607497 /* infoHolly@2x.png */; };
 		4930F45A12BAEE7000607497 /* infoHollyPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F45812BAEE7000607497 /* infoHollyPressed@2x.png */; };
+		4930F68A12BB4AA500607497 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F68512BB4AA500607497 /* camera.png */; };
+		4930F68B12BB4AA500607497 /* email.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F68612BB4AA500607497 /* email.png */; };
+		4930F68C12BB4AA500607497 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F68712BB4AA500607497 /* facebook.png */; };
+		4930F68D12BB4AA500607497 /* ribbon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F68812BB4AA500607497 /* ribbon.png */; };
+		4930F68E12BB4AA500607497 /* ribbonShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F68912BB4AA500607497 /* ribbonShadow.png */; };
+		4930F69312BB4AB400607497 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F68F12BB4AB400607497 /* Icon.png */; };
+		4930F69412BB4AB400607497 /* infoHolly.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F69012BB4AB400607497 /* infoHolly.png */; };
+		4930F69512BB4AB400607497 /* infoHollyPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F69112BB4AB400607497 /* infoHollyPressed.png */; };
+		4930F69612BB4AB400607497 /* UIOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F69212BB4AB400607497 /* UIOverlay.png */; };
 		4933187F129C8C1A0051088C /* WMAssetManifest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4933187E129C8C1A0051088C /* WMAssetManifest.m */; };
 		4933188C129C8E810051088C /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4933188B129C8E810051088C /* BrowserViewController.m */; };
 		4940D0641264F5F7007FA76C /* WMGameObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0631264F5F7007FA76C /* WMGameObject.mm */; };
@@ -361,6 +370,15 @@
 		4930F41312BAEAA600607497 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
 		4930F45712BAEE7000607497 /* infoHolly@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infoHolly@2x.png"; sourceTree = "<group>"; };
 		4930F45812BAEE7000607497 /* infoHollyPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infoHollyPressed@2x.png"; sourceTree = "<group>"; };
+		4930F68512BB4AA500607497 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		4930F68612BB4AA500607497 /* email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email.png; sourceTree = "<group>"; };
+		4930F68712BB4AA500607497 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
+		4930F68812BB4AA500607497 /* ribbon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ribbon.png; sourceTree = "<group>"; };
+		4930F68912BB4AA500607497 /* ribbonShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ribbonShadow.png; sourceTree = "<group>"; };
+		4930F68F12BB4AB400607497 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		4930F69012BB4AB400607497 /* infoHolly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoHolly.png; sourceTree = "<group>"; };
+		4930F69112BB4AB400607497 /* infoHollyPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoHollyPressed.png; sourceTree = "<group>"; };
+		4930F69212BB4AB400607497 /* UIOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIOverlay.png; sourceTree = "<group>"; };
 		4933187D129C8C1A0051088C /* WMAssetManifest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAssetManifest.h; sourceTree = "<group>"; };
 		4933187E129C8C1A0051088C /* WMAssetManifest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAssetManifest.m; sourceTree = "<group>"; };
 		4933188A129C8E810051088C /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
@@ -1037,6 +1055,11 @@
 		4930F37612BAE30F00607497 /* Ribbon Bits */ = {
 			isa = PBXGroup;
 			children = (
+				4930F68512BB4AA500607497 /* camera.png */,
+				4930F68612BB4AA500607497 /* email.png */,
+				4930F68712BB4AA500607497 /* facebook.png */,
+				4930F68812BB4AA500607497 /* ribbon.png */,
+				4930F68912BB4AA500607497 /* ribbonShadow.png */,
 				4930F37712BAE30F00607497 /* camera@2x.png */,
 				4930F37812BAE30F00607497 /* email@2x.png */,
 				4930F37912BAE30F00607497 /* facebook@2x.png */,
@@ -1493,12 +1516,16 @@
 		49E81DD912712FE400127D48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4930F68F12BB4AB400607497 /* Icon.png */,
 				4930F40E12BAEA5100607497 /* Sounds.plist */,
 				4930F41012BAEA7E00607497 /* shutter.aif */,
+				4930F69012BB4AB400607497 /* infoHolly.png */,
 				4930F45712BAEE7000607497 /* infoHolly@2x.png */,
+				4930F69112BB4AB400607497 /* infoHollyPressed.png */,
 				4930F45812BAEE7000607497 /* infoHollyPressed@2x.png */,
 				4930F37612BAE30F00607497 /* Ribbon Bits */,
 				49CB509D12B7458E003C4362 /* Icon@2x.png */,
+				4930F69212BB4AB400607497 /* UIOverlay.png */,
 				4908214812B192230061E487 /* UIOverlay@2x.png */,
 				49E81DFB127130FD00127D48 /* xButton.png */,
 				49E81DFC127130FD00127D48 /* xButtonPressed.png */,
@@ -1593,6 +1620,15 @@
 				4930F41112BAEA7E00607497 /* shutter.aif in Resources */,
 				4930F45912BAEE7000607497 /* infoHolly@2x.png in Resources */,
 				4930F45A12BAEE7000607497 /* infoHollyPressed@2x.png in Resources */,
+				4930F68A12BB4AA500607497 /* camera.png in Resources */,
+				4930F68B12BB4AA500607497 /* email.png in Resources */,
+				4930F68C12BB4AA500607497 /* facebook.png in Resources */,
+				4930F68D12BB4AA500607497 /* ribbon.png in Resources */,
+				4930F68E12BB4AA500607497 /* ribbonShadow.png in Resources */,
+				4930F69312BB4AB400607497 /* Icon.png in Resources */,
+				4930F69412BB4AB400607497 /* infoHolly.png in Resources */,
+				4930F69512BB4AB400607497 /* infoHollyPressed.png in Resources */,
+				4930F69612BB4AB400607497 /* UIOverlay.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

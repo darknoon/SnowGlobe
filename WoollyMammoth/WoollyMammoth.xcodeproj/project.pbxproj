@@ -194,7 +194,6 @@
 		49D101FD1270BB85007E143E /* WMModelPOD.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F51270BB85007E143E /* WMModelPOD.mm */; };
 		49D101FE1270BB85007E143E /* WMShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F71270BB85007E143E /* WMShader.m */; };
 		49D101FF1270BB85007E143E /* WMTextureAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F91270BB85007E143E /* WMTextureAsset.m */; };
-		49D102171270BCC8007E143E /* Test.wm in Resources */ = {isa = PBXBuildFile; fileRef = 49D102141270BCC8007E143E /* Test.wm */; };
 		49D102C61270C55E007E143E /* WMDebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D102C41270C55E007E143E /* WMDebugViewController.m */; };
 		49D102C71270C55E007E143E /* WMDebugViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49D102C51270C55E007E143E /* WMDebugViewController.xib */; };
 		49E81DDB12712FE400127D48 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DDA12712FE400127D48 /* MainWindow.xib */; };
@@ -591,7 +590,6 @@
 		49D101F71270BB85007E143E /* WMShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMShader.m; sourceTree = "<group>"; };
 		49D101F81270BB85007E143E /* WMTextureAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTextureAsset.h; sourceTree = "<group>"; };
 		49D101F91270BB85007E143E /* WMTextureAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTextureAsset.m; sourceTree = "<group>"; };
-		49D102141270BCC8007E143E /* Test.wm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Test.wm; sourceTree = "<group>"; };
 		49D102C31270C55E007E143E /* WMDebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDebugViewController.h; sourceTree = "<group>"; };
 		49D102C41270C55E007E143E /* WMDebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDebugViewController.m; sourceTree = "<group>"; };
 		49D102C51270C55E007E143E /* WMDebugViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMDebugViewController.xib; sourceTree = "<group>"; };
@@ -1542,7 +1540,6 @@
 			isa = PBXGroup;
 			children = (
 				49FD9C5E1299FF1D0028524C /* WeatherGlobe.wm */,
-				49D102141270BCC8007E143E /* Test.wm */,
 			);
 			path = Bundles;
 			sourceTree = "<group>";
@@ -1635,7 +1632,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4940D92012658B37007FA76C /* WMViewController.xib in Resources */,
-				49D102171270BCC8007E143E /* Test.wm in Resources */,
 				49D102C71270C55E007E143E /* WMDebugViewController.xib in Resources */,
 				49E81DDB12712FE400127D48 /* MainWindow.xib in Resources */,
 				49E81DFD127130FD00127D48 /* xButton.png in Resources */,

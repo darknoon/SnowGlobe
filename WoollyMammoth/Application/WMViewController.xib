@@ -77,15 +77,15 @@
 							<string key="NSResourceName">infoHolly.png</string>
 						</object>
 					</object>
-					<object class="IBUIView" id="381592573">
+					<object class="IBUIView" id="410565487">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">289</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIImageView" id="741245159">
-								<reference key="NSNextResponder" ref="381592573"/>
+							<object class="IBUIImageView" id="446112865">
+								<reference key="NSNextResponder" ref="410565487"/>
 								<int key="NSvFlags">274</int>
 								<string key="NSFrameSize">{42, 207}</string>
-								<reference key="NSSuperview" ref="381592573"/>
+								<reference key="NSSuperview" ref="410565487"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -93,11 +93,11 @@
 									<string key="NSResourceName">ribbon.png</string>
 								</object>
 							</object>
-							<object class="IBUIButton" id="623144659">
-								<reference key="NSNextResponder" ref="381592573"/>
+							<object class="IBUIButton" id="125727085">
+								<reference key="NSNextResponder" ref="410565487"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 144}, {41, 56}}</string>
-								<reference key="NSSuperview" ref="381592573"/>
+								<reference key="NSSuperview" ref="410565487"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -114,11 +114,11 @@
 									<string key="NSResourceName">camera.png</string>
 								</object>
 							</object>
-							<object class="IBUIButton" id="810451850">
-								<reference key="NSNextResponder" ref="381592573"/>
+							<object class="IBUIButton" id="68154300">
+								<reference key="NSNextResponder" ref="410565487"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 153}, {41, 41}}</string>
-								<reference key="NSSuperview" ref="381592573"/>
+								<reference key="NSSuperview" ref="410565487"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -135,11 +135,11 @@
 									<string key="NSResourceName">email.png</string>
 								</object>
 							</object>
-							<object class="IBUIButton" id="695028123">
-								<reference key="NSNextResponder" ref="381592573"/>
+							<object class="IBUIButton" id="500562421">
+								<reference key="NSNextResponder" ref="410565487"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 113}, {41, 41}}</string>
-								<reference key="NSSuperview" ref="381592573"/>
+								<reference key="NSSuperview" ref="410565487"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -156,11 +156,11 @@
 									<string key="NSResourceName">twitter.png</string>
 								</object>
 							</object>
-							<object class="IBUIButton" id="257188986">
-								<reference key="NSNextResponder" ref="381592573"/>
+							<object class="IBUIButton" id="64521292">
+								<reference key="NSNextResponder" ref="410565487"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 75}, {41, 41}}</string>
-								<reference key="NSSuperview" ref="381592573"/>
+								<reference key="NSSuperview" ref="410565487"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -185,6 +185,18 @@
 							<bytes key="NSRGB">MC40MjE3NzQ0NSAwLjcxNzM5MTMxMjEgMC4xMTcyMDI0ODcyIDAAA</bytes>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+					</object>
+					<object class="IBUIImageView" id="799240108">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">289</int>
+						<string key="NSFrame">{{268, 0}, {41, 15}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">ribbonShadow.png</string>
+						</object>
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 480}</string>
@@ -240,15 +252,15 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">cameraButton</string>
-						<reference key="source" ref="381592573"/>
-						<reference key="destination" ref="623144659"/>
+						<reference key="source" ref="410565487"/>
+						<reference key="destination" ref="125727085"/>
 					</object>
 					<int key="connectionID">20</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">showShare:</string>
-						<reference key="source" ref="623144659"/>
+						<reference key="source" ref="125727085"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -257,24 +269,24 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">facebookButton</string>
-						<reference key="source" ref="381592573"/>
-						<reference key="destination" ref="257188986"/>
+						<reference key="source" ref="410565487"/>
+						<reference key="destination" ref="64521292"/>
 					</object>
 					<int key="connectionID">25</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">twitterButton</string>
-						<reference key="source" ref="381592573"/>
-						<reference key="destination" ref="695028123"/>
+						<reference key="source" ref="410565487"/>
+						<reference key="destination" ref="500562421"/>
 					</object>
 					<int key="connectionID">26</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">mailButton</string>
-						<reference key="source" ref="381592573"/>
-						<reference key="destination" ref="810451850"/>
+						<reference key="source" ref="410565487"/>
+						<reference key="destination" ref="68154300"/>
 					</object>
 					<int key="connectionID">27</int>
 				</object>
@@ -282,14 +294,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">ribbon</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="381592573"/>
+						<reference key="destination" ref="410565487"/>
 					</object>
 					<int key="connectionID">28</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">shareTwitter:</string>
-						<reference key="source" ref="695028123"/>
+						<reference key="source" ref="500562421"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -298,7 +310,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">shareFacebook:</string>
-						<reference key="source" ref="257188986"/>
+						<reference key="source" ref="64521292"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -307,7 +319,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">shareEmail:</string>
-						<reference key="source" ref="810451850"/>
+						<reference key="source" ref="68154300"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -327,8 +339,9 @@
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="952242425"/>
+							<reference ref="410565487"/>
 							<reference ref="509171565"/>
-							<reference ref="381592573"/>
+							<reference ref="799240108"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -354,50 +367,55 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
+						<int key="objectID">17</int>
+						<reference key="object" ref="410565487"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="64521292"/>
+							<reference ref="500562421"/>
+							<reference ref="68154300"/>
+							<reference ref="446112865"/>
+							<reference ref="125727085"/>
+						</array>
+						<reference key="parent" ref="191373211"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">23</int>
+						<reference key="object" ref="64521292"/>
+						<reference key="parent" ref="410565487"/>
+						<string key="objectName">Facebook</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">22</int>
+						<reference key="object" ref="500562421"/>
+						<reference key="parent" ref="410565487"/>
+						<string key="objectName">Twitter</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">21</int>
+						<reference key="object" ref="68154300"/>
+						<reference key="parent" ref="410565487"/>
+						<string key="objectName">Email</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">18</int>
+						<reference key="object" ref="446112865"/>
+						<reference key="parent" ref="410565487"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">19</int>
+						<reference key="object" ref="125727085"/>
+						<reference key="parent" ref="410565487"/>
+						<string key="objectName">Camera</string>
+					</object>
+					<object class="IBObjectRecord">
 						<int key="objectID">14</int>
 						<reference key="object" ref="509171565"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">17</int>
-						<reference key="object" ref="381592573"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="623144659"/>
-							<reference ref="741245159"/>
-							<reference ref="810451850"/>
-							<reference ref="695028123"/>
-							<reference ref="257188986"/>
-						</array>
+						<int key="objectID">32</int>
+						<reference key="object" ref="799240108"/>
 						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">18</int>
-						<reference key="object" ref="741245159"/>
-						<reference key="parent" ref="381592573"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">19</int>
-						<reference key="object" ref="623144659"/>
-						<reference key="parent" ref="381592573"/>
-						<string key="objectName">Camera</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">21</int>
-						<reference key="object" ref="810451850"/>
-						<reference key="parent" ref="381592573"/>
-						<string key="objectName">Email</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">22</int>
-						<reference key="object" ref="695028123"/>
-						<reference key="parent" ref="381592573"/>
-						<string key="objectName">Twitter</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">23</int>
-						<reference key="object" ref="257188986"/>
-						<reference key="parent" ref="381592573"/>
-						<string key="objectName">Facebook</string>
 					</object>
 				</array>
 			</object>
@@ -408,14 +426,13 @@
 				<string key="1.IBEditorWindowLastContentRect">{{431, 242}, {320, 480}}</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<object class="NSAffineTransform" key="10.IBViewBoundsToFrameTransform"/>
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<object class="NSAffineTransform" key="14.IBViewBoundsToFrameTransform">
-					<bytes key="NSTransformStruct">AUOBgAAAAAAAA</bytes>
-				</object>
+				<object class="NSAffineTransform" key="14.IBViewBoundsToFrameTransform"/>
 				<string key="17.CustomClassName">SGRibbon</string>
 				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<object class="NSAffineTransform" key="17.IBViewBoundsToFrameTransform">
-					<bytes key="NSTransformStruct">AUOGAADDEwAAA</bytes>
+					<bytes key="NSTransformStruct">AUOGAADChgAAA</bytes>
 				</object>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<object class="NSAffineTransform" key="18.IBViewBoundsToFrameTransform">
@@ -434,6 +451,7 @@
 					<bytes key="NSTransformStruct">AQAAAABC4gAAA</bytes>
 				</object>
 				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="32.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.CustomClassName">WMDebugViewController</string>
 				<string key="4.IBEditorWindowLastContentRect">{{0, 654}, {320, 480}}</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -442,7 +460,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">31</int>
+			<int key="maxID">32</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -852,6 +870,7 @@
 			<string key="infoHolly.png">{74, 86}</string>
 			<string key="infoHollyPressed.png">{74, 86}</string>
 			<string key="ribbon.png">{41.5, 206.5}</string>
+			<string key="ribbonShadow.png">{41.5, 15}</string>
 			<string key="twitter.png">{18, 23}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">132</string>

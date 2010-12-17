@@ -95,6 +95,7 @@
 
 - (void)start;
 {
+#if DEBUG
 	if (!debugChannel) {
 		debugChannel = [[WMDebugChannel alloc] initWithEngine:self onPort:8080];
 		[debugChannel start];
@@ -102,6 +103,7 @@
 	if (!scriptingContext) {
 		scriptingContext = [[WMScriptingContext alloc] initWithEngine:self];
 	}
+#endif
 	if (!assetManager) {
 		assetManager = [[WMAssetManager alloc] initWithBundlePath:[[NSBundle mainBundle] pathForResource:@"WeatherGlobe" ofType:@"wm"] engine:self];
 	}

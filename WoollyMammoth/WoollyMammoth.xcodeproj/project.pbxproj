@@ -84,7 +84,6 @@
 		49191F521287D202008F6C88 /* WMScriptInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 49191F511287D202008F6C88 /* WMScriptInstance.m */; };
 		492483AF1270D4BD00B59759 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492483AE1270D4BD00B59759 /* OpenGLES.framework */; };
 		4924BB2712B03ADA0092F7DE /* DNGLState.m in Sources */ = {isa = PBXBuildFile; fileRef = 4924BB2612B03ADA0092F7DE /* DNGLState.m */; };
-		4930F37512BAE2D100607497 /* shutter.aif in Resources */ = {isa = PBXBuildFile; fileRef = 4930F37412BAE2D100607497 /* shutter.aif */; };
 		4930F37D12BAE30F00607497 /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F37712BAE30F00607497 /* camera@2x.png */; };
 		4930F37E12BAE30F00607497 /* email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F37812BAE30F00607497 /* email@2x.png */; };
 		4930F37F12BAE30F00607497 /* facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F37912BAE30F00607497 /* facebook@2x.png */; };
@@ -187,7 +186,6 @@
 		49E81F1E12714CB900127D48 /* WMQuad.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49E81F1D12714CB900127D48 /* WMQuad.mm */; };
 		49E8AD9E12AD7A9A00FF68E3 /* WMSphere.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49E8AD9D12AD7A9A00FF68E3 /* WMSphere.mm */; };
 		49E9D192127CB95600010020 /* WMLuaScript.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49E9D191127CB95600010020 /* WMLuaScript.mm */; };
-		49E9D2B6127CDF7100010020 /* WMGameObject.lua in Resources */ = {isa = PBXBuildFile; fileRef = 49E9D2B5127CDF7100010020 /* WMGameObject.lua */; };
 		49E9D2BB127D04EB00010020 /* complex.lua in Resources */ = {isa = PBXBuildFile; fileRef = 49E9D2B9127D04EB00010020 /* complex.lua */; };
 		49E9D2BC127D04EB00010020 /* matrix.lua in Resources */ = {isa = PBXBuildFile; fileRef = 49E9D2BA127D04EB00010020 /* matrix.lua */; };
 		49FD9C571299FCC30028524C /* VideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FD9C561299FCC30028524C /* VideoCapture.m */; };
@@ -571,8 +569,6 @@
 		49E8AD9D12AD7A9A00FF68E3 /* WMSphere.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMSphere.mm; sourceTree = "<group>"; };
 		49E9D190127CB95600010020 /* WMLuaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLuaScript.h; sourceTree = "<group>"; };
 		49E9D191127CB95600010020 /* WMLuaScript.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMLuaScript.mm; sourceTree = "<group>"; };
-		49E9D2B5127CDF7100010020 /* WMGameObject.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WMGameObject.lua; sourceTree = "<group>"; };
-		49E9D2B7127CDFA800010020 /* Vector.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Vector.lua; sourceTree = "<group>"; };
 		49E9D2B9127D04EB00010020 /* complex.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex.lua; sourceTree = "<group>"; };
 		49E9D2BA127D04EB00010020 /* matrix.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = matrix.lua; sourceTree = "<group>"; };
 		49FD9C551299FCC30028524C /* VideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCapture.h; sourceTree = "<group>"; };
@@ -626,7 +622,6 @@
 				4940D8D712658992007FA76C /* Application */,
 				4940D06B1264F641007FA76C /* Externals */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				49E9D2B4127CDF7100010020 /* Scripts */,
 				49E81DD912712FE400127D48 /* Resources */,
 				49D102101270BCBD007E143E /* Bundles */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -1513,15 +1508,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		49E9D2B4127CDF7100010020 /* Scripts */ = {
-			isa = PBXGroup;
-			children = (
-				49E9D2B5127CDF7100010020 /* WMGameObject.lua */,
-				49E9D2B7127CDFA800010020 /* Vector.lua */,
-			);
-			path = Scripts;
-			sourceTree = "<group>";
-		};
 		49E9D2B8127D04EB00010020 /* lua-matrix */ = {
 			isa = PBXGroup;
 			children = (
@@ -1589,7 +1575,6 @@
 				49E81DDB12712FE400127D48 /* MainWindow.xib in Resources */,
 				49E81DFD127130FD00127D48 /* xButton.png in Resources */,
 				49E81DFE127130FD00127D48 /* xButtonPressed.png in Resources */,
-				49E9D2B6127CDF7100010020 /* WMGameObject.lua in Resources */,
 				49E9D2BB127D04EB00010020 /* complex.lua in Resources */,
 				49E9D2BC127D04EB00010020 /* matrix.lua in Resources */,
 				49FD9C621299FF1D0028524C /* WeatherGlobe.wm in Resources */,
@@ -1598,7 +1583,6 @@
 				4909265712B6E1A80076342D /* Localizable.strings in Resources */,
 				4909265E12B6E1A80076342D /* FBConnect.bundle in Resources */,
 				49CB509E12B7458E003C4362 /* Icon@2x.png in Resources */,
-				4930F37512BAE2D100607497 /* shutter.aif in Resources */,
 				4930F37D12BAE30F00607497 /* camera@2x.png in Resources */,
 				4930F37E12BAE30F00607497 /* email@2x.png in Resources */,
 				4930F37F12BAE30F00607497 /* facebook@2x.png in Resources */,

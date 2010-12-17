@@ -69,9 +69,10 @@
 	unsigned char *buffer = malloc(4 * width * height);
 	for (int y=0, i=0; y<height; y++) {
 		for (int x=0; x<width; x++, i++) {
-			buffer[4*i + 0] = 10;
-			buffer[4*i + 1] = 0;
-			buffer[4*i + 2] = 255;
+			//Set to medium grey for kicks
+			buffer[4*i + 0] = 51;
+			buffer[4*i + 1] = 51;
+			buffer[4*i + 2] = 51;
 			buffer[4*i + 3] = 255;
 		}
 	}

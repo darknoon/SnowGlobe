@@ -35,6 +35,10 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 480}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC4yAA</bytes>
+						</object>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -186,7 +190,7 @@
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUIImageView" id="799240108">
+					<object class="IBUIImageView" id="820265178">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">289</int>
 						<string key="NSFrame">{{268, 0}, {41, 15}}</string>
@@ -201,7 +205,10 @@
 				</array>
 				<string key="NSFrameSize">{320, 480}</string>
 				<reference key="NSSuperview"/>
-				<reference key="IBUIBackgroundColor" ref="975699929"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MC4zMzY1MTU1MTMxIDAuMzM2NTE1NTEzMSAwLjMzNjUxNTUxMzEAA</bytes>
+				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIViewController" id="634113023">
@@ -341,7 +348,7 @@
 							<reference ref="952242425"/>
 							<reference ref="410565487"/>
 							<reference ref="509171565"/>
-							<reference ref="799240108"/>
+							<reference ref="820265178"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -414,7 +421,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">32</int>
-						<reference key="object" ref="799240108"/>
+						<reference key="object" ref="820265178"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -870,7 +877,7 @@
 			<string key="infoHolly.png">{74, 86}</string>
 			<string key="infoHollyPressed.png">{74, 86}</string>
 			<string key="ribbon.png">{41.5, 206.5}</string>
-			<string key="ribbonShadow.png">{41.5, 15}</string>
+			<string key="ribbonShadow.png">{40.5, 15}</string>
 			<string key="twitter.png">{18, 23}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">132</string>

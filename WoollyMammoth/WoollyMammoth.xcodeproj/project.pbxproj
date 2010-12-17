@@ -1781,7 +1781,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
 				HEADER_SEARCH_PATHS = $SRCROOT/Externals/oolong/Include;
 				INFOPLIST_FILE = "Resources/WoollyMammoth-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-Wno-format-security",
 					"-Wno-write-strings",
@@ -1803,7 +1803,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
 				HEADER_SEARCH_PATHS = $SRCROOT/Externals/oolong/Include;
 				INFOPLIST_FILE = "Resources/WoollyMammoth-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-Wno-format-security",
 					"-Wno-write-strings",

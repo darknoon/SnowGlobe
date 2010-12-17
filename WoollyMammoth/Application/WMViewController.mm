@@ -268,6 +268,7 @@
 	[self.view addSubview:aboutViewController.view];
 	aboutViewController.view.frame = self.view.bounds;
 	[aboutViewController showWithAnimation];	
+	[[SoundManager sharedManager] playSound:@"about"];
 }
 
 - (IBAction)showDebug:(id)sender;

@@ -4,5 +4,7 @@
 <dict>
 	<key>shutter</key>
 	<string>shutter.aif</string>
+	<key>about</key>
+	<string>add.caf</string>
 </dict>
 </plist>

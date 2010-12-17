@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07D5C1C812BB6C8200168687 /* nonCameraDeviceBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 07D5C1C712BB6C8200168687 /* nonCameraDeviceBackground.png */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -212,6 +213,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07D5C1C712BB6C8200168687 /* nonCameraDeviceBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nonCameraDeviceBackground.png; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Snow Globe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snow Globe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1558,6 +1560,7 @@
 				4930F45812BAEE7000607497 /* infoHollyPressed@2x.png */,
 				4930F37612BAE30F00607497 /* Ribbon Bits */,
 				49CB509D12B7458E003C4362 /* Icon@2x.png */,
+				07D5C1C712BB6C8200168687 /* nonCameraDeviceBackground.png */,
 				4930F69212BB4AB400607497 /* UIOverlay.png */,
 				4908214812B192230061E487 /* UIOverlay@2x.png */,
 				49E81DFB127130FD00127D48 /* xButton.png */,
@@ -1655,6 +1658,7 @@
 				4930F7CF12BB5CD900607497 /* forAGoodTime.png in Resources */,
 				4930F7D012BB5CD900607497 /* forAGoodTime@2x.png in Resources */,
 				4930F85B12BB63B500607497 /* add.caf in Resources */,
+				07D5C1C812BB6C8200168687 /* nonCameraDeviceBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

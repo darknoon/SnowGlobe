@@ -14,6 +14,14 @@
 #import <CoreMotion/CoreMotion.h>
 
 @interface WMAccelerometer : NSObject {
+
+	BOOL gyroAvailable;
+	
+	//If gyro not available, we have to calculate this ourselves
+	//Low pass filter on acceleration
+	Vec3 gravity;
+	Vec3 acceleration;
+
 	float lowPassFactor;
 	NSTimeInterval lastLogTime;
 	CMMotionManager *motionManager;

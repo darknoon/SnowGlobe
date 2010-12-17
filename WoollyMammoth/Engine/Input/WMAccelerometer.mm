@@ -27,8 +27,15 @@
 	
 	motionManager = [[CMMotionManager alloc] init];
 	
+	
 	//TODO: handle non-iPhone 4 case
-	[motionManager startDeviceMotionUpdates];
+	if ([motionManager isDeviceMotionAvailable]) {
+		[motionManager startDeviceMotionUpdates];
+	} else {
+		[motionManager startAccelerometerUpdates];
+	}
+	
+	gravity = Vec3(0.0f, 0.5f, 0.5f);
 	
 	//Device is being held straight up-down unless we hear otherwise
 	
@@ -40,24 +47,38 @@
 #if TARGET_IPHONE_SIMULATOR
 	return Vec3(0.0f, -10.0f, 0.0f);
 #endif
-	CMDeviceMotion *motion = [motionManager deviceMotion];
-	if (motion) {
-		CMAcceleration grav = [motion gravity];
-		return Vec3(grav.x, grav.y, grav.z);
+	if (gyroAvailable) {
+		CMDeviceMotion *motion = [motionManager deviceMotion];
+		if (motion) {
+			CMAcceleration grav = [motion gravity];
+			return Vec3(grav.x, grav.y, grav.z);
+		} else {
+			return Vec3(0.0f, 0.0f, 0.0f);
+		}
 	} else {
-		return Vec3(0.0f, 0.0f, 0.0f);
+		const float lowPassRatio = 0.1f;
+		CMAcceleration accel = [motionManager accelerometerData].acceleration;
+		acceleration = Vec3(accel.x, accel.y, accel.z);
+		gravity = lowPassRatio * acceleration + (1.0f - lowPassRatio) * gravity;
+		return gravity;
 	}
-
 }
+
 
 - (Vec3)rotationRate;
 {
-	CMDeviceMotion *motion = [motionManager deviceMotion];
-	if (motion) {
-		CMRotationRate rotationRate = [motion rotationRate];
-		return Vec3(rotationRate.x, rotationRate.y, rotationRate.z);
+	if (gyroAvailable) {
+		CMDeviceMotion *motion = [motionManager deviceMotion];
+		if (motion) {
+			CMRotationRate rotationRate = [motion rotationRate];
+			return Vec3(rotationRate.x, rotationRate.y, rotationRate.z);
+		} else {
+			return Vec3(0.0f, 0.0f, 0.0f);
+		}
 	} else {
-		return Vec3(0.0f, 0.0f, 0.0f);
+		//TODO: return something based on something!
+		float gravityDifference = (acceleration - gravity).length();
+		return gravityDifference * 10.f * Vec3(-0.4f, -0.2f, -0.3f);
 	}
 
 }

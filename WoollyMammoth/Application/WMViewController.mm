@@ -266,7 +266,7 @@
 
 - (SHKItem *)shareItemWithScreenshot;
 {
-	return [SHKItem image:[self screenshotImage] title:@"It's a Snow Day on my iPhone!"];
+	return [SHKItem image:[self screenshotImage] title:@"My Snow Globe!"];
 }
 
 - (IBAction)shareFacebook:(id)sender;

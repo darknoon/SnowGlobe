@@ -57,8 +57,6 @@
 			<key>type</key>
 			<string>cubemap</string>
 		</dict>
-		<key>UIOverlay@2x.png</key>
-		<dict/>
 	</dict>
 	<key>scenes</key>
 	<dict>

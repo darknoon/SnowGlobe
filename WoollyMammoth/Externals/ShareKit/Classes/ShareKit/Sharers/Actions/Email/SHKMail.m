@@ -120,6 +120,9 @@
 	
 	if (body == nil)
 	{
+		// fallback
+		body = @"";
+		
 		if (item.text != nil)
 			body = item.text;
 		
@@ -147,13 +150,6 @@
 			[mailController addAttachmentData:item.data mimeType:item.mimeType fileName:item.filename];
 		}
 		
-		if (item.image)
-			[mailController addAttachmentData:UIImageJPEGRepresentation(item.image, 1) mimeType:@"image/jpeg" fileName:@"Image.jpg"];		
-		
-		// fallback
-		if (body == nil)
-			body = @"";
-		
 		// sig
 		if (SHKSharedWithSignature)
 		{
@@ -161,10 +157,14 @@
 			body = [body stringByAppendingString:SHKLocalizedString(@"Sent from %@", SHKMyAppName)];
 		}
 		
-		// save changes to body
-		[item setCustomValue:body forKey:@"body"];
 	}
 	
+	if (item.image)
+		[mailController addAttachmentData:UIImageJPEGRepresentation(item.image, 1) mimeType:@"image/jpeg" fileName:@"Image.jpg"];		
+
+	// save changes to body
+	[item setCustomValue:body forKey:@"body"];
+
 	[mailController setSubject:item.title];
 	[mailController setMessageBody:body isHTML:YES];
 			

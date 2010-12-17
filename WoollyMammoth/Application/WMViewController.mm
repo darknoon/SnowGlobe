@@ -281,24 +281,30 @@
 
 - (SHKItem *)shareItemWithScreenshot;
 {
-	return [SHKItem image:[self screenshotImage] title:@"My Snow Globe!"];
+	return [SHKItem image:[self screenshotImage] title:@"It's Snowing!"];
 }
 
 - (IBAction)shareFacebook:(id)sender;
 {
-	[SHKFacebook shareItem:[self shareItemWithScreenshot]];
+	SHKItem *item = [self shareItemWithScreenshot];
+	item.title = @"Made with Snow Globe, by poptical – for iPhone and iPod touch.";
+	[SHKFacebook shareItem:item];
 	[ribbon setOpen:NO animated:YES];
 }
 
 - (IBAction)shareTwitter:(id)sender;
 {
-	[SHKTwitter shareItem:[self shareItemWithScreenshot]];
+	SHKItem *item = [self shareItemWithScreenshot];
+	item.title = @"Made with poptical's Snow Globe App for iPhone and iPod touch\n http://itunes.com/app/snowglobebypoptical";
+	[SHKTwitter shareItem:item];
 	[ribbon setOpen:NO animated:YES];
 }
 
 - (IBAction)shareEmail:(id)sender;
 {
-	[SHKMail shareItem:[self shareItemWithScreenshot]];
+	SHKItem *item = [self shareItemWithScreenshot];
+	[item setCustomValue:@"Made with poptical's <a href='http://itunes.com/app/snowglobebypoptical'>Snow Globe</a> App for iPhone and iPod touch" forKey:@"body"];
+	[SHKMail shareItem:item];
 	[ribbon setOpen:NO animated:YES];
 }
 

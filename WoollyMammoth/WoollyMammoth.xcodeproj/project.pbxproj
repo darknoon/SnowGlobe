@@ -112,6 +112,8 @@
 		4930F75D12BB503000607497 /* about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F75B12BB503000607497 /* about@2x.png */; };
 		4930F7B012BB5B4A00607497 /* AccelerationAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4930F7AD12BB5B4A00607497 /* AccelerationAnimation.m */; };
 		4930F7B112BB5B4A00607497 /* Evaluate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4930F7AF12BB5B4A00607497 /* Evaluate.m */; };
+		4930F7CF12BB5CD900607497 /* forAGoodTime.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F7CD12BB5CD900607497 /* forAGoodTime.png */; };
+		4930F7D012BB5CD900607497 /* forAGoodTime@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F7CE12BB5CD900607497 /* forAGoodTime@2x.png */; };
 		4933187F129C8C1A0051088C /* WMAssetManifest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4933187E129C8C1A0051088C /* WMAssetManifest.m */; };
 		4933188C129C8E810051088C /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4933188B129C8E810051088C /* BrowserViewController.m */; };
 		4940D0641264F5F7007FA76C /* WMGameObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0631264F5F7007FA76C /* WMGameObject.mm */; };
@@ -394,6 +396,8 @@
 		4930F7AD12BB5B4A00607497 /* AccelerationAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerationAnimation.m; sourceTree = "<group>"; };
 		4930F7AE12BB5B4A00607497 /* Evaluate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Evaluate.h; sourceTree = "<group>"; };
 		4930F7AF12BB5B4A00607497 /* Evaluate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Evaluate.m; sourceTree = "<group>"; };
+		4930F7CD12BB5CD900607497 /* forAGoodTime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forAGoodTime.png; sourceTree = "<group>"; };
+		4930F7CE12BB5CD900607497 /* forAGoodTime@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forAGoodTime@2x.png"; sourceTree = "<group>"; };
 		4933187D129C8C1A0051088C /* WMAssetManifest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAssetManifest.h; sourceTree = "<group>"; };
 		4933187E129C8C1A0051088C /* WMAssetManifest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAssetManifest.m; sourceTree = "<group>"; };
 		4933188A129C8E810051088C /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
@@ -1546,6 +1550,8 @@
 		49E81DD912712FE400127D48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4930F7CD12BB5CD900607497 /* forAGoodTime.png */,
+				4930F7CE12BB5CD900607497 /* forAGoodTime@2x.png */,
 				4930F75A12BB503000607497 /* about.png */,
 				4930F75B12BB503000607497 /* about@2x.png */,
 				4930F68F12BB4AB400607497 /* Icon.png */,
@@ -1664,6 +1670,8 @@
 				4930F75812BB4F9F00607497 /* SGAboutViewController.xib in Resources */,
 				4930F75C12BB503000607497 /* about.png in Resources */,
 				4930F75D12BB503000607497 /* about@2x.png in Resources */,
+				4930F7CF12BB5CD900607497 /* forAGoodTime.png in Resources */,
+				4930F7D012BB5CD900607497 /* forAGoodTime@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -62,8 +62,9 @@
 }
 
 - (void)hideWithAnimation;
-{
+{	
 	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:)];
 	

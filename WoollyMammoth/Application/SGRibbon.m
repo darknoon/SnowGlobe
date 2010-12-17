@@ -35,6 +35,8 @@
 	if (inAnimated) [UIView beginAnimations:nil context:NULL];
 	if (inAnimated) [UIView setAnimationDuration:0.4];
 	if (inAnimated) [UIView setAnimationBeginsFromCurrentState:YES];
+	if (inOpen && inAnimated) [UIView setAnimationDelay:0.3]; //Add a little delay to the animation to play sound for a bit
+	
 	if (inOpen) {
 		self.frame = (CGRect) {.origin.x = 268.f, .origin.y = -67.f,  .size.width = 42.f, .size.height = 207.f};
 	} else {

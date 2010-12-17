@@ -186,7 +186,7 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* Snow Day.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snow Day.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Snow Globe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snow Globe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -583,7 +583,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Snow Day.app */,
+				1D6058910D05DD3D006BFB54 /* Snow Globe.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1494,7 +1494,7 @@
 			);
 			name = WoollyMammoth;
 			productName = WoollyMammoth;
-			productReference = 1D6058910D05DD3D006BFB54 /* Snow Day.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* Snow Globe.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1735,7 +1735,7 @@
 					"-Wno-write-strings",
 					"$(OTHER_CFLAGS)",
 				);
-				PRODUCT_NAME = "Snow Day";
+				PRODUCT_NAME = "Snow Globe";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$SRCROOT/Externals/Bullet/src $SRCROOT/Externals/oolong/Include";
 			};
@@ -1757,7 +1757,7 @@
 					"-Wno-write-strings",
 					"$(OTHER_CFLAGS)",
 				);
-				PRODUCT_NAME = "Snow Day";
+				PRODUCT_NAME = "Snow Globe";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$SRCROOT/Externals/Bullet/src $SRCROOT/Externals/oolong/Include";
 				VALIDATE_PRODUCT = YES;

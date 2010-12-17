@@ -77,7 +77,7 @@
 - (void)openTwitterUser:(NSString *)inUser;
 {
 	NSString *tweetieURLFormat = @"tweetie://user?screen_name=%@";
-	NSString *twittelatorURLFormat = @"twit://user?screen_name=%@";
+	NSString *twittelatorURLFormat = @"twit:///user?screen_name=%@";
 	NSString *safariURLFormat = @"http://twitter.com/%@";
 
 	NSArray *urlFormats = [NSArray arrayWithObjects:twittelatorURLFormat, tweetieURLFormat, safariURLFormat, nil];

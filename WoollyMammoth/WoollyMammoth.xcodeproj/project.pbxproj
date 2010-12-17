@@ -203,8 +203,6 @@
 		49E81F1E12714CB900127D48 /* WMQuad.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49E81F1D12714CB900127D48 /* WMQuad.mm */; };
 		49E8AD9E12AD7A9A00FF68E3 /* WMSphere.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49E8AD9D12AD7A9A00FF68E3 /* WMSphere.mm */; };
 		49E9D192127CB95600010020 /* WMLuaScript.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49E9D191127CB95600010020 /* WMLuaScript.mm */; };
-		49E9D2BB127D04EB00010020 /* complex.lua in Resources */ = {isa = PBXBuildFile; fileRef = 49E9D2B9127D04EB00010020 /* complex.lua */; };
-		49E9D2BC127D04EB00010020 /* matrix.lua in Resources */ = {isa = PBXBuildFile; fileRef = 49E9D2BA127D04EB00010020 /* matrix.lua */; };
 		49FD9C571299FCC30028524C /* VideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FD9C561299FCC30028524C /* VideoCapture.m */; };
 		49FD9C621299FF1D0028524C /* WeatherGlobe.wm in Resources */ = {isa = PBXBuildFile; fileRef = 49FD9C5E1299FF1D0028524C /* WeatherGlobe.wm */; };
 		49FD9C9F1299FFA60028524C /* WMCameraInputTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FD9C9E1299FFA60028524C /* WMCameraInputTexture.m */; };
@@ -606,8 +604,6 @@
 		49E8AD9D12AD7A9A00FF68E3 /* WMSphere.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMSphere.mm; sourceTree = "<group>"; };
 		49E9D190127CB95600010020 /* WMLuaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLuaScript.h; sourceTree = "<group>"; };
 		49E9D191127CB95600010020 /* WMLuaScript.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMLuaScript.mm; sourceTree = "<group>"; };
-		49E9D2B9127D04EB00010020 /* complex.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex.lua; sourceTree = "<group>"; };
-		49E9D2BA127D04EB00010020 /* matrix.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = matrix.lua; sourceTree = "<group>"; };
 		49FD9C551299FCC30028524C /* VideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCapture.h; sourceTree = "<group>"; };
 		49FD9C561299FCC30028524C /* VideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCapture.m; sourceTree = "<group>"; };
 		49FD9C5E1299FF1D0028524C /* WeatherGlobe.wm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WeatherGlobe.wm; sourceTree = "<group>"; };
@@ -1126,7 +1122,6 @@
 				49331879129C8BFE0051088C /* Apple */,
 				49C54F27126962A50093FAFD /* Galaxy */,
 				4940D3D412651BE9007FA76C /* Lua */,
-				49E9D2B8127D04EB00010020 /* lua-matrix */,
 				49C551AF12697CE60093FAFD /* oolong */,
 				4940D06C1264F641007FA76C /* cocoaasyncsocket */,
 			);
@@ -1573,16 +1568,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		49E9D2B8127D04EB00010020 /* lua-matrix */ = {
-			isa = PBXGroup;
-			children = (
-				49E9D2B9127D04EB00010020 /* complex.lua */,
-				49E9D2BA127D04EB00010020 /* matrix.lua */,
-			);
-			name = "lua-matrix";
-			path = "lua-matrix/lua";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1639,8 +1624,6 @@
 				49E81DDB12712FE400127D48 /* MainWindow.xib in Resources */,
 				49E81DFD127130FD00127D48 /* xButton.png in Resources */,
 				49E81DFE127130FD00127D48 /* xButtonPressed.png in Resources */,
-				49E9D2BB127D04EB00010020 /* complex.lua in Resources */,
-				49E9D2BC127D04EB00010020 /* matrix.lua in Resources */,
 				49FD9C621299FF1D0028524C /* WeatherGlobe.wm in Resources */,
 				4908214912B192230061E487 /* UIOverlay@2x.png in Resources */,
 				4909265212B6E1A80076342D /* SHKSharers.plist in Resources */,

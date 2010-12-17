@@ -26,7 +26,6 @@ CTrivialRandomGenerator rng;
 #define PARTICLES_USE_REAL_GRAVITY 1
 
 struct WMParticle {
-	float life;
 	Vec3 position;
 	Vec3 velocity;
 	Vec3 noiseVec;
@@ -59,116 +58,108 @@ void WMParticle::updateNoise(double t) {
 }
 
 void WMParticle::update(double dt, double t, int i, Vec3 gravity, WMParticleSystem *sys) {
-	if (life > 0) {
-		life -= dt;		
-		
-		position += dt * velocity;
-
-		const float mass = 0.01f;
-		//Elasticity of collision with sphere
-		const float elasticity = 0.70f;
-		const float coefficientOfDrag = 0.07f;
-
-		Vec3 force = Vec3(0.0f, 0.0f, 0.0f);
-		force += mass * 0.06 * gravity; // add gravitational force, cheat
-		
-		float v2 = velocity.dot(velocity);
-		float vl = sqrtf(v2);
-		if (v2 > 10.f) {
-			v2 = 10.f;
-		}
-		Vec3 drag = -coefficientOfDrag * v2 * (1.0f/vl) * velocity;
-		force += drag;
-		
-		// TODO: do using force for v^2 drag
-		// velocity *= 0.99;
-		
-		
-		
-		MATRIX ts;
-		MatrixIdentity(ts);
-		
-		
-		float turbulenceForce = 0.1f;
-		
-	//	Vec3 randomVec = Vec3(rng.randF(-1.0f, 1.0f), rng.randF(-1.0f, 1.0f), rng.randF(-1.0f, 1.0f));
-		force += turbulenceForce * sys->turbulence * noiseVec;
-				
-		const float particleOppositionForce = 0.0001f;
-		//Push away from the centroid of other particles
-		const float coff = 0.1f;
-		//Force = opposition * 0.1 / (10.f * dist^2 + coff)
-		Vec3 displacementFromFromCentroid = position - sys->particleCentroid;
-		
-		//TODO: can we eliminate this sqrt?
-		float distanceFromFromCentroid2 = displacementFromFromCentroid.dot(displacementFromFromCentroid);
-		force += opposition * (particleOppositionForce / (10.f * distanceFromFromCentroid2 + coff)) * (displacementFromFromCentroid / sqrtf(distanceFromFromCentroid2));
-		
-		const float sphereRadius = 0.53f;
-
-		//Constrain to be inside sphere
-		float distanceFromOrigin2 = position.dot(position);
-		if (distanceFromOrigin2 > sphereRadius * sphereRadius) {
-			//Normalize vector to constrain to unit sphere
-			position.normalize();
-			
-			//Invert for normal
-			Vec3 normal = -position;
-			
-			//If velocity is heading out of bounds (should always be true)
-			if (velocity.dot(normal) < 0.0f) {
-				velocity = elasticity * (velocity - 2.0f * velocity.dot(normal) * normal);
-			}
-			
-			//Add in normal force
-			if (force.dot(normal) < 0.0f) {
-				force += force.dot(normal) * normal;
-			}
-			
-			//Scale back to sphere size
-			position *= sphereRadius;
-		} else {
-			//If we're not on the edge of the sphere
-			//Have the particle kind of randomly rotate, yay
-			QUATERNION rotation;
-			
-			float fSin = sinf(2.0f * 2.0f * 1.0f / 30.0f);
-			float fCos = cosf(2.0f * 2.0f * 1.0f / 30.0f);
-			
-			/* Create quaternion */
-			rotation.x = noiseVec.x * fSin;
-			rotation.y = noiseVec.y * fSin;
-			rotation.z = noiseVec.z * fSin;
-			rotation.w = fCos;
-			//MatrixQuaternionRotationAxis(rotation, noiseVec, 2.0 * dt);
-			MatrixQuaternionMultiply(quaternion, quaternion, rotation);			
-		}
-
-		
-		const float mass_inv = 1.0f/mass;
-		velocity += force * mass_inv * dt;
-		
-		float bright = 0.85 + 0.1 * position.z;
-		
-		color[0] = 255 * bright;
-		color[1] = 255 * bright;
-		color[2] = 255 * bright;
-		color[3] = 255;
-	} else {
-		init();
+	position += dt * velocity;
+	
+	const float mass = 0.01f;
+	//Elasticity of collision with sphere
+	const float elasticity = 0.70f;
+	const float coefficientOfDrag = 0.07f;
+	
+	Vec3 force = Vec3(0.0f, 0.0f, 0.0f);
+	force += mass * 0.06 * gravity; // add gravitational force, cheat
+	
+	float v2 = velocity.dot(velocity);
+	float vl = sqrtf(v2);
+	if (v2 > 10.f) {
+		v2 = 10.f;
 	}
+	Vec3 drag = -coefficientOfDrag * v2 * (1.0f/vl) * velocity;
+	force += drag;
+	
+	// TODO: do using force for v^2 drag
+	// velocity *= 0.99;
+	
+	MATRIX ts;
+	MatrixIdentity(ts);
+	
+	
+	float turbulenceForce = 0.1f;
+	
+	//	Vec3 randomVec = Vec3(rng.randF(-1.0f, 1.0f), rng.randF(-1.0f, 1.0f), rng.randF(-1.0f, 1.0f));
+	force += turbulenceForce * sys->turbulence * noiseVec;
+	
+	const float particleOppositionForce = 0.0001f;
+	//Push away from the centroid of other particles
+	const float coff = 0.1f;
+	//Force = opposition * 0.1 / (10.f * dist^2 + coff)
+	Vec3 displacementFromFromCentroid = position - sys->particleCentroid;
+	
+	//TODO: can we eliminate this sqrt?
+	float distanceFromFromCentroid2 = displacementFromFromCentroid.dot(displacementFromFromCentroid);
+	force += opposition * (particleOppositionForce / (10.f * distanceFromFromCentroid2 + coff)) * (displacementFromFromCentroid / sqrtf(distanceFromFromCentroid2));
+	
+	const float sphereRadius = 0.53f;
+	
+	//Constrain to be inside sphere
+	float distanceFromOrigin2 = position.dot(position);
+	if (distanceFromOrigin2 > sphereRadius * sphereRadius) {
+		//Normalize vector to constrain to unit sphere
+		position.normalize();
+		
+		//Invert for normal
+		Vec3 normal = -position;
+		
+		//If velocity is heading out of bounds (should always be true)
+		if (velocity.dot(normal) < 0.0f) {
+			velocity = elasticity * (velocity - 2.0f * velocity.dot(normal) * normal);
+		}
+		
+		//Add in normal force
+		if (force.dot(normal) < 0.0f) {
+			force += force.dot(normal) * normal;
+		}
+		
+		//Scale back to sphere size
+		position *= sphereRadius;
+	} else {
+		//If we're not on the edge of the sphere
+		//Have the particle kind of randomly rotate, yay
+		QUATERNION rotation;
+		
+		float fSin = sinf(2.0f * 2.0f * 1.0f / 30.0f);
+		float fCos = cosf(2.0f * 2.0f * 1.0f / 30.0f);
+		
+		/* Create quaternion */
+		rotation.x = noiseVec.x * fSin;
+		rotation.y = noiseVec.y * fSin;
+		rotation.z = noiseVec.z * fSin;
+		rotation.w = fCos;
+		//MatrixQuaternionRotationAxis(rotation, noiseVec, 2.0 * dt);
+		MatrixQuaternionMultiply(quaternion, quaternion, rotation);			
+	}
+	
+	
+	const float mass_inv = 1.0f/mass;
+	velocity += force * mass_inv * dt;
+	
+	float bright = 0.85 + 0.1 * position.z;
+	
+	color[0] = 255 * bright;
+	color[1] = 255 * bright;
+	color[2] = 255 * bright;
+	color[3] = 255;
 }
 
 void WMParticle::init() {
-	life = 1000.0;
-	position = Vec3(0,0,0);
 	const float vinitial = 1.0;
 	velocity = Vec3(rng.randF(-vinitial,vinitial), rng.randF(-vinitial,vinitial), rng.randF(-vinitial,vinitial));
 	
 	noiseVec = Vec3(0.0f);
-	
+
+	//Randomize position in sphere
 	const float pinitial = 0.6f;
 	int misses = 0;
+	position = Vec3(0,0,0);
 	do {
 		position = Vec3(rng.randF(-pinitial,pinitial), rng.randF(-pinitial,pinitial), rng.randF(-pinitial,pinitial));
 		misses++;

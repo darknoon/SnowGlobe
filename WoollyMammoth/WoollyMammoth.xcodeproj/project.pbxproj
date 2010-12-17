@@ -198,6 +198,9 @@
 		49D101FF1270BB85007E143E /* WMTextureAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D101F91270BB85007E143E /* WMTextureAsset.m */; };
 		49D102C61270C55E007E143E /* WMDebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D102C41270C55E007E143E /* WMDebugViewController.m */; };
 		49D102C71270C55E007E143E /* WMDebugViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49D102C51270C55E007E143E /* WMDebugViewController.xib */; };
+		49DC0AA512BB893E002BABFB /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49DC0AA412BB893E002BABFB /* Entitlements.plist */; };
+		49DC0AC012BB9058002BABFB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 49DC0ABE12BB9058002BABFB /* Default.png */; };
+		49DC0AC112BB9058002BABFB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49DC0ABF12BB9058002BABFB /* Default@2x.png */; };
 		49E81DDB12712FE400127D48 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DDA12712FE400127D48 /* MainWindow.xib */; };
 		49E81DFD127130FD00127D48 /* xButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DFB127130FD00127D48 /* xButton.png */; };
 		49E81DFE127130FD00127D48 /* xButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DFC127130FD00127D48 /* xButtonPressed.png */; };
@@ -362,7 +365,6 @@
 		492483AE1270D4BD00B59759 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		4924BB2512B03ADA0092F7DE /* DNGLState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNGLState.h; sourceTree = "<group>"; };
 		4924BB2612B03ADA0092F7DE /* DNGLState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNGLState.m; sourceTree = "<group>"; };
-		4930F37412BAE2D100607497 /* shutter.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = shutter.aif; sourceTree = "<group>"; };
 		4930F37712BAE30F00607497 /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
 		4930F37812BAE30F00607497 /* email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email@2x.png"; sourceTree = "<group>"; };
 		4930F37912BAE30F00607497 /* facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook@2x.png"; sourceTree = "<group>"; };
@@ -595,6 +597,9 @@
 		49D102C31270C55E007E143E /* WMDebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDebugViewController.h; sourceTree = "<group>"; };
 		49D102C41270C55E007E143E /* WMDebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDebugViewController.m; sourceTree = "<group>"; };
 		49D102C51270C55E007E143E /* WMDebugViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMDebugViewController.xib; sourceTree = "<group>"; };
+		49DC0AA412BB893E002BABFB /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		49DC0ABE12BB9058002BABFB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		49DC0ABF12BB9058002BABFB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		49E81DDA12712FE400127D48 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		49E81DDC12712FF800127D48 /* WoollyMammoth-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WoollyMammoth-Info.plist"; sourceTree = "<group>"; };
 		49E81DFB127130FD00127D48 /* xButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xButton.png; sourceTree = "<group>"; };
@@ -668,7 +673,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				4930F37412BAE2D100607497 /* shutter.aif */,
+				49DC0AA412BB893E002BABFB /* Entitlements.plist */,
 				32CA4F630368D1EE00C91783 /* WoollyMammoth_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -1546,6 +1551,8 @@
 		49E81DD912712FE400127D48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				49DC0ABE12BB9058002BABFB /* Default.png */,
+				49DC0ABF12BB9058002BABFB /* Default@2x.png */,
 				4930F85A12BB63B500607497 /* add.caf */,
 				4930F7CD12BB5CD900607497 /* forAGoodTime.png */,
 				4930F7CE12BB5CD900607497 /* forAGoodTime@2x.png */,
@@ -1659,6 +1666,9 @@
 				4930F7D012BB5CD900607497 /* forAGoodTime@2x.png in Resources */,
 				4930F85B12BB63B500607497 /* add.caf in Resources */,
 				07D5C1C812BB6C8200168687 /* nonCameraDeviceBackground.png in Resources */,
+				49DC0AA512BB893E002BABFB /* Entitlements.plist in Resources */,
+				49DC0AC012BB9058002BABFB /* Default.png in Resources */,
+				49DC0AC112BB9058002BABFB /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

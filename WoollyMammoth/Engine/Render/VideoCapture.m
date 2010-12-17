@@ -118,12 +118,12 @@
 	NSError *error = nil;
 	
 	NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
-	NSLog(@"Devices: %@", devices);
+	DLog(@"Devices: %@", devices);
 	
 	//Look for back camera
 	for (AVCaptureDevice *device in devices) {
 		if (device.position == AVCaptureDevicePositionBack) {
-			NSLog(@"Picked device: %@", device);
+			DLog(@"Picked device: %@", device);
 			cameraDevice = [device retain];
 		}
 	}

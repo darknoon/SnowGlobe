@@ -13,6 +13,7 @@
 #import "WMViewController.h"
 
 #import "DNAssertionHandler.h"
+#import "SoundManager.h"
 
 @implementation WoollyMammothAppDelegate
 
@@ -31,6 +32,8 @@
 	
 	//Disable screen dim / turn off because we don't use touch input
 	[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+	
+	[[SoundManager sharedManager] loadSoundConfigFromFilePath:[[NSBundle mainBundle] pathForResource:@"Sounds" ofType:@"plist"]];
 	
 	return YES;
 }

@@ -17,14 +17,22 @@
 #import "WMDebugViewController.h"
 #import "WMAssetManager.h"
 
+#import "SoundManager.h"
+
+#import "SGRibbon.h"
+
 #import "SHK.h"
 #import "SHKItem.h"
+#import "SHKTwitter.h"
+#import "SHKMail.h"
+#import "SHKFacebook.h"
 
 @interface WMViewController ()
 @end
 
 @implementation WMViewController
 
+@synthesize ribbon;
 @synthesize engine;
 @synthesize animating;
 @synthesize debugViewController;
@@ -81,7 +89,7 @@
 - (void)viewDidLoad;
 {
 	[super viewDidLoad];
-	fpsLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, 10, 200, 22)];
+	fpsLabel = [[UILabel alloc] initWithFrame:CGRectMake(74, 10, 200, 22)];
 	fpsLabel.backgroundColor = [UIColor clearColor];
 	fpsLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.f];
 	fpsLabel.textColor = [UIColor whiteColor];
@@ -97,6 +105,9 @@
 {    
     [engine release];
 	[debugViewController release];
+
+	[ribbon release];
+	ribbon = nil;
 
     [super dealloc];
 }
@@ -232,22 +243,50 @@
 #pragma mark -
 #pragma mark Actions
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+	if (ribbon.open) {
+		[ribbon setOpen:NO animated:YES];
+		[self startAnimation];
+	}
+}
+
+- (IBAction)showShare:(id)sender;
+{
+	[[SoundManager sharedManager] playSound:@"shutter"];
+	[self stopAnimation];
+	[ribbon setOpen:YES animated:YES];
+}
+
 - (IBAction)showDebug:(id)sender;
 {
 	[self.view addSubview:debugViewController.view];
 	debugViewController.view.frame = self.view.bounds;
 }
 
-- (IBAction)showShare:(id)sender;
+- (SHKItem *)shareItemWithScreenshot;
 {
-	SHKItem *item = [SHKItem image:[self screenshotImage] title:@"It's a Snow Day on my iPhone!"];
-	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForType:item.shareType 
-															 sharers:[NSArray arrayWithObjects:@"SHKTwitter", @"SHKFacebook", @"SHKMail", @"SHKCopy", nil]
-													  showMoreButton:NO];
-	actionSheet.item = item;
-	
-	[actionSheet showFromRect:CGRectZero inView:self.view animated:YES];
+	return [SHKItem image:[self screenshotImage] title:@"It's a Snow Day on my iPhone!"];
 }
+
+- (IBAction)shareFacebook:(id)sender;
+{
+	[SHKFacebook shareItem:[self shareItemWithScreenshot]];
+	[ribbon setOpen:NO animated:YES];
+}
+
+- (IBAction)shareTwitter:(id)sender;
+{
+	[SHKTwitter shareItem:[self shareItemWithScreenshot]];
+	[ribbon setOpen:NO animated:YES];
+}
+
+- (IBAction)shareEmail:(id)sender;
+{
+	[SHKMail shareItem:[self shareItemWithScreenshot]];
+	[ribbon setOpen:NO animated:YES];
+}
+
 
 #pragma mark -
 

@@ -16,6 +16,7 @@
 
 @class WMEngine;
 @class WMDebugViewController;
+@class SGRibbon;
 
 @interface WMViewController : UIViewController <UIActionSheetDelegate>
 {
@@ -35,12 +36,15 @@
 	UILabel *fpsLabel;
 	IBOutlet WMDebugViewController *debugViewController;	
 	
+	IBOutlet SGRibbon *ribbon;
+	
 	//Used to calculate actual FPS
 	NSTimeInterval lastFrameEndTime;
 	double lastFPSUpdate;
 	NSUInteger framesSinceLastFPSUpdate;
 }
 
+@property (nonatomic, retain) SGRibbon *ribbon;
 @property (readonly, retain) WMEngine *engine;
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
 @property (nonatomic) NSInteger animationFrameInterval;
@@ -49,7 +53,13 @@
 - (UIImage *)screenshotImage;
 
 - (IBAction)showDebug:(id)sender;
+
 - (IBAction)showShare:(id)sender;
+
+- (IBAction)shareFacebook:(id)sender;
+- (IBAction)shareTwitter:(id)sender;
+- (IBAction)shareEmail:(id)sender;
+
 
 - (void)reloadGame;
 - (void)reloadGameFromURL:(NSURL *)inRemoteURL;

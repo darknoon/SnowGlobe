@@ -84,6 +84,20 @@
 		49191F521287D202008F6C88 /* WMScriptInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 49191F511287D202008F6C88 /* WMScriptInstance.m */; };
 		492483AF1270D4BD00B59759 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492483AE1270D4BD00B59759 /* OpenGLES.framework */; };
 		4924BB2712B03ADA0092F7DE /* DNGLState.m in Sources */ = {isa = PBXBuildFile; fileRef = 4924BB2612B03ADA0092F7DE /* DNGLState.m */; };
+		4930F37512BAE2D100607497 /* shutter.aif in Resources */ = {isa = PBXBuildFile; fileRef = 4930F37412BAE2D100607497 /* shutter.aif */; };
+		4930F37D12BAE30F00607497 /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F37712BAE30F00607497 /* camera@2x.png */; };
+		4930F37E12BAE30F00607497 /* email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F37812BAE30F00607497 /* email@2x.png */; };
+		4930F37F12BAE30F00607497 /* facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F37912BAE30F00607497 /* facebook@2x.png */; };
+		4930F38012BAE30F00607497 /* ribbon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F37A12BAE30F00607497 /* ribbon@2x.png */; };
+		4930F38112BAE30F00607497 /* ribbonShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F37B12BAE30F00607497 /* ribbonShadow@2x.png */; };
+		4930F38212BAE30F00607497 /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F37C12BAE30F00607497 /* twitter@2x.png */; };
+		4930F38612BAE3A700607497 /* SGRibbon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4930F38512BAE3A700607497 /* SGRibbon.m */; };
+		4930F3EF12BAE9BE00607497 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4930F3EE12BAE9BE00607497 /* AudioToolbox.framework */; };
+		4930F40F12BAEA5100607497 /* Sounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4930F40E12BAEA5100607497 /* Sounds.plist */; };
+		4930F41112BAEA7E00607497 /* shutter.aif in Resources */ = {isa = PBXBuildFile; fileRef = 4930F41012BAEA7E00607497 /* shutter.aif */; };
+		4930F41412BAEAA600607497 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4930F41312BAEAA600607497 /* SoundManager.m */; };
+		4930F45912BAEE7000607497 /* infoHolly@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F45712BAEE7000607497 /* infoHolly@2x.png */; };
+		4930F45A12BAEE7000607497 /* infoHollyPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F45812BAEE7000607497 /* infoHollyPressed@2x.png */; };
 		4933187F129C8C1A0051088C /* WMAssetManifest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4933187E129C8C1A0051088C /* WMAssetManifest.m */; };
 		4933188C129C8E810051088C /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4933188B129C8E810051088C /* BrowserViewController.m */; };
 		4940D0641264F5F7007FA76C /* WMGameObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D0631264F5F7007FA76C /* WMGameObject.mm */; };
@@ -333,6 +347,22 @@
 		492483AE1270D4BD00B59759 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		4924BB2512B03ADA0092F7DE /* DNGLState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNGLState.h; sourceTree = "<group>"; };
 		4924BB2612B03ADA0092F7DE /* DNGLState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNGLState.m; sourceTree = "<group>"; };
+		4930F37412BAE2D100607497 /* shutter.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = shutter.aif; sourceTree = "<group>"; };
+		4930F37712BAE30F00607497 /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
+		4930F37812BAE30F00607497 /* email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email@2x.png"; sourceTree = "<group>"; };
+		4930F37912BAE30F00607497 /* facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook@2x.png"; sourceTree = "<group>"; };
+		4930F37A12BAE30F00607497 /* ribbon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ribbon@2x.png"; sourceTree = "<group>"; };
+		4930F37B12BAE30F00607497 /* ribbonShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ribbonShadow@2x.png"; sourceTree = "<group>"; };
+		4930F37C12BAE30F00607497 /* twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter@2x.png"; sourceTree = "<group>"; };
+		4930F38412BAE3A700607497 /* SGRibbon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGRibbon.h; sourceTree = "<group>"; };
+		4930F38512BAE3A700607497 /* SGRibbon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGRibbon.m; sourceTree = "<group>"; };
+		4930F3EE12BAE9BE00607497 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		4930F40E12BAEA5100607497 /* Sounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Sounds.plist; sourceTree = "<group>"; };
+		4930F41012BAEA7E00607497 /* shutter.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = shutter.aif; sourceTree = "<group>"; };
+		4930F41212BAEAA600607497 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
+		4930F41312BAEAA600607497 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
+		4930F45712BAEE7000607497 /* infoHolly@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infoHolly@2x.png"; sourceTree = "<group>"; };
+		4930F45812BAEE7000607497 /* infoHollyPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infoHollyPressed@2x.png"; sourceTree = "<group>"; };
 		4933187D129C8C1A0051088C /* WMAssetManifest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAssetManifest.h; sourceTree = "<group>"; };
 		4933187E129C8C1A0051088C /* WMAssetManifest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAssetManifest.m; sourceTree = "<group>"; };
 		4933188A129C8E810051088C /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
@@ -574,6 +604,7 @@
 				4909255112B6D0540076342D /* MessageUI.framework in Frameworks */,
 				4909255312B6D0540076342D /* Security.framework in Frameworks */,
 				4909255512B6D0540076342D /* SystemConfiguration.framework in Frameworks */,
+				4930F3EF12BAE9BE00607497 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,6 +638,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				4930F37412BAE2D100607497 /* shutter.aif */,
 				32CA4F630368D1EE00C91783 /* WoollyMammoth_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -630,6 +662,7 @@
 				4909255012B6D0540076342D /* MessageUI.framework */,
 				4909255212B6D0540076342D /* Security.framework */,
 				4909255412B6D0540076342D /* SystemConfiguration.framework */,
+				4930F3EE12BAE9BE00607497 /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1006,6 +1039,19 @@
 			path = Scripting;
 			sourceTree = "<group>";
 		};
+		4930F37612BAE30F00607497 /* Ribbon Bits */ = {
+			isa = PBXGroup;
+			children = (
+				4930F37712BAE30F00607497 /* camera@2x.png */,
+				4930F37812BAE30F00607497 /* email@2x.png */,
+				4930F37912BAE30F00607497 /* facebook@2x.png */,
+				4930F37A12BAE30F00607497 /* ribbon@2x.png */,
+				4930F37B12BAE30F00607497 /* ribbonShadow@2x.png */,
+				4930F37C12BAE30F00607497 /* twitter@2x.png */,
+			);
+			path = "Ribbon Bits";
+			sourceTree = "<group>";
+		};
 		49331879129C8BFE0051088C /* Apple */ = {
 			isa = PBXGroup;
 			children = (
@@ -1124,6 +1170,10 @@
 				4940D8E012658992007FA76C /* WoollyMammothAppDelegate.m */,
 				4949A0AF12AF189A009749D4 /* DNAssertionHandler.h */,
 				4949A0B012AF189A009749D4 /* DNAssertionHandler.m */,
+				4930F38412BAE3A700607497 /* SGRibbon.h */,
+				4930F38512BAE3A700607497 /* SGRibbon.m */,
+				4930F41212BAEAA600607497 /* SoundManager.h */,
+				4930F41312BAEAA600607497 /* SoundManager.m */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -1448,6 +1498,11 @@
 		49E81DD912712FE400127D48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4930F40E12BAEA5100607497 /* Sounds.plist */,
+				4930F41012BAEA7E00607497 /* shutter.aif */,
+				4930F45712BAEE7000607497 /* infoHolly@2x.png */,
+				4930F45812BAEE7000607497 /* infoHollyPressed@2x.png */,
+				4930F37612BAE30F00607497 /* Ribbon Bits */,
 				49CB509D12B7458E003C4362 /* Icon@2x.png */,
 				4908214812B192230061E487 /* UIOverlay@2x.png */,
 				49E81DFB127130FD00127D48 /* xButton.png */,
@@ -1543,6 +1598,17 @@
 				4909265712B6E1A80076342D /* Localizable.strings in Resources */,
 				4909265E12B6E1A80076342D /* FBConnect.bundle in Resources */,
 				49CB509E12B7458E003C4362 /* Icon@2x.png in Resources */,
+				4930F37512BAE2D100607497 /* shutter.aif in Resources */,
+				4930F37D12BAE30F00607497 /* camera@2x.png in Resources */,
+				4930F37E12BAE30F00607497 /* email@2x.png in Resources */,
+				4930F37F12BAE30F00607497 /* facebook@2x.png in Resources */,
+				4930F38012BAE30F00607497 /* ribbon@2x.png in Resources */,
+				4930F38112BAE30F00607497 /* ribbonShadow@2x.png in Resources */,
+				4930F38212BAE30F00607497 /* twitter@2x.png in Resources */,
+				4930F40F12BAEA5100607497 /* Sounds.plist in Resources */,
+				4930F41112BAEA7E00607497 /* shutter.aif in Resources */,
+				4930F45912BAEE7000607497 /* infoHolly@2x.png in Resources */,
+				4930F45A12BAEE7000607497 /* infoHollyPressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1699,6 +1765,8 @@
 				4909267712B6E1A80076342D /* SHKOAuthView.m in Sources */,
 				4909267812B6E1A80076342D /* SHKShareMenu.m in Sources */,
 				4909267912B6E1A80076342D /* SHKViewControllerWrapper.m in Sources */,
+				4930F38612BAE3A700607497 /* SGRibbon.m in Sources */,
+				4930F41412BAEAA600607497 /* SoundManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

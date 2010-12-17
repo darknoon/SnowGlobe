@@ -290,6 +290,7 @@
 	item.title = @"Made with Snow Globe, by poptical – for iPhone and iPod touch.";
 	[SHKFacebook shareItem:item];
 	[ribbon setOpen:NO animated:YES];
+	[self startAnimation];
 }
 
 - (IBAction)shareTwitter:(id)sender;

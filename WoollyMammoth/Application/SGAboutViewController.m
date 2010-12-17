@@ -37,11 +37,11 @@
 
 - (void)doBouncy;
 {
-	SecondOrderResponseEvaluator *evaluator = [[[SecondOrderResponseEvaluator alloc] initWithOmega:80.0 zeta:0.2] autorelease];
+	SecondOrderResponseEvaluator *evaluator = [[[SecondOrderResponseEvaluator alloc] initWithOmega:42.0 zeta:0.42] autorelease];
 	
 	[CATransaction begin];
 	[CATransaction setValue:(id)kCFBooleanFalse forKey:kCATransactionDisableActions];
-	[CATransaction setValue:[NSNumber numberWithFloat:3.0] forKey:kCATransactionAnimationDuration];
+	[CATransaction setValue:[NSNumber numberWithFloat:4.0] forKey:kCATransactionAnimationDuration];
 	
 	CATransform3D start = CATransform3DMakeScale(0.4, 0.4, 1);
 	

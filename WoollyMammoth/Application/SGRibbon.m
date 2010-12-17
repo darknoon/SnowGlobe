@@ -34,7 +34,7 @@
 {
 	if (inAnimated) [UIView beginAnimations:nil context:NULL];
 	if (inAnimated) [UIView setAnimationDuration:0.4];
-	
+	if (inAnimated) [UIView setAnimationBeginsFromCurrentState:YES];
 	if (inOpen) {
 		self.frame = (CGRect) {.origin.x = 268.f, .origin.y = -67.f,  .size.width = 42.f, .size.height = 207.f};
 	} else {

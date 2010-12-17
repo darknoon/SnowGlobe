@@ -98,7 +98,7 @@
 	fpsLabel.shadowColor = [UIColor blackColor];
 	fpsLabel.shadowOffset = CGSizeMake(0, 1);
 	fpsLabel.alpha = 0.8f;
-	fpsLabel.text = @"fps";
+	fpsLabel.text = @"";
 	[self.view addSubview:fpsLabel];
 				
 }
@@ -225,7 +225,9 @@
 		float fps = framesSinceLastFPSUpdate;
 		framesSinceLastFPSUpdate = 0;
 		
+#if DEBUG
 		fpsLabel.text = [NSString stringWithFormat:@"%.0lf fps (%.0lf ms)", fps, timeToDrawFrame * 1000.0];		
+#endif
 		lastFPSUpdate = frameEndTime;
 	}
 	

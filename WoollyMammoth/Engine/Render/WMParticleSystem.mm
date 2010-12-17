@@ -66,7 +66,7 @@ void WMParticle::update(double dt, double t, int i, Vec3 gravity, WMParticleSyst
 	const float coefficientOfDrag = 0.07f;
 	
 	Vec3 force = Vec3(0.0f, 0.0f, 0.0f);
-	force += mass * 0.06 * gravity; // add gravitational force, cheat
+	force += mass * 0.08 * gravity; // add gravitational force, cheat
 	
 	float v2 = velocity.dot(velocity);
 	float vl = sqrtf(v2);

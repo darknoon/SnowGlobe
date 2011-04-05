@@ -107,7 +107,6 @@
 		4930F7CF12BB5CD900607497 /* forAGoodTime.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F7CD12BB5CD900607497 /* forAGoodTime.png */; };
 		4930F7D012BB5CD900607497 /* forAGoodTime@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4930F7CE12BB5CD900607497 /* forAGoodTime@2x.png */; };
 		4930F85B12BB63B500607497 /* add.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4930F85A12BB63B500607497 /* add.caf */; };
-		4933188C129C8E810051088C /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4933188B129C8E810051088C /* BrowserViewController.m */; };
 		4940D0D01264F8DF007FA76C /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4940D0CF1264F8DF007FA76C /* CoreFoundation.framework */; };
 		4940D0E51264F943007FA76C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4940D0E41264F943007FA76C /* CFNetwork.framework */; };
 		498FCDFA12AB234C00CF48A3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498FCDF912AB234C00CF48A3 /* CoreMotion.framework */; };
@@ -211,6 +210,7 @@
 		49E146AD134BAF02001C919A /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E146A4134BAF02001C919A /* SoundManager.m */; };
 		49E146AE134BAF02001C919A /* WoollyMammothAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E146A7134BAF02001C919A /* WoollyMammothAppDelegate.m */; };
 		49E2A338134BC9A7006A80DC /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E2A337134BC9A7006A80DC /* twitter.png */; };
+		49E2A3A4134BE41D006A80DC /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E2A3A3134BE41D006A80DC /* BrowserViewController.m */; };
 		49E81DDB12712FE400127D48 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DDA12712FE400127D48 /* MainWindow.xib */; };
 		49E81DFD127130FD00127D48 /* xButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DFB127130FD00127D48 /* xButton.png */; };
 		49E81DFE127130FD00127D48 /* xButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DFC127130FD00127D48 /* xButtonPressed.png */; };
@@ -389,8 +389,6 @@
 		4930F7CD12BB5CD900607497 /* forAGoodTime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forAGoodTime.png; sourceTree = "<group>"; };
 		4930F7CE12BB5CD900607497 /* forAGoodTime@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forAGoodTime@2x.png"; sourceTree = "<group>"; };
 		4930F85A12BB63B500607497 /* add.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = add.caf; sourceTree = "<group>"; };
-		4933188A129C8E810051088C /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
-		4933188B129C8E810051088C /* BrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserViewController.m; sourceTree = "<group>"; };
 		4940D0CF1264F8DF007FA76C /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		4940D0E41264F943007FA76C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		498FCDF912AB234C00CF48A3 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -614,6 +612,8 @@
 		49E146A6134BAF02001C919A /* WoollyMammothAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WoollyMammothAppDelegate.h; sourceTree = "<group>"; };
 		49E146A7134BAF02001C919A /* WoollyMammothAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WoollyMammothAppDelegate.m; sourceTree = "<group>"; };
 		49E2A337134BC9A7006A80DC /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
+		49E2A3A2134BE41D006A80DC /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
+		49E2A3A3134BE41D006A80DC /* BrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserViewController.m; sourceTree = "<group>"; };
 		49E81DDA12712FE400127D48 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		49E81DFB127130FD00127D48 /* xButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xButton.png; sourceTree = "<group>"; };
 		49E81DFC127130FD00127D48 /* xButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xButtonPressed.png; sourceTree = "<group>"; };
@@ -1091,22 +1091,12 @@
 			path = AnimationAcceleration;
 			sourceTree = "<group>";
 		};
-		49331879129C8BFE0051088C /* Apple */ = {
-			isa = PBXGroup;
-			children = (
-				4933188A129C8E810051088C /* BrowserViewController.h */,
-				4933188B129C8E810051088C /* BrowserViewController.m */,
-			);
-			path = Apple;
-			sourceTree = "<group>";
-		};
 		4940D06B1264F641007FA76C /* Externals */ = {
 			isa = PBXGroup;
 			children = (
 				49BFA1E3134BB17500DAA3A3 /* WoollyMammoth */,
 				4930F7AB12BB5B4A00607497 /* AnimationAcceleration */,
 				4909259D12B6E1A80076342D /* ShareKit */,
-				49331879129C8BFE0051088C /* Apple */,
 			);
 			path = Externals;
 			sourceTree = "<group>";
@@ -1263,6 +1253,7 @@
 		49BFA27E134BB8DB00DAA3A3 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				49E2A3A1134BE41D006A80DC /* Apple */,
 				49BFA27F134BB90400DAA3A3 /* cocoaasyncsocket */,
 				49BFA2A6134BB90400DAA3A3 /* lua-5.1.4 */,
 				49BFA393134BB90400DAA3A3 /* oolong */,
@@ -1565,6 +1556,16 @@
 			path = Store;
 			sourceTree = "<group>";
 		};
+		49E2A3A1134BE41D006A80DC /* Apple */ = {
+			isa = PBXGroup;
+			children = (
+				49E2A3A2134BE41D006A80DC /* BrowserViewController.h */,
+				49E2A3A3134BE41D006A80DC /* BrowserViewController.m */,
+			);
+			name = Apple;
+			path = ../../../Particulon/Externals/WoollyMammoth/Externals/Apple;
+			sourceTree = "<group>";
+		};
 		49E81DD912712FE400127D48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1699,7 +1700,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				4933188C129C8E810051088C /* BrowserViewController.m in Sources */,
 				4909263B12B6E1A80076342D /* SHKOAuthSharer.m in Sources */,
 				4909263C12B6E1A80076342D /* SHKSharer.m in Sources */,
 				4909263D12B6E1A80076342D /* UIWebView+SHK.m in Sources */,
@@ -1850,6 +1850,7 @@
 				49BFA4EB134BB90500DAA3A3 /* Timer.mm in Sources */,
 				49BFA4FA134BBBF700DAA3A3 /* ResourceFile.cpp in Sources */,
 				49BFA4FB134BBBF700DAA3A3 /* Streaming.cpp in Sources */,
+				49E2A3A4134BE41D006A80DC /* BrowserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

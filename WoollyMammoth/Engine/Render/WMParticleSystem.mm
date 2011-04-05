@@ -39,7 +39,7 @@ struct WMParticle {
 };
 
 struct WMParticleVertex {
-	Vec3 position;
+	VECTOR3 position;
 	unsigned char color[4];
 	unsigned char texCoord0[2];
 };

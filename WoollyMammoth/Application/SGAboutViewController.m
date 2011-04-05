@@ -11,6 +11,9 @@
 #import "AccelerationAnimation.h"
 #import "Evaluate.h"
 
+@interface SGAboutViewController ()
+- (void)doBouncy;
+@end
 
 @implementation SGAboutViewController
 

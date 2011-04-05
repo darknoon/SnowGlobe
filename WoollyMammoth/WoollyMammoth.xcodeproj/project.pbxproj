@@ -161,6 +161,7 @@
 		4940DCEB12669B1A007FA76C /* WMRenderable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940DCEA12669B1A007FA76C /* WMRenderable.mm */; };
 		4949A0B112AF189A009749D4 /* DNAssertionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4949A0B012AF189A009749D4 /* DNAssertionHandler.m */; };
 		49570A16127A52250007280E /* WMSceneDescription.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49570A15127A52250007280E /* WMSceneDescription.mm */; };
+		497D7392134B292600B6C855 /* EAGLContext+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 497D7391134B292600B6C855 /* EAGLContext+Extensions.m */; };
 		498B916D12AEDF9E0025CEA6 /* WMTextureCubeMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 498B916C12AEDF9E0025CEA6 /* WMTextureCubeMap.m */; };
 		498FCD4E12AB18F900CF48A3 /* WMAccelerometer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 498FCD4D12AB18F900CF48A3 /* WMAccelerometer.mm */; };
 		498FCDFA12AB234C00CF48A3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498FCDF912AB234C00CF48A3 /* CoreMotion.framework */; };
@@ -488,6 +489,8 @@
 		4949A0B012AF189A009749D4 /* DNAssertionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNAssertionHandler.m; sourceTree = "<group>"; };
 		49570A14127A52250007280E /* WMSceneDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSceneDescription.h; sourceTree = "<group>"; };
 		49570A15127A52250007280E /* WMSceneDescription.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMSceneDescription.mm; sourceTree = "<group>"; };
+		497D7390134B292600B6C855 /* EAGLContext+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EAGLContext+Extensions.h"; sourceTree = "<group>"; };
+		497D7391134B292600B6C855 /* EAGLContext+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EAGLContext+Extensions.m"; sourceTree = "<group>"; };
 		498B916B12AEDF9E0025CEA6 /* WMTextureCubeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTextureCubeMap.h; sourceTree = "<group>"; };
 		498B916C12AEDF9E0025CEA6 /* WMTextureCubeMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTextureCubeMap.m; sourceTree = "<group>"; };
 		498FCD4C12AB18F900CF48A3 /* WMAccelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAccelerometer.h; sourceTree = "<group>"; };
@@ -1510,6 +1513,8 @@
 			children = (
 				49C97A6A12A33FEC004258E4 /* SimplexNoise.h */,
 				49C97A6912A33FEC004258E4 /* SimplexNoise.c */,
+				497D7390134B292600B6C855 /* EAGLContext+Extensions.h */,
+				497D7391134B292600B6C855 /* EAGLContext+Extensions.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1830,6 +1835,7 @@
 				4930F75712BB4F9F00607497 /* SGAboutViewController.m in Sources */,
 				4930F7B012BB5B4A00607497 /* AccelerationAnimation.m in Sources */,
 				4930F7B112BB5B4A00607497 /* Evaluate.m in Sources */,
+				497D7392134B292600B6C855 /* EAGLContext+Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1860,14 +1866,14 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
 				HEADER_SEARCH_PATHS = $SRCROOT/Externals/oolong/Include;
 				INFOPLIST_FILE = "Resources/WoollyMammoth-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-Wno-format-security",
 					"-Wno-write-strings",
 					"$(OTHER_CFLAGS)",
 				);
 				PRODUCT_NAME = "Snow Globe";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$SRCROOT/Externals/Bullet/src $SRCROOT/Externals/oolong/Include";
 			};
 			name = Debug;
@@ -1882,14 +1888,14 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
 				HEADER_SEARCH_PATHS = $SRCROOT/Externals/oolong/Include;
 				INFOPLIST_FILE = "Resources/WoollyMammoth-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-Wno-format-security",
 					"-Wno-write-strings",
 					"$(OTHER_CFLAGS)",
 				);
 				PRODUCT_NAME = "Snow Globe";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$SRCROOT/Externals/Bullet/src $SRCROOT/Externals/oolong/Include";
 				VALIDATE_PRODUCT = YES;
 			};

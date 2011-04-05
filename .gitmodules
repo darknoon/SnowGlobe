@@ -1,0 +1,3 @@
+[submodule "Externals/WoollyMammoth"]
+	path = Externals/WoollyMammoth
+	url = git@github.com:darknoon/WoollyMammoth.git

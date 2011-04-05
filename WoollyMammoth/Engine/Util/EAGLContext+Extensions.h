@@ -9,6 +9,14 @@
 #import <Foundation/Foundation.h>
 
 
+#import <OpenGLES/EAGL.h>
+
+
 @interface EAGLContext (EAGLContext_Extensions)
+
+- (NSSet *)supportedExtensions;
+
+//At the moment, just a convenience method
+- (BOOL)supportsExtension:(NSString *)inExtension;
 
 @end

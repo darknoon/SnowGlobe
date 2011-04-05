@@ -8,7 +8,24 @@
 
 #import "EAGLContext+Extensions.h"
 
+#import <OpenGLES/EAGL.h>
+#import <OpenGLES/ES1/gl.h>
+#import <OpenGLES/ES1/glext.h>
+#import <OpenGLES/ES2/gl.h>
+#import <OpenGLES/ES2/glext.h>
 
 @implementation EAGLContext (EAGLContext_Extensions)
+
+- (NSSet *)supportedExtensions;
+{
+	NSString *extensionString = [NSString stringWithUTF8String:(char *)glGetString(GL_EXTENSIONS)];
+    NSArray *extensions = [extensionString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	return [NSSet setWithArray:extensions];
+}
+
+- (BOOL)supportsExtension:(NSString *)inExtension;
+{
+	return [[self supportedExtensions] containsObject:inExtension];
+}
 
 @end

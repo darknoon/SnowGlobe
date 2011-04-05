@@ -156,7 +156,7 @@
 		4940D8E112658992007FA76C /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D8D912658992007FA76C /* EAGLView.m */; };
 		4940D8E412658992007FA76C /* WoollyMammothAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940D8E012658992007FA76C /* WoollyMammothAppDelegate.m */; };
 		4940D90B12658A46007FA76C /* WMViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D90A12658A46007FA76C /* WMViewController.mm */; };
-		4940D92012658B37007FA76C /* WMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4940D91F12658B37007FA76C /* WMViewController.xib */; };
+		4940D92012658B37007FA76C /* SGMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4940D91F12658B37007FA76C /* SGMainViewController.xib */; };
 		4940D97612658E4B007FA76C /* WMRenderEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940D97512658E4B007FA76C /* WMRenderEngine.mm */; };
 		4940DCEB12669B1A007FA76C /* WMRenderable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4940DCEA12669B1A007FA76C /* WMRenderable.mm */; };
 		4949A0B112AF189A009749D4 /* DNAssertionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4949A0B012AF189A009749D4 /* DNAssertionHandler.m */; };
@@ -202,6 +202,7 @@
 		49DC0AA512BB893E002BABFB /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49DC0AA412BB893E002BABFB /* Entitlements.plist */; };
 		49DC0AC012BB9058002BABFB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 49DC0ABE12BB9058002BABFB /* Default.png */; };
 		49DC0AC112BB9058002BABFB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49DC0ABF12BB9058002BABFB /* Default@2x.png */; };
+		49E1466D134BA822001C919A /* SGMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E1466C134BA822001C919A /* SGMainViewController.m */; };
 		49E81DDB12712FE400127D48 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DDA12712FE400127D48 /* MainWindow.xib */; };
 		49E81DFD127130FD00127D48 /* xButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DFB127130FD00127D48 /* xButton.png */; };
 		49E81DFE127130FD00127D48 /* xButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E81DFC127130FD00127D48 /* xButtonPressed.png */; };
@@ -474,7 +475,7 @@
 		4940D8E012658992007FA76C /* WoollyMammothAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WoollyMammothAppDelegate.m; sourceTree = "<group>"; };
 		4940D90912658A46007FA76C /* WMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMViewController.h; sourceTree = "<group>"; };
 		4940D90A12658A46007FA76C /* WMViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMViewController.mm; sourceTree = "<group>"; };
-		4940D91F12658B37007FA76C /* WMViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMViewController.xib; sourceTree = "<group>"; };
+		4940D91F12658B37007FA76C /* SGMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SGMainViewController.xib; sourceTree = "<group>"; };
 		4940D97412658E4B007FA76C /* WMRenderEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRenderEngine.h; sourceTree = "<group>"; };
 		4940D97512658E4B007FA76C /* WMRenderEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMRenderEngine.mm; sourceTree = "<group>"; };
 		4940DB1212664329007FA76C /* WMPhysicsBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhysicsBody.h; sourceTree = "<group>"; };
@@ -603,6 +604,8 @@
 		49DC0AA412BB893E002BABFB /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		49DC0ABE12BB9058002BABFB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		49DC0ABF12BB9058002BABFB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		49E1466B134BA822001C919A /* SGMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGMainViewController.h; sourceTree = "<group>"; };
+		49E1466C134BA822001C919A /* SGMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGMainViewController.m; sourceTree = "<group>"; };
 		49E81DDA12712FE400127D48 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		49E81DDC12712FF800127D48 /* WoollyMammoth-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WoollyMammoth-Info.plist"; sourceTree = "<group>"; };
 		49E81DFB127130FD00127D48 /* xButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xButton.png; sourceTree = "<group>"; };
@@ -1214,9 +1217,11 @@
 			children = (
 				4940D8D812658992007FA76C /* EAGLView.h */,
 				4940D8D912658992007FA76C /* EAGLView.m */,
+				49E1466B134BA822001C919A /* SGMainViewController.h */,
+				49E1466C134BA822001C919A /* SGMainViewController.m */,
+				4940D91F12658B37007FA76C /* SGMainViewController.xib */,
 				4940D90912658A46007FA76C /* WMViewController.h */,
 				4940D90A12658A46007FA76C /* WMViewController.mm */,
-				4940D91F12658B37007FA76C /* WMViewController.xib */,
 				49D102C31270C55E007E143E /* WMDebugViewController.h */,
 				49D102C41270C55E007E143E /* WMDebugViewController.m */,
 				49D102C51270C55E007E143E /* WMDebugViewController.xib */,
@@ -1634,7 +1639,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4940D92012658B37007FA76C /* WMViewController.xib in Resources */,
+				4940D92012658B37007FA76C /* SGMainViewController.xib in Resources */,
 				49D102C71270C55E007E143E /* WMDebugViewController.xib in Resources */,
 				49E81DDB12712FE400127D48 /* MainWindow.xib in Resources */,
 				49E81DFD127130FD00127D48 /* xButton.png in Resources */,
@@ -1836,6 +1841,7 @@
 				4930F7B012BB5B4A00607497 /* AccelerationAnimation.m in Sources */,
 				4930F7B112BB5B4A00607497 /* Evaluate.m in Sources */,
 				497D7392134B292600B6C855 /* EAGLContext+Extensions.m in Sources */,
+				49E1466D134BA822001C919A /* SGMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

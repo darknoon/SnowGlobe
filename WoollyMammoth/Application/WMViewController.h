@@ -36,11 +36,7 @@
 	
 	UILabel *fpsLabel;
 	IBOutlet WMDebugViewController *debugViewController;
-	
-	IBOutlet SGAboutViewController *aboutViewController;
-	
-	IBOutlet SGRibbon *ribbon;
-	
+		
 	//Used to calculate actual FPS
 	NSTimeInterval lastFrameEndTime;
 	double lastFPSUpdate;
@@ -56,15 +52,7 @@
 
 - (UIImage *)screenshotImage;
 
-- (IBAction)showAbout:(id)sender;
 - (IBAction)showDebug:(id)sender;
-
-- (IBAction)showShare:(id)sender;
-
-- (IBAction)shareFacebook:(id)sender;
-- (IBAction)shareTwitter:(id)sender;
-- (IBAction)shareEmail:(id)sender;
-
 
 - (void)reloadGame;
 - (void)reloadGameFromURL:(NSURL *)inRemoteURL;

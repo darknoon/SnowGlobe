@@ -27,9 +27,7 @@
 	
 	//Set our assertion handler
 	[[[NSThread currentThread] threadDictionary] setObject:[[[DNAssertionHandler alloc] init] autorelease] forKey:NSAssertionHandlerKey];
-	
-	[viewController reloadGame];
-	
+		
 	//Disable screen dim / turn off because we don't use touch input
 	[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 	

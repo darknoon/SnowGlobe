@@ -24,13 +24,14 @@
 @synthesize aboutViewController;
 @synthesize ribbon;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithCoder:(NSCoder *)aDecoder;
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+	self = [super initWithCoder:aDecoder];
+	if (!self) return nil;
+
+	self.compositionURL = [[NSBundle mainBundle] URLForResource:@"SnowGlobe" withExtension:@"wmbundle"];
+	
+	return self;
 }
 
 - (void)dealloc

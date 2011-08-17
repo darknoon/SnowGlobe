@@ -114,12 +114,6 @@
 		49462BF313FB372800D32203 /* WMDebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494628A813FB372600D32203 /* WMDebugViewController.m */; };
 		49462BF413FB372800D32203 /* WMDebugViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 494628A913FB372600D32203 /* WMDebugViewController.xib */; };
 		49462BF513FB372800D32203 /* WMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494628AB13FB372600D32203 /* WMViewController.m */; };
-		49462BF913FB372800D32203 /* Asset Pipeline.graffle in Resources */ = {isa = PBXBuildFile; fileRef = 494628B113FB372600D32203 /* Asset Pipeline.graffle */; };
-		49462BFA13FB372800D32203 /* Feedback Rendering.graffle in Resources */ = {isa = PBXBuildFile; fileRef = 494628B213FB372600D32203 /* Feedback Rendering.graffle */; };
-		49462BFB13FB372800D32203 /* GL State Management.graffle in Resources */ = {isa = PBXBuildFile; fileRef = 494628B313FB372600D32203 /* GL State Management.graffle */; };
-		49462BFC13FB372800D32203 /* Render Architecture.graffle in Resources */ = {isa = PBXBuildFile; fileRef = 494628B413FB372600D32203 /* Render Architecture.graffle */; };
-		49462BFD13FB372800D32203 /* Snow Effect.graffle in Resources */ = {isa = PBXBuildFile; fileRef = 494628B513FB372600D32203 /* Snow Effect.graffle */; };
-		49462BFE13FB372800D32203 /* v002 Blur Algorithm.graffle in Resources */ = {isa = PBXBuildFile; fileRef = 494628B613FB372600D32203 /* v002 Blur Algorithm.graffle */; };
 		49462BFF13FB372800D32203 /* WMStructuredBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 494628BA13FB372600D32203 /* WMStructuredBuffer.m */; };
 		49462C0013FB372800D32203 /* WMStructureDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 494628BC13FB372600D32203 /* WMStructureDefinition.m */; };
 		49462C0113FB372800D32203 /* WMBundleDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 494628BF13FB372600D32203 /* WMBundleDocument.m */; };
@@ -190,8 +184,8 @@
 		49462D5A13FB372900D32203 /* SnowParticle.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 49462B4613FB372700D32203 /* SnowParticle.vsh */; };
 		49462D5B13FB372900D32203 /* WMQuadParticleSystem.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49462B4813FB372700D32203 /* WMQuadParticleSystem.mm */; };
 		49462DD513FB379700D32203 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49462DD413FB379700D32203 /* GLKit.framework */; };
+		494ABF1913FB51CC0067C0AA /* SnowGlobe.wmbundle in Resources */ = {isa = PBXBuildFile; fileRef = 494ABF1813FB51CC0067C0AA /* SnowGlobe.wmbundle */; };
 		498FCDFA12AB234C00CF48A3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498FCDF912AB234C00CF48A3 /* CoreMotion.framework */; };
-		49BFA1DD134BB0BD00DAA3A3 /* WeatherGlobe.wm in Resources */ = {isa = PBXBuildFile; fileRef = 49BFA1DC134BB0BD00DAA3A3 /* WeatherGlobe.wm */; };
 		49C55283126980610093FAFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C55282126980610093FAFD /* CoreGraphics.framework */; };
 		49CB509E12B7458E003C4362 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CB509D12B7458E003C4362 /* Icon@2x.png */; };
 		49DC0AA512BB893E002BABFB /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49DC0AA412BB893E002BABFB /* Entitlements.plist */; };
@@ -216,7 +210,7 @@
 /* Begin PBXFileReference section */
 		07D5C1C712BB6C8200168687 /* nonCameraDeviceBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nonCameraDeviceBackground.png; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* Snow Globe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snow Globe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Snow Globe 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snow Globe 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -394,12 +388,6 @@
 		494628A913FB372600D32203 /* WMDebugViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMDebugViewController.xib; sourceTree = "<group>"; };
 		494628AA13FB372600D32203 /* WMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMViewController.h; sourceTree = "<group>"; };
 		494628AB13FB372600D32203 /* WMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMViewController.m; sourceTree = "<group>"; };
-		494628B113FB372600D32203 /* Asset Pipeline.graffle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Asset Pipeline.graffle"; sourceTree = "<group>"; };
-		494628B213FB372600D32203 /* Feedback Rendering.graffle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Feedback Rendering.graffle"; sourceTree = "<group>"; };
-		494628B313FB372600D32203 /* GL State Management.graffle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "GL State Management.graffle"; sourceTree = "<group>"; };
-		494628B413FB372600D32203 /* Render Architecture.graffle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Render Architecture.graffle"; sourceTree = "<group>"; };
-		494628B513FB372600D32203 /* Snow Effect.graffle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Snow Effect.graffle"; sourceTree = "<group>"; };
-		494628B613FB372600D32203 /* v002 Blur Algorithm.graffle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "v002 Blur Algorithm.graffle"; sourceTree = "<group>"; };
 		494628B913FB372600D32203 /* WMStructuredBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMStructuredBuffer.h; sourceTree = "<group>"; };
 		494628BA13FB372600D32203 /* WMStructuredBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMStructuredBuffer.m; sourceTree = "<group>"; };
 		494628BB13FB372600D32203 /* WMStructureDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMStructureDefinition.h; sourceTree = "<group>"; };
@@ -548,8 +536,8 @@
 		49462B4713FB372700D32203 /* WMQuadParticleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMQuadParticleSystem.h; sourceTree = "<group>"; };
 		49462B4813FB372700D32203 /* WMQuadParticleSystem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMQuadParticleSystem.mm; sourceTree = "<group>"; };
 		49462DD413FB379700D32203 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		494ABF1813FB51CC0067C0AA /* SnowGlobe.wmbundle */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SnowGlobe.wmbundle; path = Resources/SnowGlobe.wmbundle; sourceTree = SOURCE_ROOT; };
 		498FCDF912AB234C00CF48A3 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		49BFA1DC134BB0BD00DAA3A3 /* WeatherGlobe.wm */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WeatherGlobe.wm; path = Resources/WeatherGlobe.wm; sourceTree = SOURCE_ROOT; };
 		49C55282126980610093FAFD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		49CB509D12B7458E003C4362 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		49DC0AA412BB893E002BABFB /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
@@ -606,7 +594,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Snow Globe.app */,
+				1D6058910D05DD3D006BFB54 /* Snow Globe 2.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1061,13 +1049,11 @@
 			isa = PBXGroup;
 			children = (
 				494628A213FB372600D32203 /* Application */,
-				494628B013FB372600D32203 /* Documentation */,
 				494628B713FB372600D32203 /* Engine */,
 				4946293D13FB372600D32203 /* Externals */,
 				49462B0813FB372600D32203 /* More Patches */,
 			);
-			name = WoollyMammoth;
-			path = ../../WoollyMammoth;
+			path = WoollyMammoth;
 			sourceTree = "<group>";
 		};
 		494628A213FB372600D32203 /* Application */ = {
@@ -1084,19 +1070,6 @@
 				494628AB13FB372600D32203 /* WMViewController.m */,
 			);
 			path = Application;
-			sourceTree = "<group>";
-		};
-		494628B013FB372600D32203 /* Documentation */ = {
-			isa = PBXGroup;
-			children = (
-				494628B113FB372600D32203 /* Asset Pipeline.graffle */,
-				494628B213FB372600D32203 /* Feedback Rendering.graffle */,
-				494628B313FB372600D32203 /* GL State Management.graffle */,
-				494628B413FB372600D32203 /* Render Architecture.graffle */,
-				494628B513FB372600D32203 /* Snow Effect.graffle */,
-				494628B613FB372600D32203 /* v002 Blur Algorithm.graffle */,
-			);
-			path = Documentation;
 			sourceTree = "<group>";
 		};
 		494628B713FB372600D32203 /* Engine */ = {
@@ -1430,7 +1403,7 @@
 		49D102101270BCBD007E143E /* Bundles */ = {
 			isa = PBXGroup;
 			children = (
-				49BFA1DC134BB0BD00DAA3A3 /* WeatherGlobe.wm */,
+				494ABF1813FB51CC0067C0AA /* SnowGlobe.wmbundle */,
 			);
 			path = Bundles;
 			sourceTree = "<group>";
@@ -1448,18 +1421,10 @@
 				49E146A2134BAF02001C919A /* SGRibbon.m */,
 				49E146A3134BAF02001C919A /* SoundManager.h */,
 				49E146A4134BAF02001C919A /* SoundManager.m */,
-				49E146A5134BAF02001C919A /* Store */,
 				49E146A6134BAF02001C919A /* WoollyMammothAppDelegate.h */,
 				49E146A7134BAF02001C919A /* WoollyMammothAppDelegate.m */,
 			);
 			path = SnowGlobe;
-			sourceTree = "<group>";
-		};
-		49E146A5134BAF02001C919A /* Store */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Store;
 			sourceTree = "<group>";
 		};
 		49E81DD912712FE400127D48 /* Resources */ = {
@@ -1508,7 +1473,7 @@
 			);
 			name = SnowGlobe;
 			productName = WoollyMammoth;
-			productReference = 1D6058910D05DD3D006BFB54 /* Snow Globe.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* Snow Globe 2.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1587,17 +1552,11 @@
 				49DC0AC112BB9058002BABFB /* Default@2x.png in Resources */,
 				49E146A9134BAF02001C919A /* SGAboutViewController.xib in Resources */,
 				49E146AB134BAF02001C919A /* SGMainViewController.xib in Resources */,
-				49BFA1DD134BB0BD00DAA3A3 /* WeatherGlobe.wm in Resources */,
 				49E2A338134BC9A7006A80DC /* twitter.png in Resources */,
 				49462BF413FB372800D32203 /* WMDebugViewController.xib in Resources */,
-				49462BF913FB372800D32203 /* Asset Pipeline.graffle in Resources */,
-				49462BFA13FB372800D32203 /* Feedback Rendering.graffle in Resources */,
-				49462BFB13FB372800D32203 /* GL State Management.graffle in Resources */,
-				49462BFC13FB372800D32203 /* Render Architecture.graffle in Resources */,
-				49462BFD13FB372800D32203 /* Snow Effect.graffle in Resources */,
-				49462BFE13FB372800D32203 /* v002 Blur Algorithm.graffle in Resources */,
 				49462C0F13FB372800D32203 /* WMGaussianBlur.glsl in Resources */,
 				49462D5813FB372900D32203 /* SnowChunk.png in Resources */,
+				494ABF1913FB51CC0067C0AA /* SnowGlobe.wmbundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1771,16 +1730,14 @@
 				GCC_PREFIX_HEADER = WoollyMammoth_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
-				HEADER_SEARCH_PATHS = $SRCROOT/Externals/WoollMammoth/oolong/Include;
 				INFOPLIST_FILE = "Resources/SnowGlobe-Info.plist";
 				OTHER_CPLUSPLUSFLAGS = (
 					"-Wno-format-security",
 					"-Wno-write-strings",
 					"$(OTHER_CFLAGS)",
 				);
-				PRODUCT_NAME = "Snow Globe";
+				PRODUCT_NAME = "Snow Globe 2";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$SRCROOT/Externals/Bullet/src $SRCROOT/Externals/WoollMammoth/Externals/oolong/Include";
 			};
 			name = Debug;
 		};
@@ -1792,16 +1749,14 @@
 				GCC_PREFIX_HEADER = WoollyMammoth_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
-				HEADER_SEARCH_PATHS = $SRCROOT/Externals/WoollMammoth/oolong/Include;
 				INFOPLIST_FILE = "Resources/SnowGlobe-Info.plist";
 				OTHER_CPLUSPLUSFLAGS = (
 					"-Wno-format-security",
 					"-Wno-write-strings",
 					"$(OTHER_CFLAGS)",
 				);
-				PRODUCT_NAME = "Snow Globe";
+				PRODUCT_NAME = "Snow Globe 2";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$SRCROOT/Externals/Bullet/src $SRCROOT/Externals/WoollMammoth/Externals/oolong/Include";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

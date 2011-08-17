@@ -115,6 +115,12 @@
     // Release any cached data, images, etc. that aren't in use.
 }
 
+//We use the accelerometer, so we should just stay in the same orientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
+{
+	return NO;
+}
+
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
